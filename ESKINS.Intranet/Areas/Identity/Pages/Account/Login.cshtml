@@ -7,10 +7,10 @@
 <center>
 <h1>@ViewData["Title"]</h1>
 <div class="row justify-content-md-center">
-    <div class="col-md-4">
+    <div class="col-md-4 justify-content-md-center">
         <section>
             <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
+                <h3>Use a local account to log in.</h3>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
@@ -48,9 +48,9 @@
             </form>
         </section>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 justify-content-md-center">
         <section>
-            <h2>Use another service to log in.</h2>
+            <h3>Use another service to log in.</h3>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
