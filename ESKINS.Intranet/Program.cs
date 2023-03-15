@@ -9,7 +9,7 @@ namespace ESKINS.Intranet
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            var config = builder.Configuration;
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -19,6 +19,12 @@ namespace ESKINS.Intranet
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddAuthentication().AddGoogle(options =>
+            {
+                IConfigurationSection googleAuthNSection = config.GetSection("Authentication:Google");
+                options.ClientId = googleAuthNSection["ClientId"];
+                options.ClientSecret = googleAuthNSection["ClientSecret"];
+            });
 
             var app = builder.Build();
 
