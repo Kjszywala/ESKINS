@@ -13,14 +13,89 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="~/css/styles.css" rel="stylesheet" />
     </head>
+    <style>
+        body{
+	        font-family: 'Roboto', sans-serif;
+	        font-weight: 500;
+	        font-size: 15px;
+	        line-height: 1.4;
+	        color: #fff;
+	        background-color: #1f2029;
+	        overflow-x: hidden;
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+            background-position: center;
+            background-repeat: repeat;
+            background-size: 4%;
+            width: 100%;
+            height:100%;
+        }
+    </style>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
+        <div class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <div class="navbar-header">
+                                <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                                <a href="#" class="navbar-brand">GROUP.COM</a>
+                            </div>
+
+                            <div class="navbar-collapse collapse" id="mobile_menu">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="#">Home</a></li>
+                                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">About One</a></li>
+                                            <li><a href="#">About Two</a></li>
+                                            <li><a href="#">About Three</a></li>
+                                            <li><a href="#">About Four</a></li>
+                                            <li><a href="#">About Five</a></li>
+                                            <li><a href="#">About Six</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Welcome</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Gallery</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                </ul>
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <form action="" class="navbar-form">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="search" name="search" id="" placeholder="Search Anything Here..." class="form-control">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Login</a></li>
+                                            <li><a href="#">Sign Up</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <@*nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="#!">
-                    <img src="~/icon/e-skins.png" alt="" id="FOO" style="width: auto; height:40px"/>
+                    <img src="~/icon/e-skins.png" alt="" id="FOO" style="width: auto; height:40px; border-radius: 10px"/>
                 </a>
-                <link rel="shortcut icon" type="image/x-icon" href="~/icon/e-skins.png" />
+                <link rel="shortcut icon" type="image/x-icon" href="~/icon/e-skins1.png" />
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -38,16 +113,11 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        @*<button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>*@
                         <partial name="_LoginPartial" />
                     </form>
                 </div>
             </div>
-        </nav>
+        </nav>*@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         </nav>
         <!-- Header-->
