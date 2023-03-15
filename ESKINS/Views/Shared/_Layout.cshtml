@@ -10,114 +10,74 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="~/css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link href="~/css/home.css" type="text/css" rel="stylesheet" media="screen,projection" />
     </head>
-    <style>
-        body{
-	        font-family: 'Roboto', sans-serif;
-	        font-weight: 500;
-	        font-size: 15px;
-	        line-height: 1.4;
-	        color: #fff;
-	        background-color: #1f2029;
-	        overflow-x: hidden;
-            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
-            background-position: center;
-            background-repeat: repeat;
-            background-size: 4%;
-            width: 100%;
-            height:100%;
-        }
-    </style>
-    <body>
+    <body id="body1">
         <!-- Navigation-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
-        <div class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <div class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
 
-                            <div class="navbar-header">
-                                <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                                <a href="#" class="navbar-brand">GROUP.COM</a>
-                            </div>
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <a href="#" class="navbar-brand">E-SKINS</a>
+                    </div>
 
-                            <div class="navbar-collapse collapse" id="mobile_menu">
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="#">Home</a></li>
-                                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">About One</a></li>
-                                            <li><a href="#">About Two</a></li>
-                                            <li><a href="#">About Three</a></li>
-                                            <li><a href="#">About Four</a></li>
-                                            <li><a href="#">About Five</a></li>
-                                            <li><a href="#">About Six</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Welcome</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Gallery</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                    <div class="navbar-collapse collapse" id="mobile_menu">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">About One</a></li>
+                                    <li><a href="#">About Two</a></li>
+                                    <li><a href="#">About Three</a></li>
+                                    <li><a href="#">About Four</a></li>
+                                    <li><a href="#">About Five</a></li>
+                                    <li><a href="#">About Six</a></li>
                                 </ul>
-                                <ul class="nav navbar-nav">
-                                    <li>
-                                        <form action="" class="navbar-form">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input type="search" name="search" id="" placeholder="Search Anything Here..." class="form-control">
-                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </li>
-                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Privacy", "Privacy", "Home")</li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <form action="" class="navbar-form">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="search" name="search" id="" placeholder="Search Anything Here..." class="form-control">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
 
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Login</a></li>
-                                            <li><a href="#">Sign Up</a></li>
-                                        </ul>
-                                    </li>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                            @*<partial name="_LoginPartial" />*@
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    @*<li><a href="#">Login</a></li>
+                                    <li><a href="#">Sign Up</a></li>*@
+                                    <partial name="_LoginPartial" />
                                 </ul>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <@*nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">
-                    <img src="~/icon/e-skins.png" alt="" id="FOO" style="width: auto; height:40px; border-radius: 10px"/>
-                </a>
-                <link rel="shortcut icon" type="image/x-icon" href="~/icon/e-skins1.png" />
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Privacy">About</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <partial name="_LoginPartial" />
-                    </form>
-                </div>
-            </div>
-        </nav>*@
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         </nav>
         <!-- Header-->
@@ -135,7 +95,7 @@
             </main>
         </div>
         <!-- Section-->
-        @*<section class="py-5">
+        <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">
@@ -158,17 +118,46 @@
                         </div>
                     </div>
                 </div>
-            </div>*@
-        @*</section>*@
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+            </div>
+        </section>
+    <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Legacy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Careers</h3>
+                        <ul>
+                            <li><a href="#">Job openings</a></li>
+                            <li><a href="#">Employee success</a></li>
+                            <li><a href="#">Benefits</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 item social">
+                        <a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <p class="copyright">E-SKINS © @DateTime.Now.Year</p>
+                    </div>
+                </div>
+            </div>
         </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>
