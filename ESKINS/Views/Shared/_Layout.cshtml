@@ -32,12 +32,26 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">About One</a></li>
-                                    <li><a href="#">About Two</a></li>
-                                    <li><a href="#">About Three</a></li>
-                                    <li><a href="#">About Four</a></li>
-                                    <li><a href="#">About Five</a></li>
-                                    <li><a href="#">About Six</a></li>
+                                    <li>@Html.ActionLink("Manage Scheduled Tasks", "Index", "ScheduledTask", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Check SAP for Works Orders", "Update", "GetProductionOrders", null, null)</li>
+                                    <li>@Html.ActionLink("Check SAP for Purchase Orders", "Update", "GetPurchaseOrders", null, null)</li>
+                                    <li>@Html.ActionLink("Post Completed Printers To SAP", "PostPrinters", "PostPrintersToSap", null, null)</li>
+                                    <li>@Html.ActionLink("Post Completed Print Heads To SAP", "PostPrintHeads", "PostPrintHeadsToSap", null, null)</li>
+                                    <li>@Html.ActionLink("Post Completed Orders To SAP", "PostOrders", "PostOrdersToSap", null, null)</li>
+                                    <li>@Html.ActionLink("Get Serialised Items For SalesForce", "Update", "GetSerialisedItems", null, null)</li>
+                                    <li>@Html.ActionLink("Get Product Info From Sap", "GetProductInfoFromSap", "ProductInfo", null, null)</li>
+                                    <li>@Html.ActionLink("Get Input Products From Sap", "Update", "GetInputProducts", null, null)</li>
+                                    <li>@Html.ActionLink("Get Customers From Sap", "Update", "GetCustomers", null, null)</li>
+                                    <li>@Html.ActionLink("Get Sales Order Items", "Update", "GetSalesOrderItems", null, null)</li>
+                                    <li>@Html.ActionLink("FX Update", "Update", "FxUpdate", null, null)</li>
+                                    <li>@Html.ActionLink("Import History From File", "Upload", "ImportHistory", null, null)</li>
+                                    <li>@Html.ActionLink("Post History to SAP", "Import", "ImportHistory", new { count = -1 }, null)</li>
+                                    <li>@Html.ActionLink("Cull SAP Responses", "Cull", "SapResponseLog", null, null)</li>
+                                    <li>@Html.ActionLink("Cull Logger Error Log", "Cull", "SapMiddlewareLog", null, null)</li>
+                                    <li>@Html.ActionLink("Cull Service Query Log", "Cull", "ServiceQueryLog", null, null)</li>
+                                    <li>@Html.ActionLink("Repair Failed Printer Posts", "RepairFailedPostsToSap", "PostPrintersToSap", null, null)</li>
+                                    <li>@Html.ActionLink("Repair Failed Print Head Posts", "RepairFailedPostsToSap", "PostPrintHeadsToSap", null, null)</li>
+                                    <li>@Html.ActionLink("Create Fake Order", "New", "FakeOrder", null, null)</li>
                                 </ul>
                             </li>
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -87,7 +101,7 @@
         </div>
     </header>
    
-    <div class="container" style="width: 100%;">
+    <div id="container">
         <main role="main" class="pb-3"><br />
             @RenderBody()
         </main>
