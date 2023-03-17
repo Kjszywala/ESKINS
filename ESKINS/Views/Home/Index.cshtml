@@ -1,6 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+	.cd-filter::before {
+		/* top colored bar */
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 50px;
+		width: 100%;
+		background-color: #181716;
+		z-index: 2;
+	}
+	.cd-filter{
+		border-top-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+</style>
 <div style="margin-left: 100px;">
 	<section class="cd-gallery">
 		@{
@@ -17,13 +34,11 @@
 				</div>
 			}
 		}
-	
-	
-			@*<li class="mix color-2 check2 radio2 option2"><img src="img/img-2.jpg" alt="Image 2"></li>*@
+		@*<li class="mix color-2 check2 radio2 option2"><img src="img/img-2.jpg" alt="Image 2"></li>*@
 		<div class="cd-fail-message">No results found</div>
 	</section> <!-- cd-gallery -->
 </div>
-<div class="cd-filter">
+<div class="cd-filter" style="background-color:	#181716; color: #a9a9a9;">
 	<form>
 		<div class="cd-filter-block">
 			<h4>Search</h4>
@@ -91,7 +106,7 @@
 			</ul> <!-- cd-filter-content -->
 		</div> <!-- cd-filter-block -->
 	</form>
-	<a href="#0" class="cd-close">Close</a>
+	<a href="#0" class="cd-close" style="background-color:#111111; color: #a9a9a9;">Close</a>
 </div> 
-<a href="#0" class="cd-filter-trigger">Filters</a>
+<a href="#0" class="cd-filter-trigger" style="">Filters</a>
 
