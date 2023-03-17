@@ -1,38 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<section class="cd-gallery">
-	<ul>
-		<li>
-			<div class="card">
-				<div class="imgBox">
-					<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
+<div style="margin-left: 100px;">
+	<section class="cd-gallery">
+		@{
+			for(int i = 0; i<100; i++){
+				<div class="card">
+					<div class="imgBox" style="width:70px; margin-left: 60px;">
+						<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
+					</div>
+					<div class="contentBox">
+						<h3>Mouse Corsair M65</h3>
+						<h2 class="price">61.<small>98</small> €</h2>
+						<a href="#" class="buy">Buy Now</a>
+					</div>
 				</div>
-				<div class="contentBox">
-					<h3>Mouse Corsair M65</h3>
-					<h2 class="price">61.<small>98</small> €</h2>
-					<a href="#" class="buy">Buy Now</a>
-				</div>
-			</div>
-		</li>
-		@*<li class="mix color-2 check2 radio2 option2"><img src="img/img-2.jpg" alt="Image 2"></li>
-		<li class="mix color-1 check3 radio3 option1"><img src="img/img-3.jpg" alt="Image 3"></li>
-		<li class="mix color-1 check3 radio2 option4"><img src="img/img-4.jpg" alt="Image 4"></li>
-		<li class="mix color-1 check1 radio3 option2"><img src="img/img-5.jpg" alt="Image 5"></li>
-		<li class="mix color-2 check2 radio3 option3"><img src="img/img-6.jpg" alt="Image 6"></li>
-		<li class="mix color-2 check2 radio2 option1"><img src="img/img-7.jpg" alt="Image 7"></li>
-		<li class="mix color-1 check1 radio3 option4"><img src="img/img-8.jpg" alt="Image 8"></li>
-		<li class="mix color-2 check1 radio2 option3"><img src="img/img-9.jpg" alt="Image 9"></li>
-		<li class="mix color-1 check3 radio2 option4"><img src="img/img-10.jpg" alt="Image 10"></li>
-		<li class="mix color-1 check3 radio3 option2"><img src="img/img-11.jpg" alt="Image 11"></li>
-		<li class="mix color-2 check1 radio3 option1"><img src="img/img-12.jpg" alt="Image 12"></li>
-		<li class="gap"></li>
-		<li class="gap"></li>
-		<li class="gap"></li>*@
-	</ul>
-	<div class="cd-fail-message">No results found</div>
-</section> <!-- cd-gallery -->
-
+			}
+		}
+	
+	
+			@*<li class="mix color-2 check2 radio2 option2"><img src="img/img-2.jpg" alt="Image 2"></li>*@
+		<div class="cd-fail-message">No results found</div>
+	</section> <!-- cd-gallery -->
+</div>
 <div class="cd-filter">
 	<form>
 		<div class="cd-filter-block">
@@ -104,15 +94,4 @@
 	<a href="#0" class="cd-close">Close</a>
 </div> 
 <a href="#0" class="cd-filter-trigger">Filters</a>
-@*<div class="card">
-    <div class="imgBox">
-        <img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
-    </div>
-    <div class="contentBox">
-        <h3>Mouse Corsair M65</h3>
-        <h2 class="price">61.<small>98</small> €</h2>
-        <a href="#" class="buy">Buy Now</a>
-    </div>
-</div>
-        *@
 
