@@ -39,33 +39,78 @@
 		<div class="cd-fail-message">No results found</div>
 	</section> <!-- cd-gallery -->
 </div>
+<style>
+	.cd-filter-block .checkbox-label::after {
+		/* check mark style for check boxes */
+		width: 16px;
+		height: 16px;
+		margin-left:-24px;
+		background: url("../img/cd-icon-check.svg") no-repeat center center;
+	}
+
+	.cd-filter-block .checkbox-label {
+		cursor:pointer;
+	}
+
+	.radio-label::after {
+	cursor: pointer;
+	}
+</style>
 <div class="cd-filter" style="background-color:	#181716; color: #a9a9a9;">
 	<form>
 		<div class="cd-filter-block">
 			<h4>Search</h4>
 
 			<div class="cd-filter-content">
-				<input type="search" placeholder="Try color-1...">
+				<input type="search" placeholder="Search Any Skin Here...">
 			</div> <!-- cd-filter-content -->
 		</div> <!-- cd-filter-block -->
 
 		<div class="cd-filter-block">
-			<h4>Check boxes</h4>
+			<h4>Item Category</h4>
 
 			<ul class="cd-filter-content cd-filters list">
 				<li>
 					<input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
-					<label class="checkbox-label" for="checkbox1">Option 1</label>
+					<label class="checkbox-label" for="checkbox1">All</label>
 				</li>
 
 				<li>
 					<input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
-					<label class="checkbox-label" for="checkbox2">Option 2</label>
+					<label class="checkbox-label" for="checkbox2">Misc</label>
 				</li>
 
 				<li>
 					<input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
-					<label class="checkbox-label" for="checkbox3">Option 3</label>
+					<label class="checkbox-label" for="checkbox3">Pistols</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check4" type="checkbox" id="checkbox4">
+					<label class="checkbox-label" for="checkbox4">SMG</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check5" type="checkbox" id="checkbox5">
+					<label class="checkbox-label" for="checkbox5">Rifles</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check6" type="checkbox" id="checkbox6">
+					<label class="checkbox-label" for="checkbox6">Sniper Rifles</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check7" type="checkbox" id="checkbox7">
+					<label class="checkbox-label" for="checkbox7">Shotguns</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check8" type="checkbox" id="checkbox8">
+					<label class="checkbox-label" for="checkbox8">Machine Guns</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check9" type="checkbox" id="checkbox9">
+					<label class="checkbox-label" for="checkbox9">Knifes</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check10" type="checkbox" id="checkbox10">
+					<label class="checkbox-label" for="checkbox10">Gloves</label>
 				</li>
 			</ul> <!-- cd-filter-content -->
 		</div> <!-- cd-filter-block -->
@@ -76,7 +121,7 @@
 			<div class="cd-filter-content">
 				<div class="cd-select cd-filters">
 					<select class="filter" name="selectThis" id="selectThis">
-						<option value="">Choose an option</option>
+						<option value="" style="cursor: pointer;">Choose an option</option>
 						<option value=".option1">Option 1</option>
 						<option value=".option2">Option 2</option>
 						<option value=".option3">Option 3</option>
@@ -103,6 +148,78 @@
 				<li>
 					<input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">
 					<label class="radio-label" for="radio3">Choice 3</label>
+				</li>
+			</ul> <!-- cd-filter-content -->
+		</div> <!-- cd-filter-block -->
+		<div class="cd-filter-block">
+			<h4>Unique Items</h4>
+
+			<ul class="cd-filter-content cd-filters list">
+				<li>
+					<input class="filter" data-filter=".check1" type="checkbox" id="checkbox11">
+					<label class="checkbox-label" for="checkbox11">All</label>
+				</li>
+
+				<li>
+					<input class="filter" data-filter=".check2" type="checkbox" id="checkbox12">
+					<label class="checkbox-label" for="checkbox12">Rare Phase</label>
+				</li>
+
+				<li>
+					<input class="filter" data-filter=".check3" type="checkbox" id="checkbox13">
+					<label class="checkbox-label" for="checkbox13">Rare Float</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check4" type="checkbox" id="checkbox14">
+					<label class="checkbox-label" for="checkbox14">Rare Items</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check5" type="checkbox" id="checkbox15">
+					<label class="checkbox-label" for="checkbox15">Rare Stickers</label>
+				</li>
+			</ul> <!-- cd-filter-content -->
+		</div> <!-- cd-filter-block -->
+		<div class="cd-filter-block">
+			<h4>Phase</h4>
+
+			<ul class="cd-filter-content cd-filters list">
+				<li>
+					<input class="filter" data-filter=".check1" type="checkbox" id="checkbox16">
+					<label class="checkbox-label" for="checkbox16">All</label>
+				</li>
+
+				<li>
+					<input class="filter" data-filter=".check2" type="checkbox" id="checkbox17">
+					<label class="checkbox-label" for="checkbox17">Phase 1</label>
+				</li>
+
+				<li>
+					<input class="filter" data-filter=".check3" type="checkbox" id="checkbox18">
+					<label class="checkbox-label" for="checkbox18">Phase 2</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check4" type="checkbox" id="checkbox19">
+					<label class="checkbox-label" for="checkbox19">Phase 3</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check5" type="checkbox" id="checkbox20">
+					<label class="checkbox-label" for="checkbox20">Phase 4</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check6" type="checkbox" id="checkbox21">
+					<label class="checkbox-label" for="checkbox21">Ruby</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check7" type="checkbox" id="checkbox22">
+					<label class="checkbox-label" for="checkbox22">Emerald</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check8" type="checkbox" id="checkbox23">
+					<label class="checkbox-label" for="checkbox23">Sapphire</label>
+				</li>
+				<li>
+					<input class="filter" data-filter=".check9" type="checkbox" id="checkbox24">
+					<label class="checkbox-label" for="checkbox24">Black Perl</label>
 				</li>
 			</ul> <!-- cd-filter-content -->
 		</div> <!-- cd-filter-block -->
