@@ -215,3 +215,14 @@
         height: 100px;
         width: auto;
     }
+    
+    /*header animation*/
+@@keyframes moveCards {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-220px);
+    }
+}

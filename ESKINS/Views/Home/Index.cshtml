@@ -21,15 +21,16 @@
 <div style="margin-left: 100px;">
 	<section class="cd-gallery">
 		@{
+			Random rnd = new Random();
 			for(int i = 0; i<100; i++){
-				<div class="card">
+				<div class="card" style="margin-left: 10px;">
 					<div class="imgBox" style="width:70px; margin-left: 60px;">
 						<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
 					</div>
 					<div class="contentBox">
 						<h3>Mouse Corsair M65</h3>
-						<h2 class="price">61.<small>98</small> €</h2>
-						<a href="#" class="buy">Buy Now</a>
+						<h2 class="price">@rnd.Next(1000).<small>@rnd.Next(99)</small> £</h2>
+						<a href="#" class="buy" style="width: 170px">Add To Card</a>
 					</div>
 				</div>
 			}
