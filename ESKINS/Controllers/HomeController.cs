@@ -17,8 +17,12 @@ namespace ESKINS.Controllers
         {
             return View();
         }
+		public IActionResult IndexMain()
+		{
+			return View();
+		}
 
-        public IActionResult Privacy()
+		public IActionResult Privacy()
         {
             return View();
         }
