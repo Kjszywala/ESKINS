@@ -35,8 +35,132 @@
 	.radio-label::after {
 		cursor: pointer;
 	}
+	.filtering{
+		height: 50px;
+		background-color: #181716;
+		width: 100%;
+	}
+	.filtering hr{
+		margin-top: 0px;
+		border-color: black;
+	}
+	/*********************************/
+	.filtering body {
+		background-color: #333333;
+	}
 
+	.filtering .box{
+		text-align:center;
+		display: table; /* Allow the centering to work */
+		margin: 0 auto;
+		margin-top: -20px;
+	}
+
+	.filtering .box select {
+		background-color: #333333;
+		color: white;
+		width: auto;
+		border: none;
+		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+		-webkit-appearance: button;
+		appearance: button;
+		outline: none;
+		height:40px;
+		margin-top: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 16px;
+	}
+
+	.filtering .box select:hover {
+		background-color: #222222;
+		box-shadow: 0 0 2px 2px #3b2369;
+		transition: box-shadow .2s;
+	}
+
+	.filtering .box select option {
+		padding: 30px;
+		cursor: pointer;
+		background-color: #222222;
+		font-size: 16px;
+	}
+
+	.filtering .box ul {
+		min-width: 696px;
+		list-style: none;
+		padding-top: 20px;
+	}
+
+	.filtering .box li {
+		display: inline-block;
+	}
+
+	.filtering .box .navbar-form:hover #search {
+		box-shadow: 0 0 2px 2px #3b2369;
+		transition: box-shadow .2s;
+	}
+
+	.button-42 {
+		background-color: #333333;
+		border-radius: 6px;
+		color: #FFFFFF;
+		cursor: pointer;
+		height: 40px;
+		line-height: 40px;
+		outline: 0;
+		pointer-events: auto;
+		touch-action: manipulation;
+		user-select: none;
+		-webkit-user-select: none;
+		white-space: nowrap;
+		width: 100%;
+		z-index: 9;
+		border: 0;
+		transition: box-shadow .2s;
+	}
+
+	.button-42:hover {
+		box-shadow: 0 0 2px 2px #3b2369;
+		background-color: #222222;
+	}
+
+	.button-42:active {
+		background-color: #333333;
+	}
 </style>
+<div class="filtering">
+	<hr style="margin:auto;">
+	
+	<div class="box">
+		<ul>
+			<li>
+				<form action="" class="navbar-form">
+					<div class="form-group" style="margin-top: -4px; margin-left: 0px;">
+						<div class="input-group">
+							<input type="search" name="search" id="search" placeholder="Search Any Skin Here..." class="form-control" style="margin-left: 0px;background-color: #333333; color:white; border-color:#222222;">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+						</div>
+					</div>
+				</form>
+			</li>
+			<li style="margin-right:15px;">
+				<button class="button-42"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+			</li>
+			<li>
+				<select>
+					<option>Recommended for you</option>
+					<option>Best Deals</option>
+					<option>Best Discount</option>
+					<option>Date: Newest First</option>
+					<option>Date: Oldest First</option>
+					<option>Price: Lowest First</option>
+					<option>Price: Highest First</option>
+				</select>
+			</li>
+		</ul>
+	</div>
+</div> 
+<hr style="border-color: black; margin: 0px;">
 <main class="cd-main-content" ">
 	<div style="margin-left: 100px;">
 		<section class="cd-gallery">
@@ -61,13 +185,13 @@
 	</div>
 	<div class="cd-filter" style="background-color:	#181716; color: #a9a9a9;">
 		<form>
-			<div class="cd-filter-block">
+			@*<div class="cd-filter-block">
 				<h4>Search</h4>
 
 				<div class="cd-filter-content">
 					<input type="search" placeholder="Search Any Skin Here...">
 				</div> <!-- cd-filter-content -->
-			</div> <!-- cd-filter-block -->
+			</div> <!-- cd-filter-block -->*@
 
 			<div class="cd-filter-block">
 				<h4>Item Category</h4>
