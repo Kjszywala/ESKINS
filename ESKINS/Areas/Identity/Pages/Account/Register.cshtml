@@ -3,11 +3,14 @@
 @{
     ViewData["Title"] = "Register";
 }
+@section head{
+    <link href="~/css/logreg.css" type="text/css" rel="stylesheet" />
+}
 <center>
-<h1>@ViewData["Title"]</h1>
+<h1 style="color:white;">@ViewData["Title"]</h1>
 
-<div class="row justify-content-md-center">
-    <div class="col-md-4 justify-content-md-center">
+<div id="wrapper">
+    <div id="first">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h3>Create a new account.</h3>
             <hr />
@@ -30,7 +33,7 @@
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
     </div>
-    <div class="col-md-4 justify-content-md-center">
+    <div id="second">
         <section>
             <h3>Use another service to register.</h3>
             <hr />

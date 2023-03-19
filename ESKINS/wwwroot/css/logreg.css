@@ -1,0 +1,24 @@
+﻿#wrapper {
+    width: 80%;
+    overflow: hidden; /* will contain if #first is longer than #second */
+    background-color: #121212;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+    #wrapper h3, h1, label, p {
+        color: white;
+    }
+
+#first {
+    width: 40%;
+    float: left; /* add this */
+    margin: 40px;
+}
+
+#second {
+    width: 40%;
+    float: right;
+    margin: 40px;
+}
