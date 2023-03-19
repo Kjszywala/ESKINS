@@ -38,10 +38,36 @@
 	.radio-label::after {
 		cursor: pointer;
 	}
+	@@media only screen and (max-width: 800px) {
+		.filtering .box li {
+			display: block;
+	  }
+	}
+
+	@@media only screen and (max-width: 800px) {
+		.filtering .navbar-form {
+			width: 285px;
+			border: none;
+			margin-left: 100px;
+		}
+	}
+
+	@@media only screen and (max-width: 800px) {
+		.filtering .button-42 {
+			width: auto;
+			margin-right: 210px;
+		}
+	}
+
+	@@media only screen and (max-width: 800px) {
+		.filtering select {
+			width: auto;
+			margin-right: 225px;
+		}
+	}
 </style>
-<div class="filtering">
+<div class="filtering" style="height:auto;">
 	<hr style="margin:auto;">
-	
 	<div class="box">
 		<ul>
 			<li>

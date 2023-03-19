@@ -7,64 +7,64 @@
 }
 
     .filtering hr {
-        margin-top: 0px;
-        border-color: black;
+    margin-top: 0px;
+    border-color: black;
     }
     /*********************************/
     .filtering body {
-        background-color: #333333;
+    background-color: #333333;
     }
 
     .filtering .box {
-        text-align: center;
-        display: table; /* Allow the centering to work */
-        margin: 0 auto;
-        margin-top: -20px;
+    text-align: center;
+    display: table; /* Allow the centering to work */
+    margin: 0 auto;
+    margin-top: -20px;
     }
 
-        .filtering .box select {
-            background-color: #333333;
-            color: white;
-            width: auto;
-            border: none;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            -webkit-appearance: button;
-            appearance: button;
-            outline: none;
-            height: 40px;
-            margin-top: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    .filtering .box select {
+    background-color: #333333;
+    color: white;
+    width: auto;
+    border: none;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    }
 
-            .filtering .box select:hover {
-                background-color: #222222;
-                box-shadow: 0 0 2px 2px #3b2369;
-                transition: box-shadow .2s;
-            }
+    .filtering .box select:hover {
+        background-color: #222222;
+        box-shadow: 0 0 2px 2px #3b2369;
+        transition: box-shadow .2s;
+    }
 
-            .filtering .box select option {
-                padding: 30px;
-                cursor: pointer;
-                background-color: #222222;
-                font-size: 16px;
-            }
+    .filtering .box select option {
+        padding: 30px;
+        cursor: pointer;
+        background-color: #222222;
+        font-size: 16px;
+    }
 
-        .filtering .box ul {
-            min-width: 696px;
-            list-style: none;
-            padding-top: 20px;
-        }
+    .filtering .box ul {
+    min-width: 696px;
+    list-style: none;
+    padding-top: 20px;
+    }
 
-        .filtering .box li {
-            display: inline-block;
-        }
+    .filtering .box li {
+    display: inline-block;
+    }
 
-        .filtering .box .navbar-form:hover #search {
-            box-shadow: 0 0 2px 2px #3b2369;
-            transition: box-shadow .2s;
-        }
+    .filtering .box .navbar-form:hover #search {
+    box-shadow: 0 0 2px 2px #3b2369;
+    transition: box-shadow .2s;
+    }
 
 .button-42 {
     background-color: #333333;
