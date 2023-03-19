@@ -36,11 +36,9 @@
 
 /* Hero Section Styles */
 .mainIndex .hero-section {
-    background-image: url(background-image.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,8 +76,13 @@
 
 /* Services Section Styles */
 .mainIndex .services-section {
-    background-color: #424242;
-    padding: 50px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
@@ -130,7 +133,13 @@
 
 /* Featured Skins Section Styles */
 .mainIndex .featured-section {
-    padding: 50px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 

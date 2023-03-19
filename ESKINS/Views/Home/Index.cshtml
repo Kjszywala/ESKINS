@@ -9,14 +9,19 @@
 	<link href="~/css/home.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 }
+<style>
+	.hero-section {
+		background-repeat: no-repeat;
+	}
+</style>
 <div class="mainIndex">
 	<main>
-		<section class="hero-section">
-			<h1>Buy and Sell CSGO Skins</h1>
+		<section class="hero-section" style="background-image: url('../../img/leftsideanty.jpg'); height: 800px; margin-top:-20px;">
+			<h1>Buy and Sell CS:GO Skins</h1>
 			<p>Find the perfect skins for your weapons or sell your own skins for cash.</p>
-			<a href="#" class="button">Start Buying/Selling</a>
+			<a class="button" asp-area="Identity" asp-page="/Account/Login">Start Buying/Selling</a>
 		</section>
-		<section class="services-section">
+		<section class="services-section" style="height: 700px;background-image: url('../../img/maninfire.png');">
 			<h2>Our Services</h2>
 			<div class="services">
 				<div class="service">
@@ -36,8 +41,8 @@
 				</div>
 			</div>
 		</section>
-		<section class="featured-section">
-			<h2>Featured Skins</h2>
+		<section class="featured-section" style="height: 700px;background-image: url('../../img/bloodsport.jpg');">
+			<h2 style="color:white;">Featured Skins</h2>
 			<div class="featured-skins">
 				<div class="featured-skin">
 					<img src="skin1.jpg" alt="Skin 1">

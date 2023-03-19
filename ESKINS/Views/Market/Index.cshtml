@@ -3,6 +3,9 @@
 }
 @{
 }
+@section head{
+	<link href="~/css/market2.css" type="text/css" rel="stylesheet" />
+}
 <style>
 	 /*top colored bar */
 	.cd-filter::before {
@@ -35,99 +38,44 @@
 	.radio-label::after {
 		cursor: pointer;
 	}
-	.filtering{
-		height: 50px;
-		background-color: #181716;
-		width: 100%;
-	}
-	.filtering hr{
-		margin-top: 0px;
-		border-color: black;
-	}
-	/*********************************/
-	.filtering body {
-		background-color: #333333;
-	}
+</style>
+<style>
+	@@keyframes moveCards {
+		0% {
+			transform: translateX(0);
+		}
 
-	.filtering .box{
-		text-align:center;
-		display: table; /* Allow the centering to work */
-		margin: 0 auto;
-		margin-top: -20px;
-	}
-
-	.filtering .box select {
-		background-color: #333333;
-		color: white;
-		width: auto;
-		border: none;
-		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-		-webkit-appearance: button;
-		appearance: button;
-		outline: none;
-		height:40px;
-		margin-top: 5px;
-		border-radius: 5px;
-		cursor: pointer;
-		font-size: 16px;
-	}
-
-	.filtering .box select:hover {
-		background-color: #222222;
-		box-shadow: 0 0 2px 2px #3b2369;
-		transition: box-shadow .2s;
-	}
-
-	.filtering .box select option {
-		padding: 30px;
-		cursor: pointer;
-		background-color: #222222;
-		font-size: 16px;
-	}
-
-	.filtering .box ul {
-		min-width: 696px;
-		list-style: none;
-		padding-top: 20px;
-	}
-
-	.filtering .box li {
-		display: inline-block;
-	}
-
-	.filtering .box .navbar-form:hover #search {
-		box-shadow: 0 0 2px 2px #3b2369;
-		transition: box-shadow .2s;
-	}
-
-	.button-42 {
-		background-color: #333333;
-		border-radius: 6px;
-		color: #FFFFFF;
-		cursor: pointer;
-		height: 40px;
-		line-height: 40px;
-		outline: 0;
-		pointer-events: auto;
-		touch-action: manipulation;
-		user-select: none;
-		-webkit-user-select: none;
-		white-space: nowrap;
-		width: 100%;
-		z-index: 9;
-		border: 0;
-		transition: box-shadow .2s;
-	}
-
-	.button-42:hover {
-		box-shadow: 0 0 2px 2px #3b2369;
-		background-color: #222222;
-	}
-
-	.button-42:active {
-		background-color: #333333;
+		100% {
+			transform: translateX(-220px);
+		}
 	}
 </style>
+<div class="card-container"
+	 style="display: flex;
+		overflow: hidden;
+		margin-top: -20px;
+		height: 240px;
+		background-image: linear-gradient(#181716, transparent);
+		animation: gradient 15s ease infinite;
+		border-bottom: medium">
+	@{
+		Random rnd = new Random();
+		for (int i = 0; i < 40; i++)
+		{
+			<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 20px;margin-top:20px; height: 200px; flex: 0 0 200px;">
+				<div class="imgBox" style="width:70px; margin-left: 60px;">
+					<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
+				</div>
+				<div class="contentBox">
+					<h3>Mouse Corsair M65</h3>
+					<h2 class="price">@rnd.Next(1000).<small>@rnd.Next(99)</small> €</h2>
+					<a href="#" class="buy">Buy Now</a>
+				</div>
+			</div>
+		}
+	}
+
+</div>
 <div class="filtering">
 	<hr style="margin:auto;">
 	
@@ -165,7 +113,6 @@
 	<div style="margin-left: 100px;">
 		<section class="cd-gallery">
 			@{
-				Random rnd = new Random();
 				for(int i = 0; i<100; i++){
 					<div class="card" style="margin-left: 10px;">
 						<div class="imgBox" style="width:70px; margin-left: 60px;">

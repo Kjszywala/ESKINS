@@ -59,45 +59,6 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<style>
-		@@keyframes moveCards {
-			0% {
-				transform: translateX(0);
-			}
-
-			100% {
-				transform: translateX(-220px);
-			}
-		}
-	</style>
-	<div class="card-container" 
-		style="display: flex; 
-		overflow: hidden; 
-		margin-top: -20px; 
-		height: 240px;
-		background:#181716;
-		animation: gradient 15s ease infinite;
-		border-bottom: medium"
-	>
-		@{
-			Random rnd = new Random();
-			for(int i = 0; i < 40; i++)
-			{
-				<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 20px;margin-top:20px; height: 200px; flex: 0 0 200px;">
-					<div class="imgBox" style="width:70px; margin-left: 60px;">
-						<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
-					</div>
-					<div class="contentBox">
-						<h3>Mouse Corsair M65</h3>
-						<h2 class="price">@rnd.Next(1000).<small>@rnd.Next(99)</small> €</h2>
-						<a href="#" class="buy">Buy Now</a>
-					</div>
-				</div>
-			}
-		}
-		
-	</div>
-
 	<div>
 		@RenderBody()
 	</div>
