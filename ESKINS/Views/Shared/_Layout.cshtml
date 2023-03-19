@@ -15,6 +15,24 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="~/css/index.css" type="text/css" rel="stylesheet" />
 </head>
+<style>
+	.card::before {
+		content: "";
+		position: absolute;
+		top: -50%;
+		width: 100%;
+		height: 100%;
+		background: transparent;
+		transform: skewY(345deg);
+		transition: 0.5s;
+	}
+	.card {
+		box-shadow: black 0px 20px 30px -10px;
+	}
+	.card:hover {
+		box-shadow: 0 0 2px 2px #5600b2;
+	}
+</style>
 <body style="background-color: #121212; overflow-x: hidden; background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg'); background-position: center; background-repeat: repeat; background-size: 4%;">
 <div class="navbar navbar-inverse" style="background-color:#181716;">
 		<div class="container-fluid">
