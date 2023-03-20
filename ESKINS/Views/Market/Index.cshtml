@@ -80,9 +80,22 @@
 		letter-spacing: 1px;
 		transition: 0.5s;
 	}
+	#smallButton{
+		margin-left: -50px;
+		margin-top: -90px;
+		text-align: left;
+		border-radius: 20px;
+		background-color: transparent;
+		color: white;
+		background-color: #181716;
+	}
+
+	#smallButton:hover{
+		background-color: #333333;
+	}
 </style>
 <div class="filtering" style="height:auto;">
-	<hr style="margin:auto;">
+	<hr style="margin:auto;" />
 	<div class="box">
 		<ul>
 			<li>
@@ -121,6 +134,9 @@
 				for(int i = 0; i<100; i++){
 					<div class="card" style="margin-left: 10px;">
 						<div class="imgBox" style="width:70px; margin-left: 60px;">
+							<div>
+								<button class="btn" id="smallButton"><i id="iid" class="bi bi-info-circle"></i></button>
+							</div>
 							<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
 						</div>
 						<div class="contentBox">
