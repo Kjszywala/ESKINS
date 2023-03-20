@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-	Layout = "_Layout";
+	Layout = "_MainPageLayout";
 }
 @section head {
 	<link href="~/css/index.css" type="text/css" rel="stylesheet" />
@@ -15,14 +15,50 @@
 		window.location.href = "/Identity/Account/Login";
 	}
 </script>
-<div class="mainIndex" style="margin-top:20px;">
+<style>
+	@@keyframes moveCards {
+		0% {
+			transform: translateX(0);
+		}
+
+		100% {
+			transform: translateX(-220px);
+		}
+	}
+</style>
+<div class="mainIndex">
 	<main>
-		<section class="hero-section" style="background-image: url('../../img/leftsideanty.jpg'); height: 800px; margin-top:-20px;">
+		<div class="card-container"
+			 style="display: flex;
+				position: relative;
+				height: 240px;
+				animation: gradient 15s ease infinite;">
+			@{
+				Random rnd = new Random();
+				for (int i = 0; i < 40; i++)
+				{
+					<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 20px; height: 200px; flex: 0 0 200px;">
+						<div class="imgBox" style="width:70px; margin-left: 60px;">
+							<div>
+								<button class="btn" id="smallButton"><i id="iid" class="bi bi-info-circle"></i></button>
+							</div>
+							<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
+						</div>
+						<div class="contentBox">
+							<h3>Mouse Corsair M65</h3>
+							<h2 class="price">@rnd.Next(1000).<small>@rnd.Next(99)</small> €</h2>
+							<a href="#" class="buy">Buy Now</a>
+						</div>
+					</div>
+				}
+			}
+		</div>
+		<section class="hero-section" style="background-image: url('../../img/leftsideanty.jpg'); height: 1100px; margin-top:-260px;">
 			<h1>Buy and Sell CS:GO Skins</h1>
 			<p>Find the perfect skins for your weapons or sell your own skins for cash.</p>
 			<button class="btn-hover color-3" onclick="showSecondView()">Start Buying/Selling</button>
 		</section>
-		<section class="services-section" style="height: 700px;background-image: url('../../img/maninfire.png');">
+		<section class="services-section" style="height: 800px;background-image: url('../../img/maninfire.png');">
 			<h2>Our Services</h2>
 			<div class="services">
 				<div class="service">

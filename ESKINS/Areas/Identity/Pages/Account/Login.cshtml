@@ -2,12 +2,89 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+	ViewData["Title"] = "Log in";
+	Layout = "_MainPageLayout";
 }
 @section head{
-    <link href="~/css/logreg.css" type="text/css" rel="stylesheet" />
+    @*<link href="~/css/logreg.css" type="text/css" rel="stylesheet" />*@
+    <link href="~/css/login.css" type="text/css" rel="stylesheet" />
 }
-<center>
+<div class="body">
+    <div class="veen" style="width:90%">
+        <div class="login-btn splits">
+            <p>Already an user?</p>
+            <button class="active">Login</button>
+        </div>
+        <div class="rgstr-btn splits">
+            <p>Don't have an account?</p>
+            <button>Register</button>
+        </div>
+        <div class="wrapper">
+            <form id="login" tabindex="500">
+                <h3>Login</h3>
+                <div class="mail">
+                    <input type="mail" asp-for="Input.Email" name="">
+                    <label>E-mail</label>
+                </div>
+                <div class="passwd">
+					<input type="password" asp-for="Input.Password" name="">
+                    <label>Password</label>
+                </div>
+                <div class="submit">
+                    <button class="dark" id="login-submit">Log in</button>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot password</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </form>
+            <form id="register" tabindex="502" style="margin-top:-100px">
+                <h3>Register</h3>
+                <div class="name">
+                    <input type="text" name="">
+                    <label>Full Name</label>
+                </div>
+                <div class="mail">
+                    <input type="mail" asp-for="Input.Email" name="">
+                    <label>E-mail</label>
+                </div>
+                <div class="uid">
+                    <input type="text" name="">
+                    <label>User Name</label>
+                </div>
+                <div class="passwd">
+                    <input type="password" asp-for="Input.Password" name="">
+                    <label>Password</label>
+                </div>
+                <div class="submit">
+                    <button class="dark">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+	$(document).ready(function(){
+			$(".veen .rgstr-btn button").click(function(){
+				$('.veen .wrapper').addClass('move');
+				$('.body').css('background','transpatent');
+				$(".veen .login-btn button").removeClass('active');
+				$(this).addClass('active');
+
+			});
+			$(".veen .login-btn button").click(function(){
+				$('.veen .wrapper').removeClass('move');
+			$('.body').css('background', 'transpatent');
+				$(".veen .rgstr-btn button").removeClass('active');
+				$(this).addClass('active');
+			});
+		});
+</script>
+@*<center>
 <h1 style="color: white;">@ViewData["Title"]</h1>
 <div id="wrapper">
     <div id="first">
@@ -22,7 +99,7 @@
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-floating">
-                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true"/>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true"/>
                     <label asp-for="Input.Password" class="form-label"></label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
@@ -82,7 +159,7 @@
         </section>
     </div>
 </div>
-</center>
+</center>*@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

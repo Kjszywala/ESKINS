@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
-	<link href="~/css/home.css" type="text/css" rel="stylesheet"/>
+	<link href="~/css/home.css" type="text/css" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,15 +26,17 @@
 		transform: skewY(345deg);
 		transition: 0.5s;
 	}
+
 	.card {
 		box-shadow: black 0px 20px 30px -10px;
 		transition: 0.3s;
 		margin-bottom: 11px;
 	}
-	.card:hover {
-		box-shadow: 0 0 2px 2px #5600b2;
-		transform: scale(1.05);
-	}
+
+		.card:hover {
+			box-shadow: 0 0 2px 2px #5600b2;
+			transform: scale(1.05);
+		}
 
 	#smallButton {
 		margin-left: -50px;
@@ -46,12 +48,12 @@
 		background-color: #181716;
 	}
 
-	#smallButton:hover {
-		background-color: #333333;
-	}
+		#smallButton:hover {
+			background-color: #333333;
+		}
 </style>
 <body style="background-color: #121212; overflow-x: hidden; background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg'); background-position: center; background-repeat: repeat; background-size: 4%;">
-<div class="navbar navbar-inverse" style="background-color:#181716;">
+	<div class="navbar navbar-inverse" style="background-color:#181716;">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
@@ -118,13 +120,13 @@
 								</a>
 							</li>
 							@*<li>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li>@Html.ActionLink("Manage Scheduled Tasks", "Index", "ScheduledTask", new { area = "" }, null)</li>
-									<li>@Html.ActionLink("Check SAP for Works Orders", "Update", "GetProductionOrders", null, null)</li>
-									<li>@Html.ActionLink("Check SAP for Purchase Orders", "Update", "GetPurchaseOrders", null, null)</li>
-									<li>@Html.ActionLink("Post Completed Printers To SAP", "PostPrinters", "PostPrintersToSap", null, null)</li>
-								</ul>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							<li>@Html.ActionLink("Manage Scheduled Tasks", "Index", "ScheduledTask", new { area = "" }, null)</li>
+							<li>@Html.ActionLink("Check SAP for Works Orders", "Update", "GetProductionOrders", null, null)</li>
+							<li>@Html.ActionLink("Check SAP for Purchase Orders", "Update", "GetPurchaseOrders", null, null)</li>
+							<li>@Html.ActionLink("Post Completed Printers To SAP", "PostPrinters", "PostPrintersToSap", null, null)</li>
+							</ul>
 							</li>*@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
@@ -144,49 +146,10 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<style>
-		@@keyframes moveCards {
-			0% {
-				transform: translateX(0);
-			}
-
-			100% {
-				transform: translateX(-220px);
-			}
-		}
-	</style>
-	<div class="card-container"
-		 style="display: flex;
-		overflow: hidden;
-		margin-top: -20px;
-		height: 240px;
-		animation: gradient 15s ease infinite;
-		border-bottom: medium">
-		@{
-			Random rnd = new Random();
-			for (int i = 0; i < 40; i++)
-			{
-				<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 20px;margin-top:20px; height: 200px; flex: 0 0 200px;">
-					<div class="imgBox" style="width:70px; margin-left: 60px;">
-						<div>
-							<button class="btn" id="smallButton"><i id="iid" class="bi bi-info-circle"></i></button>
-						</div>
-						<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
-					</div>
-					<div class="contentBox">
-						<h3>Mouse Corsair M65</h3>
-						<h2 class="price">@rnd.Next(1000).<small>@rnd.Next(99)</small> €</h2>
-						<a href="#" class="buy">Buy Now</a>
-					</div>
-				</div>
-			}
-		}
-
-	</div>
 	<div>
 		@RenderBody()
 	</div>
-		
+
 	<div class="footer-clean" id="footer1" style="background-color: #212121; color: white;">
 		<footer>
 			<div class="container">
