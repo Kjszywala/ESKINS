@@ -1,18 +1,18 @@
-﻿body {
+﻿.aboutus body {
     font-family: Arial, sans-serif;
     color: white;
     margin: 0;
     padding: 0;
 }
 
-header {
+.aboutus header {
     background-color: #181716;
     color: white;
     padding: 20px;
     text-align: center;
 }
 
-h1 {
+.aboutus h1 {
     margin-top: 0;
     font-size: 36px;
     text-transform: uppercase;
@@ -20,7 +20,7 @@ h1 {
     color: white;
 }
 
-.container {
+.aboutus .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
@@ -31,8 +31,9 @@ h1 {
     margin-top: 100px;
 }
 
-p {
+.aboutus p {
     font-size: 18px;
     line-height: 1.5;
     margin-bottom: 20px;
+    color: white;
 }

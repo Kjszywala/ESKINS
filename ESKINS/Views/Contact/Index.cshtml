@@ -104,30 +104,45 @@
     .button-41:active {
         background-color: #333333;
     }
+
+    .privacy h1 {
+        margin-top: 0;
+        font-size: 36px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: white;
+    }
+
+    header {
+        background-color: #181716;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
 </style>
-<body>
-    <div class="contact">
-        <h1>Contact Us</h1>
-        <form action="#" method="post">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
-            </div>
-            <div class="form-group" style="text-align: center;">
-                <button class="button-41"><span class="bi bi-send-fill"></span>Send</button>
-            </div>
-        </form>
-    </div>
-</body>
+<header class="privacy">
+    <h1>Contact Us</h1>
+</header>
+<div class="contact">
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+        </div>
+        <div class="form-group" style="text-align: center;">
+            <button class="button-41"><span class="bi bi-send-fill"></span>Send</button>
+        </div>
+    </form>
+</div>
