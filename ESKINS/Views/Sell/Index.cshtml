@@ -737,9 +737,10 @@ margin-top: auto;
 
 .scroll {
 overflow-y: auto;
-height: 600px;
+height: 500px;
 max-height: 600px;
 margin-top: -50px;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .itemsSell .itemsSellLabel {
@@ -749,20 +750,43 @@ color:white;
 }
 
 .itemsSell .itemsSellForSale {
-background-color: blue;
+background-color: #111111;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 height: 170px;
 border-style: double;
-align-content: center;
+display: flex;
+align-items: center;
+margin-top: 5px;
+margin-bottom: 5px;
+border-radius: 10px;
 }
 
 .itemsSell .itemsSell {
 height:40px;
-background-color:transparent
+background-color:transparent;
+margin-top: 5px;
+}
+#btn{
+	background-color: #5600b2;
+	color: white;
+	border-radius: 7px;
+	border-color:transparent;
+	font-size: 16px;
+	line-height: 1.5;
+	height: 40px;
+}
+#btn:hover{
+	background-color: #331d35;
+	color: white;
+}
+#btn:active{
+	background-color: #5600b2;
+	color: white;
 }
 </style>
 <script>
 	$(document).ready(function () {
-		$("#smallButton").click(function () {
+		$("#cardMove").click(function () {
 			$(".card").appendTo("#itemsSellForSale");
 			$(this).hide(); // Hide move button
 		});
@@ -777,7 +801,7 @@ background-color:transparent
 				Random rnd = new Random();
 				for (int i = 0; i < 2; i++)
 				{
-					<div class="card" style="margin-left: 10px; height: 140px; width:140px;" onclick="mylinkfunction()">
+					<div class="card" id="cardMove" style="margin-left: 10px; height: 140px; width:140px;" onclick="mylinkfunction()">
 						<div class="imgBox" style="width:70px; margin-left: 60px;">
 							<div>
 								<button class="btn" id="smallButton"><i id="iid" class="bi bi-info-circle"></i></button>
@@ -797,15 +821,13 @@ background-color:transparent
 			<br />
 			<div class="itemsSell">
 				<div class="itemsSellLabel">
-					<p>
-						Select items you want to sell
-					</p>
+					<p>Current amount: $ 0.00</p>
 				</div>
 				<div class="itemsSellForSale" id="itemsSellForSale">
 				</div>
 				<div class="itemsSellButtons">
-					<button class="btn btn-outline-success">Sell Items</button>
-					<button class="btn btn-outline-warning">Remove From Card</button>
+					<button id="btn">Sell Items</button>
+					<button id="btn">Remove From Card</button>
 				</div>
 			</div>
 		</section> <!-- cd-gallery -->
