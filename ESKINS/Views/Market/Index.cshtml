@@ -648,26 +648,17 @@ xcustom form elements
     display: none;
   }
 }
+
 </style>
 <div class="filtering" style="height:auto;">
 	<hr style="margin:auto;" />
-	<div class="box">
+	<div class="box" style="text-align:center;">
 		<ul>
-			<li>
-				<form action="" class="navbar-form">
-					<div class="form-group" style="margin-top: -4px; margin-left: 0px;">
-						<div class="input-group">
-							<input type="search" name="search" id="search" placeholder="Search Any Skin Here..." class="form-control" style="margin-left: 0px;background-color: #333333; color:white; border-color:#222222;">
-							<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-						</div>
-					</div>
-				</form>
-			</li>
 			<li style="margin-right:15px;">
 				<button class="button-42"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
 			</li>
 			<li>
-				<select>
+				<select style="width:auto;">
 					<option>Recommended for you</option>
 					<option>Best Deals</option>
 					<option>Best Discount</option>
@@ -707,6 +698,13 @@ xcustom form elements
 	</div>
 	<div class="cd-filter" style="background-color:	#181716; color: #a9a9a9;">
 		<form>
+			<div class="cd-filter-block">
+				<h4>Search</h4>
+
+				<div class="cd-filter-content">
+					<input type="search" placeholder="Search Any Skin Here...">
+				</div> <!-- cd-filter-content -->
+			</div> <!-- cd-filter-block -->
 			<div class="cd-filter-block">
 				<h4>Item Category</h4>
 
