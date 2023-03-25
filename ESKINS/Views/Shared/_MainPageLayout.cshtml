@@ -15,6 +15,13 @@
 	<link href="~/css/index.css" type="text/css" rel="stylesheet" />
 </head>
 <style>
+	body{
+		background-color: #181716;
+		font-size: 1.6rem;
+		font-family: "Open Sans", sans-serif;
+		color: #331d35;
+		background-color: #e7e7e7;
+	}
 	.card::before {
 		content: "";
 		position: absolute;
@@ -130,7 +137,8 @@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-							<li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Sing In / Sign Up</a></li>
+							@Html.Partial("_LoginPartial")
+							@*<li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Sing In / Sign Up</a></li>*@
 							@*<li>
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
 								<ul class="dropdown-menu">
