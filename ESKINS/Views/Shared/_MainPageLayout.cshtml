@@ -22,6 +22,48 @@
 		color: #331d35;
 		background-color: #e7e7e7;
 	}
+
+	html {
+		scrollbar-face-color: #646464;
+		scrollbar-base-color: #646464;
+		scrollbar-3dlight-color: #646464;
+		scrollbar-highlight-color: #646464;
+		scrollbar-track-color: #000;
+		scrollbar-arrow-color: #000;
+		scrollbar-shadow-color: #646464;
+		scrollbar-dark-shadow-color: #646464;
+	}
+
+	::-webkit-scrollbar {
+		width: 8px;
+		height: 3px;
+	}
+
+	::-webkit-scrollbar-button {
+		background-color: #666;
+	}
+
+	::-webkit-scrollbar-track {
+		background-color: #646464;
+	}
+
+	::-webkit-scrollbar-track-piece {
+		background-color: #000;
+	}
+
+	::-webkit-scrollbar-thumb {
+		height: 50px;
+		background-color: #666;
+		border-radius: 3px;
+	}
+
+	::-webkit-scrollbar-corner {
+		background-color: #646464;
+	}
+
+	::-webkit-resizer {
+		background-color: #666;
+	}
 	.card::before {
 		content: "";
 		position: absolute;
@@ -54,9 +96,9 @@
 		background-color: #181716;
 	}
 
-		#smallButton:hover {
-			background-color: #333333;
-		}
+	#smallButton:hover {
+		background-color: #333333;
+	}
 </style>
 <body style="background-color: #121212;">
 	<div class="navbar navbar-inverse" style="background-color:#181716;">
@@ -136,7 +178,6 @@
 							</li>*@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 							@Html.Partial("_LoginPartial")
 							@*<li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Sing In / Sign Up</a></li>*@
 							@*<li>
