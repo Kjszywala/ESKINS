@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESKINS", "ESKINS\ESKINS.csproj", "{E4F0A8EE-80DD-4B96-B0A5-4EF6E2F1A9BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESKINS", "ESKINS\ESKINS.csproj", "{E4F0A8EE-80DD-4B96-B0A5-4EF6E2F1A9BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESKINS.Intranet", "ESKINS.Intranet\ESKINS.Intranet.csproj", "{8AEF7DA6-54A7-4489-8791-2A34DEACF03C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESKINS.API", "ESKINS.API\ESKINS.API.csproj", "{6038E441-06E0-4AA8-8150-9D04E416F4B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8AEF7DA6-54A7-4489-8791-2A34DEACF03C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AEF7DA6-54A7-4489-8791-2A34DEACF03C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AEF7DA6-54A7-4489-8791-2A34DEACF03C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6038E441-06E0-4AA8-8150-9D04E416F4B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6038E441-06E0-4AA8-8150-9D04E416F4B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6038E441-06E0-4AA8-8150-9D04E416F4B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6038E441-06E0-4AA8-8150-9D04E416F4B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
