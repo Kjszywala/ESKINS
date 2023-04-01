@@ -2,7 +2,7 @@
 
 namespace ESKINS.API.Models
 {
-    public class UsersAddresses
+    public class Sellers
     {
         [Key]
         public int Id { get; set; }
@@ -18,19 +18,11 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        public string? HouseNumber { get; set; }
-
-        public string? StreetName { get; set; }
-
-        public string? PostCode { get; set; }
-
-        public string? City { get; set; }
-
-        public string? Country { get; set; }
-
         /// <summary>
-        /// Relationship with Customers.
+        /// Foreign key for user.
         /// </summary>
-        public List<Customers> Customer { get; set; }
+        public int UserId { get; set; }
+
+        public Users Users { get; set; }
     }
 }

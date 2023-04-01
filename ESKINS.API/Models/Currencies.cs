@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace ESKINS.API.Models
 {
-    public class UsersAddresses
+    public class Currencies
     {
         [Key]
         public int Id { get; set; }
@@ -18,19 +19,9 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        public string? HouseNumber { get; set; }
+        [Display(Name = "Category Description")]
+        public string? CurrencyName { get; set; }
 
-        public string? StreetName { get; set; }
-
-        public string? PostCode { get; set; }
-
-        public string? City { get; set; }
-
-        public string? Country { get; set; }
-
-        /// <summary>
-        /// Relationship with Customers.
-        /// </summary>
-        public List<Customers> Customer { get; set; }
+        public decimal? CurrentPrice { get; set; }
     }
 }
