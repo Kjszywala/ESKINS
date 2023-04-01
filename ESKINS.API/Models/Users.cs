@@ -41,5 +41,10 @@ namespace ESKINS.API.Models
         /// Relationship with Customers.
         /// </summary>
         public List<Customers> Customer { get; set; }
+
+        /// <summary>
+        /// Relationship with Items.
+        /// </summary>
+        public List<Items> Item { get; set; }
     }
 }

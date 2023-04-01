@@ -21,5 +21,9 @@ namespace ESKINS.API.Models
         [Display(Name = "Category Description")]
         public string? CategoryDescription { get; set; }
 
+        /// <summary>
+        /// Relationship with Items.
+        /// </summary>
+        public List<Items> Item { get; set; }
     }
 }

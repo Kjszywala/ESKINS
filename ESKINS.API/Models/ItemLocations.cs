@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 namespace ESKINS.API.Models
 {
-    public class Phases
+    public class ItemLocations
     {
         [Key]
         public int Id { get; set; }
@@ -20,10 +19,10 @@ namespace ESKINS.API.Models
         public DateTime ModificationDate { get; set; }
 
         [Required(ErrorMessage = "Field is required")]
-        public string Phase { get; set; }
+        public string ItemLocation { get; set; }
 
         /// <summary>
-        /// Relationship with Items.
+        /// Relationship with Items
         /// </summary>
         public List<Items> Item { get; set; }
     }
