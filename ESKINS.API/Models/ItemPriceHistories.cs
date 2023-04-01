@@ -2,7 +2,7 @@
 
 namespace ESKINS.API.Models
 {
-    public class Sellers
+    public class ItemPriceHistories
     {
         [Key]
         public int Id { get; set; }
@@ -18,15 +18,14 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        /// <summary>
-        /// Foreign key for user.
-        /// </summary>
-        public int UserId { get; set; }
-        public Users Users { get; set; }
+        [Required(ErrorMessage = "Field is required")]
+        public decimal Price { get; set; }
+        public DateTime DateAndTime { get; set; }
 
         /// <summary>
-        /// Relationship with Orders.
+        /// Relationship with Items.
         /// </summary>
-        public List<Orders> Order { get; set; }
+        public int ItemId { get; set; }
+        public Items Item { get; set; }
     }
 }

@@ -79,5 +79,10 @@ namespace ESKINS.API.Models
         public decimal Discount { get; set; }
 
         public byte[] ItemImage { get; set; }
+
+        /// <summary>
+        /// Relationship to ItemPriceHistories.
+        /// </summary>
+        public List<ItemPriceHistories> ItemPriceHistory { get; set; }
     }
 }

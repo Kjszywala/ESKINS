@@ -36,5 +36,10 @@ namespace ESKINS.API.Models
         public int CustomerAddressId { get; set; }
         public UsersAddresses CustomerAddress { get; set; }
 
+        /// <summary>
+        /// Relationship with Orders.
+        /// </summary>
+        public List<Orders> Order { get; set; }
+
     }
 }
