@@ -83,3 +83,12 @@ html {
     #smallButton:hover {
         background-color: #333333;
     }
+@keyframes moveCards {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-220px);
+    }
+}

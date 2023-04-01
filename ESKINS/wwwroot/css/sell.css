@@ -1,8 +1,35 @@
-/* -------------------------------- 
+﻿/* --------------------------------
 
-Primary style
+	Primary style
 
--------------------------------- */
+	-------------------------------- */
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+    html * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+body {
+    font-size: 1.6rem;
+    font-family: "Open Sans", sans-serif;
+    color: #331d35;
+    background-color: #e7e7e7;
+}
+
+a {
+    color: #41307c;
+    text-decoration: none;
+}
+
 /* --------------------------------
 
 	Main Components
@@ -82,91 +109,11 @@ Primary style
     }
 }
 
+/* --------------------------------
 
-/* -------------------------------- 
+	xtab-filter
 
-Main Components 
-
--------------------------------- */
-.cd-header {
-    position: relative;
-    height: 150px;
-    background-color: #331d35;
-}
-
-    .cd-header h1 {
-        color: #ffffff;
-        line-height: 150px;
-        text-align: center;
-        font-size: 2.4rem;
-        font-weight: 300;
-    }
-
-@media only screen and (min-width: 1170px) {
-    .cd-header {
-        height: 180px;
-    }
-
-        .cd-header h1 {
-            line-height: 180px;
-        }
-}
-
-.cd-main-content {
-    position: relative;
-    min-height: 100vh;
-}
-
-    .cd-main-content:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    .cd-main-content.is-fixed .cd-tab-filter-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-    }
-
-    .cd-main-content.is-fixed .cd-gallery {
-        padding-top: 76px;
-    }
-
-    .cd-main-content.is-fixed .cd-filter {
-        position: fixed;
-        height: 100vh;
-        overflow: hidden;
-    }
-
-        .cd-main-content.is-fixed .cd-filter form {
-            height: 100vh;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-    .cd-main-content.is-fixed .cd-filter-trigger {
-        position: fixed;
-    }
-
-@media only screen and (min-width: 768px) {
-    .cd-main-content.is-fixed .cd-gallery {
-        padding-top: 90px;
-    }
-}
-
-@media only screen and (min-width: 1170px) {
-    .cd-main-content.is-fixed .cd-gallery {
-        padding-top: 100px;
-    }
-}
-
-/* -------------------------------- 
-
-xtab-filter 
-
--------------------------------- */
+	-------------------------------- */
 .cd-tab-filter-wrapper {
     background-color: #ffffff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
@@ -333,11 +280,11 @@ xtab-filter
         }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xgallery 
+	xgallery
 
--------------------------------- */
+	-------------------------------- */
 .cd-gallery {
     padding: 26px 5%;
     width: 100%;
@@ -406,11 +353,11 @@ xgallery
         }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xfilter 
+	xfilter
 
--------------------------------- */
+	-------------------------------- */
 .cd-filter {
     position: absolute;
     top: 0;
@@ -544,11 +491,11 @@ xfilter
     }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-xcustom form elements 
+	xcustom form elements
 
--------------------------------- */
+	-------------------------------- */
 .cd-filter-block {
     margin-bottom: 1.6em;
 }
@@ -772,3 +719,62 @@ xcustom form elements
         display: none;
     }
 }
+
+.itemsSell {
+    height: 230px;
+    width: auto;
+    margin-top: auto;
+}
+
+.scroll {
+    overflow-y: auto;
+    height: 500px;
+    max-height: 600px;
+    margin-top: -50px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.itemsSell .itemsSellLabel {
+    height: 20px;
+    background-color: transparent;
+    color: white;
+}
+
+.itemsSell .itemsSellForSale {
+    background-color: #111111;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    height: 170px;
+    border-style: double;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.itemsSell .itemsSell {
+    height: 40px;
+    background-color: transparent;
+    margin-top: 5px;
+}
+
+#btn {
+    background-color: #5600b2;
+    color: white;
+    border-radius: 7px;
+    border-color: transparent;
+    font-size: 16px;
+    line-height: 1.5;
+    height: 40px;
+}
+
+    #btn:hover {
+        background-color: #331d35;
+        color: white;
+    }
+
+    #btn:active {
+        background-color: #5600b2;
+        color: white;
+    }
