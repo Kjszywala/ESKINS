@@ -16,7 +16,7 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        [Display(Name = "Category Description")]
+        [Display(Name = "Item Description")]
         public string? ItemLogDescription { get; set; }
 
         [Required(ErrorMessage = "Field is required")]
