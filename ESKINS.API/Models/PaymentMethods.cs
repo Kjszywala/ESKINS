@@ -15,5 +15,10 @@ namespace ESKINS.API.Models
         public string? ImageName { get; set; }
 
         public byte[]? Image { get; set; }
+
+        /// <summary>
+        /// Relationship to Invoices.
+        /// </summary>
+        public List<Invoices> Invoice { get; set; }
     }
 }

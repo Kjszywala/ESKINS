@@ -34,5 +34,10 @@ namespace ESKINS.API.Models
         public decimal PricePaid { get; set; }
 
         public decimal Discount { get; set; }
+
+        /// <summary>
+        /// Relationship to Invoices.
+        /// </summary>
+        public List<Invoices> Invoice { get; set; }
     }
 }
