@@ -21,22 +21,22 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with Users.
         /// </summary>
-        public int UserId { get; set; }
-        public Users User { get; set; }
+        public int? UserId { get; set; }
+        public Users? User { get; set; }
 
         public decimal PriceUnder { get; set; }
 
         /// <summary>
         /// Relationship with Items.
         /// </summary>
-        public int ItemId { get; set; }
-        public Items Item { get; set; }
+        public int? ItemId { get; set; }
+        public Items? Item { get; set; }
 
         /// <summary>
         /// Relationship with Phases.
         /// </summary>
-        public int PhaseId { get; set; }
-        public Phases Phase { get; set; }
+        public int? PhaseId { get; set; }
+        public Phases? Phase { get; set; }
 
         public string UnderFloat { get; set; }
     }

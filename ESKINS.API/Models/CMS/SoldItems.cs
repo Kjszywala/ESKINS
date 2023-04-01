@@ -21,13 +21,13 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with Customers.
         /// </summary>
-        public int CustomerId { get; set; }
-        public Customers Customer { get; set; }
+        public int? CustomerId { get; set; }
+        public Customers? Customer { get; set; }
 
         /// <summary>
         /// Relationship with Items.
         /// </summary>
-        public int SellerId { get; set; }
-        public Sellers Seller { get; set; }
+        public int? SellerId { get; set; }
+        public Sellers? Seller { get; set; }
     }
 }

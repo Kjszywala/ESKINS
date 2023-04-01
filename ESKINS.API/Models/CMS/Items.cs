@@ -25,26 +25,26 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with Users.
         /// </summary>
-        public int UserId { get; set; }
-        public Users User { get; set; }
+        public int? UserId { get; set; }
+        public Users? User { get; set; }
 
         /// <summary>
         /// Relationship with Categories.
         /// </summary>
-        public int CategoryId { get; set; }
-        public Categories Category { get; set; }
+        public int? CategoryId { get; set; }
+        public Categories? Category { get; set; }
 
         /// <summary>
         /// Relationship with ItemLogs.
         /// </summary>
-        public int ItemLogsId { get; set; }
-        public ItemLogs ItemLog { get; set; }
+        public int? ItemLogsId { get; set; }
+        public ItemLogs? ItemLog { get; set; }
 
         /// <summary>
         /// Relationship with ItemLocations.
         /// </summary>
-        public int ItemLocationId { get; set; }
-        public ItemLocations ItemLocation { get; set; }
+        public int? ItemLocationId { get; set; }
+        public ItemLocations? ItemLocation { get; set; }
 
         public bool StatTrack { get; set; }
 
@@ -53,22 +53,22 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with ItemCollections.
         /// </summary>
-        public int ItemCollectionId { get; set; }
-        public ItemCollections ItemCollection { get; set; }
+        public int? ItemCollectionId { get; set; }
+        public ItemCollections? ItemCollection { get; set; }
 
         /// <summary>
         /// Relationship with Phases.
         /// </summary>
-        public int PhaseId { get; set; }
-        public Phases Phase { get; set; }
+        public int? PhaseId { get; set; }
+        public Phases? Phase { get; set; }
 
         public string ItemFloat { get; set; }
 
         /// <summary>
         /// Relationship with Qualities.
         /// </summary>
-        public int QualityId { get; set; }
-        public Qualities Quality { get; set; }
+        public int? QualityId { get; set; }
+        public Qualities? Quality { get; set; }
 
         public int Pattern { get; set; }
 
@@ -83,6 +83,6 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship to ItemPriceHistories.
         /// </summary>
-        public List<ItemPriceHistories> ItemPriceHistory { get; set; }
+        public List<ItemPriceHistories>? ItemPriceHistory { get; set; }
     }
 }

@@ -21,17 +21,17 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Foreign key for user.
         /// </summary>
-        public int UserId { get; set; }
-        public Users Users { get; set; }
+        public int? UserId { get; set; }
+        public Users? Users { get; set; }
 
-        /// <summary>
-        /// Relationship with Orders.
-        /// </summary>
-        public List<Orders> Order { get; set; }
+        ///// <summary>
+        ///// Relationship with Orders.
+        ///// </summary>
+        //public List<Orders> Order { get; set; }
 
         /// <summary>
         /// Relationship with SoldItems.
         /// </summary>
-        public List<SoldItems> SoldItem { get; set; }
+        public List<SoldItems>? SoldItem { get; set; }
     }
 }
