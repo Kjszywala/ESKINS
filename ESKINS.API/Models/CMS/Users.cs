@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
-    public class Customers
+    public class Users
     {
         [Key]
         public int Id { get; set; }
@@ -24,27 +24,32 @@ namespace ESKINS.API.Models
         [Required(ErrorMessage = "Field is required")]
         public string LastName { get; set; }
 
+        [Required(ErrorMessage = "Field is required")]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "Field is required")]
+        public string Email { get; set; }
+
+        public decimal AccountBalance { get; set; }
+
         /// <summary>
         /// Relationship with Users.
         /// </summary>
-        public int UserId { get; set; }
-        public Users User { get; set; }
+        public List<Sellers> Seller { get; set; }
 
         /// <summary>
-        /// Relationship with UsersAddresses.
+        /// Relationship with Customers.
         /// </summary>
-        public int CustomerAddressId { get; set; }
-        public UsersAddresses CustomerAddress { get; set; }
+        public List<Customers> Customer { get; set; }
 
         /// <summary>
-        /// Relationship with Orders.
+        /// Relationship with Items.
         /// </summary>
-        public List<Orders> Order { get; set; }
+        public List<Items> Item { get; set; }
 
         /// <summary>
-        /// Relationship with SoldItems.
+        /// Relationship with Items.
         /// </summary>
-        public List<SoldItems> SoldItem { get; set; }
-
+        public List<Targets> Target { get; set; }
     }
 }

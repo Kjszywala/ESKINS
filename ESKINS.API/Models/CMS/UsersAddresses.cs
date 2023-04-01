@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
-    public class SoldItems
+    public class UsersAddresses
     {
         [Key]
         public int Id { get; set; }
@@ -18,16 +18,19 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
+        public string? HouseNumber { get; set; }
+
+        public string? StreetName { get; set; }
+
+        public string? PostCode { get; set; }
+
+        public string? City { get; set; }
+
+        public string? Country { get; set; }
+
         /// <summary>
         /// Relationship with Customers.
         /// </summary>
-        public int CustomerId { get; set; }
-        public Customers Customer { get; set; }
-
-        /// <summary>
-        /// Relationship with Items.
-        /// </summary>
-        public int SellerId { get; set; }
-        public Sellers Seller { get; set; }
+        public List<Customers> Customer { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
-    public class Targets
+    public class ItemPriceHistories
     {
         [Key]
         public int Id { get; set; }
@@ -18,26 +18,14 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        /// <summary>
-        /// Relationship with Users.
-        /// </summary>
-        public int UserId { get; set; }
-        public Users User { get; set; }
-
-        public decimal PriceUnder { get; set; }
+        [Required(ErrorMessage = "Field is required")]
+        public decimal Price { get; set; }
+        public DateTime DateAndTime { get; set; }
 
         /// <summary>
         /// Relationship with Items.
         /// </summary>
         public int ItemId { get; set; }
         public Items Item { get; set; }
-
-        /// <summary>
-        /// Relationship with Phases.
-        /// </summary>
-        public int PhaseId { get; set; }
-        public Phases Phase { get; set; }
-
-        public string UnderFloat { get; set; }
     }
 }

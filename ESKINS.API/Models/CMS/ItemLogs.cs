@@ -1,16 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
-    public class Phases
+    public class ItemLogs
     {
         [Key]
         public int Id { get; set; }
 
         public string? Title { get; set; }
-
-        public string? Notes { get; set; }
 
         [Required(ErrorMessage = "Field is required")]
         public bool IsActive { get; set; }
@@ -19,12 +16,12 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        [Required(ErrorMessage = "Field is required")]
-        public string Phase { get; set; }
+        [Display(Name = "Item Description")]
+        public string? ItemLogDescription { get; set; }
 
-        /// <summary>
-        /// Relationship with Items.
-        /// </summary>
-        public List<Items> Item { get; set; }
+        [Required(ErrorMessage = "Field is required")]
+        public decimal OldPrice { get; set; }
+
+        public decimal? NewPrice { get; set; }
     }
 }

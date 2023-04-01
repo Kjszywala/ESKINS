@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
-    public class Qualities
+    public class Categories
     {
         [Key]
         public int Id { get; set; }
@@ -18,7 +18,12 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        [Required(ErrorMessage = "Field is required")]
-        public string Quality { get; set; }
+        [Display(Name = "Category Description")]
+        public string? CategoryDescription { get; set; }
+
+        /// <summary>
+        /// Relationship with Items.
+        /// </summary>
+        public List<Items> Item { get; set; }
     }
 }

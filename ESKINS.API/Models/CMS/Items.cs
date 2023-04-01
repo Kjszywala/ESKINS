@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
     public class Items
     {

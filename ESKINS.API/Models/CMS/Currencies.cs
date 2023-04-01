@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
-    public class ItemLocations
+    public class Currencies
     {
         [Key]
         public int Id { get; set; }
@@ -18,12 +19,9 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        [Required(ErrorMessage = "Field is required")]
-        public string ItemLocation { get; set; }
+        [Display(Name = "Category Description")]
+        public string? CurrencyName { get; set; }
 
-        /// <summary>
-        /// Relationship with Items
-        /// </summary>
-        public List<Items> Item { get; set; }
+        public decimal? CurrentPrice { get; set; }
     }
 }

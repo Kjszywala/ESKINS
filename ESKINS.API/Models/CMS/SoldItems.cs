@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
-    public class Invoices
+    public class SoldItems
     {
         [Key]
         public int Id { get; set; }
@@ -18,20 +18,16 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        public int InvoiceNumber { get; set; }
+        /// <summary>
+        /// Relationship with Customers.
+        /// </summary>
+        public int CustomerId { get; set; }
+        public Customers Customer { get; set; }
 
         /// <summary>
-        /// Relationship with Orders.
+        /// Relationship with Items.
         /// </summary>
-        public int OrderId { get; set; }
-        public Orders Order { get; set; }
-
-        /// <summary>
-        /// Relationship with PaymentMethods.
-        /// </summary>
-        public int PaymentMethodId { get; set; }
-        public PaymentMethods PaymentMethod { get; set; }
-
-        public bool IsConfirmed { get; set; }
+        public int SellerId { get; set; }
+        public Sellers Seller { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ESKINS.API.Models
+namespace ESKINS.API.Models.CMS
 {
-    public class ItemCollections
+    public class Sellers
     {
         [Key]
         public int Id { get; set; }
@@ -18,12 +18,20 @@ namespace ESKINS.API.Models
 
         public DateTime ModificationDate { get; set; }
 
-        [Required(ErrorMessage = "Field is required")]
-        public string ItemCollection { get; set; }
+        /// <summary>
+        /// Foreign key for user.
+        /// </summary>
+        public int UserId { get; set; }
+        public Users Users { get; set; }
 
         /// <summary>
-        /// Relationship with Items.
+        /// Relationship with Orders.
         /// </summary>
-        public List<Items> Item { get; set; }
+        public List<Orders> Order { get; set; }
+
+        /// <summary>
+        /// Relationship with SoldItems.
+        /// </summary>
+        public List<SoldItems> SoldItem { get; set; }
     }
 }
