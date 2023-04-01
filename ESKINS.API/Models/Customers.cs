@@ -41,5 +41,10 @@ namespace ESKINS.API.Models
         /// </summary>
         public List<Orders> Order { get; set; }
 
+        /// <summary>
+        /// Relationship with SoldItems.
+        /// </summary>
+        public List<SoldItems> SoldItem { get; set; }
+
     }
 }

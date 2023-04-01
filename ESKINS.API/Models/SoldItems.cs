@@ -2,7 +2,7 @@
 
 namespace ESKINS.API.Models
 {
-    public class Sellers
+    public class SoldItems
     {
         [Key]
         public int Id { get; set; }
@@ -19,19 +19,15 @@ namespace ESKINS.API.Models
         public DateTime ModificationDate { get; set; }
 
         /// <summary>
-        /// Foreign key for user.
+        /// Relationship with Customers.
         /// </summary>
-        public int UserId { get; set; }
-        public Users Users { get; set; }
+        public int CustomerId { get; set; }
+        public Customers Customer { get; set; }
 
         /// <summary>
-        /// Relationship with Orders.
+        /// Relationship with Items.
         /// </summary>
-        public List<Orders> Order { get; set; }
-
-        /// <summary>
-        /// Relationship with SoldItems.
-        /// </summary>
-        public List<SoldItems> SoldItem { get; set; }
+        public int SellerId { get; set; }
+        public Sellers Seller { get; set; }
     }
 }
