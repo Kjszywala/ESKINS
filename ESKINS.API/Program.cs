@@ -1,4 +1,5 @@
 using ESKINS.API.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +10,6 @@ namespace ESKINS.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -18,9 +18,11 @@ namespace ESKINS.API
             builder.Services.AddSwaggerGen();
             //==== Add this for versioning.====
             builder.Services.AddControllers(); 
-            builder.Services.Configure<RouteOptions>(options =>
+            builder.Services.AddApiVersioning(options =>
             {
-                options.ConstraintMap.Add("apiVersion", typeof(ApiVersionRouteConstraint));
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.ReportApiVersions = true;
             });
             //=================================
             builder.Services.AddDbContext<DatabaseContext>(
