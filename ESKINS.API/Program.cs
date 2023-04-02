@@ -1,4 +1,5 @@
 using ESKINS.API.Models;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 
 namespace ESKINS.API
@@ -15,6 +16,11 @@ namespace ESKINS.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            // Add this for versioning.
+            builder.Services.Configure<RouteOptions>(options =>
+            {
+                options.ConstraintMap.Add("apiVersion", typeof(ApiVersionRouteConstraint));
+            });
             builder.Services.AddDbContext<DatabaseContext>(
                 options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("EskinsDbContext"))
