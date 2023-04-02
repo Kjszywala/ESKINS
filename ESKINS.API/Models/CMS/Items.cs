@@ -70,6 +70,12 @@ namespace ESKINS.API.Models.CMS
         public int? QualityId { get; set; }
         public Qualities? Quality { get; set; }
 
+        /// <summary>
+        /// Relationship with Exteriors.
+        /// </summary>
+        public int? ExteriorId { get; set; }
+        public Exteriors? Exterior { get; set; }
+
         public int Pattern { get; set; }
 
         public decimal ActualPrice { get; set; }
@@ -83,6 +89,6 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship to ItemPriceHistories.
         /// </summary>
-        public List<ItemPriceHistories>? ItemPriceHistory { get; set; }
+        public ICollection<ItemPriceHistories>? ItemPriceHistory { get; set; }
     }
 }

@@ -20,5 +20,10 @@ namespace ESKINS.API.Models.CMS
 
         [Required(ErrorMessage = "Field is required")]
         public string Exterior { get; set; }
+
+        /// <summary>
+        /// Relationship with items.
+        /// </summary>
+        public ICollection<Items> Items { get; set; }
     }
 }

@@ -252,6 +252,7 @@ namespace ESKINS.API.Migrations
                     PhaseId = table.Column<int>(type: "int", nullable: true),
                     ItemFloat = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     QualityId = table.Column<int>(type: "int", nullable: true),
+                    ExteriorId = table.Column<int>(type: "int", nullable: true),
                     Pattern = table.Column<int>(type: "int", nullable: false),
                     ActualPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     OnSale = table.Column<bool>(type: "bit", nullable: false),
@@ -265,6 +266,11 @@ namespace ESKINS.API.Migrations
                         name: "FK_Items_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Items_Exteriors_ExteriorId",
+                        column: x => x.ExteriorId,
+                        principalTable: "Exteriors",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Items_ItemCollections_ItemCollectionId",
@@ -484,8 +490,8 @@ namespace ESKINS.API.Migrations
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     InvoiceNumber = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    PaymentMethodId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: true),
+                    PaymentMethodId = table.Column<int>(type: "int", nullable: true),
                     IsConfirmed = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -495,14 +501,12 @@ namespace ESKINS.API.Migrations
                         name: "FK_Invoices_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Invoices_PaymentMethods_PaymentMethodId",
                         column: x => x.PaymentMethodId,
                         principalTable: "PaymentMethods",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -534,6 +538,11 @@ namespace ESKINS.API.Migrations
                 name: "IX_Items_CategoryId",
                 table: "Items",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Items_ExteriorId",
+                table: "Items",
+                column: "ExteriorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_ItemCollectionId",
@@ -610,9 +619,6 @@ namespace ESKINS.API.Migrations
                 name: "ErrorLogs");
 
             migrationBuilder.DropTable(
-                name: "Exteriors");
-
-            migrationBuilder.DropTable(
                 name: "Invoices");
 
             migrationBuilder.DropTable(
@@ -641,6 +647,9 @@ namespace ESKINS.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Exteriors");
 
             migrationBuilder.DropTable(
                 name: "ItemCollections");

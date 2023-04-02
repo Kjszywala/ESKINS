@@ -20,5 +20,10 @@ namespace ESKINS.API.Models.CMS
 
         [Required(ErrorMessage = "Field is required")]
         public string Quality { get; set; }
+
+        /// <summary>
+        /// Relationship with Items.
+        /// </summary>
+        public ICollection<Items> Items { get; set; }
     }
 }

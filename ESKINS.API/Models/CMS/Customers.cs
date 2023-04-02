@@ -39,12 +39,12 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with Orders.
         /// </summary>
-        public List<Orders> Order { get; set; }
+        public ICollection<Orders> Order { get; set; }
 
         /// <summary>
         /// Relationship with SoldItems.
         /// </summary>
-        public List<SoldItems> SoldItem { get; set; }
+        public ICollection<SoldItems> SoldItem { get; set; }
 
     }
 }

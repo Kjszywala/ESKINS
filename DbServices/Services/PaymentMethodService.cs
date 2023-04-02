@@ -1,5 +1,9 @@
 ﻿using DbServices.Interfaces;
 using DbServices.Models;
+using System.Net.Http;
+using System;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace DbServices.Services
 {
@@ -12,8 +16,7 @@ namespace DbServices.Services
 
         private readonly HttpClient _httpClient;
         private readonly ILogger<PaymentMethodService> _logger;
-        //private const string URL = "https://localhost:7108/swagger/v1/swagger.json";
-        private const string URL = WebApplication.CreateBuilder().Environment.;
+        private const string URL = "https://localhost:7108/swagger/v1/swagger.json";
 
         #endregion
 
@@ -42,31 +45,31 @@ namespace DbServices.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("api/PaymentMethods");
+                var response = await _httpClient.GetAsync("/api/v1.0/PaymentMethods");
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadFromJsonAsync<List<PaymentMethodsModel>>();
                 return data;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<List<PaymentMethodsModel>> AddPaymentMethodsAsync()");
+                _logger.LogError(ex, "Failed to get data from API in: Task<List<PaymentMethodsModel>> GetPaymentMethodsAsync()");
                 return new List<PaymentMethodsModel>();
             }
         }
 
         // inheritdoc
-        public async Task<bool> AddPaymentMethodsAsync()
+        public async Task<bool> AddPaymentMethodsAsync(PaymentMethodsModel paymentMethod)
         {
             try
             {
-                var response = await _httpClient.GetAsync("https://localhost:7108/swagger/v1/swagger.json");
-                response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadFromJsonAsync<List<PaymentMethodsModel>>();
+                var json = JsonConvert.SerializeObject(paymentMethod);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("/api/v1.0/PaymentMethods", content);
                 return true;
             }
             catch(Exception ex) 
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<List<PaymentMethodsModel>> AddPaymentMethodsAsync()");
+                _logger.LogError(ex, "Failed to add data to API in: Task<List<PaymentMethodsModel>> AddPaymentMethodsAsync()");
                 return false;
             }
         }

@@ -25,11 +25,11 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with Items.
         /// </summary>
-        public List<Items>? Item { get; set; }
+        public ICollection<Items>? Item { get; set; }
 
         /// <summary>
         /// Relationship with Items.
         /// </summary>
-        public List<Targets>? Target { get; set; }
+        public ICollection<Targets>? Target { get; set; }
     }
 }

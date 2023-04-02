@@ -32,6 +32,6 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with SoldItems.
         /// </summary>
-        public List<SoldItems>? SoldItem { get; set; }
+        public ICollection<SoldItems>? SoldItem { get; set; }
     }
 }

@@ -38,6 +38,6 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship to Invoices.
         /// </summary>
-        public List<Invoices>? Invoice { get; set; }
+        public ICollection<Invoices>? Invoice { get; set; }
     }
 }

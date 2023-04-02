@@ -23,14 +23,14 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with Orders.
         /// </summary>
-        public int OrderId { get; set; }
-        public Orders Order { get; set; }
+        public int? OrderId { get; set; }
+        public Orders? Order { get; set; }
 
         /// <summary>
         /// Relationship with PaymentMethods.
         /// </summary>
-        public int PaymentMethodId { get; set; }
-        public PaymentMethods PaymentMethod { get; set; }
+        public int? PaymentMethodId { get; set; }
+        public PaymentMethods? PaymentMethod { get; set; }
 
         public bool IsConfirmed { get; set; }
     }

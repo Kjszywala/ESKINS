@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESKINS.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230401144554_InitialCreate")]
+    [Migration("20230402203256_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -213,10 +213,10 @@ namespace ESKINS.API.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaymentMethodId")
+                    b.Property<int?>("PaymentMethodId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -388,6 +388,9 @@ namespace ESKINS.API.Migrations
                     b.Property<decimal>("Discount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("ExteriorId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -449,6 +452,8 @@ namespace ESKINS.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ExteriorId");
 
                     b.HasIndex("ItemCollectionId");
 
@@ -830,15 +835,11 @@ namespace ESKINS.API.Migrations
                 {
                     b.HasOne("ESKINS.API.Models.CMS.Orders", "Order")
                         .WithMany("Invoice")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("ESKINS.API.Models.CMS.PaymentMethods", "PaymentMethod")
                         .WithMany("Invoice")
-                        .HasForeignKey("PaymentMethodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PaymentMethodId");
 
                     b.Navigation("Order");
 
@@ -862,6 +863,10 @@ namespace ESKINS.API.Migrations
                         .WithMany("Item")
                         .HasForeignKey("CategoryId");
 
+                    b.HasOne("ESKINS.API.Models.CMS.Exteriors", "Exterior")
+                        .WithMany("Items")
+                        .HasForeignKey("ExteriorId");
+
                     b.HasOne("ESKINS.API.Models.CMS.ItemCollections", "ItemCollection")
                         .WithMany("Item")
                         .HasForeignKey("ItemCollectionId");
@@ -879,7 +884,7 @@ namespace ESKINS.API.Migrations
                         .HasForeignKey("PhaseId");
 
                     b.HasOne("ESKINS.API.Models.CMS.Qualities", "Quality")
-                        .WithMany()
+                        .WithMany("Items")
                         .HasForeignKey("QualityId");
 
                     b.HasOne("ESKINS.API.Models.CMS.Users", "User")
@@ -887,6 +892,8 @@ namespace ESKINS.API.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Category");
+
+                    b.Navigation("Exterior");
 
                     b.Navigation("ItemCollection");
 
@@ -967,6 +974,11 @@ namespace ESKINS.API.Migrations
                     b.Navigation("SoldItem");
                 });
 
+            modelBuilder.Entity("ESKINS.API.Models.CMS.Exteriors", b =>
+                {
+                    b.Navigation("Items");
+                });
+
             modelBuilder.Entity("ESKINS.API.Models.CMS.ItemCollections", b =>
                 {
                     b.Navigation("Item");
@@ -997,6 +1009,11 @@ namespace ESKINS.API.Migrations
                     b.Navigation("Item");
 
                     b.Navigation("Target");
+                });
+
+            modelBuilder.Entity("ESKINS.API.Models.CMS.Qualities", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("ESKINS.API.Models.CMS.Sellers", b =>

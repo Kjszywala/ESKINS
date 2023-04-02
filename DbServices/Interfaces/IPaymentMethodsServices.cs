@@ -23,7 +23,7 @@ namespace DbServices.Interfaces
         /// Adds payment method to database.
         /// </summary>
         /// <returns>True if operation completed, else false</returns>
-        Task<bool> AddPaymentMethodsAsync();
+        Task<bool> AddPaymentMethodsAsync(PaymentMethodsModel paymentMethod);
 
         /// <summary>
         /// Removes payment method to database.
