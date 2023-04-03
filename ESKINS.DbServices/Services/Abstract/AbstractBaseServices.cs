@@ -16,19 +16,19 @@ namespace ESKINS.DbServices.Services.Abstract
         /// <summary>
         /// Http client to send post requests.
         /// </summary>
-        private readonly HttpClient _httpClient;
+        public readonly HttpClient _httpClient;
         /// <summary>
         /// Ilogger for posting any errors to db.
         /// </summary>
-        private readonly ILogger<T> _logger;
+        public readonly ILogger<T> _logger;
         /// <summary>
         /// Url to API calls.
         /// </summary>
-        private const string URL = "https://localhost:7108/swagger/v1/swagger.json";
+        public const string URL = "https://localhost:7108/swagger/v1/swagger.json";
         /// <summary>
         /// Uri of the API.
         /// </summary>
-        private readonly string URI;
+        public readonly string URI;
 
         #endregion
 
@@ -46,17 +46,13 @@ namespace ESKINS.DbServices.Services.Abstract
 
         #region Methods
 
-        /// <summary>
-        /// Method adds the item to database.
-        /// </summary>
-        /// <param name="Item">Item</param>
-        /// <returns>True if success</returns>
+        // Inheritdoc
         public async Task<bool> AddAsync(T Item)
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.PostAsJsonAsync(
-                           URI, Item);
+                var response = await _httpClient.PostAsJsonAsync(URI, Item);
+                response.EnsureSuccessStatusCode();
                 return true;
             }
             catch (Exception ex)
@@ -66,20 +62,23 @@ namespace ESKINS.DbServices.Services.Abstract
             }
         }
 
-        /// <summary>
-        /// Method edits the item with given Id in db.
-        /// </summary>
-        /// <param name="Id">Item Id</param>
-        /// <returns></returns>
-        public Task<bool> EditAsync(int Id)
+        // Inheritdoc
+        public async Task<bool> EditAsync(int Id, T Item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync(URI+Id, Item);
+                response.EnsureSuccessStatusCode();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to get data from API in: Task<bool> AddAsync(T Item)");
+                return false;
+            }
         }
 
-        /// <summary>
-        /// Gets all items from database.
-        /// </summary>
-        /// <returns>List of all Items</returns>
+        // Inheritdoc
         public async Task<List<T>> GetAllAsync()
         {
             try
@@ -92,29 +91,41 @@ namespace ESKINS.DbServices.Services.Abstract
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to get data from API in: Task<List<T>> GetAllAsync()");
-                return new List<T>();
+                throw new Exception("Failed to retrieve data from API.", ex);
             }
         }
 
-        /// <summary>
-        /// Method gets the item with given Id from db.
-        /// </summary>
-        /// <param name="Id">Item Id</param>
-        /// <returns></returns>
-        public Task<T> GetAsync(int id)
+        // Inheritdoc
+        public async Task<T> GetAsync(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var response = await _httpClient.GetAsync(URI + Id);
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadFromJsonAsync<T>();
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to get data from API in: Task<bool> AddAsync(T Item)");
+                throw new Exception("Failed to retrieve data from API.", ex);
+            }
         }
 
-        /// <summary>
-        /// Method removes the item with given id.
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public Task<bool> RemoveAsync(int Id)
+        // Inheritdoc
+        public async Task<bool> RemoveAsync(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var response = await _httpClient.DeleteAsync(URI + Id);
+                response.EnsureSuccessStatusCode();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to get data from API in: Task<bool> AddAsync(T Item)");
+                return false;
+            }
         }
 
         #endregion

@@ -6,7 +6,7 @@ namespace ESKINS.DbServices.Interfaces
         where T : class
     {
         /// <summary>
-        /// Gets all active payment methods from database.
+        /// Gets all payment methods from database.
         /// </summary>
         /// <param name="Item">Model</param>
         /// <returns>List of active payment methods model</returns>
@@ -37,7 +37,8 @@ namespace ESKINS.DbServices.Interfaces
         /// Edits payment method in database.
         /// </summary>
         /// <param name="Id">Item Id</param>
+        /// <param name="Item">Item</param>
         /// <returns>True if operation completed, else false</returns>
-        Task<bool> EditAsync(int Id);
+        Task<bool> EditAsync(int Id, T Item);
     }
 }
