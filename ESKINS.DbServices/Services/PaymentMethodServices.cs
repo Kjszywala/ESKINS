@@ -2,11 +2,7 @@
 using ESKINS.DbServices.Models;
 using ESKINS.DbServices.Services.Abstract;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using System.Net.Http;
-using System;
 using System.Net.Http.Json;
-using System.Text;
 
 namespace DbServices.Services
 {

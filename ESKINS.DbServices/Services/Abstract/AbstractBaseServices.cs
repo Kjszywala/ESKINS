@@ -107,7 +107,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<bool> AddAsync(T Item)");
+                _logger.LogError(ex, "Failed to get data from API in: Task<T> GetAsync(int Id)");
                 throw new Exception("Failed to retrieve data from API.", ex);
             }
         }
@@ -123,7 +123,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<bool> AddAsync(T Item)");
+                _logger.LogError(ex, "Failed to get data from API in: Task<bool> RemoveAsync(int Id)");
                 return false;
             }
         }
