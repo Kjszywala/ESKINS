@@ -1,6 +1,6 @@
-﻿namespace DbServices.Models
+﻿namespace ESKINS.DbServices.Models
 {
-    public class PaymentMethodsModel
+    public class PaymentMethodsModels
     {
         public int Id { get; set; }
         public string Title { get; set; }
