@@ -9,7 +9,9 @@ namespace DbServices.Services
     /// <summary>
     /// Class handles all API calls for payment methods.
     /// </summary>
-    public class PaymentMethodServices : AbstractBaseServices<PaymentMethodsModels>, IPaymentMethodsServices<PaymentMethodsModels>
+    public class PaymentMethodServices : 
+        AbstractBaseServices<PaymentMethodsModels>, 
+        IPaymentMethodsServices<PaymentMethodsModels>
     {
         #region Constructor
 
@@ -27,14 +29,14 @@ namespace DbServices.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync(URI + "active");
+                var response = await _httpClient.GetAsync(URI + "active?query=active");
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadFromJsonAsync<List<PaymentMethodsModels>>();
                 return data;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<bool> AddAsync(T Item)");
+                _logger.LogError(ex, "Failed to get data from API in: Task<List<PaymentMethodsModels>> GetAllActivePaymentMethods()");
                 throw new Exception("Failed to retrieve data from API.", ex);
             }
         } 

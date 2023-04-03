@@ -28,9 +28,9 @@ namespace ESKINS.API.Controllers
             return await _context.PaymentMethods.ToListAsync();
         }
 
-        // GET: api/PaymentMethods/active
-        [HttpGet("{active}")]
-        public async Task<ActionResult<IEnumerable<PaymentMethods>>> GetActivePaymentMethods()
+        // GET: api/PaymentMethods/active?query=active
+        [HttpGet("active")]
+        public async Task<ActionResult<IEnumerable<PaymentMethods>>> GetActivePaymentMethods(string query)
         {
             if (_context.PaymentMethods == null)
             {
