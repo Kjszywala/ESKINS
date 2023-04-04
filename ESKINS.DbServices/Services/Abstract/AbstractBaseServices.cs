@@ -47,7 +47,7 @@ namespace ESKINS.DbServices.Services.Abstract
 
         #region Methods
 
-        // Inheritdoc
+        /// <inheritdoc />
         public async Task<bool> AddAsync(T Item)
         {
             try
@@ -63,7 +63,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
         }
 
-        // Inheritdoc
+        /// <inheritdoc />
         public async Task<bool> EditAsync(int Id, T Item)
         {
             try
@@ -79,7 +79,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
         }
 
-        // Inheritdoc
+        /// <inheritdoc />
         public async Task<List<T>> GetAllAsync()
         {
             try
@@ -96,7 +96,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
         }
 
-        // Inheritdoc
+        /// <inheritdoc />
         public async Task<T> GetAsync(int Id)
         {
             try
@@ -113,7 +113,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
         }
 
-        // Inheritdoc
+        /// <inheritdoc />
         public async Task<bool> RemoveAsync(int Id)
         {
             try

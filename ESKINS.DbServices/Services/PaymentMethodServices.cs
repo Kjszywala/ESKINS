@@ -24,7 +24,7 @@ namespace DbServices.Services
 
         #region Methods
 
-        // Inheritdoc
+        /// <inheritdoc />
         public async Task<List<PaymentMethodsModels>> GetAllActivePaymentMethods()
         {
             try
