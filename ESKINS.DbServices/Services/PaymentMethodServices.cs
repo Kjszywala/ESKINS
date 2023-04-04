@@ -11,11 +11,11 @@ namespace DbServices.Services
     /// </summary>
     public class PaymentMethodServices : 
         AbstractBaseServices<PaymentMethodsModels>, 
-        IPaymentMethodsServices<PaymentMethodsModels>
+        IPaymentMethodsServices
     {
         #region Constructor
 
-        public PaymentMethodServices(ILogger<PaymentMethodsModels> logger)
+        public PaymentMethodServices()
             : base("/api/v1.0/PaymentMethods/")
         {
         }
