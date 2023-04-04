@@ -16,7 +16,7 @@ namespace DbServices.Services
         #region Constructor
 
         public PaymentMethodServices(ILogger<PaymentMethodsModels> logger)
-            : base(logger, "/api/v1.0/PaymentMethods/")
+            : base("/api/v1.0/PaymentMethods/")
         {
         }
 
@@ -36,7 +36,7 @@ namespace DbServices.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<List<PaymentMethodsModels>> GetAllActivePaymentMethods()");
+                _logger.Error(ex);
                 throw new Exception("Failed to retrieve data from API.", ex);
             }
         } 

@@ -1,6 +1,8 @@
 ﻿using ESKINS.DbServices.Interfaces;
+using log4net;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
+using System.Reflection;
 
 namespace ESKINS.DbServices.Services.Abstract
 {
@@ -18,10 +20,6 @@ namespace ESKINS.DbServices.Services.Abstract
         /// </summary>
         public readonly HttpClient _httpClient;
         /// <summary>
-        /// Ilogger for posting any errors to db.
-        /// </summary>
-        public readonly ILogger<T> _logger;
-        /// <summary>
         /// Url to API calls.
         /// </summary>
         public const string URL = "https://localhost:7108/swagger/v1/swagger.json";
@@ -29,15 +27,18 @@ namespace ESKINS.DbServices.Services.Abstract
         /// Uri of the API.
         /// </summary>
         public readonly string URI;
+        /// <summary>
+        /// Ilogger for posting any errors to db.
+        /// </summary>
+        public static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
 
         #region Constructor
 
-        public AbstractBaseServices(ILogger<T> logger, string _URI)
+        public AbstractBaseServices(string _URI)
         {
             _httpClient = new HttpClient();
-            _logger = logger;
             _httpClient.BaseAddress = new Uri(URL);
             URI = _URI;
         }
@@ -57,7 +58,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<bool> AddAsync(T Item)");
+                _logger.Error(ex);
                 return false;
             }
         }
@@ -73,7 +74,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<bool> AddAsync(T Item)");
+                _logger.Error(ex);
                 return false;
             }
         }
@@ -90,7 +91,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<List<T>> GetAllAsync()");
+                _logger.Error(ex);
                 throw new Exception("Failed to retrieve data from API.", ex);
             }
         }
@@ -107,7 +108,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<T> GetAsync(int Id)");
+                _logger.Error(ex);
                 throw new Exception("Failed to retrieve data from API.", ex);
             }
         }
@@ -123,7 +124,7 @@ namespace ESKINS.DbServices.Services.Abstract
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to get data from API in: Task<bool> RemoveAsync(int Id)");
+                _logger.Error(ex);
                 return false;
             }
         }
