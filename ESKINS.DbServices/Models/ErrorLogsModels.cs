@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ESKINS.API.Models.CMS
+﻿namespace ESKINS.DbServices.Models
 {
-    public class ErrorLogs
+    public class ErrorLogsModels
     {
-        [Key]
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string Message { get; set; }

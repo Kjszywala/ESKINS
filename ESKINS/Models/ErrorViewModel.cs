@@ -1,4 +1,4 @@
-namespace ESKINS.Models
+﻿namespace ESKINS.Models
 {
     public class ErrorViewModel
     {

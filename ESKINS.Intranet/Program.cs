@@ -1,23 +1,15 @@
 using ESKINS.Intranet.Data;
-using log4net;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace ESKINS.Intranet
 {
     public class Program
     {
-        private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             // this is for logging exceptions and messages.
-            log4net.Config.XmlConfigurator.Configure();
-            string logMessage = System.Diagnostics.Debugger.IsAttached
-                                ? "Visual-Studio Debug Started"
-                                : "Production-Web Started";
-            _logger.Debug(logMessage);
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>

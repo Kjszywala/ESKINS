@@ -1,6 +1,4 @@
-﻿using ESKINS.DbServices.Interfaces;
-using log4net;
-using Microsoft.Extensions.Logging;
+﻿using log4net;
 using System.Net.Http.Json;
 using System.Reflection;
 
@@ -18,19 +16,21 @@ namespace ESKINS.DbServices.Services
         /// Http client to send post requests.
         /// </summary>
         public readonly HttpClient _httpClient;
+
         /// <summary>
         /// Url to API calls.
         /// </summary>
         public const string URL = "https://localhost:7108/swagger/v1/swagger.json";
+
         /// <summary>
         /// Uri of the API endpoint.
         /// </summary>
         public readonly string URI;
+
         /// <summary>
         /// Ilogger to collect errors in database.
         /// </summary>
         public static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         #endregion
 
         #region Constructor
@@ -130,7 +130,7 @@ namespace ESKINS.DbServices.Services
         }
 
         /// <summary>
-        /// Removes payment method to database.
+        /// Removes payment method from database.
         /// </summary>
         /// <param name="Id">Item Id</param>
         /// <returns>True if operation completed, else false</returns>
