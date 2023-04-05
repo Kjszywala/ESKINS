@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ESKINS.DbServices.Models
 {
-    internal class CustomersModels
+    public class CustomersModels
     {
     }
 }
