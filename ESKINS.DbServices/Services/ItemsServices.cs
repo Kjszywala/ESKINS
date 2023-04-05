@@ -9,7 +9,8 @@ namespace ESKINS.DbServices.Services
     {
         #region Constructor
 
-        public ItemsServices(string _URI) : base(_URI)
+        public ItemsServices() 
+            : base("/api/v1.0/Items/")
         {
         }
 
