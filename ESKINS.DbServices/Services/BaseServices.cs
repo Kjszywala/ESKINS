@@ -4,13 +4,13 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 using System.Reflection;
 
-namespace ESKINS.DbServices.Services.Abstract
+namespace ESKINS.DbServices.Services
 {
     /// <summary>
     /// Class handle primary methods CRUD.
     /// </summary>
     /// <typeparam name="T">Model</typeparam>
-    public class AbstractBaseServices<T> 
+    public class AbstractBaseServices<T>
         : IBaseServices<T> where T : class
     {
         #region Variables
@@ -68,7 +68,7 @@ namespace ESKINS.DbServices.Services.Abstract
         {
             try
             {
-                var response = await _httpClient.PutAsJsonAsync(URI+Id, Item);
+                var response = await _httpClient.PutAsJsonAsync(URI + Id, Item);
                 response.EnsureSuccessStatusCode();
                 return true;
             }
