@@ -5,7 +5,7 @@ namespace ESKINS.DbServices.Interfaces
     /// <summary>
     /// Interface for all PaymentMethods calls to API. 
     /// </summary>
-    public interface IPaymentMethodsServices
+    public interface IPaymentMethodsServices : IBaseServices<PaymentMethodsModels>
     {
         /// <summary>
         /// Gets all active payment methods.

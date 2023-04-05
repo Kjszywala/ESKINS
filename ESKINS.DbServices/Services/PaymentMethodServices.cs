@@ -1,6 +1,6 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.DbServices.Services.Abstract;
+using ESKINS.DbServices.Services;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 
@@ -10,14 +10,16 @@ namespace DbServices.Services
     /// Class handles all API calls for payment methods.
     /// </summary>
     public class PaymentMethodServices : 
-        AbstractBaseServices<PaymentMethodsModels>, 
+        BaseServices<PaymentMethodsModels>, 
         IPaymentMethodsServices
     {
+        private IBaseServices<PaymentMethodsModels> baseServices;
         #region Constructor
 
-        public PaymentMethodServices()
+        public PaymentMethodServices(IBaseServices<PaymentMethodsModels> _baseServices)
             : base("/api/v1.0/PaymentMethods/")
         {
+            baseServices = _baseServices;
         }
 
         #endregion

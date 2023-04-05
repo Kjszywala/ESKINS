@@ -10,8 +10,7 @@ namespace ESKINS.DbServices.Services
     /// Class handle primary methods CRUD.
     /// </summary>
     /// <typeparam name="T">Model</typeparam>
-    public class AbstractBaseServices<T>
-        : IBaseServices<T> where T : class
+    public class BaseServices<T>  where T : class
     {
         #region Variables
 
@@ -36,7 +35,7 @@ namespace ESKINS.DbServices.Services
 
         #region Constructor
 
-        public AbstractBaseServices(string _URI)
+        public BaseServices(string _URI)
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri(URL);

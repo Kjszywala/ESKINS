@@ -1,6 +1,8 @@
-﻿namespace ESKINS.DbServices.Interfaces
+﻿using ESKINS.DbServices.Models;
+
+namespace ESKINS.DbServices.Interfaces
 {
-    public interface IUserAddressesServices
+    public interface IUserAddressesServices : IBaseServices<PaymentMethodsModels>
     {
     }
 }

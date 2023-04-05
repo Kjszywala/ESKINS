@@ -2,7 +2,7 @@
 
 namespace ESKINS.DbServices.Interfaces
 {
-    internal interface IBaseServices<T> 
+    public interface IBaseServices<T> 
         where T : class
     {
         /// <summary>
