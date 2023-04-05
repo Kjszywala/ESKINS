@@ -3,11 +3,11 @@ using ESKINS.DbServices.Models;
 
 namespace ESKINS.DbServices.Services
 {
-    internal class CategoriesService : 
+    internal class CategoriesServices : 
         BaseServices<CategoriesModels>,
         ICategoriesServices
     {
-        public CategoriesService() 
+        public CategoriesServices() 
             : base("/api/v1.0/Categories/")
         {
         }
