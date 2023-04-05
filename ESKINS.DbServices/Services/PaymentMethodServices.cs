@@ -1,7 +1,6 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
 using ESKINS.DbServices.Services;
-using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 
 namespace DbServices.Services
