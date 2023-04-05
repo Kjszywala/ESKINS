@@ -1,6 +1,6 @@
 ﻿namespace ESKINS.DbServices.Models
 {
-    public class CategoriesModels
+    public class ItemCollectionsModels
     {
     }
 }
