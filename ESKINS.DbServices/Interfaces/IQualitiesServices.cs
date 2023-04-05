@@ -2,7 +2,7 @@
 
 namespace ESKINS.DbServices.Interfaces
 {
-    public interface IQualitiesServices : IBaseServices<PaymentMethodsModels>
+    public interface IQualitiesServices : IBaseServices<QualitiesModels>
     {
     }
 }
