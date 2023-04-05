@@ -1,0 +1,19 @@
+﻿@using ESKINS.DbServices.Models;
+@model List<PaymentMethodsModels>
+
+@{
+    Layout = "_Layout";
+}
+<style>
+    label{
+        color: white;
+    }
+</style>
+@{
+    foreach(var item in Model)
+    {
+        <label>@item.Id</label>
+        <label>@item.ImageName</label>
+        <label>@item.Title</label>
+    }
+}
