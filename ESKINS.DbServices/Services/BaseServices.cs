@@ -27,7 +27,7 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         public readonly string URI;
         /// <summary>
-        /// Ilogger for posting any errors to db.
+        /// Ilogger to collect errors in database.
         /// </summary>
         public static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 

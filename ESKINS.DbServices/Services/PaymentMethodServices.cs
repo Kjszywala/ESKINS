@@ -13,13 +13,11 @@ namespace DbServices.Services
         BaseServices<PaymentMethodsModels>, 
         IPaymentMethodsServices
     {
-        private IBaseServices<PaymentMethodsModels> baseServices;
         #region Constructor
 
-        public PaymentMethodServices(IBaseServices<PaymentMethodsModels> _baseServices)
+        public PaymentMethodServices()
             : base("/api/v1.0/PaymentMethods/")
         {
-            baseServices = _baseServices;
         }
 
         #endregion
