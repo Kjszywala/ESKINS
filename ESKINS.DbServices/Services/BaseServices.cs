@@ -23,7 +23,7 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         public const string URL = "https://localhost:7108/swagger/v1/swagger.json";
         /// <summary>
-        /// Uri of the API.
+        /// Uri of the API endpoint.
         /// </summary>
         public readonly string URI;
         /// <summary>
