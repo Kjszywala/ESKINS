@@ -46,7 +46,11 @@ namespace ESKINS.DbServices.Services
 
         #region Methods
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Adds payment method to database.
+        /// </summary>
+        /// <param name="Item">Model</param>
+        /// <returns>True if operation completed, else false</returns>
         public async Task<bool> AddAsync(T Item)
         {
             try
@@ -62,7 +66,12 @@ namespace ESKINS.DbServices.Services
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Edits payment method in database.
+        /// </summary>
+        /// <param name="Id">Item Id</param>
+        /// <param name="Item">Item</param>
+        /// <returns>True if operation completed, else false</returns>
         public async Task<bool> EditAsync(int Id, T Item)
         {
             try
@@ -78,7 +87,11 @@ namespace ESKINS.DbServices.Services
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets all payment methods from database.
+        /// </summary>
+        /// <param name="Item">Model</param>
+        /// <returns>List of active payment methods model</returns>
         public async Task<List<T>> GetAllAsync()
         {
             try
@@ -95,7 +108,11 @@ namespace ESKINS.DbServices.Services
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets item with the given id from database.
+        /// </summary>
+        /// <param name="id">Item Id</param>
+        /// <returns>Item with given Id</returns>
         public async Task<T> GetAsync(int Id)
         {
             try
@@ -112,7 +129,11 @@ namespace ESKINS.DbServices.Services
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Removes payment method to database.
+        /// </summary>
+        /// <param name="Id">Item Id</param>
+        /// <returns>True if operation completed, else false</returns>
         public async Task<bool> RemoveAsync(int Id)
         {
             try
