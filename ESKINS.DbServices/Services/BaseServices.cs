@@ -75,7 +75,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> EditAsync(int Id, T Item)", ex);
+                throw new Exception($"Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> EditAsync(int Id, T Item)", ex);
             }
         }
 
@@ -95,7 +95,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<List<T>> GetAllAsync()", ex);
+                throw new Exception($"Endpoint: {URI}\n Failed to retrieve data from API. Task<List<T>> GetAllAsync()", ex);
             }
         }
 
@@ -115,7 +115,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<T> GetAsync(int Id)", ex);
+                throw new Exception($"Endpoint: {URI}\n Failed to retrieve data from API. Task<T> GetAsync(int Id)", ex);
             }
         }
 
@@ -134,7 +134,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> RemoveAsync(int Id)", ex);
+                throw new Exception($"Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> RemoveAsync(int Id)", ex);
             }
         }
 
