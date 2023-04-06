@@ -29,11 +29,17 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         /// <param name="Item">Model</param>
         /// <returns>True if operation completed, else false</returns>
-        public async Task<bool> AddAsync(ErrorLogsModels Item)
+        public async Task<bool> AddAsync(Exception exception)
         {
+            ErrorLogsModels error = new ErrorLogsModels()
+            {
+                Date = DateTime.Now,
+                Message = exception.Message,
+                Exception = exception.StackTrace ?? "Cannot get stack trace"
+            };
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("/api/v1.0/Customers/", Item);
+                var response = await _httpClient.PostAsJsonAsync("/api/v1.0/ErrorLogs/", error);
                 response.EnsureSuccessStatusCode();
                 return true;
             }
@@ -53,7 +59,7 @@ namespace ESKINS.DbServices.Services
         {
             try
             {
-                var response = await _httpClient.DeleteAsync("/api/v1.0/Customers/" + Id);
+                var response = await _httpClient.DeleteAsync("/api/v1.0/ErrorLogs/" + Id);
                 response.EnsureSuccessStatusCode();
                 return true;
             }

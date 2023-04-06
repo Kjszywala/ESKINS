@@ -24,7 +24,7 @@ namespace ESKINS.Intranet.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var model = await paymentMethodsServices.GetAllAsync();
+            var model = await paymentMethodsServices.GetAllActivePaymentMethods();
             return View(model);
         }
 
