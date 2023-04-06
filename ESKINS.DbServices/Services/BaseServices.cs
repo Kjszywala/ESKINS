@@ -41,7 +41,7 @@ namespace ESKINS.DbServices.Services
         #region Methods
 
         /// <summary>
-        /// Adds payment method to database.
+        /// Adds item to database.
         /// </summary>
         /// <param name="Item">Model</param>
         /// <returns>True if operation completed, else false</returns>
@@ -55,12 +55,12 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> AddAsync(T Item)", ex);
+                throw new Exception($"Endpoint: {URI}\nFailed to retrieve data from API. Task<bool> AddAsync(T Item)", ex);
             }
         }
 
         /// <summary>
-        /// Edits payment method in database.
+        /// Edits item in database.
         /// </summary>
         /// <param name="Id">Item Id</param>
         /// <param name="Item">Item</param>
@@ -75,12 +75,12 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> EditAsync(int Id, T Item)", ex);
+                throw new Exception($"Endpoint: {URI}\nFailed to retrieve data from API. Task<bool> EditAsync(int Id, T Item)", ex);
             }
         }
 
         /// <summary>
-        /// Gets all payment methods from database.
+        /// Gets all items from database.
         /// </summary>
         /// <param name="Item">Model</param>
         /// <returns>List of active payment methods model</returns>
@@ -95,7 +95,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<List<T>> GetAllAsync()", ex);
+                throw new Exception($"Endpoint: {URI}\nFailed to retrieve data from API. Task<List<T>> GetAllAsync()", ex);
             }
         }
 
@@ -115,12 +115,12 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<T> GetAsync(int Id)", ex);
+                throw new Exception($"Endpoint: {URI}\nFailed to retrieve data from API. Task<T> GetAsync(int Id)", ex);
             }
         }
 
         /// <summary>
-        /// Removes payment method from database.
+        /// Removes item from database.
         /// </summary>
         /// <param name="Id">Item Id</param>
         /// <returns>True if operation completed, else false</returns>
@@ -134,7 +134,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> RemoveAsync(int Id)", ex);
+                throw new Exception($"Endpoint: {URI}\nFailed to retrieve data from API. Task<bool> RemoveAsync(int Id)", ex);
             }
         }
 

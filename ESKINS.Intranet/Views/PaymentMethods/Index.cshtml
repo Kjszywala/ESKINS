@@ -1,19 +1,109 @@
-﻿@using ESKINS.DbServices.Models;
-@model List<PaymentMethodsModels>
+﻿@model List<ESKINS.DbServices.Models.PaymentMethodsModels>
 
 @{
-    Layout = "_Layout";
+    ViewBag.Title = "Payment Methods";
 }
+@section head{
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+}
+<h2 class="text-center">Payment Methods</h2>
+<div id="createButton" style="margin: 7px; text-align:center;">
+    <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Create", "PaymentMethods")'">Create New</button>
+</div>
+<div>
+    <div>
+        <div>
+            <table class="table table-bordered table-striped" style="margin: auto;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Is Active</th>
+                        <th>Image</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var paymentMethod in Model)
+                    {
+                        <tr>
+                            <td>@paymentMethod.Id</td>
+                            <td>@paymentMethod.Title</td>
+                            <td>@(paymentMethod.IsActive ? "Yes" : "No")</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(paymentMethod.ImageName) && paymentMethod.Image != null)
+                                {
+                                    <img src="data:image;base64,@Convert.ToBase64String(paymentMethod.Image)" alt="@paymentMethod.ImageName" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" />
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = paymentMethod.Id }, new { @class = "btn btn-success" })
+                                @Html.ActionLink("Details", "Details", new { id = paymentMethod.Id }, new { @class = "btn btn-info" })
+                                @Html.ActionLink("Delete", "Delete", new { id = paymentMethod.Id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 <style>
-    label{
-        color: white;
-    }
-</style>
-@{
-    foreach(var item in Model)
-    {
-        <label>@item.Id</label>
-        <label>@item.ImageName</label>
-        <label>@item.Title</label>
-    }
+/* Styles for the table */
+table {
+width: 100%;
+border-collapse: collapse;
 }
+
+th, td ,tr{
+padding: 8px;
+text-align: center;
+color: #f2f2f2;
+}
+
+h2 {
+color: #f2f2f2;
+}
+
+/* Styles for the buttons */
+.btn {
+color: #fff;
+border-radius: 4px;
+}
+
+.btn-primary {
+background-color: #007bff;
+border-color: #007bff;
+}
+
+.btn-primary:hover {
+background-color: #0069d9;
+border-color: #0062cc;
+}
+
+.btn-success {
+background-color: #28a745;
+border-color: #28a745;
+}
+
+.btn-success:hover {
+background-color: #218838;
+border-color: #1e7e34;
+}
+
+.btn-info {
+background-color: #17a2b8;
+border-color: #17a2b8;
+}
+
+.btn-info:hover {
+background-color: #138496;
+border-color: #117a8b;
+}
+
+.btn-danger {
+background-color: #dc3545;
+border-color: #dc3545;
+}
+</style>
