@@ -24,11 +24,12 @@ namespace ESKINS.API.Models.CMS
         public int? CustomerId { get; set; }
         public Customers? Customer { get; set; }
 
-        ///// <summary>
-        ///// Relationship with Sellers.
-        ///// </summary>
-        //public int? SellerId { get; set; }
-        //public Sellers? Seller { get; set; }
+        /// <summary>
+        /// Relationship with Sellers.
+        /// </summary>
+        public int? SellerId { get; set; }
+        public Sellers? Seller { get; set; }
+
 
         [Required(ErrorMessage = "Field is required")]
         public decimal PricePaid { get; set; }

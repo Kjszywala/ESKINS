@@ -1,6 +1,4 @@
-﻿using log4net;
-using System.Net.Http.Json;
-using System.Reflection;
+﻿using System.Net.Http.Json;
 
 namespace ESKINS.DbServices.Services
 {
@@ -8,7 +6,7 @@ namespace ESKINS.DbServices.Services
     /// Class handle primary methods CRUD.
     /// </summary>
     /// <typeparam name="T">Model</typeparam>
-    public class BaseServices<T>  where T : class
+    public class BaseServices<T> where T : class
     {
         #region Variables
 
@@ -27,10 +25,6 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         public readonly string URI;
 
-        /// <summary>
-        /// Ilogger to collect errors in database.
-        /// </summary>
-        public static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         #endregion
 
         #region Constructor
@@ -61,8 +55,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
-                return false;
+                throw new Exception($"Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> AddAsync(T Item)", ex);
             }
         }
 
@@ -82,8 +75,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
-                return false;
+                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> EditAsync(int Id, T Item)", ex);
             }
         }
 
@@ -103,8 +95,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
-                throw new Exception("Failed to retrieve data from API.", ex);
+                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<List<T>> GetAllAsync()", ex);
             }
         }
 
@@ -124,8 +115,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
-                throw new Exception("Failed to retrieve data from API.", ex);
+                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<T> GetAsync(int Id)", ex);
             }
         }
 
@@ -144,8 +134,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
-                return false;
+                throw new Exception("Endpoint: {URI}\n Failed to retrieve data from API. Task<bool> RemoveAsync(int Id)", ex);
             }
         }
 

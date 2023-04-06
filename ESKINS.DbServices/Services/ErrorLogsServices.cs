@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace ESKINS.DbServices.Services
 {
-    internal class ErrorLogsServices :
+    public class ErrorLogsServices :
         IErrorLogsServices
     {
         #region 
@@ -29,11 +29,17 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         /// <param name="Item">Model</param>
         /// <returns>True if operation completed, else false</returns>
-        public async Task<bool> AddAsync(ErrorLogsModels Item)
+        public async Task<bool> Error(Exception exception)
         {
+            ErrorLogsModels error = new ErrorLogsModels()
+            {
+                Date = DateTime.Now,
+                Message = exception.Message,
+                Exception = exception.StackTrace ?? "Cannot get stack trace"
+            };
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("/api/v1.0/Customers/", Item);
+                var response = await _httpClient.PostAsJsonAsync("/api/v1.0/ErrorLogs/", error);
                 response.EnsureSuccessStatusCode();
                 return true;
             }
@@ -49,16 +55,17 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         /// <param name="Id">Item Id</param>
         /// <returns>True if operation completed, else false</returns>
-        public async Task<bool> RemoveAsync(int Id)
+        public async Task<bool> RemoveError(int Id)
         {
             try
             {
-                var response = await _httpClient.DeleteAsync("/api/v1.0/Customers/" + Id);
+                var response = await _httpClient.DeleteAsync("/api/v1.0/ErrorLogs/" + Id);
                 response.EnsureSuccessStatusCode();
                 return true;
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 return false;
             }
         }
