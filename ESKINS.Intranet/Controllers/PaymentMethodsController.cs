@@ -52,21 +52,46 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                model.Targets = new List<TargetsModels>();
-                if (!ModelState.IsValid)
+                model.Invoices = null;
+                var file = Request.Form.Files.FirstOrDefault();
+                if (file != null && file.Length > 0)
                 {
-                    var file = Request.Form.Files.FirstOrDefault();
-                    if (file != null && file.Length > 0)
+                    using (var stream = file.OpenReadStream())
                     {
-                        using (var memoryStream = new MemoryStream())
+                        using (var binaryReader = new BinaryReader(stream))
                         {
-                            file.CopyTo(memoryStream);
-                            model.Image = memoryStream.ToArray();
+                            var imageData = binaryReader.ReadBytes((int)file.Length);
+                            model.Image = imageData;
                         }
                     }
-
-                    // Save model to database
-                    var IsConfirmed = await paymentMethodsServices.AddAsync(model);
+                }
+                //if (file != null && file.Length > 0)
+                //{
+                //    using (var memoryStream = new MemoryStream())
+                //    {
+                //        file.CopyTo(memoryStream);
+                //        model.Image = memoryStream.ToArray();
+                //    }
+                //}
+                var model1 = new PaymentMethodsModels
+                {
+                    Title = model.Title,
+                    IsActive = model.IsActive,
+                    ImageName = model.ImageName,
+                    Image = model.Image,
+                    Invoices = new List<InvoicesModels>()
+                };
+                // Save model to database
+                //foreach (var key in ModelState.Keys)
+                //{
+                //    foreach (var error in ModelState[key].Errors)
+                //    {
+                //        Console.WriteLine($"{key}: {error.ErrorMessage}");
+                //    }
+                //}
+                if (ModelState.IsValid)
+                {
+                    var IsConfirmed = await paymentMethodsServices.AddAsync(model1);
                     if (IsConfirmed)
                     {
                         return RedirectToAction("Index");
