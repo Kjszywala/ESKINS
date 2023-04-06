@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace ESKINS.DbServices.Services
 {
-    internal class ErrorLogsServices :
+    public class ErrorLogsServices :
         IErrorLogsServices
     {
         #region 
@@ -29,7 +29,7 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         /// <param name="Item">Model</param>
         /// <returns>True if operation completed, else false</returns>
-        public async Task<bool> AddAsync(Exception exception)
+        public async Task<bool> Error(Exception exception)
         {
             ErrorLogsModels error = new ErrorLogsModels()
             {
@@ -55,7 +55,7 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         /// <param name="Id">Item Id</param>
         /// <returns>True if operation completed, else false</returns>
-        public async Task<bool> RemoveAsync(int Id)
+        public async Task<bool> RemoveError(int Id)
         {
             try
             {
@@ -65,6 +65,7 @@ namespace ESKINS.DbServices.Services
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 return false;
             }
         }

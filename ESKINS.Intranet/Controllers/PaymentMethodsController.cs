@@ -8,14 +8,18 @@ namespace ESKINS.Intranet.Controllers
         #region Variables
 
         IPaymentMethodsServices paymentMethodsServices;
+        IErrorLogsServices errorLogsServices;
 
         #endregion
 
         #region Constructor
 
-        public PaymentMethodsController(IPaymentMethodsServices _paymentMethodsServices)
+        public PaymentMethodsController(
+            IPaymentMethodsServices _paymentMethodsServices,
+            IErrorLogsServices _errorLogsServices)
         {
             paymentMethodsServices = _paymentMethodsServices;
+            errorLogsServices = _errorLogsServices;
         }
 
         #endregion
@@ -24,8 +28,16 @@ namespace ESKINS.Intranet.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var model = await paymentMethodsServices.GetAllActivePaymentMethods();
-            return View(model);
+            try
+            {
+                var model = await paymentMethodsServices.GetAllActivePaymentMethods();
+                return View(model);
+            }
+            catch(Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return View();
+            }
         }
 
         #endregion

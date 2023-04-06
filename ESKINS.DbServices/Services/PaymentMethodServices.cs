@@ -35,8 +35,7 @@ namespace DbServices.Services
             }
             catch (Exception ex)
             {
-                _logger.Error(ex);
-                throw new Exception("Failed to retrieve data from API.", ex);
+                throw new Exception("Failed to retrieve data from API. Task<List<PaymentMethodsModels>> GetAllActivePaymentMethods()", ex);
             }
         } 
 
