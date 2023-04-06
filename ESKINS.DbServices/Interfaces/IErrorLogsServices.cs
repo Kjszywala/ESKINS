@@ -17,5 +17,12 @@ namespace ESKINS.DbServices.Interfaces
         /// <param name="Id">Item Id</param>
         /// <returns>True if operation completed, else false</returns>
         Task<bool> RemoveError(int Id);
+
+        /// <summary>
+        /// Gets all Exceptions from database.
+        /// </summary>
+        /// <param name="Item">Model</param>
+        /// <returns>List of active payment methods model</returns>
+        Task<List<ErrorLogsModels>> GetAllAsync();
     }
 }

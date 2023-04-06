@@ -1,6 +1,7 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
 using log4net;
+using System;
 using System.Net.Http.Json;
 using System.Reflection;
 using System.Security.Policy;
@@ -27,7 +28,14 @@ namespace ESKINS.DbServices.Services
         public static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #endregion
+        #region Constructor
 
+        public ErrorLogsServices()
+        {
+            _httpClient.BaseAddress = new Uri(URL);
+        }
+
+        #endregion
         #region Methods
 
         /// <summary>
@@ -45,7 +53,6 @@ namespace ESKINS.DbServices.Services
             };
             try
             {
-                _httpClient.BaseAddress = new Uri(URL);
                 var response = await _httpClient.PostAsJsonAsync("/api/v1.0/ErrorLogs/", error);
                 response.EnsureSuccessStatusCode();
                 return true;
@@ -77,6 +84,26 @@ namespace ESKINS.DbServices.Services
             }
         }
 
+        /// <summary>
+        /// Gets all items from database.
+        /// </summary>
+        /// <param name="Item">Model</param>
+        /// <returns>List of active payment methods model</returns>
+        public async Task<List<ErrorLogsModels>> GetAllAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("/api/v1.0/ErrorLogs/");
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadFromJsonAsync<List<ErrorLogsModels>>();
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                throw new Exception($"Endpoint: /api/v1.0/ErrorLogs/\nFailed to retrieve data from API. Task<List<T>> GetAllAsync()", ex);
+            }
+        }
         #endregion
     }
 }
