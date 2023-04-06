@@ -24,10 +24,10 @@ namespace ESKINS.API.Models.CMS
         public int? UserId { get; set; }
         public Users? Users { get; set; }
 
-        ///// <summary>
-        ///// Relationship with Orders.
-        ///// </summary>
-        //public List<Orders> Order { get; set; }
+        /// <summary>
+        /// Relationship with Orders.
+        /// </summary>
+        public List<Orders> Order { get; set; }
 
         /// <summary>
         /// Relationship with SoldItems.

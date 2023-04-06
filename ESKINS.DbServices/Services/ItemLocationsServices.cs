@@ -4,7 +4,7 @@ using ESKINS.DbServices.Models;
 namespace ESKINS.DbServices.Services
 {
     public class ItemLocationsServices :
-        BaseServices<ItemLoactionsModels>,
+        BaseServices<ItemLocationsModels>,
         IItemLocationsServices
     {
         #region Constructor
