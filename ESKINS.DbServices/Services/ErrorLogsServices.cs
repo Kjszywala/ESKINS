@@ -3,6 +3,7 @@ using ESKINS.DbServices.Models;
 using log4net;
 using System.Net.Http.Json;
 using System.Reflection;
+using System.Security.Policy;
 
 namespace ESKINS.DbServices.Services
 {
@@ -14,6 +15,11 @@ namespace ESKINS.DbServices.Services
         /// Http client to send post requests.
         /// </summary>
         public readonly HttpClient _httpClient = new HttpClient();
+
+        /// <summary>
+        /// Api url.
+        /// </summary>
+        private const string URL = "https://localhost:7108/swagger/v1/swagger.json";
 
         /// <summary>
         /// Ilogger to collect errors in database.
@@ -34,11 +40,12 @@ namespace ESKINS.DbServices.Services
             ErrorLogsModels error = new ErrorLogsModels()
             {
                 Date = DateTime.Now,
-                Message = exception.Message,
-                Exception = exception.StackTrace ?? "Cannot get stack trace"
+                Message = exception.Message ?? "Cannot get message.",
+                Exception = exception.StackTrace ?? "Cannot get stack trace."
             };
             try
             {
+                _httpClient.BaseAddress = new Uri(URL);
                 var response = await _httpClient.PostAsJsonAsync("/api/v1.0/ErrorLogs/", error);
                 response.EnsureSuccessStatusCode();
                 return true;

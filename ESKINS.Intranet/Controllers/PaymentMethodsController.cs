@@ -41,13 +41,19 @@ namespace ESKINS.Intranet.Controllers
             }
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PaymentMethodsModels model)
         {
             try
             {
-                if (ModelState.IsValid)
+                model.Targets = new List<TargetsModels>();
+                if (!ModelState.IsValid)
                 {
                     var file = Request.Form.Files.FirstOrDefault();
                     if (file != null && file.Length > 0)
