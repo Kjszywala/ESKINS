@@ -1,5 +1,5 @@
-using DbServices.Services;
 using ESKINS.DbServices.Interfaces;
+using ESKINS.DbServices.Services;
 using ESKINS.Intranet.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +22,7 @@ namespace ESKINS.Intranet
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IPaymentMethodsServices, PaymentMethodServices>();
+            builder.Services.AddScoped<IErrorLogsServices, ErrorLogsServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

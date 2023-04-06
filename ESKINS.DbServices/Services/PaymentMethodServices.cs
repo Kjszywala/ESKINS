@@ -3,7 +3,7 @@ using ESKINS.DbServices.Models;
 using ESKINS.DbServices.Services;
 using System.Net.Http.Json;
 
-namespace DbServices.Services
+namespace ESKINS.DbServices.Services
 {
     /// <summary>
     /// Class handles all API calls for payment methods.
@@ -35,7 +35,7 @@ namespace DbServices.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to retrieve data from API. Task<List<PaymentMethodsModels>> GetAllActivePaymentMethods()", ex);
+                throw new Exception($"Endpoint: {URI}\nFailed to retrieve data from API. Task<List<PaymentMethodsModels>> GetAllActivePaymentMethods()", ex);
             }
         } 
 

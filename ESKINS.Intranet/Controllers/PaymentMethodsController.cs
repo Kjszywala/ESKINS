@@ -1,4 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
+using ESKINS.DbServices.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
@@ -33,7 +34,41 @@ namespace ESKINS.Intranet.Controllers
                 var model = await paymentMethodsServices.GetAllActivePaymentMethods();
                 return View(model);
             }
-            catch(Exception e)
+            catch(InvalidOperationException e)
+            {
+                await errorLogsServices.Error(e);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(PaymentMethodsModels model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var file = Request.Form.Files.FirstOrDefault();
+                    if (file != null && file.Length > 0)
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            file.CopyTo(memoryStream);
+                            model.Image = memoryStream.ToArray();
+                        }
+                    }
+
+                    // Save model to database
+                    var IsConfirmed = await paymentMethodsServices.AddAsync(model);
+                    if (IsConfirmed)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                return View(model);
+            }
+            catch (Exception e)
             {
                 await errorLogsServices.Error(e);
                 return View();
