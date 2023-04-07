@@ -34,7 +34,7 @@ namespace ESKINS.Intranet.Controllers
                 var model = await paymentMethodsServices.GetAllActivePaymentMethods();
                 return View(model);
             }
-            catch(InvalidOperationException e)
+            catch(Exception e)
             {
                 await errorLogsServices.Error(e);
                 return View();
@@ -78,6 +78,21 @@ namespace ESKINS.Intranet.Controllers
             {
                 await errorLogsServices.Error(e);
                 return View();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            try
+            {
+                var model = await paymentMethodsServices.RemoveAsync(id);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return RedirectToAction("Index");
             }
         }
 

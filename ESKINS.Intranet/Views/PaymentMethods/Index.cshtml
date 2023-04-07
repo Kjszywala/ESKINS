@@ -41,7 +41,7 @@
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { id = paymentMethod.Id }, new { @class = "btn btn-success" })
                                 @Html.ActionLink("Details", "Details", new { id = paymentMethod.Id }, new { @class = "btn btn-info" })
-                                @Html.ActionLink("Delete", "Delete", new { id = paymentMethod.Id }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Delete", "Delete", "PaymentMethods", new { id = paymentMethod.Id }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     }
@@ -50,7 +50,6 @@
         </div>
     </div>
 </div>
-
 <style>
 /* Styles for the table */
 table {
