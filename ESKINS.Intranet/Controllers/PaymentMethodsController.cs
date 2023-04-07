@@ -1,6 +1,9 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace ESKINS.Intranet.Controllers
 {
@@ -86,12 +89,55 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetPaymentMethodAsync(int id)
+        {
+            var paymentMethod = await paymentMethodsServices.GetAsync(id);
+
+            if (paymentMethod == null)
+            {
+                return NotFound();
+            }
+
+            var paymentMethodModel = new PaymentMethodsModels
+            {
+                Id = paymentMethod.Id,
+                Title = paymentMethod.Title,
+                IsActive = paymentMethod.IsActive,
+                ImageName = paymentMethod.ImageName,
+                Image = paymentMethod.Image
+            };
+
+            return Ok(paymentMethodModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             try
             {
                 var IsConfirmed = await paymentMethodsServices.RemoveAsync(id);
                 if(IsConfirmed)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Error");
+            }
+            catch (Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditAsync(int id, PaymentMethodsModels model)
+        {
+            try
+            {
+                id = model.Id;
+                
+                var IsConfirmed = await paymentMethodsServices.EditAsync(id,model);
+                if (IsConfirmed)
                 {
                     return RedirectToAction("Index");
                 }
