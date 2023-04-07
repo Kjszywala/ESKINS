@@ -4,6 +4,7 @@ using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
+using System.IO;
 
 namespace ESKINS.Intranet.Controllers
 {
@@ -135,7 +136,23 @@ namespace ESKINS.Intranet.Controllers
             try
             {
                 id = model.Id;
-                
+                var file = Request.Form.Files.FirstOrDefault();
+                if (file != null && file.Length > 0)
+                {
+                    using (var stream = file.OpenReadStream())
+                    {
+                        using (var binaryReader = new BinaryReader(stream))
+                        {
+                            var imageData = binaryReader.ReadBytes((int)file.Length);
+                            model.Image = imageData;
+                        }
+                    }
+                }
+                else 
+                {
+                    var oldModel = await paymentMethodsServices.GetAsync(id);
+                    model.Image = oldModel.Image; 
+                }
                 var IsConfirmed = await paymentMethodsServices.EditAsync(id,model);
                 if (IsConfirmed)
                 {
@@ -151,6 +168,17 @@ namespace ESKINS.Intranet.Controllers
         }
 
         #endregion
-
+//        var file = Request.Form.Files.FirstOrDefault();
+//                if (file != null && file.Length > 0)
+//                {
+//                    using (var stream = file.OpenReadStream())
+//                    {
+//                        using (var binaryReader = new BinaryReader(stream))
+//                        {
+//                            var imageData = binaryReader.ReadBytes((int)file.Length);
+//        model.Image = imageData;
+//                        }
+//}
+//                }
     }
 }

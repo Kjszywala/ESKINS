@@ -26,7 +26,7 @@
                         <th>Title</th>
                         <th>Is Active</th>
                         <th>Image</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +43,6 @@
                                 }
                             </td>
                             <td>
-                               @* @Html.ActionLink("Edit", "#", new { Id = paymentMethod.Id }, new { @class = "btn btn-success", data_toggle = "modal", data_target = "#editModal", model = this, data_parameter=paymentMethod.Id })*@
                                 @Html.ActionLink("Edit", "#", new { Id = paymentMethod.Id }, new { @class = "btn btn-success edit-link", data_toggle = "modal", data_target = "#editModal", model = this, data_parameter = paymentMethod.Id })
                                 @Html.ActionLink("Details", "Details", new { id = paymentMethod.Id }, new { @class = "btn btn-info" })
                                 @Html.ActionLink("Delete", "Delete", "PaymentMethods", new { id = paymentMethod.Id }, new { @class = "btn btn-danger" })
@@ -90,7 +89,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editPaymentForm" action="@Url.Action("Edit", "PaymentMethods")" method="post">
+                <form id="editPaymentForm" action="@Url.Action("Edit", "PaymentMethods")" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="Id" name="Id"/>
                     <div class="form-group">
                         <label for="title">Title:</label>
@@ -195,7 +194,9 @@ padding: 8px;
 text-align: center;
 color: #f2f2f2;
 }
-
+th {
+    font-weight: bold;
+}
 h2 {
 color: #f2f2f2;
 }
