@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESKINS.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230406223256_InitialCreate")]
+    [Migration("20230407142751_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

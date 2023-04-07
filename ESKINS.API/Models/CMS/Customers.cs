@@ -28,23 +28,23 @@ namespace ESKINS.API.Models.CMS
         /// Relationship with Users.
         /// </summary>
         public int UserId { get; set; }
-        public Users User { get; set; }
+        public Users? User { get; set; }
 
         /// <summary>
         /// Relationship with UsersAddresses.
         /// </summary>
         public int CustomerAddressId { get; set; }
-        public UsersAddresses CustomerAddress { get; set; }
+        public UsersAddresses? CustomerAddress { get; set; }
 
         /// <summary>
         /// Relationship with Orders.
         /// </summary>
-        public ICollection<Orders> Order { get; set; }
+        public ICollection<Orders>? Order { get; set; }
 
         /// <summary>
         /// Relationship with SoldItems.
         /// </summary>
-        public ICollection<SoldItems> SoldItem { get; set; }
+        public ICollection<SoldItems>? SoldItem { get; set; }
 
     }
 }

@@ -13,9 +13,9 @@
         public string Password { get; set; }
         public string Email { get; set; }
         public decimal AccountBalance { get; set; }
-        public ICollection<SellersModels> Seller { get; set; }
-        public ICollection<CustomersModels> Customer { get; set; }
-        public ICollection<ItemsModels> Item { get; set; }
-        public ICollection<TargetsModels> Target { get; set; }
+        public ICollection<SellersModels>? Seller { get; set; }
+        public ICollection<CustomersModels>? Customer { get; set; }
+        public ICollection<ItemsModels>? Item { get; set; }
+        public ICollection<TargetsModels>? Target { get; set; }
     }
 }

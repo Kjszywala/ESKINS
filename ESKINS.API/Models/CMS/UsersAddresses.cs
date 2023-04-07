@@ -31,6 +31,6 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with Customers.
         /// </summary>
-        public ICollection<Customers> Customer { get; set; }
+        public ICollection<Customers>? Customer { get; set; }
     }
 }
