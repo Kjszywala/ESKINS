@@ -32,12 +32,16 @@ namespace ESKINS.Intranet.Controllers
             try
             {
                 var model = await paymentMethodsServices.GetAllActivePaymentMethods();
+                if (model == null)
+                {
+                    return View("Error");
+                }
                 return View(model);
             }
             catch(Exception e)
             {
                 await errorLogsServices.Error(e);
-                return View();
+                return View("Error");
             }
         }
 
@@ -72,12 +76,12 @@ namespace ESKINS.Intranet.Controllers
                         return RedirectToAction("Index");
                     }
                 }
-                return View(model);
+                return View("Error");
             }
             catch (Exception e)
             {
                 await errorLogsServices.Error(e);
-                return View();
+                return View("Error");
             }
         }
 
@@ -86,13 +90,17 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                var model = await paymentMethodsServices.RemoveAsync(id);
-                return RedirectToAction("Index");
+                var IsConfirmed = await paymentMethodsServices.RemoveAsync(id);
+                if(IsConfirmed)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Error");
             }
             catch (Exception e)
             {
                 await errorLogsServices.Error(e);
-                return RedirectToAction("Index");
+                return View("Error");
             }
         }
 
