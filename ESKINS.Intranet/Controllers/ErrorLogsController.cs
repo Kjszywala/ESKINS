@@ -36,6 +36,21 @@ namespace ESKINS.Intranet.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            try
+            {
+                var model = await errorLogsServices.RemoveError(id);
+                return RedirectToAction("Index");
+            }
+            catch (InvalidOperationException e)
+            {
+                await errorLogsServices.Error(e);
+                return View();
+            }
+        }
         #endregion
     }
 }
