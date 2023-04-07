@@ -35,21 +35,21 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with Users.
         /// </summary>
-        public ICollection<Sellers> Seller { get; set; }
+        public ICollection<Sellers>? Seller { get; set; }
 
         /// <summary>
         /// Relationship with Customers.
         /// </summary>
-        public ICollection<Customers> Customer { get; set; }
+        public ICollection<Customers>? Customer { get; set; }
 
         /// <summary>
         /// Relationship with Items.
         /// </summary>
-        public ICollection<Items> Item { get; set; }
+        public ICollection<Items>? Item { get; set; }
 
         /// <summary>
         /// Relationship with Items.
         /// </summary>
-        public ICollection<Targets> Target { get; set; }
+        public ICollection<Targets>? Target { get; set; }
     }
 }

@@ -9,6 +9,6 @@
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
         public string Exterior { get; set; }
-        public ICollection<ItemsModels> Items { get; set; }
+        public ICollection<ItemsModels>? Items { get; set; }
     }
 }

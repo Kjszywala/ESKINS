@@ -1,0 +1,108 @@
+﻿@model List<ESKINS.DbServices.Models.ErrorLogsModels>
+
+<div class="container">
+    <h2 class="text-center" style="color: white;">Error Logs</h2>
+    <hr />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model.Any())
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Message</th>
+                            <th>Exception</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var errorLog in Model)
+                        {
+                            <tr>
+                                <td>@errorLog.Id</td>
+                                <td>@errorLog.Date.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                                <td>@errorLog.Message</td>
+                                <td>@errorLog.Exception</td>
+                                <td>
+                                    <button class="btn btn-danger delete-btn" data-id="@errorLog.Id">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No error logs found.</p>
+            }
+        </div>
+    </div>
+</div>
+
+@* Script to handle delete button click *@
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.delete-btn').click(function () {
+                var id = $(this).data('id');
+                if (confirm('Are you sure you want to delete error log with ID ' + id + '?')) {
+                    $.ajax({
+                        url: '/ErrorLogs/Delete/' + id,
+                        method: 'POST',
+                        success: function (data) {
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert('Failed to delete error log.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ffffff;
+    }
+
+    th {
+        background-color: #212121;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    td {
+        background-color: #303030;
+        color: #ffffff;
+    }
+
+    .delete-btn {
+        background-color: #ff3d00;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .delete-btn:hover {
+        background-color: #d32f2f;
+    }
+
+    .delete-btn:disabled {
+        background-color: #616161;
+        cursor: not-allowed;
+    }
+</style>

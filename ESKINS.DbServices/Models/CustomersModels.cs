@@ -11,10 +11,10 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int UserId { get; set; }
-        public UsersModels User { get; set; }
+        public UsersModels? User { get; set; }
         public int CustomerAddressId { get; set; }
-        public UsersAddressesModels CustomerAddress { get; set; }
-        public ICollection<OrdersModels> Orders { get; set; }
-        public ICollection<SoldItemsModels> SoldItems { get; set; }
+        public UsersAddressesModels? CustomerAddress { get; set; }
+        public ICollection<OrdersModels>? Orders { get; set; }
+        public ICollection<SoldItemsModels>? SoldItems { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace ESKINS.Intranet.Data.Migrations
+namespace ESKINS.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

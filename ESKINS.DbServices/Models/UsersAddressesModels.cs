@@ -13,6 +13,6 @@
         public string? PostCode { get; set; }
         public string? City { get; set; }
         public string? Country { get; set; }
-        public ICollection<CustomersModels> Customer { get; set; }
+        public ICollection<CustomersModels>? Customer { get; set; }
     }
 }

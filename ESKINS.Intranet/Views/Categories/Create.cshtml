@@ -1,21 +1,21 @@
 ﻿@using ESKINS.DbServices.Models;
-@model PaymentMethodsModels
+@model CategoriesModels
 
 @{
     Layout = "_Layout";
     ViewBag.Title = "Create";
 }
 @section head{
-    <link rel="stylesheet" href="~/css/PaymentMethods/create.css"/>
+    <link rel="stylesheet" href="~/css/PaymentMethods/create.css" />
 }
 <center>
-    <h2>Create Payment Method</h2>
+    <h2>Create Category</h2>
 </center>
 <br />
-@using (Html.BeginForm("Create", "PaymentMethods", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Categories", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -25,14 +25,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -47,12 +39,13 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CategoryDescription, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="file" id="file" />
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CategoryDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CategoryDescription, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <br>
         <center>
             <div class="form-group">
@@ -66,7 +59,7 @@
 <center>
     <br />
     <div>
-        <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Index", "PaymentMethods")'">Back To List</button>
+        <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Index", "Categories")'">Back To List</button>
     </div>
 </center>
 <style>

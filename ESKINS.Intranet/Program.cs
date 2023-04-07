@@ -23,6 +23,7 @@ namespace ESKINS.Intranet
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IPaymentMethodsServices, PaymentMethodServices>();
             builder.Services.AddScoped<IErrorLogsServices, ErrorLogsServices>();
+            builder.Services.AddScoped<ICategoriesServices, CategoriesServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

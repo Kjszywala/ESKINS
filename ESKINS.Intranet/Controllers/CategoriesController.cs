@@ -1,82 +1,142 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ESKINS.DbServices.Interfaces;
+using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
 {
     public class CategoriesController : Controller
     {
+        #region Variables
+
+        ICategoriesServices categoriesServices;
+        IErrorLogsServices errorLogsServices;
+
+        #endregion
+
+        #region Constructor
+
+        public CategoriesController(
+            ICategoriesServices _categoriesServices,
+            IErrorLogsServices _errorLogsServices)
+        {
+            categoriesServices = _categoriesServices;
+            errorLogsServices = _errorLogsServices;
+        }
+
+        #endregion
         // GET: CategoriesController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: CategoriesController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CategoriesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CategoriesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> IndexAsync()
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = await categoriesServices.GetAllAsync();
+                if (model == null)
+                {
+                    return View("Error");
+                }
+                return View(model);
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                await errorLogsServices.Error(e);
+                return View("Error");
             }
         }
 
-        // GET: CategoriesController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> GetCategoryAsync(int id)
+        {
+            var paymentMethod = await categoriesServices.GetAsync(id);
+
+            if (paymentMethod == null)
+            {
+                return NotFound();
+            }
+
+            var paymentMethodModel = new CategoriesModels
+            {
+                Id = paymentMethod.Id,
+                Title = paymentMethod.Title,
+                IsActive = paymentMethod.IsActive,
+                CreationDate = paymentMethod.CreationDate,
+                ModificationDate = paymentMethod.ModificationDate,
+                CategoryDescription = paymentMethod.CategoryDescription
+            };
+
+            return Ok(paymentMethodModel);
+        }
+
+        public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CategoriesModels model)
+        {
+            try
+            {
+                model.CreationDate = DateTime.Now;
+                model.ModificationDate = DateTime.Now;
+                if (ModelState.IsValid)
+                {
+                    var IsConfirmed = await categoriesServices.AddAsync(model);
+                    if (IsConfirmed)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                return View("Error");
+            }
+            catch (Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return View("Error");
+            }
         }
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> EditAsync(int id, CategoriesModels model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var oldModel = await categoriesServices.GetAsync(id);
+                model.ModificationDate = DateTime.Now;
+                model.CreationDate = oldModel.CreationDate;
+                var IsConfirmed = await categoriesServices.EditAsync(id, model);
+                if (IsConfirmed)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Error");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                await errorLogsServices.Error(e);
+                return View("Error");
             }
         }
 
         // GET: CategoriesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CategoriesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpGet]
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var IsConfirmed = await categoriesServices.RemoveAsync(id);
+                if (IsConfirmed)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Error");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                await errorLogsServices.Error(e);
+                return View("Error");
             }
         }
     }

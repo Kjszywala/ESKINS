@@ -24,6 +24,6 @@ namespace ESKINS.API.Models.CMS
         /// <summary>
         /// Relationship with items.
         /// </summary>
-        public ICollection<Items> Items { get; set; }
+        public ICollection<Items>? Items { get; set; }
     }
 }

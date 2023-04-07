@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESKINS.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230405185012_InitialCreate")]
+    [Migration("20230407142751_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -503,12 +503,17 @@ namespace ESKINS.API.Migrations
                     b.Property<decimal>("PricePaid")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("SellerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("SellerId");
 
                     b.ToTable("Orders");
                 });
@@ -918,7 +923,13 @@ namespace ESKINS.API.Migrations
                         .WithMany("Order")
                         .HasForeignKey("CustomerId");
 
+                    b.HasOne("ESKINS.API.Models.CMS.Sellers", "Seller")
+                        .WithMany("Order")
+                        .HasForeignKey("SellerId");
+
                     b.Navigation("Customer");
+
+                    b.Navigation("Seller");
                 });
 
             modelBuilder.Entity("ESKINS.API.Models.CMS.Sellers", b =>
@@ -1022,6 +1033,8 @@ namespace ESKINS.API.Migrations
 
             modelBuilder.Entity("ESKINS.API.Models.CMS.Sellers", b =>
                 {
+                    b.Navigation("Order");
+
                     b.Navigation("SoldItem");
                 });
 

@@ -7,6 +7,6 @@
         public bool IsActive { get; set; }
         public string? ImageName { get; set; }
         public byte[]? Image { get; set; }
-        public ICollection<InvoicesModels>? Invoices { get; set; }
+        public List<InvoicesModels>? Invoices { get; set; }
     }
 }

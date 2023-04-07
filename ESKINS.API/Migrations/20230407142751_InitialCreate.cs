@@ -437,6 +437,7 @@ namespace ESKINS.API.Migrations
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: true),
+                    SellerId = table.Column<int>(type: "int", nullable: true),
                     PricePaid = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
@@ -447,6 +448,11 @@ namespace ESKINS.API.Migrations
                         name: "FK_Orders_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_Sellers_SellerId",
+                        column: x => x.SellerId,
+                        principalTable: "Sellers",
                         principalColumn: "Id");
                 });
 
@@ -581,6 +587,11 @@ namespace ESKINS.API.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_SellerId",
+                table: "Orders",
+                column: "SellerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Sellers_UsersId",
                 table: "Sellers",
                 column: "UsersId");
@@ -638,13 +649,13 @@ namespace ESKINS.API.Migrations
                 name: "PaymentMethods");
 
             migrationBuilder.DropTable(
-                name: "Sellers");
-
-            migrationBuilder.DropTable(
                 name: "Items");
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Sellers");
 
             migrationBuilder.DropTable(
                 name: "Categories");
@@ -668,10 +679,10 @@ namespace ESKINS.API.Migrations
                 name: "Qualities");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "UsersAddresses");
 
             migrationBuilder.DropTable(
-                name: "UsersAddresses");
+                name: "Users");
         }
     }
 }

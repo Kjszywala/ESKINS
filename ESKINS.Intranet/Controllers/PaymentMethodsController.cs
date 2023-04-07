@@ -1,6 +1,10 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Drawing;
+using System.IO;
 
 namespace ESKINS.Intranet.Controllers
 {
@@ -32,12 +36,16 @@ namespace ESKINS.Intranet.Controllers
             try
             {
                 var model = await paymentMethodsServices.GetAllActivePaymentMethods();
+                if (model == null)
+                {
+                    return View("Error");
+                }
                 return View(model);
             }
-            catch(InvalidOperationException e)
+            catch(Exception e)
             {
                 await errorLogsServices.Error(e);
-                return View();
+                return View("Error");
             }
         }
 
@@ -52,7 +60,82 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                model.Invoices = null;
+                if (ModelState.IsValid)
+                {
+                    var file = Request.Form.Files.FirstOrDefault();
+                    if (file != null && file.Length > 0)
+                    {
+                        using (var stream = file.OpenReadStream())
+                        {
+                            using (var binaryReader = new BinaryReader(stream))
+                            {
+                                var imageData = binaryReader.ReadBytes((int)file.Length);
+                                model.Image = imageData;
+                            }
+                        }
+                    }
+                    var IsConfirmed = await paymentMethodsServices.AddAsync(model);
+                    if (IsConfirmed)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                return View("Error");
+            }
+            catch (Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPaymentMethodAsync(int id)
+        {
+            var paymentMethod = await paymentMethodsServices.GetAsync(id);
+
+            if (paymentMethod == null)
+            {
+                return NotFound();
+            }
+
+            var paymentMethodModel = new PaymentMethodsModels
+            {
+                Id = paymentMethod.Id,
+                Title = paymentMethod.Title,
+                IsActive = paymentMethod.IsActive,
+                ImageName = paymentMethod.ImageName,
+                Image = paymentMethod.Image
+            };
+
+            return Ok(paymentMethodModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            try
+            {
+                var IsConfirmed = await paymentMethodsServices.RemoveAsync(id);
+                if(IsConfirmed)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Error");
+            }
+            catch (Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditAsync(int id, PaymentMethodsModels model)
+        {
+            try
+            {
+                id = model.Id;
                 var file = Request.Form.Files.FirstOrDefault();
                 if (file != null && file.Length > 0)
                 {
@@ -65,48 +148,37 @@ namespace ESKINS.Intranet.Controllers
                         }
                     }
                 }
-                //if (file != null && file.Length > 0)
-                //{
-                //    using (var memoryStream = new MemoryStream())
-                //    {
-                //        file.CopyTo(memoryStream);
-                //        model.Image = memoryStream.ToArray();
-                //    }
-                //}
-                var model1 = new PaymentMethodsModels
+                else 
                 {
-                    Title = model.Title,
-                    IsActive = model.IsActive,
-                    ImageName = model.ImageName,
-                    Image = model.Image,
-                    Invoices = new List<InvoicesModels>()
-                };
-                // Save model to database
-                //foreach (var key in ModelState.Keys)
-                //{
-                //    foreach (var error in ModelState[key].Errors)
-                //    {
-                //        Console.WriteLine($"{key}: {error.ErrorMessage}");
-                //    }
-                //}
-                if (ModelState.IsValid)
-                {
-                    var IsConfirmed = await paymentMethodsServices.AddAsync(model1);
-                    if (IsConfirmed)
-                    {
-                        return RedirectToAction("Index");
-                    }
+                    var oldModel = await paymentMethodsServices.GetAsync(id);
+                    model.Image = oldModel.Image; 
                 }
-                return View(model);
+                var IsConfirmed = await paymentMethodsServices.EditAsync(id,model);
+                if (IsConfirmed)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View("Error");
             }
             catch (Exception e)
             {
                 await errorLogsServices.Error(e);
-                return View();
+                return View("Error");
             }
         }
 
         #endregion
-
+//        var file = Request.Form.Files.FirstOrDefault();
+//                if (file != null && file.Length > 0)
+//                {
+//                    using (var stream = file.OpenReadStream())
+//                    {
+//                        using (var binaryReader = new BinaryReader(stream))
+//                        {
+//                            var imageData = binaryReader.ReadBytes((int)file.Length);
+//        model.Image = imageData;
+//                        }
+//}
+//                }
     }
 }
