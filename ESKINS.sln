@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESKINS.API", "ESKINS.API\ES
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESKINS.Intranet", "ESKINS.Intranet\ESKINS.Intranet.csproj", "{874E4978-3339-4C5C-B296-38B8559933E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESKINS.DbServices", "ESKINS.DbServices\ESKINS.DbServices.csproj", "{963E18B2-508E-486D-BA13-A562BEC66328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESKINS.DbServices", "ESKINS.DbServices\ESKINS.DbServices.csproj", "{963E18B2-508E-486D-BA13-A562BEC66328}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESKINS.BusinessLogic", "ESKINS.BusinessLogic\ESKINS.BusinessLogic.csproj", "{9B604880-30FD-4188-91FC-C69B28912347}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{963E18B2-508E-486D-BA13-A562BEC66328}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{963E18B2-508E-486D-BA13-A562BEC66328}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{963E18B2-508E-486D-BA13-A562BEC66328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B604880-30FD-4188-91FC-C69B28912347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B604880-30FD-4188-91FC-C69B28912347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B604880-30FD-4188-91FC-C69B28912347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B604880-30FD-4188-91FC-C69B28912347}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

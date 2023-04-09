@@ -24,5 +24,12 @@ namespace ESKINS.DbServices.Interfaces
         /// <param name="Item">Model</param>
         /// <returns>List of active payment methods model</returns>
         Task<List<ErrorLogsModels>> GetAllAsync();
+
+        /// <summary>
+        /// Adding error message to Errorlogs table.
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
+        Task<bool> Add(string errorMessage);
     }
 }

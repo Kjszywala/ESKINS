@@ -1,4 +1,6 @@
-﻿namespace ESKINS.DbServices.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ESKINS.DbServices.Models
 {
     public class ItemsModels
     {
@@ -9,7 +11,7 @@
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
         public string ProductName { get; set; }
-        public string SerialNumber { get; set; }
+        public string? SerialNumber { get; set; }
         public int? UserId { get; set; }
         public UsersModels? User { get; set; }
         public int? CategoryId { get; set; }
@@ -33,7 +35,7 @@
         public decimal ActualPrice { get; set; }
         public bool OnSale { get; set; }
         public decimal Discount { get; set; }
-        public byte[] ItemImage { get; set; }
-        public ICollection<ItemPriceHistoriesModels>? ItemPriceHistorys { get; set; }
+        public byte[]? ItemImage { get; set; }
+        public ICollection<ItemPriceHistoriesModels>? ItemPriceHistories { get; set; }
     }
 }

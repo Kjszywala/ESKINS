@@ -1,7 +1,7 @@
-﻿@model List<ESKINS.DbServices.Models.ItemCollectionsModels>
+﻿@model List<ESKINS.DbServices.Models.ItemsModels>
 
 @{
-    ViewBag.Title = "Item Collections";
+    ViewBag.Title = "Payment Methods";
 }
 @section head{
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -10,24 +10,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 }
-<h2 class="text-center">Item Collections</h2>
+<h2 class="text-center">Payment Methods</h2>
 <br />
 <div id="createButton" style="margin: 7px; text-align:center;">
-    <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Create", "ItemCollections")'">Create New</button>
+    <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Create", "Items")'">Create New</button>
 </div>
 <br />
 <div>
     <div>
-        <div>
-            <table class="table table-bordered table-striped" style="margin: auto;">
+        <div class="centerDiv">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Is Active</th>
-                        <th>CreationDate</th>
                         <th>ModificationDate</th>
+                        <th>ProductName</th>
+                        <th>SerialNumber</th>
+                        <th>User</th>
+                        <th>Category</th>
+                        <th>StatTrack</th>
                         <th>ItemCollection</th>
+                        <th>Phase</th>
+                        <th>Exterior</th>
+                        <th>ActualPrice</th>
+                        <th>OnSale</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -35,15 +41,26 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Title</td>
-                            <td>@(item.IsActive ? "Yes" : "No")</td>
-                            <td>@item.CreationDate</td>
                             <td>@item.ModificationDate</td>
-                            <td>@item.ItemCollection</td>
+                            <td>@item.ProductName</td>
+                            <td>@item.SerialNumber</td>
+                            <td>@item.User?.Email</td>
+                            <td>@item.Category?.CategoryDescription</td>
+                            <td>@item.StatTrack</td>
+                            <td>@item.ItemCollection?.ItemCollection</td>
+                            <td>@item.Phase?.Phase</td>
+                            <td>@item.Exterior?.Exterior</td>
+                            <td>@item.ActualPrice</td>
+                            <td>@item.OnSale</td>
+                            <td>
+                                @if (item.ItemImage != null)
+                                {
+                                    <img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" />
+                                }
+                            </td>
                             <td>
                                 @Html.ActionLink("Edit", "#", new { Id = item.Id }, new { @class = "btn btn-success edit-link", data_toggle = "modal", data_target = "#editModal", model = this, data_parameter = item.Id })
-                                @Html.ActionLink("Delete", "Delete", "ItemCollections", new { id = item.Id }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Delete", "Delete", "PaymentMethods", new { id = item.Id }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     }
@@ -52,19 +69,43 @@
         </div>
     </div>
 </div>
+@section scripts{
+    <script>
+        $(".edit-link").on("click", function () {
+            // Get the ID from the data-parameter attribute
+            var id = $(this).data("parameter");
 
-@*Modal Window for Edit item collection*@
+            // Set the value of the hidden input field in the form
+            $("#editPaymentForm input[name=Id]").val(id);
+
+            // Make an AJAX request to fetch the data for the selected payment method
+            $.ajax({
+                url: "/PaymentMethods/GetPaymentMethod/" + id,
+                type: "GET",
+                success: function (data) {
+                    // Populate the form fields with the data from the server
+                    $("#editPaymentForm input[name=title]").val(data.title);
+                    $("#editPaymentForm select[name=isActive]").val(data.isActive.toString());
+                    $("#editPaymentForm input[name=imageName]").val(data.imageName);
+                    $("#editPaymentModal").modal("show");
+                }
+            });
+        });
+    </script>
+    }
+
+@*Modal Window for Edit payment method*@
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editCollectionLabel">Edit Collection</h5>
+                <h5 class="modal-title" id="editPaymentModalLabel">Edit Payment Method</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editItemCollectionsForm" action="@Url.Action("Edit", "ItemCollections")" method="post" enctype="multipart/form-data">
+                <form id="editPaymentForm" action="@Url.Action("Edit", "PaymentMethods")" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="Id" name="Id" />
                     <div class="form-group">
                         <label for="title">Title:</label>
@@ -78,48 +119,23 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="itemCollection">Item Colletion:</label>
-                        <input type="text" class="form-control" id="itemCollection" name="itemCollection" required>
+                        <label for="imageName">Image Name:</label>
+                        <input type="text" class="form-control" id="imageName" name="imageName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image:</label>
+                        <input type="file" class="form-control-file" id="image" name="image" required>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" form="editItemCollectionsForm" class="btn btn-primary">Save Changes</button>
+                <button type="submit" form="editPaymentForm" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
     </div>
 </div>
-@section scripts{
-    <script>
-        $(".edit-link").on("click", function () {
-            // Get the ID from the data-parameter attribute
-            var id = $(this).data("parameter");
-
-            // Set the value of the hidden input field in the form
-            $("#editItemCollectionsForm input[name=Id]").val(id);
-
-            // Make an AJAX request to fetch the data for the selected payment method
-            $.ajax({
-                url: "/ItemCollections/GetCollection/" + id,
-                type: "GET",
-                success: function (data) {
-                    // Populate the form fields with the data from the server
-                    $("#editItemCollectionsForm input[name=title]").val(data.title);
-                    $("#editItemCollectionsForm select[name=isActive]").val(data.isActive.toString());
-                    $("#editItemCollectionsForm input[name=itemCollection]").val(data.itemCollection);
-                    $("#editItemCollectionsModal").modal("show");
-                }
-            });
-        });
-    </script>
-    }
 <style>
-    .container {
-        border-radius: 4px;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
-        padding: 32px;
-    }
     /* Modal background */
     .modal {
         background-color: rgba(0, 0, 0, 0.6);
@@ -163,6 +179,9 @@
             cursor: pointer;
         }
     /* Styles for the table */
+    .centerDiv{
+        margin-left: -100px;
+    }
     table {
         width: 100%;
         border-collapse: collapse;

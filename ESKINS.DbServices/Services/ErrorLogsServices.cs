@@ -104,6 +104,27 @@ namespace ESKINS.DbServices.Services
                 throw new Exception($"Endpoint: /api/v1.0/ErrorLogs/\nFailed to retrieve data from API. Task<List<T>> GetAllAsync()", ex);
             }
         }
+
+        public async Task<bool> Add(string errorMessage)
+        {
+            ErrorLogsModels error = new ErrorLogsModels()
+            {
+                Date = DateTime.Now,
+                Message = errorMessage ?? "Cannot get message.",
+                Exception = "Cannot get stack trace."
+            };
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("/api/v1.0/ErrorLogs/", error);
+                response.EnsureSuccessStatusCode();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                return false;
+            }
+        }
         #endregion
     }
 }
