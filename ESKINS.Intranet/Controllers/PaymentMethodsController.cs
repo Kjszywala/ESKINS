@@ -168,17 +168,5 @@ namespace ESKINS.Intranet.Controllers
         }
 
         #endregion
-//        var file = Request.Form.Files.FirstOrDefault();
-//                if (file != null && file.Length > 0)
-//                {
-//                    using (var stream = file.OpenReadStream())
-//                    {
-//                        using (var binaryReader = new BinaryReader(stream))
-//                        {
-//                            var imageData = binaryReader.ReadBytes((int)file.Length);
-//        model.Image = imageData;
-//                        }
-//}
-//                }
     }
 }

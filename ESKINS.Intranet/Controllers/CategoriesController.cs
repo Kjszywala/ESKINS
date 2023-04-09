@@ -25,6 +25,9 @@ namespace ESKINS.Intranet.Controllers
         }
 
         #endregion
+
+        #region Controllers
+
         // GET: CategoriesController
         public async Task<ActionResult> IndexAsync()
         {
@@ -138,6 +141,9 @@ namespace ESKINS.Intranet.Controllers
                 await errorLogsServices.Error(e);
                 return View("Error");
             }
+
+            #endregion
+
         }
     }
 }

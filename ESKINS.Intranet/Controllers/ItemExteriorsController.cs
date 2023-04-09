@@ -24,7 +24,9 @@ namespace ESKINS.Intranet.Controllers
         }
 
         #endregion
-        // GET: CategoriesController
+
+        #region Controllers
+
         public async Task<ActionResult> IndexAsync()
         {
             try
@@ -96,7 +98,6 @@ namespace ESKINS.Intranet.Controllers
             }
         }
 
-        // POST: CategoriesController/Edit/5
         [HttpPost]
         public async Task<IActionResult> EditAsync(int id, ExteriorsModels model)
         {
@@ -119,7 +120,6 @@ namespace ESKINS.Intranet.Controllers
             }
         }
 
-        // GET: CategoriesController/Delete/5
         [HttpGet]
         public async Task<IActionResult> DeleteAsync(int id)
         {
@@ -138,5 +138,7 @@ namespace ESKINS.Intranet.Controllers
                 return View("Error");
             }
         }
+
+        #endregion
     }
 }
