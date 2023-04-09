@@ -27,6 +27,7 @@ namespace ESKINS.Intranet
             builder.Services.AddScoped<IExteriorsServices, ExteriorsServices>();
             builder.Services.AddScoped<IItemCollectionsServices, ItemCollectionsServices>();
             builder.Services.AddScoped<IItemLocationsServices, ItemLocationsServices>();
+            builder.Services.AddScoped<IPhasesServices, PhasesServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

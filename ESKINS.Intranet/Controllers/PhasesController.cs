@@ -48,7 +48,7 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCategoryAsync(int id)
+        public async Task<IActionResult> GetPhaseAsync(int id)
         {
             var phasesMethod = await phasesServices.GetAsync(id);
 
