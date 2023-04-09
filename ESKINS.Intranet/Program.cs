@@ -31,6 +31,8 @@ namespace ESKINS.Intranet
             builder.Services.AddScoped<IPhasesServices, PhasesServices>();
             builder.Services.AddScoped<IQualitiesServices, QualitiesServices>();
             builder.Services.AddScoped<IItemsServices, ItemsServices>();
+            builder.Services.AddScoped<IUsersServices, UsersServices>();
+            builder.Services.AddScoped<IItemLogsServices, ItemLogsServices>();
 
             var app = builder.Build();
 

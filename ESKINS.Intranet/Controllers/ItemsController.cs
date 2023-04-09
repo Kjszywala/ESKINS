@@ -13,6 +13,12 @@ namespace ESKINS.Intranet.Controllers
         ICategoriesServices categoriesServices;
         IErrorLogsServices errorLogsServices;
         IItemLocationsServices itemLocationsServices;
+        IUsersServices usersServices;
+        IItemLogsServices itemLogsServices;
+        IItemCollectionsServices itemCollectionsServices;
+        IPhasesServices phasesServices;
+        IQualitiesServices qualitiesServices;
+        IExteriorsServices exteriorsServices;
 
         #endregion
 
@@ -22,12 +28,25 @@ namespace ESKINS.Intranet.Controllers
             IItemsServices _itemsServices,
             IErrorLogsServices _errorLogsServices,
             ICategoriesServices _categoriesServices,
-            IItemLocationsServices itemLocationsServices)
+            IItemLocationsServices _itemLocationsServices,
+            IUsersServices _usersServices,
+            IItemLogsServices _itemLogsServices,
+            IItemCollectionsServices _itemCollectionsServices,
+            IPhasesServices _phasesServices,
+            IQualitiesServices _qualitiesServices,
+            IExteriorsServices _exteriorsServices
+            )
         {
             itemsServices = _itemsServices;
             errorLogsServices = _errorLogsServices;
             categoriesServices = _categoriesServices;
-            this.itemLocationsServices = itemLocationsServices;
+            itemLocationsServices = _itemLocationsServices;
+            usersServices = _usersServices;
+            itemLogsServices = _itemLogsServices;
+            itemCollectionsServices = _itemCollectionsServices;
+            phasesServices = _phasesServices;
+            qualitiesServices = _qualitiesServices;
+            exteriorsServices = _exteriorsServices;
         }
 
         #endregion
@@ -78,8 +97,14 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
+                ViewBag.ItemLogsList = new SelectList(await itemLogsServices.GetAllAsync(), "Id", "Title");
+                ViewBag.ItemCollectionList = new SelectList(await itemCollectionsServices.GetAllAsync(), "Id", "ItemCollection");
+                ViewBag.UserList = new SelectList(await usersServices.GetAllAsync(), "Id", "Email");
                 ViewBag.ItemLocationList = new SelectList(await itemLocationsServices.GetAllAsync(), "Id", "ItemLocation");
                 ViewBag.CategoryList = new SelectList(await categoriesServices.GetAllAsync(), "Id", "CategoryDescription");
+                ViewBag.PhaseList = new SelectList(await phasesServices.GetAllAsync(), "Id", "Phase");
+                ViewBag.QualityList = new SelectList(await qualitiesServices.GetAllAsync(), "Id", "Quality");
+                ViewBag.ExteriorList = new SelectList(await exteriorsServices.GetAllAsync(), "Id", "Exterior");
                 return View();
             }
             catch (Exception e)
