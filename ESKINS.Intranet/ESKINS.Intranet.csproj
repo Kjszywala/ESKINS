@@ -28,6 +28,7 @@
   </ItemGroup>
    
   <ItemGroup>
+    <ProjectReference Include="..\ESKINS.BusinessLogic\ESKINS.BusinessLogic.csproj" />
     <ProjectReference Include="..\ESKINS.DbServices\ESKINS.DbServices.csproj" />
   </ItemGroup>
 

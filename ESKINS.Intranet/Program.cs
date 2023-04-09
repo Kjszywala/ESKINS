@@ -1,3 +1,5 @@
+using ESKINS.BusinessLogic.BusinessLogic;
+using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Services;
 using ESKINS.Intranet.Data;
@@ -33,6 +35,7 @@ namespace ESKINS.Intranet
             builder.Services.AddScoped<IItemsServices, ItemsServices>();
             builder.Services.AddScoped<IUsersServices, UsersServices>();
             builder.Services.AddScoped<IItemLogsServices, ItemLogsServices>();
+            builder.Services.AddScoped<IItemLogic, ItemLogic>();
 
             var app = builder.Build();
 

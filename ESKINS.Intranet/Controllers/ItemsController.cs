@@ -1,7 +1,9 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
+using ESKINS.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ESKINS.Intranet.Controllers
 {
@@ -19,6 +21,7 @@ namespace ESKINS.Intranet.Controllers
         IPhasesServices phasesServices;
         IQualitiesServices qualitiesServices;
         IExteriorsServices exteriorsServices;
+        IItemLogic itemLogic;
 
         #endregion
 
@@ -34,7 +37,8 @@ namespace ESKINS.Intranet.Controllers
             IItemCollectionsServices _itemCollectionsServices,
             IPhasesServices _phasesServices,
             IQualitiesServices _qualitiesServices,
-            IExteriorsServices _exteriorsServices
+            IExteriorsServices _exteriorsServices,
+            IItemLogic _itemLogic
             )
         {
             itemsServices = _itemsServices;
@@ -47,6 +51,7 @@ namespace ESKINS.Intranet.Controllers
             phasesServices = _phasesServices;
             qualitiesServices = _qualitiesServices;
             exteriorsServices = _exteriorsServices;
+            itemLogic = _itemLogic;
         }
 
         #endregion
@@ -120,8 +125,34 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
+                //Karambit Doppler
                 model.CreationDate = DateTime.Now;
                 model.ModificationDate = DateTime.Now;
+                var nextSerialNumber = itemLogic.GetNextSerialNumber().ToString();
+                model.SerialNumber = nextSerialNumber;
+                var file = Request.Form.Files.FirstOrDefault();
+                if (file != null && file.Length > 0)
+                {
+                    using (var stream = file.OpenReadStream())
+                    {
+                        using (var binaryReader = new BinaryReader(stream))
+                        {
+                            var imageData = binaryReader.ReadBytes((int)file.Length);
+                            model.ItemImage = imageData;
+                        }
+                    }
+                }// image, serialnumber
+                foreach (var entry in ModelState)
+                {
+                    string propertyName = entry.Key;
+                    ModelStateEntry propertyState = entry.Value;
+
+                    if (propertyState.ValidationState == ModelValidationState.Invalid)
+                    {
+                        string errorMessage = propertyState.Errors.FirstOrDefault()?.ErrorMessage;
+                        await errorLogsServices.Add($"{entry.Key}: {model.SerialNumber} is invalid. Value: {entry.Value}\n{errorMessage}");
+                    }
+                }
                 if (ModelState.IsValid)
                 {
                     var IsConfirmed = await itemsServices.AddAsync(model);
@@ -130,6 +161,7 @@ namespace ESKINS.Intranet.Controllers
                         return RedirectToAction("Index");
                     }
                 }
+                await errorLogsServices.Add("Could not add item to db table.");
                 return View("Error");
             }
             catch (Exception e)
