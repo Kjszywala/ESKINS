@@ -34,6 +34,6 @@
         public bool OnSale { get; set; }
         public decimal Discount { get; set; }
         public byte[] ItemImage { get; set; }
-        public ICollection<ItemPriceHistoriesModels>? ItemPriceHistorys { get; set; }
+        public ICollection<ItemPriceHistoriesModels>? ItemPriceHistories { get; set; }
     }
 }
