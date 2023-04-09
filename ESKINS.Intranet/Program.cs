@@ -21,6 +21,7 @@ namespace ESKINS.Intranet
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+            // Dependency injection here
             builder.Services.AddScoped<IPaymentMethodsServices, PaymentMethodServices>();
             builder.Services.AddScoped<IErrorLogsServices, ErrorLogsServices>();
             builder.Services.AddScoped<ICategoriesServices, CategoriesServices>();
@@ -28,6 +29,7 @@ namespace ESKINS.Intranet
             builder.Services.AddScoped<IItemCollectionsServices, ItemCollectionsServices>();
             builder.Services.AddScoped<IItemLocationsServices, ItemLocationsServices>();
             builder.Services.AddScoped<IPhasesServices, PhasesServices>();
+            builder.Services.AddScoped<IQualitiesServices, QualitiesServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
