@@ -76,9 +76,17 @@ namespace ESKINS.Intranet.Controllers
 
         public async Task<IActionResult> CreateAsync()
         {
-            ViewBag.ItemLocationList = new SelectList(await itemLocationsServices.GetAllAsync(), "Id", "ItemLocation");
-            ViewBag.CategoryList = new SelectList(await categoriesServices.GetAllAsync(), "Id", "CategoryDescription");
-            return View();
+            try
+            {
+                ViewBag.ItemLocationList = new SelectList(await itemLocationsServices.GetAllAsync(), "Id", "ItemLocation");
+                ViewBag.CategoryList = new SelectList(await categoriesServices.GetAllAsync(), "Id", "CategoryDescription");
+                return View();
+            }
+            catch (Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return View("Error");
+            }
         }
 
         [HttpPost]
