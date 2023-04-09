@@ -5,22 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
 {
-    public class CategoriesController : Controller
+    public class PhasesController : Controller
     {
         #region Variables
 
-        ICategoriesServices categoriesServices;
+        IPhasesServices phasesServices;
         IErrorLogsServices errorLogsServices;
 
         #endregion
 
         #region Constructor
 
-        public CategoriesController(
-            ICategoriesServices _categoriesServices,
+        public PhasesController(
+            IPhasesServices _phasesServices,
             IErrorLogsServices _errorLogsServices)
         {
-            categoriesServices = _categoriesServices;
+            phasesServices = _phasesServices;
             errorLogsServices = _errorLogsServices;
         }
 
@@ -33,7 +33,7 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                var model = await categoriesServices.GetAllAsync();
+                var model = await phasesServices.GetAllAsync();
                 if (model == null)
                 {
                     return View("Error");
@@ -48,26 +48,26 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCategoryAsync(int id)
+        public async Task<IActionResult> GetPhaseAsync(int id)
         {
-            var paymentMethod = await categoriesServices.GetAsync(id);
+            var phasesMethod = await phasesServices.GetAsync(id);
 
-            if (paymentMethod == null)
+            if (phasesMethod == null)
             {
                 return NotFound();
             }
 
-            var paymentMethodModel = new CategoriesModels
+            var phasesMethodModel = new PhasesModels
             {
-                Id = paymentMethod.Id,
-                Title = paymentMethod.Title,
-                IsActive = paymentMethod.IsActive,
-                CreationDate = paymentMethod.CreationDate,
-                ModificationDate = paymentMethod.ModificationDate,
-                CategoryDescription = paymentMethod.CategoryDescription
+                Id = phasesMethod.Id,
+                Title = phasesMethod.Title,
+                IsActive = phasesMethod.IsActive,
+                CreationDate = phasesMethod.CreationDate,
+                ModificationDate = phasesMethod.ModificationDate,
+                Phase = phasesMethod.Phase
             };
 
-            return Ok(paymentMethodModel);
+            return Ok(phasesMethodModel);
         }
 
         public IActionResult Create()
@@ -77,7 +77,7 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CategoriesModels model)
+        public async Task<IActionResult> Create(PhasesModels model)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace ESKINS.Intranet.Controllers
                 model.ModificationDate = DateTime.Now;
                 if (ModelState.IsValid)
                 {
-                    var IsConfirmed = await categoriesServices.AddAsync(model);
+                    var IsConfirmed = await phasesServices.AddAsync(model);
                     if (IsConfirmed)
                     {
                         return RedirectToAction("Index");
@@ -102,14 +102,14 @@ namespace ESKINS.Intranet.Controllers
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, CategoriesModels model)
+        public async Task<IActionResult> EditAsync(int id, PhasesModels model)
         {
             try
             {
-                var oldModel = await categoriesServices.GetAsync(id);
+                var oldModel = await phasesServices.GetAsync(id);
                 model.ModificationDate = DateTime.Now;
                 model.CreationDate = oldModel.CreationDate;
-                var IsConfirmed = await categoriesServices.EditAsync(id, model);
+                var IsConfirmed = await phasesServices.EditAsync(id, model);
                 if (IsConfirmed)
                 {
                     return RedirectToAction("Index");
@@ -129,7 +129,7 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                var IsConfirmed = await categoriesServices.RemoveAsync(id);
+                var IsConfirmed = await phasesServices.RemoveAsync(id);
                 if (IsConfirmed)
                 {
                     return RedirectToAction("Index");

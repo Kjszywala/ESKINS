@@ -93,22 +93,22 @@
                     <input type="hidden" id="Id" name="Id"/>
                     <div class="form-group">
                         <label for="title">Title:</label>
-                        <input type="text" class="form-control" id="title" name="title">
+                        <input type="text" class="form-control" id="title" name="title" required>
                     </div>
                     <div class="form-group">
                         <label for="isActive">Active:</label>
-                        <select class="form-control" id="isActive" name="isActive">
+                        <select class="form-control" id="isActive" name="isActive" required>
                             <option value="true">Yes</option>
                             <option value="false">No</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="imageName">Image Name:</label>
-                        <input type="text" class="form-control" id="imageName" name="imageName">
+                        <input type="text" class="form-control" id="imageName" name="imageName" required>
                     </div>
                     <div class="form-group">
                         <label for="image">Image:</label>
-                        <input type="file" class="form-control-file" id="image" name="image">
+                        <input type="file" class="form-control-file" id="image" name="image" required>
                     </div>
                 </form>
             </div>
@@ -119,27 +119,6 @@
         </div>
     </div>
 </div>
-<script >
-    var parameter;
-    $("#editActionLink").on("click", function () {
-        //save your parameter in variable
-        parameter = $("#editActionLink").data("parameter");
-    });
-    $(document).ready(function () {
-        $('#editModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var id = parameter // Extract info from data-* attributes
-            var title = button.data('title')
-            var isActive = button.data('isactive')
-            var imageName = button.data('imagename')
-            var modal = $(this)
-            modal.find('.modal-body #Id').val(id)
-            modal.find('.modal-body #title').val(title)
-            modal.find('.modal-body #isActive').val(isActive)
-            modal.find('.modal-body #imageName').val(imageName)
-        })
-    });
-</script>
 <style>
 /* Modal background */
 .modal {
@@ -204,7 +183,8 @@ color: #f2f2f2;
 /* Styles for the buttons */
 .btn {
 color: #fff;
-border-radius: 4px;
+        border-radius: 4px;
+        margin: 3px;
 }
 
 .btn-primary {
