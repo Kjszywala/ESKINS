@@ -44,7 +44,7 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetExteriorAsync(int id)
+        public async Task<IActionResult> GetLocationAsync(int id)
         {
             var locations = await locationsServices.GetAsync(id);
 

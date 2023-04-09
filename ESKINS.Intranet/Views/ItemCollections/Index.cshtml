@@ -62,7 +62,7 @@
 
             // Make an AJAX request to fetch the data for the selected payment method
             $.ajax({
-                url: "/ItemCollection/GetCollections/" + id,
+                url: "/ItemCollection/GetCollection/" + id,
                 type: "GET",
                 success: function (data) {
                     // Populate the form fields with the data from the server

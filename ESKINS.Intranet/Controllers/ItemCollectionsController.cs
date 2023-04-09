@@ -44,7 +44,7 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCollectionsAsync(int id)
+        public async Task<IActionResult> GetCollectionAsync(int id)
         {
             var itemCollectionMethod = await collectionsServices.GetAsync(id);
 
