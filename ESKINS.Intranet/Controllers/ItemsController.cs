@@ -4,6 +4,7 @@ using ESKINS.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace ESKINS.Intranet.Controllers
 {
@@ -63,6 +64,15 @@ namespace ESKINS.Intranet.Controllers
             try
             {
                 var model = await itemsServices.GetAllAsync();
+                foreach (var item in model)
+                {
+                    item.Category = await categoriesServices.GetAsync(item.CategoryId.Value);
+                    item.ItemLocation = await itemLocationsServices.GetAsync(item.ItemLocationId.Value);
+                    item.ItemCollection = await itemCollectionsServices.GetAsync(item.ItemCollectionId.Value);
+                    item.Phase = await phasesServices.GetAsync(item.PhaseId.Value);
+                    item.Quality = await qualitiesServices.GetAsync(item.QualityId.Value);
+                    item.Exterior = await exteriorsServices.GetAsync(item.ExteriorId.Value);
+                }
                 if (model == null)
                 {
                     return View("Error");

@@ -21,10 +21,10 @@ namespace ESKINS.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Items>>> GetItems()
         {
-          if (_context.Items == null)
-          {
-              return NotFound();
-          }
+            if (_context.Items == null)
+            {
+                return NotFound();
+            }
             return await _context.Items.ToListAsync();
         }
 

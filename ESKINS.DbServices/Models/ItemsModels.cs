@@ -31,7 +31,7 @@ namespace ESKINS.DbServices.Models
         public QualitiesModels? Quality { get; set; }
         public int? ExteriorId { get; set; }
         public ExteriorsModels? Exterior { get; set; }
-        public int Pattern { get; set; }
+        public int? Pattern { get; set; }
         public decimal ActualPrice { get; set; }
         public bool OnSale { get; set; }
         public decimal Discount { get; set; }
