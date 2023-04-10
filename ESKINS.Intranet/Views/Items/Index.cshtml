@@ -61,7 +61,7 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "#", new { Id = item.Id }, new { @class = "btn btn-success edit-link", data_toggle = "modal", data_target = "#editModal", model = this, data_parameter = item.Id })
-                                @Html.ActionLink("Delete", "Delete", "PaymentMethods", new { id = item.Id }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Delete", "Delete", "Items", new { id = item.Id }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     }
