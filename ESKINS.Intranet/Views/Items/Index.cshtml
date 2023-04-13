@@ -1,7 +1,7 @@
 ﻿@model List<ESKINS.DbServices.Models.ItemsModels>
 
 @{
-    ViewBag.Title = "Payment Methods";
+    ViewBag.Title = "Items";
 }
 @section head{
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -59,7 +59,7 @@
                                 }
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "#", new { Id = item.Id }, new { @class = "btn btn-success edit-link", data_toggle = "modal", data_target = "#editModal", model = this, data_parameter = item.Id })
+                                @Html.ActionLink("Edit", "Edit", new { Id = item.Id }, new { @class = "btn btn-success edit-link"/*, data_toggle = "modal", data_target = "#editModal", model = this, data_parameter = item.Id*/ })
                                 @Html.ActionLink("Delete", "Delete", "Items", new { id = item.Id }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
@@ -94,7 +94,7 @@
                     $("#editItemsForm input[name=StatTrack]").prop('checked', data.statTrack);
                     $("#editItemsForm input[name=Souvenir]").prop('checked', data.souvenir);
                     $("#editItemsForm select[name=ItemCollectionId]").val(data.itemCollectionId.toString());
-                    $("#editItemsForm select[name=PhaseId]").val(data.phaseId.toString());
+                    $("#editItemsForm select[name=Phase]").val(data.phase.Phase.toString());
                     $("#editItemsForm input[name=ItemFloat]").val(data.itemFloat);
                     $("#editItemsForm select[name=QualityId]").val(data.qualityId.toString());
                     $("#editItemsForm select[name=ExteriorId]").val(data.exteriorId.toString());
@@ -155,40 +155,7 @@
                             <option value="false">No</option>
                         </select>
                     </div>
-                   @* <div class="form-group">
-                        <label for="phase">Phase:</label>
-                        <select class="form-control" id="phase" name="phase">
-                            <option value="">Select phase</option>
-                            @foreach (var phase in ViewBag.PhaseList)
-                            {
-                                <option value="@phase.Id">@phase.Phase</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="itemFloat">Item Float:</label>
-                        <input type="text" class="form-control" id="itemFloat" name="itemFloat" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="quality">Quality:</label>
-                        <select class="form-control" id="quality" name="quality">
-                            <option value="">Select quality</option>
-                            @foreach (var quality in ViewBag.QualityList)
-                            {
-                                <option value="@quality.Id">@quality.Quality</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exterior">Exterior:</label>
-                        <select class="form-control" id="exterior" name="exterior">
-                            <option value="">Select exterior</option>
-                            @foreach (var exterior in ViewBag.ExteriorList)
-                            {
-                                <option value="@exterior.Id">@exterior.Exterior</option>
-                            }
-                        </select>
-                    </div>*@
+                   
                     <div class="form-group">
                         <label for="Pattern">Pattern:</label>
                         <input type="number" class="form-control" id="Pattern" name="Pattern" required>
