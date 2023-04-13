@@ -1,10 +1,9 @@
-﻿using ESKINS.DbServices.Interfaces;
+﻿using ESKINS.BusinessLogic.Interfaces;
+using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ESKINS.Intranet.Controllers
 {
@@ -102,10 +101,46 @@ namespace ESKINS.Intranet.Controllers
                 Title = exteriors.Title,
                 IsActive = exteriors.IsActive,
                 CreationDate = exteriors.CreationDate,
-                ModificationDate = exteriors.ModificationDate
+                ModificationDate = exteriors.ModificationDate,
+                SerialNumber = exteriors.SerialNumber,
+                ActualPrice = exteriors.ActualPrice,
+                Category = exteriors.Category,
+                CategoryId = exteriors.CategoryId,
+                Discount = exteriors.Discount,
+                Exterior = exteriors.Exterior,
+                ExteriorId = exteriors.ExteriorId,
+                ItemCollection = exteriors.ItemCollection,
+                ItemCollectionId = exteriors.ItemCollectionId,
+                ItemFloat = exteriors.ItemFloat,
+                ItemImage = exteriors.ItemImage,
+                ItemLocation = exteriors.ItemLocation,
+                ItemLocationId = exteriors.ItemLocationId,
+                ItemLog = exteriors.ItemLog,
+                ItemLogsId = exteriors.ItemLogsId,
+                ItemPriceHistories = exteriors.ItemPriceHistories,
+                Notes = exteriors.Notes,
+                OnSale = exteriors.OnSale,
+                Pattern = exteriors.Pattern,
+                Phase = exteriors.Phase,
+                PhaseId = exteriors.PhaseId,
+                ProductName = exteriors.ProductName,
+                Quality = exteriors.Quality,
+                QualityId = exteriors.QualityId,
+                Souvenir = exteriors.Souvenir,
+                StatTrack = exteriors.StatTrack,
+                User = exteriors.User,
+                UserId = exteriors.UserId
             };
+            //ViewBag.ItemLogsList = new SelectList(await itemLogsServices.GetAllAsync(), "Id", "Title");
+            //ViewBag.ItemCollectionList = new SelectList(await itemCollectionsServices.GetAllAsync(), "Id", "ItemCollection");
+            //ViewBag.UserList = new SelectList(await usersServices.GetAllAsync(), "Id", "Email");
+            //ViewBag.ItemLocationList = new SelectList(await itemLocationsServices.GetAllAsync(), "Id", "ItemLocation");
+            //ViewBag.CategoryList = new SelectList(await categoriesServices.GetAllAsync(), "Id", "CategoryDescription");
+            //ViewBag.PhaseList = new SelectList(await phasesServices.GetAllAsync(), "Id", "Phase");
+            //ViewBag.QualityList = new SelectList(await qualitiesServices.GetAllAsync(), "Id", "Quality");
+            //ViewBag.ExteriorList = new SelectList(await exteriorsServices.GetAllAsync(), "Id", "Exterior");
 
-            return Ok(exteriorsModel);
+            return Ok(exteriors);
         }
 
         public async Task<IActionResult> CreateAsync()

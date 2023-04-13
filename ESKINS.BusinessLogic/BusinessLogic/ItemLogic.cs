@@ -37,13 +37,14 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         {
             try
             {
-                var list = itemsServices.GetAllAsync().Result;
-                if (list.Count == 0)
+                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.SerialNumber).First();
+
+                if (model.SerialNumber == "0" || model.SerialNumber == null)
                 {
                     return 1;
                 }
 
-                return list.Count + 1;
+                return Int32.Parse(model.SerialNumber) + 1;
             }
             catch (Exception e)
             {

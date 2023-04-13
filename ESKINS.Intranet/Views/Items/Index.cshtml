@@ -46,7 +46,6 @@
                             <td>@item.SerialNumber</td>
                             <td>@item.User?.Email</td>
                             <td>@item.Category?.CategoryDescription</td>
-                            @*<td>@Html.DisplayFor(modelItem => item.CategoryId)</td>*@
                             <td>@item.StatTrack</td>
                             <td>@item.ItemCollection?.ItemCollection</td>
                             <td>@item.Phase?.Phase</td>
@@ -56,7 +55,7 @@
                             <td>
                                 @if (item.ItemImage != null)
                                 {
-                                    <img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" />
+                                    <img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" class="img-thumbnail" style="max-width: 100px; max-height: 100px; background-color:transparent; border: none;" />
                                 }
                             </td>
                             <td>
@@ -81,14 +80,29 @@
 
             // Make an AJAX request to fetch the data for the selected payment method
             $.ajax({
-                url: "/PaymentMethods/GetPaymentMethod/" + id,
+                url: "/Items/GetItem/" + id,
                 type: "GET",
                 success: function (data) {
                     // Populate the form fields with the data from the server
-                    $("#editPaymentForm input[name=title]").val(data.title);
-                    $("#editPaymentForm select[name=isActive]").val(data.isActive.toString());
-                    $("#editPaymentForm input[name=imageName]").val(data.imageName);
-                    $("#editPaymentModal").modal("show");
+                    $("#editItemsForm input[name=Title]").val(data.title);
+                    $("#editItemsForm input[name=Notes]").val(data.notes);
+                    $("#editItemsForm select[name=IsActive]").val(data.isActive.toString());
+                    $("#editItemsForm input[name=ProductName]").val(data.productName);
+                    $("#editItemsForm input[name=SerialNumber]").val(data.serialNumber);
+                    $("#editItemsForm select[name=CategoryId]").val(data.categoryId.toString());
+                    $("#editItemsForm select[name=ItemLocationId]").val(data.itemLocationId.toString());
+                    $("#editItemsForm input[name=StatTrack]").prop('checked', data.statTrack);
+                    $("#editItemsForm input[name=Souvenir]").prop('checked', data.souvenir);
+                    $("#editItemsForm select[name=ItemCollectionId]").val(data.itemCollectionId.toString());
+                    $("#editItemsForm select[name=PhaseId]").val(data.phaseId.toString());
+                    $("#editItemsForm input[name=ItemFloat]").val(data.itemFloat);
+                    $("#editItemsForm select[name=QualityId]").val(data.qualityId.toString());
+                    $("#editItemsForm select[name=ExteriorId]").val(data.exteriorId.toString());
+                    $("#editItemsForm input[name=Pattern]").val(data.pattern);
+                    $("#editItemsForm input[name=ActualPrice]").val(data.actualPrice);
+                    $("#editItemsForm input[name=OnSale]").prop('checked', data.onSale);
+                    $("#editItemsForm input[name=Discount]").val(data.discount);
+                    $("#editItemsModal").modal("show");
                 }
             });
         });
@@ -106,32 +120,103 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editPaymentForm" action="@Url.Action("Edit", "PaymentMethods")" method="post" enctype="multipart/form-data">
+                <form id="editItemsForm" action="@Url.Action("Edit", "Items")" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="Id" name="Id" />
                     <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" class="form-control" id="title" name="title" required>
+                        <label for="Notes">Notes:</label>
+                        <input type="text" class="form-control" id="Notes" name="Notes" />
                     </div>
                     <div class="form-group">
-                        <label for="isActive">Active:</label>
-                        <select class="form-control" id="isActive" name="isActive" required>
+                        <label for="IsActive">Active:</label>
+                        <select class="form-control" id="IsActive" name="IsActive" required>
                             <option value="true">Yes</option>
                             <option value="false">No</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="imageName">Image Name:</label>
-                        <input type="text" class="form-control" id="imageName" name="imageName" required>
+                        <label for="ProductName">Product Name:</label>
+                        <input type="text" class="form-control" id="ProductName" name="ProductName" />
                     </div>
                     <div class="form-group">
-                        <label for="image">Image:</label>
-                        <input type="file" class="form-control-file" id="image" name="image" required>
+                        <label for="SerialNumber">Serial Number:</label>
+                        <input type="text" class="form-control" id="SerialNumber" name="SerialNumber" />
+                    </div>
+                    <div class="form-group">
+                        <label for="StatTrack">Stat Track:</label>
+                        <select class="form-control" id="StatTrack" name="StatTrack" required>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Souvenir">Souvenir:</label>
+                        <select class="form-control" id="Souvenir" name="Souvenir" required>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                   @* <div class="form-group">
+                        <label for="phase">Phase:</label>
+                        <select class="form-control" id="phase" name="phase">
+                            <option value="">Select phase</option>
+                            @foreach (var phase in ViewBag.PhaseList)
+                            {
+                                <option value="@phase.Id">@phase.Phase</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemFloat">Item Float:</label>
+                        <input type="text" class="form-control" id="itemFloat" name="itemFloat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quality">Quality:</label>
+                        <select class="form-control" id="quality" name="quality">
+                            <option value="">Select quality</option>
+                            @foreach (var quality in ViewBag.QualityList)
+                            {
+                                <option value="@quality.Id">@quality.Quality</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exterior">Exterior:</label>
+                        <select class="form-control" id="exterior" name="exterior">
+                            <option value="">Select exterior</option>
+                            @foreach (var exterior in ViewBag.ExteriorList)
+                            {
+                                <option value="@exterior.Id">@exterior.Exterior</option>
+                            }
+                        </select>
+                    </div>*@
+                    <div class="form-group">
+                        <label for="Pattern">Pattern:</label>
+                        <input type="number" class="form-control" id="Pattern" name="Pattern" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ActualPrice">Actual Price:</label>
+                        <input type="number" class="form-control" id="ActualPrice" name="ActualPrice" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="OnSale">On Sale:</label>
+                        <select class="form-control" id="OnSale" name="OnSale" required>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Discount">Discount:</label>
+                        <input type="number" class="form-control" id="Discount" name="Discount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ItemImage">Item Image:</label>
+                        <input type="file" class="form-control-file" id="ItemImage" name="ItemImage" required>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" form="editPaymentForm" class="btn btn-primary">Save Changes</button>
+                <button type="submit" form="editItemsForm" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
     </div>
