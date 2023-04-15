@@ -8,7 +8,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
     /// <summary>
     /// Class handles email services.
     /// </summary>
-    public class SendEmailService : ISendEmailService
+    public class SendEmailServiceLogic : ISendEmailServiceLogic
     {
         #region Class Variables
 
@@ -22,7 +22,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         #endregion
 
         #region Constructor
-        public SendEmailService()
+        public SendEmailServiceLogic()
         {
             // Setup SMTP host and port from environment if possible, otherwise use a default.
             var hostFromEnv = Environment.GetEnvironmentVariable("SmtpHost");

@@ -1,6 +1,6 @@
 ﻿namespace ESKINS.BusinessLogic.Interfaces
 {
-    public interface ISendEmailService
+    public interface ISendEmailServiceLogic
     {
         /// <summary>
         /// Sending the email to given parameters.
