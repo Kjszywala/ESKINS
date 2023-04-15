@@ -1,5 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
+using ESKINS.DbServices.Models;
 
 namespace ESKINS.BusinessLogic.BusinessLogic
 {
@@ -8,31 +9,21 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         #region Variables
 
         IItemsServices itemsServices;
-        IErrorLogsServices errorLogsServices;
 
         #endregion
 
         #region Constructor
 
-        public ItemLogic(
-            IItemsServices _itemsServices, 
-            IErrorLogsServices _errorLogsServices
-            )
+        public ItemLogic(IItemsServices _itemsServices)
         {
             itemsServices = _itemsServices;
-            errorLogsServices = _errorLogsServices;
-
         }
 
         #endregion
 
         #region Methods
 
-        /// <summary>
-        /// Get next serial number from db.
-        /// </summary>
-        /// <returns>next serial number</returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <Inheritdoc />
         public int GetNextSerialNumber()
         {
             try
@@ -48,8 +39,82 @@ namespace ESKINS.BusinessLogic.BusinessLogic
             }
             catch (Exception e)
             {
-                errorLogsServices.Error(e);
-                return 0;
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <Inheritdoc />
+        public List<ItemsModels> GetBestDeals()
+        {
+            try
+            {
+                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.Discount).ToList();
+
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <Inheritdoc />
+        public List<ItemsModels> GetNewestFirst()
+        {
+            try
+            {
+                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.CreationDate).ToList();
+
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <Inheritdoc />
+        public List<ItemsModels> GetOldestFirst()
+        {
+            try
+            {
+                var model = itemsServices.GetAllAsync().Result.OrderBy(item => item.CreationDate).ToList();
+
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <Inheritdoc />
+        public List<ItemsModels> GetLowestPriceFirst()
+        {
+            try
+            {
+                var model = itemsServices.GetAllAsync().Result.OrderBy(item => item.ActualPrice).ToList();
+
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <Inheritdoc />
+        public List<ItemsModels> GetHighestPriceFirst()
+        {
+            try
+            {
+                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.ActualPrice).ToList();
+
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
 
