@@ -98,9 +98,6 @@ namespace ESKINS.API.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerAddressId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -125,8 +122,6 @@ namespace ESKINS.API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerAddressId");
 
                     b.HasIndex("UserId");
 
@@ -776,64 +771,13 @@ namespace ESKINS.API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ESKINS.API.Models.CMS.UsersAddresses", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("HouseNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ModificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UsersAddresses");
-                });
-
             modelBuilder.Entity("ESKINS.API.Models.CMS.Customers", b =>
                 {
-                    b.HasOne("ESKINS.API.Models.CMS.UsersAddresses", "CustomerAddress")
-                        .WithMany("Customer")
-                        .HasForeignKey("CustomerAddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ESKINS.API.Models.CMS.Users", "User")
                         .WithMany("Customer")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("CustomerAddress");
 
                     b.Navigation("User");
                 });
@@ -1045,11 +989,6 @@ namespace ESKINS.API.Migrations
                     b.Navigation("Seller");
 
                     b.Navigation("Target");
-                });
-
-            modelBuilder.Entity("ESKINS.API.Models.CMS.UsersAddresses", b =>
-                {
-                    b.Navigation("Customer");
                 });
 #pragma warning restore 612, 618
         }

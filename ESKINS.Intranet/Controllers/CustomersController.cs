@@ -1,6 +1,8 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ESKINS.Intranet.Controllers
@@ -89,16 +91,46 @@ namespace ESKINS.Intranet.Controllers
             {
                 model.CreationDate = DateTime.Now;
                 model.ModificationDate = DateTime.Now;
-                //if (ModelState.IsValid)
-                //{
-                model.User = await usersServices.GetAsync(model.Id);
-                var IsConfirmed = await customersService.AddAsync(model);
-                if (IsConfirmed)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index");
+                    foreach (var entry in ModelState)
+                    {
+                        string propertyName = entry.Key;
+                        ModelStateEntry propertyState = entry.Value;
+
+                        if (propertyState.ValidationState == ModelValidationState.Invalid)
+                        {
+                            string errorMessage = propertyState.Errors.FirstOrDefault()?.ErrorMessage;
+                            await errorLogsServices.Add($"{entry.Key}: {entry.Value} is invalid. Value: {entry.Value}\n{errorMessage}");
+                        }
+                    }
+                    var IsConfirmed = await customersService.AddAsync(model);
+                    if (IsConfirmed)
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
-                //}
                 return View("Error");
+            }
+            catch (Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return View("Error");
+            }
+        }
+
+        public async Task<ActionResult> EditAsync(int id)
+        {
+            try
+            {
+                var model = customersService.GetAsync(id);
+
+                ViewBag.Name = new SelectList(await usersServices.GetAllAsync(), "Id", "Email");
+                if (model == null)
+                {
+                    return View("Error");
+                }
+                return View(model.Result);
             }
             catch (Exception e)
             {

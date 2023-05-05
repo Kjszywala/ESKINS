@@ -31,12 +31,6 @@ namespace ESKINS.API.Models.CMS
         public Users? User { get; set; }
 
         /// <summary>
-        /// Relationship with UsersAddresses.
-        /// </summary>
-        public int CustomerAddressId { get; set; }
-        public UsersAddresses? CustomerAddress { get; set; }
-
-        /// <summary>
         /// Relationship with Orders.
         /// </summary>
         public ICollection<Orders>? Order { get; set; }
