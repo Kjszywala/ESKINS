@@ -39,6 +39,7 @@ namespace ESKINS.Intranet
             builder.Services.AddScoped<ISendEmailServiceLogic, SendEmailServiceLogic>();
             builder.Services.AddScoped<ISellersServices, SellersServices>();
             builder.Services.AddScoped<IItemLogsServices, ItemLogsServices>();
+            builder.Services.AddScoped<ICustomersServices, CustomersServices>();
 
             var app = builder.Build();
 

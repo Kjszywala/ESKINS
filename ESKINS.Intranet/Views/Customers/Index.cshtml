@@ -1,7 +1,7 @@
-﻿@model List<ESKINS.DbServices.Models.SellersModels>
+﻿@model List<ESKINS.DbServices.Models.CustomersModels>
 
 @{
-    ViewBag.Title = "Sellers";
+    ViewBag.Title = "Customers";
 }
 @section head{
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -10,10 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 }
-<h2 class="text-center">Sellers</h2>
+<h2 class="text-center">Customers</h2>
 <br />
 <div id="createButton" style="margin: 7px; text-align:center;">
-    <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Create", "Sellers")'">Create New</button>
+    <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Create", "Customers")'">Create New</button>
 </div>
 <br />
 <div>
@@ -27,7 +27,9 @@
                         <th>Is Active</th>
                         <th>CreationDate</th>
                         <th>ModificationDate</th>
-                        <th>Seller Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -40,10 +42,12 @@
                             <td>@(item.IsActive ? "Yes" : "No")</td>
                             <td>@item.CreationDate</td>
                             <td>@item.ModificationDate</td>
-                            <td>@item.Users?.Email</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.User?.Email</td>
                             <td>
                                 @Html.ActionLink("Edit", "#", new { Id = item.Id }, new { @class = "btn btn-success edit-link", data_toggle = "modal", data_target = "#editModal", model = this, data_parameter = item.Id })
-                                @Html.ActionLink("Delete", "Delete", "Sellers", new { id = item.Id }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Delete", "Delete", "Customers", new { id = item.Id }, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     }
@@ -53,18 +57,18 @@
     </div>
 </div>
 
-@*Modal Window for Edit Sellers*@
+@*Modal Window for Edit Customers*@
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editSellersLabel">Edit Seller</h5>
+                <h5 class="modal-title" id="editCustomersLabel">Edit Customer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editSellersForm" action="@Url.Action("Edit", "Sellers")" method="post" enctype="multipart/form-data">
+                <form id="editCustomersForm" action="@Url.Action("Edit", "Customers")" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="Id" name="Id" />
                     <div class="form-group">
                         <label for="title">Title:</label>
@@ -77,15 +81,23 @@
                             <option value="false">No</option>
                         </select>
                     </div>
+                     <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                    </div>
                     <div class="form-group">
-                        <label for="seller">Seller:</label>
-                        <input type="text" class="form-control" id="seller" name="seller" required>
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" name="email" required>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" form="editSellersForm" class="btn btn-primary">Save Changes</button>
+                <button type="submit" form="editCustomersForm" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
     </div>
@@ -98,18 +110,20 @@
             var id = $(this).data("parameter");
 
             // Set the value of the hidden input field in the form
-            $("#editSellersForm input[name=Id]").val(id);
+            $("#editCustomersForm input[name=Id]").val(id);
 
             // Make an AJAX request to fetch the data for the selected payment method
             $.ajax({
-                url: "/Sellers/GetSeller/" + id,
+                url: "/Customers/GetCustomer/" + id,
                 type: "GET",
                 success: function (data) {
                     // Populate the form fields with the data from the server
-                    $("#editSellersForm input[name=title]").val(data.title);
-                    $("#editSellersForm select[name=isActive]").val(data.isActive.toString());
-                    $("#editSellersForm input[name=seller]").val(data.seller);
-                    $("#editSellersModal").modal("show");
+                    $("#editCustomersForm input[name=title]").val(data.title);
+                    $("#editCustomersForm select[name=isActive]").val(data.isActive.toString());
+                    $("#editCustomersForm input[name=firstName]").val(data.firstName);
+                    $("#editCustomersForm input[name=lastName]").val(data.lastName);
+                    $("#editCustomersForm input[name=email]").val(data.email);
+                    $("#editCustomersModal").modal("show");
                 }
             });
         });

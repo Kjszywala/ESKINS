@@ -1,5 +1,5 @@
 ﻿@using ESKINS.DbServices.Models;
-@model SellersModels
+@model CustomersModels
 
 @{
     Layout = "_Layout";
@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="~/css/PaymentMethods/create.css" />
 }
 <center>
-    <h2>Create Seller</h2>
+    <h2>Create Customer</h2>
 </center>
 <br />
-@using (Html.BeginForm("Create", "Sellers", FormMethod.Post))
+@using (Html.BeginForm("Create", "Customers", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -39,10 +39,26 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Users, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.UserId, (IEnumerable<SelectListItem>)ViewBag.Name, "- Select Seller -", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Users, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.User, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.UserId, (IEnumerable<SelectListItem>)ViewBag.Name, "- Select Email -", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.User, "", new { @class = "text-danger" })
             </div>
         </div>
         <br>
@@ -58,7 +74,7 @@
 <center>
     <br />
     <div>
-        <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Index", "Sellers")'">Back To List</button>
+        <button class="btn btn-success" type="submit" onclick="location.href='@Url.Action("Index", "Customers")'">Back To List</button>
     </div>
 </center>
 <style>

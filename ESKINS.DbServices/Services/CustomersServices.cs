@@ -3,7 +3,7 @@ using ESKINS.DbServices.Models;
 
 namespace ESKINS.DbServices.Services
 {
-    internal class CustomersServices :
+    public class CustomersServices :
         BaseServices<CustomersModels>,
         ICustomersServices
     {

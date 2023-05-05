@@ -5,24 +5,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ESKINS.Intranet.Controllers
 {
-    public class SellersController : Controller
+    public class CustomersController : Controller
     {
         #region Variables
 
-        ISellersServices sellerServices;
-        IUsersServices usersServices;
+        ICustomersServices customersService;
         IErrorLogsServices errorLogsServices;
+        IUsersServices usersServices;
 
         #endregion
 
         #region Constructor
 
-        public SellersController(
-            ISellersServices _sellerServices,
+        public CustomersController(
+            ICustomersServices _customersService,
             IErrorLogsServices _errorLogsServices,
             IUsersServices _usersServices)
         {
-            sellerServices = _sellerServices;
+            customersService = _customersService;
             errorLogsServices = _errorLogsServices;
             usersServices = _usersServices;
         }
@@ -36,14 +36,11 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                var model = await sellerServices.GetAllAsync();
-                //foreach (var item in model)
-                //{
-                //    if (item != null)
-                //    {
-                //        item.Users = await usersServices.GetAsync(item.UserId.Value);
-                //    }
-                //}
+                var model = await customersService.GetAllAsync();
+                foreach (var item in model)
+                {
+                    item.User = await usersServices.GetAsync(item.UserId);
+                }
                 if (model == null)
                 {
                     return View("Error");
@@ -58,23 +55,23 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSellerAsync(int id)
+        public async Task<IActionResult> GetCustomerAsync(int id)
         {
-            var sellerMethod = await sellerServices.GetAsync(id);
+            var customersMethod = await customersService.GetAsync(id);
 
-            if (sellerMethod == null)
+            if (customersMethod == null)
             {
                 return NotFound();
             }
 
-            return Ok(sellerMethod);
+            return Ok(customersMethod);
         }
 
         public async Task<IActionResult> CreateAsync()
         {
             try
             {
-                ViewBag.Name = new SelectList(await usersServices.GetAllAsync(), "Id", "FirstName");
+                ViewBag.Name = new SelectList(await usersServices.GetAllAsync(), "Id", "Email");
                 return View();
             }
             catch (Exception e)
@@ -86,7 +83,7 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(SellersModels model)
+        public async Task<IActionResult> Create(CustomersModels model)
         {
             try
             {
@@ -94,7 +91,7 @@ namespace ESKINS.Intranet.Controllers
                 model.ModificationDate = DateTime.Now;
                 if (ModelState.IsValid)
                 {
-                    var IsConfirmed = await sellerServices.AddAsync(model);
+                    var IsConfirmed = await customersService.AddAsync(model);
                     if (IsConfirmed)
                     {
                         return RedirectToAction("Index");
@@ -111,14 +108,14 @@ namespace ESKINS.Intranet.Controllers
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, SellersModels model)
+        public async Task<IActionResult> EditAsync(int id, CustomersModels model)
         {
             try
             {
-                var oldModel = await sellerServices.GetAsync(id);
+                var oldModel = await customersService.GetAsync(id);
                 model.ModificationDate = DateTime.Now;
                 model.CreationDate = oldModel.CreationDate;
-                var IsConfirmed = await sellerServices.EditAsync(id, model);
+                var IsConfirmed = await customersService.EditAsync(id, model);
                 if (IsConfirmed)
                 {
                     return RedirectToAction("Index");
@@ -138,7 +135,7 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                var IsConfirmed = await sellerServices.RemoveAsync(id);
+                var IsConfirmed = await customersService.RemoveAsync(id);
                 if (IsConfirmed)
                 {
                     return RedirectToAction("Index");
@@ -150,7 +147,9 @@ namespace ESKINS.Intranet.Controllers
                 await errorLogsServices.Error(e);
                 return View("Error");
             }
+
+            #endregion
+
         }
     }
-    #endregion
 }

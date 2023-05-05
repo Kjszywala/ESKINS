@@ -8,12 +8,9 @@
         public bool IsActive { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
-        public int? CustomerId { get; set; }
-        public CustomersModels? Customer { get; set; }
-        public int? SellerId { get; set; }
-        public SellersModels? Seller { get; set; }
-        public decimal PricePaid { get; set; }
-        public decimal Discount { get; set; }
-        public ICollection<InvoicesModels>? Invoice { get; set; }
+        public int? UserId { get; set; }
+        public UsersModels? Users { get; set; }
+        public List<OrdersModels>? Order { get; set; }
+        public ICollection<SoldItemsModels>? SoldItem { get; set; }
     }
 }
