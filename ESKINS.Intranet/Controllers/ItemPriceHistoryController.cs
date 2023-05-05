@@ -6,26 +6,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ESKINS.Intranet.Controllers
 {
-    public class CustomersController : Controller
+    public class ItemPriceHistoryController : Controller
     {
         #region Variables
 
-        ICustomersServices customersService;
+        IItemPriceHistoriesServices itemPriceHistoryService;
         IErrorLogsServices errorLogsServices;
-        IUsersServices usersServices;
+        IItemsServices itemServices;
 
         #endregion
 
         #region Constructor
 
-        public CustomersController(
-            ICustomersServices _customersService,
+        public ItemPriceHistoryController(
+            IItemPriceHistoriesServices _itemPriceHistoryService,
             IErrorLogsServices _errorLogsServices,
-            IUsersServices _usersServices)
+            IItemsServices _itemServices)
         {
-            customersService = _customersService;
+            itemPriceHistoryService = _itemPriceHistoryService;
             errorLogsServices = _errorLogsServices;
-            usersServices = _usersServices;
+            itemServices = _itemServices;
         }
 
         #endregion
@@ -37,10 +37,10 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                var model = await customersService.GetAllAsync();
+                var model = await itemPriceHistoryService.GetAllAsync();
                 foreach (var item in model)
                 {
-                    item.User = await usersServices.GetAsync(item.UserId);
+                    item.Item = await itemServices.GetAsync(item.ItemId);
                 }
                 if (model == null)
                 {
@@ -58,21 +58,21 @@ namespace ESKINS.Intranet.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCustomerAsync(int id)
         {
-            var customersMethod = await customersService.GetAsync(id);
+            var itemPriceHistoryMethod = await itemPriceHistoryService.GetAsync(id);
 
-            if (customersMethod == null)
+            if (itemPriceHistoryMethod == null)
             {
                 return NotFound();
             }
 
-            return Ok(customersMethod);
+            return Ok(itemPriceHistoryMethod);
         }
 
         public async Task<IActionResult> CreateAsync()
         {
             try
             {
-                ViewBag.Name = new SelectList(await usersServices.GetAllAsync(), "Id", "Email");
+                ViewBag.Name = new SelectList(await itemServices.GetAllAsync(), "Id", "ProductName");
                 return View();
             }
             catch (Exception e)
@@ -84,31 +84,20 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CustomersModels model)
+        public async Task<IActionResult> Create(ItemPriceHistoriesModels model)
         {
             try
             {
                 model.CreationDate = DateTime.Now;
                 model.ModificationDate = DateTime.Now;
-                if (ModelState.IsValid)
+                model.DateAndTime = DateTime.Now;
+                   
+                var IsConfirmed = await itemPriceHistoryService.AddAsync(model);
+                if (IsConfirmed)
                 {
-                    foreach (var entry in ModelState)
-                    {
-                        string propertyName = entry.Key;
-                        ModelStateEntry propertyState = entry.Value;
-
-                        if (propertyState.ValidationState == ModelValidationState.Invalid)
-                        {
-                            string errorMessage = propertyState.Errors.FirstOrDefault()?.ErrorMessage;
-                            await errorLogsServices.Add($"{entry.Key}: {entry.Value} is invalid. Value: {entry.Value}\n{errorMessage}");
-                        }
-                    }
-                    var IsConfirmed = await customersService.AddAsync(model);
-                    if (IsConfirmed)
-                    {
-                        return RedirectToAction("Index");
-                    }
+                    return RedirectToAction("Index");
                 }
+                
                 return View("Error");
             }
             catch (Exception e)
@@ -122,9 +111,9 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                var model = customersService.GetAsync(id);
+                var model = itemPriceHistoryService.GetAsync(id);
 
-                ViewBag.Name = new SelectList(await usersServices.GetAllAsync(), "Id", "Email");
+                ViewBag.Name = new SelectList(await itemServices.GetAllAsync(), "Id", "ProductName");
                 if (model == null)
                 {
                     return View("Error");
@@ -140,14 +129,14 @@ namespace ESKINS.Intranet.Controllers
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, CustomersModels model)
+        public async Task<IActionResult> EditAsync(int id, ItemPriceHistoriesModels model)
         {
             try
             {
-                var oldModel = await customersService.GetAsync(id);
+                var oldModel = await itemPriceHistoryService.GetAsync(id);
                 model.ModificationDate = DateTime.Now;
                 model.CreationDate = oldModel.CreationDate;
-                var IsConfirmed = await customersService.EditAsync(id, model);
+                var IsConfirmed = await itemPriceHistoryService.EditAsync(id, model);
                 if (IsConfirmed)
                 {
                     return RedirectToAction("Index");
@@ -167,7 +156,7 @@ namespace ESKINS.Intranet.Controllers
         {
             try
             {
-                var IsConfirmed = await customersService.RemoveAsync(id);
+                var IsConfirmed = await itemPriceHistoryService.RemoveAsync(id);
                 if (IsConfirmed)
                 {
                     return RedirectToAction("Index");
@@ -181,7 +170,6 @@ namespace ESKINS.Intranet.Controllers
             }
 
             #endregion
-
         }
     }
 }
