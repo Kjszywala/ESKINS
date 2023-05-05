@@ -89,14 +89,15 @@ namespace ESKINS.Intranet.Controllers
             {
                 model.CreationDate = DateTime.Now;
                 model.ModificationDate = DateTime.Now;
-                if (ModelState.IsValid)
+                //if (ModelState.IsValid)
+                //{
+                model.User = await usersServices.GetAsync(model.Id);
+                var IsConfirmed = await customersService.AddAsync(model);
+                if (IsConfirmed)
                 {
-                    var IsConfirmed = await customersService.AddAsync(model);
-                    if (IsConfirmed)
-                    {
-                        return RedirectToAction("Index");
-                    }
+                    return RedirectToAction("Index");
                 }
+                //}
                 return View("Error");
             }
             catch (Exception e)

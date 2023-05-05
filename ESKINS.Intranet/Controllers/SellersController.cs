@@ -151,6 +151,6 @@ namespace ESKINS.Intranet.Controllers
                 return View("Error");
             }
         }
+        #endregion
     }
-    #endregion
 }
