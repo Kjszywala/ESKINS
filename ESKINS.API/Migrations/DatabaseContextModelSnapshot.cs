@@ -487,6 +487,9 @@ namespace ESKINS.API.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("datetime2");
 
@@ -505,6 +508,8 @@ namespace ESKINS.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ItemId");
 
                     b.HasIndex("SellerId");
 
@@ -865,11 +870,17 @@ namespace ESKINS.API.Migrations
                         .WithMany("Order")
                         .HasForeignKey("CustomerId");
 
+                    b.HasOne("ESKINS.API.Models.CMS.Items", "Item")
+                        .WithMany("Orders")
+                        .HasForeignKey("ItemId");
+
                     b.HasOne("ESKINS.API.Models.CMS.Sellers", "Seller")
                         .WithMany("Order")
                         .HasForeignKey("SellerId");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("Item");
 
                     b.Navigation("Seller");
                 });
@@ -949,6 +960,8 @@ namespace ESKINS.API.Migrations
             modelBuilder.Entity("ESKINS.API.Models.CMS.Items", b =>
                 {
                     b.Navigation("ItemPriceHistory");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("ESKINS.API.Models.CMS.Orders", b =>

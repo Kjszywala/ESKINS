@@ -24,6 +24,8 @@ namespace ESKINS.API.Models.CMS
         public int? CustomerId { get; set; }
         public Customers? Customer { get; set; }
 
+        public int? ItemId { get; set; }
+        public Items? Item { get; set; }
         /// <summary>
         /// Relationship with Sellers.
         /// </summary>

@@ -12,6 +12,8 @@
         public CustomersModels? Customer { get; set; }
         public int? SellerId { get; set; }
         public SellersModels? Seller { get; set; }
+        public int? ItemId { get; set; }
+        public ItemsModels? Item { get; set; }
         public decimal PricePaid { get; set; }
         public decimal Discount { get; set; }
         public ICollection<InvoicesModels>? Invoices { get; set; }

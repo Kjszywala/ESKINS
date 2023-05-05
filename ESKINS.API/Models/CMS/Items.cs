@@ -90,5 +90,10 @@ namespace ESKINS.API.Models.CMS
         /// Relationship to ItemPriceHistories.
         /// </summary>
         public ICollection<ItemPriceHistories>? ItemPriceHistory { get; set; }
+
+        /// <summary>
+        /// Relationship to Items.
+        /// </summary>
+        public ICollection<Orders>? Orders { get; set; }
     }
 }

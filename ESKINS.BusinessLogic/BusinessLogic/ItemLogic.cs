@@ -28,14 +28,18 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.SerialNumber).First();
+                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.SerialNumber).First() ?? null;
 
-                if (model.SerialNumber == "0" || model.SerialNumber == null)
+                if (model.SerialNumber == "0" || model == null)
                 {
                     return 1;
                 }
 
                 return Int32.Parse(model.SerialNumber) + 1;
+            }
+            catch(InvalidOperationException ex)
+            {
+                return 1;
             }
             catch (Exception e)
             {

@@ -37,5 +37,6 @@ namespace ESKINS.DbServices.Models
         public decimal Discount { get; set; }
         public byte[]? ItemImage { get; set; }
         public ICollection<ItemPriceHistoriesModels>? ItemPriceHistories { get; set; }
+        public ICollection<OrdersModels>? Orders { get; set; }
     }
 }
