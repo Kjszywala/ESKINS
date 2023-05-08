@@ -43,6 +43,7 @@ namespace ESKINS.Intranet
             builder.Services.AddScoped<IOrdersServices, OrdersServices>();
             builder.Services.AddScoped<IItemPriceHistoriesServices, ItemPriceHistoriesServices>();
             builder.Services.AddScoped<ITargetsServices, TargetsServices>();
+            builder.Services.AddScoped<IInvoicesServices, InvoicesServices>();
 
             var app = builder.Build();
 

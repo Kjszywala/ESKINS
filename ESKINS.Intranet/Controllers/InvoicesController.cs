@@ -1,6 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -21,10 +20,14 @@ namespace ESKINS.Intranet.Controllers
 
         public InvoicesController(
             IInvoicesServices _invoicesServices,
-            IErrorLogsServices _errorLogsServices)
+            IErrorLogsServices _errorLogsServices,
+            IOrdersServices _ordersServices,
+            IPaymentMethodsServices _paymentMethodsServices)
         {
             invoicesServices = _invoicesServices;
             errorLogsServices = _errorLogsServices;
+            ordersServices = _ordersServices;
+            paymentMethodsServices = _paymentMethodsServices;
         }
 
         #endregion
@@ -37,6 +40,11 @@ namespace ESKINS.Intranet.Controllers
             try
             {
                 var model = await invoicesServices.GetAllAsync();
+                foreach (var invoice in model)
+                {
+                    invoice.Orders = await ordersServices.GetAsync(invoice.OrderId.Value);
+                    invoice.PaymentMethods = await paymentMethodsServices.GetAsync(invoice.PaymentMethodId.Value);
+                }
                 if (model == null)
                 {
                     return View("Error");
@@ -51,7 +59,7 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPhaseAsync(int id)
+        public async Task<IActionResult> GetInvoiceAsync(int id)
         {
             var phasesMethod = await invoicesServices.GetAsync(id);
 
