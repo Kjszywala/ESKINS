@@ -86,6 +86,33 @@ namespace ESKINS.Intranet.Controllers
             }
         }
 
+        public async Task<ActionResult> Index2Async(string serialNumber)
+        {
+            try
+            {
+                var model = await itemsServices.GetAllAsync();
+
+                if (string.IsNullOrEmpty(serialNumber))
+                {
+                    return View("Index", model);
+                }
+
+                var item = model.Where(x => x.SerialNumber == serialNumber).ToList();
+
+                if (item == null)
+                {
+                    return View("Error");
+                }
+
+                return View("Index", item);
+            }
+            catch (Exception e)
+            {
+                await errorLogsServices.Error(e);
+                return View("Error");
+            }
+        }
+
         public async Task<ActionResult> EditAsync(int id)
         {
             try

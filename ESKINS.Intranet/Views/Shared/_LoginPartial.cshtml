@@ -3,13 +3,13 @@
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
-<form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search serial number..." aria-label="Search">
+    <form class="form-inline" asp-controller="Items" asp-action="Index2" method="post" id="serialNumber" style="display: inline;">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search serial number..." aria-label="Search" name="serialNumber">
         <button class="btn btn-outline-secondary" type="submit" style="margin-right: 5px;">Search</button>
-</form>
-<li class="nav-item">
-    <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Account", new { area = "" })">
-        <button type="submit" class="btn btn-outline-secondary">Logout</button>
     </form>
-</li>
-
+    <li class="nav-item">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Account", new { area = "" })">
+            <button type="submit" class="btn btn-outline-secondary">Logout</button>
+        </form>
+    </li>
+</ul>
