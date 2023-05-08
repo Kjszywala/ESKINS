@@ -91,7 +91,16 @@ namespace ESKINS.Intranet.Controllers
             try
             {
                 var model = await itemsServices.GetAllAsync();
-
+                foreach (var item2 in model)
+                {
+                    item2.Category = await categoriesServices.GetAsync(item2.CategoryId.Value);
+                    item2.ItemLocation = await itemLocationsServices.GetAsync(item2.ItemLocationId.Value);
+                    item2.ItemCollection = await itemCollectionsServices.GetAsync(item2.ItemCollectionId.Value);
+                    item2.Phase = await phasesServices.GetAsync(item2.PhaseId.Value);
+                    item2.Quality = await qualitiesServices.GetAsync(item2.QualityId.Value);
+                    item2.Exterior = await exteriorsServices.GetAsync(item2.ExteriorId.Value);
+                    item2.User = await usersServices.GetAsync(item2.UserId.Value);
+                }
                 if (string.IsNullOrEmpty(serialNumber))
                 {
                     return View("Index", model);
