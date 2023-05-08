@@ -18,10 +18,14 @@
 else
 {
     <li class="nav-item">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <form class="nav-link" action="@Url.Action("Index", "Account")">
+            <button type="submit" class="btn btn-outline-secondary">Register</button>
+        </form>
     </li>
     <li class="nav-item">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <form class="nav-link" action="@Url.Action("Index", "Account")">
+                <button type="submit" class="btn btn-outline-secondary">Login</button>
+        </form>
     </li>
 }
 </ul>
