@@ -38,20 +38,32 @@ namespace ESKINS.Intranet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string email, string password)
         {
-            var users = await usersService.GetAllAsync();
-            // validate the username and password
-            
-            foreach (var item in users)
+            try
             {
-                if (email.Trim() == item.Email.Trim() && password.Trim() == item.Password.Trim())
+                var users = await usersService.GetAllAsync();
+            // validate the username and password
+                if(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 {
-                    // redirect the user to the protected page
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.ErrorMessage = "Invalid username or password.";
+                    return View("Index");
                 }
+                foreach (var item in users)
+                {
+                    if (email.Trim() == item.Email.Trim() && password.Trim() == item.Password.Trim())
+                    {
+                        // redirect the user to the protected page
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                // display an error message
+                ViewBag.ErrorMessage = "Invalid username or password.";
+                return View("Index");
             }
-            // display an error message
-            ViewBag.ErrorMessage = "Invalid username or password.";
-            return View();
+            catch (Exception ex)
+            {
+                await errorLogsService.Error(ex);
+                return View("Index");
+            }
         }
 
         // POST: Account/Login
@@ -73,12 +85,12 @@ namespace ESKINS.Intranet.Controllers
                 }
                 // display an error message
                 ViewBag.ErrorMessage = "Invalid username or password.";
-                return View();
+                return View("Index");
             }
             catch(Exception ex)
             {
                 await errorLogsService.Error(ex);
-                return View("Error");
+                return View("Index");
             }
         }
 

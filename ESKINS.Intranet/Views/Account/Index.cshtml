@@ -8,6 +8,9 @@
     @*<link href="~/css/logreg.css" type="text/css" rel="stylesheet" />*@
     <link href="~/css/login.css" type="text/css" rel="stylesheet" />
 }
+<center>
+    <h4 style="color:#8B0000;">@ViewBag.ErrorMessage</h4>
+</center>
 <div class="body" style="height: 1000px;">
     <div class="veen" style="width:90%; margin-top:-50px;">
         <div class="login-btn splits">
@@ -37,10 +40,6 @@
             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "register" }))
             {
                 <h3>Register</h3>
-                @*<div class="name">
-                    <input type="text" asp-for="FirstName" name="">
-                    <label>First Name</label>
-                </div>*@
                 <div class="form-group">
                     @Html.LabelFor(model => model.FirstName)
                     <div class="name">
@@ -69,18 +68,6 @@
                         @Html.ValidationMessageFor(model => model.Password, "")
                     </div>
                 </div>
-                @*<div class="name">
-                    <input type="text" asp-for="LastName" name="">
-                    <label>Last Name</label>
-                </div>
-                <div class="mail">
-                    <input type="text" asp-for="Email" name="">
-                    <label>E-mail</label>
-                </div>
-                <div class="passwd">
-                    <input type="text" asp-for="Password" name="">
-                    <label>Password</label>
-                </div>*@
                 <div class="submit">
                     <button class="dark">Register</button>
                 </div>
@@ -88,11 +75,6 @@
         </div>
     </div>
 </div>
-<style>
-    .register{
-        margin-top: -20px;
-    }
-</style>
 <script>
     $(document).ready(function () {
         $(".veen .rgstr-btn button").click(function () {
