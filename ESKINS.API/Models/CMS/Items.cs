@@ -95,5 +95,10 @@ namespace ESKINS.API.Models.CMS
         /// Relationship to Items.
         /// </summary>
         public ICollection<Orders>? Orders { get; set; }
+
+        /// <summary>
+        /// Relationship to Items.
+        /// </summary>
+        public ICollection<Targets>? Targets { get; set; }
     }
 }

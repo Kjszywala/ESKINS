@@ -912,7 +912,7 @@ namespace ESKINS.API.Migrations
             modelBuilder.Entity("ESKINS.API.Models.CMS.Targets", b =>
                 {
                     b.HasOne("ESKINS.API.Models.CMS.Items", "Item")
-                        .WithMany()
+                        .WithMany("Targets")
                         .HasForeignKey("ItemId");
 
                     b.HasOne("ESKINS.API.Models.CMS.Phases", "Phase")
@@ -962,6 +962,8 @@ namespace ESKINS.API.Migrations
                     b.Navigation("ItemPriceHistory");
 
                     b.Navigation("Orders");
+
+                    b.Navigation("Targets");
                 });
 
             modelBuilder.Entity("ESKINS.API.Models.CMS.Orders", b =>

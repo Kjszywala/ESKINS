@@ -71,6 +71,7 @@ namespace ESKINS.Intranet.Controllers
                     item.Phase = await phasesServices.GetAsync(item.PhaseId.Value);
                     item.Quality = await qualitiesServices.GetAsync(item.QualityId.Value);
                     item.Exterior = await exteriorsServices.GetAsync(item.ExteriorId.Value);
+                    item.User = await usersServices.GetAsync(item.UserId.Value);
                 }
                 if (model == null)
                 {

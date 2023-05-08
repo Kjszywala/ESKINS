@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESKINS.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230505153057_initialCreate")]
+    [Migration("20230508094504_initialCreate")]
     partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -914,7 +914,7 @@ namespace ESKINS.API.Migrations
             modelBuilder.Entity("ESKINS.API.Models.CMS.Targets", b =>
                 {
                     b.HasOne("ESKINS.API.Models.CMS.Items", "Item")
-                        .WithMany()
+                        .WithMany("Targets")
                         .HasForeignKey("ItemId");
 
                     b.HasOne("ESKINS.API.Models.CMS.Phases", "Phase")
@@ -964,6 +964,8 @@ namespace ESKINS.API.Migrations
                     b.Navigation("ItemPriceHistory");
 
                     b.Navigation("Orders");
+
+                    b.Navigation("Targets");
                 });
 
             modelBuilder.Entity("ESKINS.API.Models.CMS.Orders", b =>
