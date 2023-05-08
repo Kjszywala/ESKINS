@@ -1,6 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.Intranet.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
@@ -51,6 +50,7 @@ namespace ESKINS.Intranet.Controllers
                 {
                     if (email.Trim() == item.Email.Trim() && password.Trim() == item.Password.Trim())
                     {
+                        Config.isConfirmed = true;
                         // redirect the user to the protected page
                         return RedirectToAction("Index", "Home");
                     }
@@ -90,7 +90,7 @@ namespace ESKINS.Intranet.Controllers
             catch(Exception ex)
             {
                 await errorLogsService.Error(ex);
-                return View("Index");
+                return View("Error");
             }
         }
 
