@@ -1,8 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
-<style>
+﻿<style>
     body {
         /* font-family: Arial, sans-serif;*/
         background-color: transparent;
@@ -19,7 +15,7 @@
         margin-top: 6px;
     }
 </style>
-@if(true)@*(SignInManager.IsSignedIn(User))*@
+@if(Config.isConfirmed)
 {
     <li>
         <a href="@Url.Action("Index", "Profile")">
@@ -34,17 +30,22 @@
             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
         </button>
     </li>
-    @*<li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>*@
     <li class="nav-item">
-        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button type="submit" id="logoutButton" class="nav-link btn btn-link text-dark"><span class="bi bi-box-arrow-left"></span> Logout</button>
-        </form>
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">
+            <span class="bi bi-door-open"></span> Logout
+        </a>
     </li>
 }
 else
 {
-    <li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><span class="bi bi-door-open"></span> Register</a></li>
-    <li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><span class="bi bi-box-arrow-in-right"></span> Login</a></li>
+    <li>
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Index">
+            <span class="bi bi-door-open"></span> Register
+        </a>
+    </li>
+    <li>
+        <a class="nav-link text-dark" asp-controller="Account" asp-action="Index">
+            <span class="bi bi-box-arrow-in-right"></span> Login
+        </a>
+    </li>
 }

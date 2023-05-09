@@ -1,4 +1,8 @@
+using ESKINS.BusinessLogic.BusinessLogic;
+using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.Data;
+using ESKINS.DbServices.Interfaces;
+using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +23,27 @@ namespace ESKINS
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IPaymentMethodsServices, PaymentMethodServices>();
+            builder.Services.AddScoped<IErrorLogsServices, ErrorLogsServices>();
+            builder.Services.AddScoped<ICategoriesServices, CategoriesServices>();
+            builder.Services.AddScoped<IExteriorsServices, ExteriorsServices>();
+            builder.Services.AddScoped<IItemCollectionsServices, ItemCollectionsServices>();
+            builder.Services.AddScoped<IItemLocationsServices, ItemLocationsServices>();
+            builder.Services.AddScoped<IPhasesServices, PhasesServices>();
+            builder.Services.AddScoped<IQualitiesServices, QualitiesServices>();
+            builder.Services.AddScoped<IItemsServices, ItemsServices>();
+            builder.Services.AddScoped<IUsersServices, UsersServices>();
+            builder.Services.AddScoped<IItemLogsServices, ItemLogsServices>();
+            builder.Services.AddScoped<IItemLogic, ItemLogic>();
+            builder.Services.AddScoped<ISendEmailServiceLogic, SendEmailServiceLogic>();
+            builder.Services.AddScoped<ISellersServices, SellersServices>();
+            builder.Services.AddScoped<IItemLogsServices, ItemLogsServices>();
+            builder.Services.AddScoped<ICustomersServices, CustomersServices>();
+            builder.Services.AddScoped<IOrdersServices, OrdersServices>();
+            builder.Services.AddScoped<IItemPriceHistoriesServices, ItemPriceHistoriesServices>();
+            builder.Services.AddScoped<ITargetsServices, TargetsServices>();
+            builder.Services.AddScoped<IInvoicesServices, InvoicesServices>();
 
             var app = builder.Build();
 

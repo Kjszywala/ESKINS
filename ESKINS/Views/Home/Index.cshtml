@@ -9,10 +9,11 @@
 	<link href="~/css/home.css" type="text/css" rel="stylesheet" />
 	<link href="~/css/home2.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="~/css/card.css" type="text/css" rel="stylesheet" />
 }
 <script>
 	function showSecondView() {
-		window.location.href = "/Identity/Account/Login";
+		window.location.href = "/Account/Login";
 	}
 </script>
 <style>
@@ -151,7 +152,7 @@
 					<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 20px; height: 200px; flex: 0 0 200px;">
 						<div class="imgBox" style="width:70px; margin-left: 60px;">
 							<div>
-								<button class="btn" id="smallButton"><i id="iid" class="bi bi-info-circle"></i></button>
+								<button class="button-20" style="margin-left:-50px;margin-top:-85px;"><i class="bi bi-info-circle"></i></button>
 							</div>
 							<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
 						</div>
@@ -167,7 +168,9 @@
 		<section class="hero-section" style="background-image: url('../../img/leftsideanty.jpg'); height: 1100px; margin-top:-260px;">
 			<h1>Buy and Sell CS:GO Skins</h1>
 			<p>Find the perfect skins for your weapons or sell your own skins for cash.</p>
-			<button class="btn-hover color-3" onclick="showSecondView()">Start Buying/Selling</button>
+			 <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Account", new { area = "" })">
+				<button class="btn-hover color-3">Start Buying/Selling</button>
+				</form>
 		</section>
 		<section class="services-section" style="height: 1000px;background-image: url('../../img/maninfire.png');">
 			<h2>Our Services</h2>

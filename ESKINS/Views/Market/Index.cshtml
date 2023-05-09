@@ -6,6 +6,7 @@
 @section head{
 	<link href="~/css/market2.css" type="text/css" rel="stylesheet" />
 	<link href="~/css/style.css" type="text/css" rel="stylesheet" />
+	<link href="~/css/card.css" type="text/css" rel="stylesheet" />
 }
 
 <div class="filtering" style="height:auto;">
@@ -39,14 +40,14 @@
 				<div class="card" style="margin-left: 10px;">
 					<div class="imgBox" style="width:70px; margin-left: 60px;">
 						<div>
-							<button class="btn" id="smallButton"><i id="iid" class="bi bi-info-circle"></i></button>
+							<button class="button-20" style="margin-left:-50px;margin-top:-85px;"><i class="bi bi-info-circle"></i></button>
 						</div>
 						<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
 					</div>
 					<div class="contentBox">
 						<h3>Mouse Corsair M65</h3>
 						<h2 class="price">@rnd.Next(1000).<small>@rnd.Next(99)</small> £</h2>
-						<a href="#" class="buy" style="width: 170px">Add To Card</a>
+							<button href="#" class="button-20">Add To Card</button>
 					</div>
 				</div>
 			}
@@ -221,11 +222,12 @@
 				</ul> <!-- cd-filter-content -->
 			</div> <!-- cd-filter-block -->
 		</form>
-		<a href="#0" class="cd-close" style="background-color:#111111; color: #a9a9a9;">Close</a>
+		<a href="#0" class="cd-close" style="color: #a9a9a9;text-decoration:none;">Close</a>
 	</div> 
-	<a href="#0" class="cd-filter-trigger" style="">Filters</a>
+	<a href="#0" class="cd-filter-trigger" style="text-decoration:none;">Filters</a>
 </main> <!-- cd-main-content -->
 <style>
+	
 	/* --------------------------------
 
 	Primary style

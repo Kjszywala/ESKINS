@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="~/css/index.css" type="text/css" rel="stylesheet" />
 	<link href="~/css/layout.css" type="text/css" rel="stylesheet" />
+	<link href="~/css/card.css" type="text/css" rel="stylesheet" />
 </head>
 <body style="background-color: #121212;">
 <div class="navbar navbar-inverse" style="background-color:#181716;">
@@ -82,25 +83,9 @@
 									About Us
 								</a>
 							</li>
-							@*<li>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li>@Html.ActionLink("Manage Scheduled Tasks", "Index", "ScheduledTask", new { area = "" }, null)</li>
-									<li>@Html.ActionLink("Check SAP for Works Orders", "Update", "GetProductionOrders", null, null)</li>
-									<li>@Html.ActionLink("Check SAP for Purchase Orders", "Update", "GetPurchaseOrders", null, null)</li>
-									<li>@Html.ActionLink("Post Completed Printers To SAP", "PostPrinters", "PostPrintersToSap", null, null)</li>
-								</ul>
-							</li>*@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							@Html.Partial("_LoginPartial")
-							@*<li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Sing In / Sign Up</a></li>*@
-							@*<li>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<partial name="_LoginPartial" />
-								</ul>
-							</li>*@
 						</ul>
 					</div>
 				</div>
@@ -126,7 +111,7 @@
 				<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 20px;margin-top:20px; height: 200px; flex: 0 0 200px;">
 					<div class="imgBox" style="width:70px; margin-left: 60px;">
 						<div>
-							<button class="btn" id="smallButton"><i id="iid" class="bi bi-info-circle"></i></button>
+							<button class="button-20" style="margin-left:-50px;margin-top:-85px;"><i class="bi bi-info-circle"></i></button>
 						</div>
 						<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
 					</div>
@@ -140,6 +125,7 @@
 		}
 
 	</div>
+	
 	<div>
 		@RenderBody()
 	</div>
