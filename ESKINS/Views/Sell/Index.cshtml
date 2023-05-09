@@ -5,8 +5,9 @@
     Layout = "_MainPageLayout";
 }
 @section head{
-	<link href="~/css/style.css" type="text/css" rel="stylesheet" />
+	<link href="~/css/market2.css" type="text/css" rel="stylesheet" />
 	<link href="~/css/sell.css" type="text/css" rel="stylesheet" />
+	<link href="~/css/card.css" type="text/css" rel="stylesheet" />
 }
 <style>
 
@@ -28,15 +29,15 @@
 				Random rnd = new Random();
 				for (int i = 0; i < 70; i++)
 				{
-					<div class="card" id="cardMove" style="margin-left: 10px; height: 140px; width:140px;" onclick="mylinkfunction()">
+					<div class="card" id="cardMove" style="margin-left: 10px; height: 170px; width:170px;" onclick="mylinkfunction()">
 						<div class="imgBox" style="width:70px; margin-left: 60px;">
 							<div>
-								<button class="btn" id="smallButton"><i id="iid" class="bi bi-info-circle"></i></button>
+								<button class="button-20" style="margin-left:-50px;margin-top:-85px;"><i class="bi bi-info-circle"></i></button>
 							</div>
-							<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
+							<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse" style="margin-top:-10px;">
 						</div>
-						<div class="contentBox">
-							<h3>Mouse Corsair M65</h3>
+						<div class="contentBox" >
+								<h3 style="margin-top:5;">Mouse Corsair M65</h3>
 							<h2 class="price">@rnd.Next(1000).<small>@rnd.Next(99)</small> £</h2>
 							<a href="#" class="buy" style="width: 170px"></a>
 						</div>
@@ -65,14 +66,14 @@
 	<div class="cd-filter-block">
 		<h4>Search</h4>
 
-		<div class="cd-filter-content">
+				<div class="cd-filter-content" style="display:none;">
 			<input type="search" placeholder="Search Any Skin Here...">
 		</div> <!-- cd-filter-content -->
 	</div> <!-- cd-filter-block -->
 			<div class="cd-filter-block">
 				<h4>Item Category</h4>
 
-				<ul class="cd-filter-content cd-filters list">
+				<ul class="cd-filter-content cd-filters list" style="display:none;">
 					<li>
 						<input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
 						<label class="checkbox-label" for="checkbox1">All</label>
@@ -121,7 +122,7 @@
 			<div class="cd-filter-block">
 				<h4>Select WEAPON</h4>
 
-				<div class="cd-filter-content">
+				<div class="cd-filter-content" style="display:none;">
 					<div class="cd-select cd-filters">
 						<select class="filter" name="selectThis" id="selectThis">
 							<option value="" style="cursor: pointer;">Choose an option</option>
@@ -137,7 +138,7 @@
 			<div class="cd-filter-block">
 				<h4>Radio buttons</h4>
 
-				<ul class="cd-filter-content cd-filters list">
+				<ul class="cd-filter-content cd-filters list" style="display:none;">
 					<li>
 						<input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
 						<label class="radio-label" for="radio1">All</label>
@@ -157,7 +158,7 @@
 			<div class="cd-filter-block">
 				<h4>Unique Items</h4>
 
-				<ul class="cd-filter-content cd-filters list">
+				<ul class="cd-filter-content cd-filters list" style="display:none;">
 					<li>
 						<input class="filter" data-filter=".check1" type="checkbox" id="checkbox11">
 						<label class="checkbox-label" for="checkbox11">All</label>
@@ -185,7 +186,7 @@
 			<div class="cd-filter-block">
 				<h4>Phase</h4>
 
-				<ul class="cd-filter-content cd-filters list">
+				<ul class="cd-filter-content cd-filters list" style="display:none;">
 					<li>
 						<input class="filter" data-filter=".check1" type="checkbox" id="checkbox16">
 						<label class="checkbox-label" for="checkbox16">All</label>
@@ -227,8 +228,8 @@
 				</ul> <!-- cd-filter-content -->
 			</div> <!-- cd-filter-block -->
 			</form>
-			<a href="#0" class="cd-close" style="background-color:#111111; color: #a9a9a9;">Close</a>
+			<a href="#0" class="cd-close" style="color: #a9a9a9; text-decoration: none;">Close</a>
 		</div>
-		<a href="#0" class="cd-filter-trigger" style="">Filters</a>
+	<a href="#0" class="cd-filter-trigger" style="text-decoration: none;">Filters</a>
 	</div>
 </main> <!-- cd-main-content -->
