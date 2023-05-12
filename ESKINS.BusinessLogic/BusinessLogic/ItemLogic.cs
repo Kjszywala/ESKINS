@@ -30,7 +30,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
             {
                 var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.SerialNumber).First() ?? null;
 
-                if (model.SerialNumber == "0" || model == null)
+                if (model == null || model.SerialNumber == "0" || model.SerialNumber == null)
                 {
                     return 1;
                 }
@@ -67,7 +67,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.CreationDate).ToList();
+                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.ModificationDate).ToList();
 
                 return model;
             }
@@ -82,7 +82,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderBy(item => item.CreationDate).ToList();
+                var model = itemsServices.GetAllAsync().Result.OrderBy(item => item.ModificationDate).ToList();
 
                 return model;
             }

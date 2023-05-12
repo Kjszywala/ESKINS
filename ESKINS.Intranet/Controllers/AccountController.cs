@@ -27,9 +27,17 @@ namespace ESKINS.Intranet.Controllers
 
         // GET: Account/Login
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                await errorLogsService.Error(ex);
+                return View("Index");
+            }
         }
 
         // POST: Account/Login

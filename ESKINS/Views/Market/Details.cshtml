@@ -1,0 +1,175 @@
+﻿@model ESKINS.DbServices.Models.ItemsModels
+@{
+    ViewData["Title"] = "Market";
+    Layout = "_Layout";
+}
+@section head{
+    <link href="~/css/sell.css" type="text/css" rel="stylesheet" />
+}
+<header class="privacy">
+    <h2>Item Details</h2>
+</header>
+<br />
+<br />
+<div class="container1">
+    <div class="row justify-content-center" style="margin-left:60px;">
+        <div class="col-lg-6">
+            <div class="details-image d-flex justify-content-center align-items-center">
+                @if (Model.ItemImage != null)
+                {
+                    <img src="data:image;base64,@Convert.ToBase64String(Model.ItemImage)" alt="Item Image" />
+                }
+            </div>
+        </div>
+        <div class="col-lg-5 container2">
+            <div class="details-row">
+                <div class="details-label">Product Name:</div>
+                <div class="details-value">@Model.ProductName</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Serial Number:</div>
+                <div class="details-value">@Model.SerialNumber</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">User:</div>
+                <div class="details-value">@Model.User?.Email</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Category:</div>
+                <div class="details-value">@Model.Category?.CategoryDescription</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Item Location:</div>
+                <div class="details-value">@Model.ItemLocation?.ItemLocation</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">StatTrack:</div>
+                <div class="details-value">@Model.StatTrack</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Souvenir:</div>
+                <div class="details-value">@Model.Souvenir</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Item Collection:</div>
+                <div class="details-value">@Model.ItemCollection?.ItemCollection</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Phase:</div>
+                <div class="details-value">@Model.Phase?.Phase</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Quality:</div>
+                <div class="details-value">@Model.Quality?.Quality</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Exterior:</div>
+                <div class="details-value">@Model.Exterior?.Exterior</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Pattern:</div>
+                <div class="details-value">@Model.Pattern</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Actual Price:</div>
+                <div class="details-value">@Model.ActualPrice £</div>
+            </div>
+            <div class="details-row">
+                <div class="details-label">Discount:</div>
+                <div class="details-value">@Model.Discount</div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="max-width: 470px; text-align:center;">
+        <button id="btn" style="margin: 5px;">Add To Cart</button>
+        <button id="btnBack" style="margin: 5px;">Back To Market</button>
+    </div>
+</div>
+<script>
+    document.getElementById("btnBack").addEventListener("click", function () {
+        history.back();
+    });
+</script>
+<br />
+<br />
+<style>
+    header {
+        background-color: #181716;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 36px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: white;
+    }
+    #btnBack {
+        background-color: #5600b2;
+        color: white;
+        border-radius: 7px;
+        border-color: transparent;
+        font-size: 16px;
+        line-height: 1.5;
+        height: 40px;
+    }
+
+    #btnBack:hover {
+        background-color: #331d35;
+        color: white;
+    }
+
+    #btnBack:active {
+        background-color: #5600b2;
+        color: white;
+    }
+    .itemsSellButtons {
+        margin-left:40px;
+    }
+    
+    .container1 {
+        border-radius: 8px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+        padding: 32px;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 900px;
+    }
+
+    .container2 {
+        border-radius: 8px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-left: 5px;
+        max-width:300px;
+    }
+
+    .details-value{
+        color:white;
+    }
+
+    .details-info {
+    }
+
+    .details-row {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .details-label {
+        font-weight: bold;
+        margin-right: 5px;
+        color: white;
+    }
+
+    .details-image img {
+        margin-top: 50px;
+        width: 350px;
+        height: auto;
+    }
+</style>

@@ -1,5 +1,6 @@
 using ESKINS.BusinessLogic.BusinessLogic;
 using ESKINS.BusinessLogic.Interfaces;
+using ESKINS.Controllers;
 using ESKINS.Data;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Services;
@@ -24,7 +25,7 @@ namespace ESKINS
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<IPaymentMethodsServices, PaymentMethodServices>();
+			builder.Services.AddScoped<IPaymentMethodsServices, PaymentMethodServices>();
             builder.Services.AddScoped<IErrorLogsServices, ErrorLogsServices>();
             builder.Services.AddScoped<ICategoriesServices, CategoriesServices>();
             builder.Services.AddScoped<IExteriorsServices, ExteriorsServices>();

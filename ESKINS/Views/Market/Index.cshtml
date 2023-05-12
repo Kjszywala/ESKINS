@@ -1,7 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Market";
-}
+﻿@model List<ESKINS.DbServices.Models.ItemsModels>
 @{
+    ViewData["Title"] = "Market";
 }
 @section head{
 	<link href="~/css/market2.css" type="text/css" rel="stylesheet" />
@@ -14,7 +13,7 @@
 	<div class="box" style="text-align:center;">
 		<ul>
 			<li style="margin-right:15px;">
-				<button class="button-42"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+				<button class="button-42"><span id="myModalBtn" class="glyphicon glyphicon-refresh"></span> Refresh</button>
 			</li>
 			<li>
 				<select style="width:auto;">
@@ -30,23 +29,37 @@
 		</ul>
 	</div>
 </div> 
+<style>
+.showDetails{
+	margin-left: -30px;
+	margin-top: -90px;
+}
+</style>
+@*<button class="button-20" style="margin-left:-30px;margin-top:-90px;" id="myModalBtn"><i class="bi bi-info-circle"></i></button>*@
+<div id="myModalContainer"></div>
 <hr style="border-color: black; margin: 0px;">
 <main class="cd-main-content" ">
 	<div style="margin-left: 100px;">
 		<section class="cd-gallery">
 		@{
-			Random rnd = new Random();
-			for(int i = 0; i<30; i++){
+			foreach(var item in Model){
 				<div class="card" style="margin-left: 10px;">
 					<div class="imgBox" style="width:70px; margin-left: 60px;">
 						<div>
-							<button class="button-20" style="margin-left:-50px;margin-top:-85px;"><i class="bi bi-info-circle"></i></button>
+							<form method="post" action="@Url.Action("Details", "Market")">
+								<input type="hidden" name="item.Id" value="@item.Id" />
+								<button type="submit" class="button-20 bi bi-info-circle showDetails"></button>
+							</form>
 						</div>
-						<img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/CH-9300011-NA-M65_PRO_RGB_BLK_04.png" alt="mouse corsair" class="mouse">
+						@if (item.ItemImage != null)
+						{
+							<img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" style="width: 100px; height: 100px; background-color:transparent; border: none; margin-left:10px;" />
+						}
 					</div>
 					<div class="contentBox">
-						<h3>Mouse Corsair M65</h3>
-						<h2 class="price">@rnd.Next(1000).<small>@rnd.Next(99)</small> £</h2>
+						<h3>@item.ProductName</h3>
+						<h3 style="color:white; margin-top:-5px">Float: @item.ItemFloat</h3>
+						<h2 class="price" style="font-family: 'Arial', sans-serif;" >@item.ActualPrice £</h2>
 							<button href="#" class="button-20">Add To Card</button>
 					</div>
 				</div>
@@ -55,6 +68,8 @@
 		<div class="cd-fail-message">No results found</div>
 		</section> <!-- cd-gallery -->
 	</div>
+
+	<div id="myModalContainer"></div>
 	<div class="cd-filter" style="background-color:	#181716; color: #a9a9a9;">
 		<form>
 			<div class="cd-filter-block">
