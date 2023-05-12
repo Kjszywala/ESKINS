@@ -38,28 +38,33 @@
 @*<button class="button-20" style="margin-left:-30px;margin-top:-90px;" id="myModalBtn"><i class="bi bi-info-circle"></i></button>*@
 <div id="myModalContainer"></div>
 <hr style="border-color: black; margin: 0px;">
-<main class="cd-main-content" ">
+<main class="cd-main-content">
 	<div style="margin-left: 100px;">
 		<section class="cd-gallery">
 		@{
 			foreach(var item in Model){
 				<div class="card" style="margin-left: 10px;">
-					<div class="imgBox" style="width:70px; margin-left: 60px;">
+						<div class="imgBox" style="width:70px; margin-left: 60px; background-color: transparent;">
 						<div>
 							<form method="post" action="@Url.Action("Details", "Market")">
 								<input type="hidden" name="item.Id" value="@item.Id" />
 								<button type="submit" class="button-20 bi bi-info-circle showDetails"></button>
 							</form>
 						</div>
+						<div style="height: 100px;display: flex;justify-content: center; align-items: center;">
 						@if (item.ItemImage != null)
 						{
-							<img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" style="width: 100px; height: 100px; background-color:transparent; border: none; margin-left:10px;" />
+							<img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" style="width: 100px; height: auto; background-color:transparent; border: none; margin-left:10px;" />
 						}
+						</div>
 					</div>
-					<div class="contentBox">
+						<div class="contentBox" style="background-color: transparent;">
 						<h3>@item.ProductName</h3>
-						<h3 style="color:white; margin-top:-5px">Float: @item.ItemFloat</h3>
-						<h2 class="price" style="font-family: 'Arial', sans-serif;" >@item.ActualPrice £</h2>
+							<h3 style="color:white; margin-top:-5px">Float: @Decimal.Parse(@item.ItemFloat).ToString("F8")</h3>
+							<h2 class="price" style="font-family: 'Arial', sans-serif;">
+								@Math.Truncate(item.ActualPrice)
+											<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small> £
+							</h2>
 							<button href="#" class="button-20">Add To Card</button>
 					</div>
 				</div>

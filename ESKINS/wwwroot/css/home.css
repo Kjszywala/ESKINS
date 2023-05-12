@@ -104,27 +104,27 @@
     }
 
 /*card style*/
-    @import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
 
-    .card {
-        position: relative;
-        width: 200px;
-        height: 250px;
-        background: #191919;
-        border-radius: 20px;
-        overflow: hidden;
-        display: inline-block;
-        display: flex;
-        justify-content: stretch;
-        align-items: center;
-        min-height: 100px;
-        background: #212121;
-        margin: 0;
-        padding: 0;
-        font-family: "Istok Web", sans-serif;
-        cursor: pointer;
-        display: inline-block;
-    }
+.card {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    background: #191919;
+    border-radius: 20px;
+    overflow: hidden;
+    display: inline-block;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    min-height: 100px;
+    background: #212121;
+    margin: 0;
+    padding: 0;
+    font-family: "Istok Web", sans-serif;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #222024;
+}
 
     .card::before {
         content: "";
@@ -143,7 +143,6 @@
     }
 
     .card::after {
-        content: "CORSAIR";
         position: absolute;
         bottom: 0;
         left: 0;

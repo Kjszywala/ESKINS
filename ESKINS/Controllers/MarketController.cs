@@ -124,7 +124,12 @@ namespace ESKINS.Controllers
 		[HttpPost]
 		public async Task<IActionResult> DetailsAsync(ItemsModels item)
 		{
-            var model = itemServices.GetAsync(item.Id).Result;
+			//if (!Config.isConfirmed) 
+			//{
+			//	ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+			//	return View("/Views/Account/Index.cshtml");
+			//}
+			var model = itemServices.GetAsync(item.Id).Result;
 
             model.Category = await categoriesServices.GetAsync(model.CategoryId.Value);
             model.ItemLocation = await itemLocationsServices.GetAsync(model.ItemLocationId.Value);
