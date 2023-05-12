@@ -6,7 +6,12 @@ namespace ESKINS.Controllers
 	{
 		public IActionResult Index()
 		{
-			return View();
+            if (!Config.isConfirmed)
+            {
+                ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+                return View("/Views/Account/Index.cshtml");
+            }
+            return View();
 		}
 	}
 }
