@@ -11,22 +11,23 @@
 	<div class="box1" style="text-align:center;">
 		<ul style="display: flex; justify-content: center; align-items: center; list-style-type: none;">
 			<li>
-				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("Index", "Market")'"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+				<button class="button-27" id="refresh" onclick="location.href='@Url.Action("Index", "Market")'"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
 			</li>
 			<li>
-				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("BestDeals", "Market")'"><span class="bi bi-percent"></span> Best Discount</button>
+				<button class="button-27" id="discount" ><span class="bi bi-percent"></span> Best Discount</button>
 			</li>
 			<li>
-				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("Newest", "Market")'"><span class="bi bi-arrow-down"></span> Newest First</button>
+				<button class="button-27" id="newest" ><span class="bi bi-arrow-down"></span> Newest First</button>
 			</li>
 			<li>
-				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("Oldest", "Market")'"><span class="bi bi-arrow-up"></span> Oldest First</button>
+				<button class="button-27" id="oldest" ><span class="bi bi-arrow-up"></span> Oldest First</button>
 			</li>
 			<li>
-				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("LowestPrice", "Market")'"><span class="bi bi-caret-down-fill"></span> Lowest First</button>
+				<button class="button-27" id="lowest" ><span class="bi bi-caret-down-fill"></span> Lowest First</button>
 			</li>
 			<li>
-				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("HighestPrice", "Market")'"><span class="bi bi-caret-up-fill"></span> Highest First</button>
+				@*<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("HighestPrice", "Market")'"><span class="bi bi-caret-up-fill"></span> Highest First</button>*@
+				<button class="button-27" id="highest"><span class="bi bi-caret-up-fill"></span> Highest First</button>
 			</li>
 		</ul>
 	</div>
@@ -80,40 +81,113 @@
 	margin-top: -90px;
 }
 </style>
+<script>
+
+	//Button click event listener
+	document.getElementById("highest").addEventListener("click", function () {
+		filterItems();
+	});
+
+	// AJAX call to filter items
+	function filterItems() {
+		$.ajax({
+			url: '@Url.Action("HighestPrice", "Market")',
+			type: 'GET',
+			success: function (data) {
+				// Update the item container with the filtered items
+				$('#itemContainer').html(data);
+			},
+			error: function () {
+				alert('An error occurred while filtering items.');
+			}
+		});
+	}
+
+	document.getElementById("lowest").addEventListener("click", function () {
+		filterLowest();
+	});
+
+	// AJAX call to filter items
+	function filterLowest() {
+		$.ajax({
+			url: '@Url.Action("LowestPrice", "Market")',
+			type: 'GET',
+			success: function (data) {
+				// Update the item container with the filtered items
+				$('#itemContainer').html(data);
+			},
+			error: function () {
+				alert('An error occurred while filtering items.');
+			}
+		});
+	}
+
+	document.getElementById("oldest").addEventListener("click", function () {
+		filterOldest();
+	});
+
+	// AJAX call to filter items
+	function filterOldest() {
+		$.ajax({
+			url: '@Url.Action("Oldest", "Market")',
+			type: 'GET',
+			success: function (data) {
+				// Update the item container with the filtered items
+				$('#itemContainer').html(data);
+			},
+			error: function () {
+				alert('An error occurred while filtering items.');
+			}
+		});
+	}
+
+	document.getElementById("newest").addEventListener("click", function () {
+		filterNewest();
+	});
+
+	// AJAX call to filter items
+	function filterNewest() {
+		$.ajax({
+			url: '@Url.Action("Newest", "Market")',
+			type: 'GET',
+			success: function (data) {
+				// Update the item container with the filtered items
+				$('#itemContainer').html(data);
+			},
+			error: function () {
+				alert('An error occurred while filtering items.');
+			}
+		});
+	}
+
+	document.getElementById("discount").addEventListener("click", function () {
+		filterDiscount();
+	});
+
+	// AJAX call to filter items
+	function filterDiscount() {
+		$.ajax({
+			url: '@Url.Action("BestDeals", "Market")',
+			type: 'GET',
+			success: function (data) {
+				// Update the item container with the filtered items
+				$('#itemContainer').html(data);
+			},
+			error: function () {
+				alert('An error occurred while filtering items.');
+			}
+		});
+	}
+
+</script>
 @*<button class="button-20" style="margin-left:-30px;margin-top:-90px;" id="myModalBtn"><i class="bi bi-info-circle"></i></button>*@
 <div id="myModalContainer"></div>
 <main class="cd-main-content">
 	<div style="margin-left: 100px;">
 		<section class="cd-gallery">
-		@{
-			foreach(var item in Model){
-				<div class="card" style="margin-left: 10px;">
-						<div class="imgBox" style="width:70px; margin-left: 60px; background-color: transparent;">
-						<div>
-							<form method="post" action="@Url.Action("Details", "Market")">
-								<input type="hidden" name="item.Id" value="@item.Id" />
-								<button type="submit" class="button-20 bi bi-info-circle showDetails"></button>
-							</form>
-						</div>
-						<div style="height: 100px;display: flex;justify-content: center; align-items: center;">
-						@if (item.ItemImage != null)
-						{
-							<img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" style="width: 100px; height: auto; background-color:transparent; border: none; margin-left:10px;" />
-						}
-						</div>
-					</div>
-						<div class="contentBox" style="background-color: transparent;">
-						<h3>@item.ProductName</h3>
-							<h3 style="color:white; margin-top:-5px">Float: @Decimal.Parse(@item.ItemFloat).ToString("F8")</h3>
-							<h2 class="price" style="font-family: 'Arial', sans-serif;">
-								@Math.Truncate(item.ActualPrice)
-											<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small> £
-							</h2>
-							<button href="#" class="button-20">Add To Card</button>
-					</div>
-				</div>
-			}
-		}
+			<div id="itemContainer">
+				@Html.Partial("_ItemPartial", Model)
+			</div>
 		<div class="cd-fail-message">No results found</div>
 		</section> <!-- cd-gallery -->
 	</div>

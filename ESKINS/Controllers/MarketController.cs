@@ -79,7 +79,7 @@ namespace ESKINS.Controllers
 			try
 			{
 				itemsModels = itemLogic.GetBestDeals(itemsModels);
-				return View("Index", itemsModels);
+				return PartialView("_ItemPartial", itemsModels);
 			}
 			catch (Exception ex)
 			{
@@ -94,7 +94,7 @@ namespace ESKINS.Controllers
 			try
 			{
 				itemsModels = itemLogic.GetNewestFirst(itemsModels);
-				return View("Index", itemsModels);
+				return PartialView("_ItemPartial", itemsModels);
 			}
 			catch (Exception ex)
 			{
@@ -109,7 +109,7 @@ namespace ESKINS.Controllers
 			try
 			{
 				itemsModels = itemLogic.GetOldestFirst(itemsModels);
-				return View("Index", itemsModels);
+				return PartialView("_ItemPartial", itemsModels);
 			}
 			catch (Exception ex)
 			{
@@ -124,7 +124,7 @@ namespace ESKINS.Controllers
 			try
 			{
 				itemsModels = itemLogic.GetLowestPriceFirst(itemsModels);
-				return View("Index", itemsModels);
+				return PartialView("_ItemPartial", itemsModels);
 			}
 			catch (Exception ex)
 			{
@@ -139,7 +139,8 @@ namespace ESKINS.Controllers
 			try
 			{
 				itemsModels = itemLogic.GetHighestPriceFirst(itemsModels);
-				return View("Index", itemsModels);
+				//return View("Index", itemsModels);
+				return PartialView("_ItemPartial", itemsModels);
 			}
 			catch (Exception ex)
 			{
