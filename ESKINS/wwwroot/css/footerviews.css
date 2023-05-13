@@ -1,0 +1,77 @@
+﻿header {
+    background-color: #181716;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.h21 {
+    margin-top: 0;
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.h2 {
+    margin-top: 0;
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.container1 {
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+    padding: 32px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 800px;
+}
+
+h1 {
+    color: #333;
+}
+
+.job-description {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+li {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.how-to-apply {
+    margin-top: 30px;
+}
+
+    .how-to-apply a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .how-to-apply a:hover {
+            text-decoration: underline;
+        }
