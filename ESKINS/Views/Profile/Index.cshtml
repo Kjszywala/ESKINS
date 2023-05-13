@@ -1,237 +1,175 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ESKINS.DbServices.Models.UsersModels
 @{
     Layout = "_MainPageLayout";
 }
 @section head{
-    @*<link href="~/css/privacy.css" type="text/css" rel="stylesheet" />*@
+    <link href="~/css/footerviews.css" type="text/css" rel="stylesheet" />
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <style>
-body{
-    background-image: url('../../img/leftsideanty.jpg');
-}
-.form-control:focus {
-box-shadow: none;
-border-color: #BA68C8
-}
-
-.profile-button {
-background: rgb(99, 39, 120);
-box-shadow: none;
-border: none
-}
-
-.profile-button:hover {
-background: white
-}
-
-.profile-button:focus {
-background: white;
-box-shadow: none
-}
-
-.profile-button:active {
-background: white;
-box-shadow: none
-}
-
-.back:hover {
-color: white;
-cursor: pointer
-}
-
-.labels {
-font-size: 11px;
-color:white;
-}
-
-.add-experience:hover {
-background: #BA68C8;
-cursor: pointer;
-border: solid 1px #BA68C8
-}
-
-input[type=text]{
-background-color: #333333;
-color: white;
-}
-
-#divProfile{
-background-color: transparent;
-border-radius: 10px;
-margin: auto;
-padding: 10px;
-}
-
-#divProfileSetings{
-margin: auto;
-width: 50%;
-padding: 10px;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.wrapper {
-    width: 50%;
-    border-radius: 10px;
-}
-
-.tabs {
-    position: relative;
-    margin: 3rem 0;
-    background: rgb(39, 39, 39);
-    height: 500px;
-    border-radius: 10px;
-}
-
-.tabs::before,
-.tabs::after {
-    content: "";
-    display: table;
-}
-
-.tabs::after {
-    clear: both;
-}
-
-.tab {
-    float: left;
-        height: 500px;
-}
-
-.tab-switch {
-    display: none;
-}
-
-.tab-label {
-    position: relative;
-    display: block;
-    line-height: 2.75em;
-    height: 3em;
-    padding: 0 1.618em;
-    background: #1b1b1b;
-    border-right: 0.125rem solid #8f00ff;
-    color: #fff;
-    cursor: pointer;
-    top: 0;
-    transition: all 0.25s;
-}
-
-.tab-label:hover {
-    top: -0.25rem;
-    transition: top 0.25s;
-}
-
-.tab-content {
-    height: auto;
-    position: absolute;
-    z-index: 1;
-    top: 2.75em;
-    left: 0;
-    padding: 1.618rem;
-    background-color: #333333;
-    color: #2c3e50;
-    border-bottom: 0.25rem solid #bdc3c7;
-    opacity: 0;
-    transition: all 0.35s;
-    border-radius: 10px;
-}
-
-.tab-switch:checked + .tab-label {
-    background: #333333;
-    color: white;
-    border-bottom: 0;
-    border-right: 0.125rem solid #fff;
-    transition: all 0.35s;
-    z-index: 1;
-    top: -0.0625rem;
-}
-
-.tab-switch:checked + label + .tab-content {
-    z-index: 2;
-    opacity: 1;
-    transition: all 0.35s;
-}
+    input[type="text"] {
+        margin-top: 2px;
+        width: 200px;
+    }
 </style>
-<br />
-<div style="height: 900px;">
-    <div class="wrapper" id="divProfile">
-        <div class="tabs">
-            <div class="tab">
-                <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-                <label for="tab-1" class="tab-label">Tab One</label>
-                <div class="tab-content">
-                    <div id="divProfileSetings">
-                        <div class="p-3 py-5">
-                            <div class="d-flex justify-content-between align-items-center mb-3" style="color: white;">
-                                <h4 class="text-right">Profile Settings</h4>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                                <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-6"><label class="label">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                                <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                            </div>
-                            <br />
-                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+<body>
+    <header>
+        <h2>Edit Profile</h2>
+    </header>
+    <br />
+    <br />
+    <div class="container1">
+        <center>
+            @if (!string.IsNullOrEmpty(ViewBag.Message))
+            {
+                <div class="alert alert-success">
+                    @ViewBag.Message
+                </div>
+            }
+        @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="itemContainers">
+                <div class="row justify-content-center" style="margin-left: 175px">
+                    <input type="hidden" id="ids" name="ids" value="@Model.Id" />
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="tab">
-                <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-                <label for="tab-2" class="tab-label">Tab Two</label>
-                <div class="tab-content">My father now and then sending me small sums of money, I laid them out in learning navigation, and other parts of the mathematics, useful to those who intend to travel, as I always believed it would be, some time or other, my fortune to do. </div>
-            </div>
-            <div class="tab">
-                <input type="radio" name="css-tabs" id="tab-3" class="tab-switch">
-                <label for="tab-3" class="tab-label">Change Settings</label>
-                <div class="tab-content">
-                    <div id="divProfileSetings">
-                        <div class="p-3 py-5">
-                            <div class="d-flex justify-content-between align-items-center mb-3" style="color: white;">
-                                <h4 class="text-right">Profile Settings</h4>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                                <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                                <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-6"><label class="label">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                                <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                            </div>
-                            <br />
-                            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
-                        </div>
+                <br>
+                <center>
+                    <div class="form-group">
+                        <input type="submit" value="Edit Profile" class="btn btn-success" style="width: 100px;" />
                     </div>
-                </div>
+                </center>
             </div>
-        </div>
+        }
+        </center>
     </div>
-    <br /><br />
-</div>
-<br />
-<br />
+    <br />
+</body>
+</html>
+<style>
+    header {
+        background-color: #181716;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .h21 {
+        margin-top: 0;
+        font-size: 36px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: white;
+    }
+
+    .h2 {
+        margin-top: 0;
+        font-size: 36px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: white;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
+
+    .container1 {
+        border-radius: 8px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+        padding: 32px;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 800px;
+        text-align:center;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .job-description {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        color: white;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+
+    li {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .how-to-apply {
+        margin-top: 30px;
+    }
+
+    .how-to-apply a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .how-to-apply a:hover {
+        text-decoration: underline;
+    }
+
+</style>

@@ -58,11 +58,11 @@ namespace ESKINS.Controllers
         {
             try
             {
-                //if (!Config.isConfirmed)
-                //{
-                //    ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-                //    return View("/Views/Account/Index.cshtml");
-                //}
+                if (!Config.isConfirmed)
+                {
+                    ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+                    return View("/Views/Account/Index.cshtml");
+                }
                 var model = itemLogic.GetBestDeals();
                 return View(model);
             }
@@ -123,11 +123,11 @@ namespace ESKINS.Controllers
 		[HttpPost]
 		public async Task<IActionResult> DetailsAsync(ItemsModels item)
 		{
-            //if (!Config.isConfirmed)
-            //{
-            //    ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-            //    return View("/Views/Account/Index.cshtml");
-            //}
+            if (!Config.isConfirmed)
+            {
+                ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+                return View("/Views/Account/Index.cshtml");
+            }
             var model = itemServices.GetAsync(item.Id).Result;
 
             model.Category = await categoriesServices.GetAsync(model.CategoryId.Value);
