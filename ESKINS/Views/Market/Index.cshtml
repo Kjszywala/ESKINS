@@ -7,33 +7,74 @@
 	<link href="~/css/style.css" type="text/css" rel="stylesheet" />
 	<link href="~/css/card.css" type="text/css" rel="stylesheet" />
 }
-<script>
-	function redirectToAction() {
-		window.location.href = '@Url.Action("Index", "Market")';
-	}
-</script>
 <div class="filtering" style="height:auto;">
-	<hr style="margin:auto;" />
-	<div class="box" style="text-align:center;">
-		<ul>
-			<li style="margin-right:15px;">
-				<button class="button-42" id="myModalBtn" onClick="redirectToAction()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+	<div class="box1" style="text-align:center;">
+		<ul style="display: flex; justify-content: center; align-items: center; list-style-type: none;">
+			<li>
+				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("Index", "Market")'"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
 			</li>
 			<li>
-				<select style="width:auto;">
-					<option>Recommended for you</option>
-					<option>Best Deals</option>
-					<option>Best Discount</option>
-					<option>Date: Newest First</option>
-					<option>Date: Oldest First</option>
-					<option>Price: Lowest First</option>
-					<option>Price: Highest First</option>
-				</select>
+				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("BestDeals", "Market")'"><span class="bi bi-percent"></span> Best Discount</button>
+			</li>
+			<li>
+				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("Newest", "Market")'"><span class="bi bi-arrow-down"></span> Newest First</button>
+			</li>
+			<li>
+				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("Oldest", "Market")'"><span class="bi bi-arrow-up"></span> Oldest First</button>
+			</li>
+			<li>
+				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("LowestPrice", "Market")'"><span class="bi bi-caret-down-fill"></span> Lowest First</button>
+			</li>
+			<li>
+				<button class="button-27" id="myModalBtn" onclick="location.href='@Url.Action("HighestPrice", "Market")'"><span class="bi bi-caret-up-fill"></span> Highest First</button>
 			</li>
 		</ul>
 	</div>
 </div> 
 <style>
+
+	.button-27 {
+		margin: 6px;
+		appearance: none;
+		background-color: #101010;
+		border: 2px solid #1A1A1A;
+		border-radius: 15px;
+		box-sizing: border-box;
+		color: #FFFFFF;
+		cursor: pointer;
+		display: inline-block;
+		font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+		font-size: 16px;
+		font-weight: 600;
+		line-height: normal;
+		margin: 0;
+		min-height: 40px;
+		min-width: 0;
+		outline: none;
+		padding: 16px 24px;
+		text-align: center;
+		text-decoration: none;
+		transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+		user-select: none;
+		-webkit-user-select: none;
+		touch-action: manipulation;
+		width: 100%;
+		will-change: transform;
+	}
+
+		.button-27:disabled {
+			pointer-events: none;
+		}
+
+		.button-27:hover {
+			box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+			transform: translateY(-2px);
+		}
+
+		.button-27:active {
+			box-shadow: none;
+			transform: translateY(0);
+		}
 .showDetails{
 	margin-left: -30px;
 	margin-top: -90px;
@@ -41,7 +82,6 @@
 </style>
 @*<button class="button-20" style="margin-left:-30px;margin-top:-90px;" id="myModalBtn"><i class="bi bi-info-circle"></i></button>*@
 <div id="myModalContainer"></div>
-<hr style="border-color: black; margin: 0px;">
 <main class="cd-main-content">
 	<div style="margin-left: 100px;">
 		<section class="cd-gallery">

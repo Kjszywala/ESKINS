@@ -21,7 +21,7 @@ namespace ESKINS.Controllers
         IPhasesServices phasesServices;
         IQualitiesServices qualitiesServices;
         IExteriorsServices exteriorsServices;
-
+        public static List<ItemsModels> itemsModels;
         #endregion
 
         #region MyRegion
@@ -50,7 +50,7 @@ namespace ESKINS.Controllers
             phasesServices = _phasesServices;
             qualitiesServices = _qualitiesServices;
             exteriorsServices = _exteriorsServices;
-        }
+		}
         #endregion
 
         #region Methods
@@ -58,13 +58,13 @@ namespace ESKINS.Controllers
         {
             try
             {
-                if (!Config.isConfirmed)
-                {
-                    ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-                    return View("/Views/Account/Index.cshtml");
-                }
-                var model = itemLogic.GetBestDeals();
-                return View(model);
+				if (!Config.isConfirmed)
+				{
+					ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+					return View("/Views/Account/Index.cshtml");
+				}
+				itemsModels = itemServices.GetAllAsync().Result;
+                return View(itemsModels);
             }
             catch (Exception ex)
             {
@@ -74,51 +74,80 @@ namespace ESKINS.Controllers
 
         }
 
-        public async Task<IActionResult> SortAsync(string value) 
-        {
-            try
-            {
-                var model = new List<ItemsModels>();
-                switch (value)
-                {
-                    case "Recomended":
-                        {
-                            model = itemLogic.GetBestDeals();
-                            break;
-                        }
-                    case "Newest":
-                        {
-                            model = itemLogic.GetNewestFirst();
-                            break;
-                        }
-                    case "Oldest":
-                        {
-                            model = itemLogic.GetOldestFirst();
-                            break;
-                        }
-                    case "LowerPrice":
-                        {
-                            model = itemLogic.GetLowestPriceFirst();
-                            break;
-                        }
-                    case "HigherPrice":
-                        {
-                            model = itemLogic.GetHighestPriceFirst();
-                            break;
-                        }
-                    default:
-                    {
-                        return View();
-                    }
-                }
-                return View("Index", model);
-            }
-            catch (Exception ex)
-            {
-                await errorLogs.Error(ex);
-                return View("Index");
-            }
-        }
+		public async Task<IActionResult> BestDeals()
+		{
+			try
+			{
+				itemsModels = itemLogic.GetBestDeals(itemsModels);
+				return View("Index", itemsModels);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+
+		}
+
+		public async Task<IActionResult> Newest()
+		{
+			try
+			{
+				itemsModels = itemLogic.GetNewestFirst(itemsModels);
+				return View("Index", itemsModels);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+
+		}
+
+		public async Task<IActionResult> Oldest()
+		{
+			try
+			{
+				itemsModels = itemLogic.GetOldestFirst(itemsModels);
+				return View("Index", itemsModels);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+
+		}
+
+		public async Task<IActionResult> LowestPrice()
+		{
+			try
+			{
+				itemsModels = itemLogic.GetLowestPriceFirst(itemsModels);
+				return View("Index", itemsModels);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+
+		}
+
+		public async Task<IActionResult> HighestPrice()
+		{
+			try
+			{
+				itemsModels = itemLogic.GetHighestPriceFirst(itemsModels);
+				return View("Index", itemsModels);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> DetailsAsync(ItemsModels item)

@@ -48,11 +48,11 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetBestDeals()
+        public List<ItemsModels> GetBestDeals(List<ItemsModels> list)
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.Discount).ToList();
+                var model = list.OrderByDescending(item => item.Discount).ToList();
 
                 return model;
             }
@@ -63,11 +63,11 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetNewestFirst()
+        public List<ItemsModels> GetNewestFirst(List<ItemsModels> list)
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.ModificationDate).ToList();
+                var model = list.OrderByDescending(item => item.ModificationDate).ToList();
 
                 return model;
             }
@@ -78,11 +78,11 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetOldestFirst()
+        public List<ItemsModels> GetOldestFirst(List<ItemsModels> list)
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderBy(item => item.ModificationDate).ToList();
+                var model = list.OrderBy(item => item.ModificationDate).ToList();
 
                 return model;
             }
@@ -93,11 +93,11 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetLowestPriceFirst()
+        public List<ItemsModels> GetLowestPriceFirst(List<ItemsModels> list)
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderBy(item => item.ActualPrice).ToList();
+                var model = list.OrderBy(item => item.ActualPrice).ToList();
 
                 return model;
             }
@@ -108,11 +108,11 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetHighestPriceFirst()
+        public List<ItemsModels> GetHighestPriceFirst(List<ItemsModels> list)
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.ActualPrice).ToList();
+                var model = list.OrderByDescending(item => item.ActualPrice).ToList();
 
                 return model;
             }
@@ -122,6 +122,21 @@ namespace ESKINS.BusinessLogic.BusinessLogic
             }
         }
 
-        #endregion
-    }
+		/// <Inheritdoc />
+		public List<ItemsModels> GetBestDiscount(List<ItemsModels> list)
+		{
+			try
+			{
+				var model = list.OrderByDescending(item => item.Discount).ToList();
+
+				return model;
+			}
+			catch (Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+
+		#endregion
+	}
 }
