@@ -137,6 +137,21 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 			}
 		}
 
+		/// <Inheritdoc />
+		public List<ItemsModels> SearchItems(List<ItemsModels> list, string text)
+		{
+			try
+			{
+				//var model = list.Where(i => i.ProductName.Contains(text)).ToList();
+				var model = list.Where(i => i.ProductName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+				return model;
+			}
+			catch (Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+
 		#endregion
 	}
 }

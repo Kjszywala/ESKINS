@@ -9,7 +9,7 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// Get next serial number from db.
         /// </summary>
         /// <returns>next serial number</returns>
-        int GetNextSerialNumber();
+        public int GetNextSerialNumber();
 
 		/// <summary>
 		/// Get items with best discount sorted by descending.
@@ -47,6 +47,13 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <returns></returns>
 		public List<ItemsModels> GetBestDiscount(List<ItemsModels> list);
 
+        /// <summary>
+        /// Search for an items with given characters in the item name.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+		public List<ItemsModels> SearchItems(List<ItemsModels> list, string text);
 
 	}
 }

@@ -101,7 +101,7 @@
 				<h4>Search</h4>
 
 				<div class="cd-filter-content" style="display:none;">
-					<input type="search" placeholder="Search Any Skin Here...">
+					<input type="search" id="searchInput" placeholder="Search Any Skin Here..." oninput="searchItems()">
 				</div> <!-- cd-filter-content -->
 			</div> <!-- cd-filter-block -->
 			<div class="cd-filter-block">
@@ -268,6 +268,30 @@
 </main> <!-- cd-main-content -->
 
 <script>
+	// search items function
+	var searchTimeout; // Variable to store the timeout
+
+	function searchItems() {
+		clearTimeout(searchTimeout); // Clear any existing timeout
+
+		searchTimeout = setTimeout(function () {
+			var searchQuery = document.getElementById('searchInput').value;
+
+			// Make an AJAX call to search for items
+			$.ajax({
+				url: '@Url.Action("SearchItems", "Market")',
+				type: 'POST',
+				data: { query: searchQuery },
+				success: function (data) {
+					// Update the item container with the search results
+					$('#itemContainer').html(data);
+				},
+				error: function () {
+					alert('An error occurred while searching for items.');
+				}
+			});
+		}, 500); // Delay the search by 500 milliseconds (adjust as needed)
+	}
 
 	//Button click event listener
 	document.getElementById("highest").addEventListener("click", function () {

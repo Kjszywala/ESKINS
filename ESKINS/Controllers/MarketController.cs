@@ -22,9 +22,11 @@ namespace ESKINS.Controllers
         IQualitiesServices qualitiesServices;
         IExteriorsServices exteriorsServices;
         public static List<ItemsModels> itemsModels;
+
         #endregion
 
         #region MyRegion
+
         public MarketController(
             IItemLogic _itemLogic,
             IErrorLogsServices _errorLogs,
@@ -51,6 +53,7 @@ namespace ESKINS.Controllers
             qualitiesServices = _qualitiesServices;
             exteriorsServices = _exteriorsServices;
 		}
+
         #endregion
 
         #region Methods
@@ -168,6 +171,17 @@ namespace ESKINS.Controllers
             model.Exterior = await exteriorsServices.GetAsync(model.ExteriorId.Value);
             model.User = await usersServices.GetAsync(model.UserId.Value);
             return View(model);
+		}
+
+		public ActionResult SearchItems(string query)
+		{
+			var list = itemsModels;
+			if (string.IsNullOrEmpty(query))
+			{
+				return PartialView("_ItemPartial", itemsModels);
+			}
+			list = itemLogic.SearchItems(list, query);
+			return PartialView("_ItemPartial", list);
 		}
 
 		#endregion
