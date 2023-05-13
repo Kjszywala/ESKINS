@@ -14,7 +14,6 @@ namespace ESKINS.Controllers
         IItemsServices itemServices;
         IErrorLogsServices errorLogs;
         ICategoriesServices categoriesServices;
-        IErrorLogsServices errorLogsServices;
         IItemLocationsServices itemLocationsServices;
         IUsersServices usersServices;
         IItemLogsServices itemLogsServices;
@@ -59,10 +58,10 @@ namespace ESKINS.Controllers
         {
             try
             {
-                //if (!Config.isConfirmed) 
+                //if (!Config.isConfirmed)
                 //{
-                //	ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-                //	return View("/Views/Account/Index.cshtml");
+                //    ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+                //    return View("/Views/Account/Index.cshtml");
                 //}
                 var model = itemLogic.GetBestDeals();
                 return View(model);
@@ -124,12 +123,12 @@ namespace ESKINS.Controllers
 		[HttpPost]
 		public async Task<IActionResult> DetailsAsync(ItemsModels item)
 		{
-			//if (!Config.isConfirmed) 
-			//{
-			//	ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-			//	return View("/Views/Account/Index.cshtml");
-			//}
-			var model = itemServices.GetAsync(item.Id).Result;
+            //if (!Config.isConfirmed)
+            //{
+            //    ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+            //    return View("/Views/Account/Index.cshtml");
+            //}
+            var model = itemServices.GetAsync(item.Id).Result;
 
             model.Category = await categoriesServices.GetAsync(model.CategoryId.Value);
             model.ItemLocation = await itemLocationsServices.GetAsync(model.ItemLocationId.Value);
@@ -138,8 +137,7 @@ namespace ESKINS.Controllers
             model.Quality = await qualitiesServices.GetAsync(model.QualityId.Value);
             model.Exterior = await exteriorsServices.GetAsync(model.ExteriorId.Value);
             model.User = await usersServices.GetAsync(model.UserId.Value);
-            
-            return PartialView(model);
+            return View(model);
 		}
 
 		#endregion

@@ -1,4 +1,5 @@
-﻿using ESKINS.Models;
+﻿using ESKINS.DbServices.Interfaces;
+using ESKINS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,16 +7,19 @@ namespace ESKINS.Controllers
 {
     public class HomeController : Controller
     {
+        IItemsServices itemsServices;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IItemsServices _itemsServices)
         {
+            itemsServices = _itemsServices;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = itemsServices.GetAllAsync().Result;
+            return View(model);
         }
 		public IActionResult IndexMain()
 		{

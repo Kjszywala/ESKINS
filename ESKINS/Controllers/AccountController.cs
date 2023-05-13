@@ -51,6 +51,7 @@ namespace ESKINS.Controllers
                     if (email.Trim() == item.Email.Trim() && password.Trim() == item.Password.Trim())
                     {
                         Config.isConfirmed = true;
+                        Config.UserId = item.Id;
                         // redirect the user to the protected page
                         return RedirectToAction("Index", "Home");
                     }
