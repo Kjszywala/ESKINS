@@ -1,0 +1,34 @@
+﻿@model List<ESKINS.DbServices.Models.ItemsModels>
+
+<div class="scroll" style="padding: 20px;">
+	<br />
+	@{
+		foreach (var item in Model)
+		{
+			<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 20px; height: 200px; flex: 0 0 200px;">
+				<div class="imgBox" style="width:70px; margin-left: 60px;">
+					<div>
+						<form method="post" action="@Url.Action("Details", "Market")">
+							<input type="hidden" name="item.Id" value="@item.Id" />
+							<button type="submit" class="button-20 bi bi-info-circle showDetails"></button>
+						</form>
+					</div>
+					<div style="height: 100px;display: flex;justify-content: center; align-items: center;">
+						@if (item.ItemImage != null)
+						{
+							<img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" style="width: 100px; height: auto; background-color:transparent; border: none; margin-left:10px;" />
+						}
+					</div>
+				</div>
+				<div class="contentBox">
+					<h3>@item.ProductName</h3>
+					<h3 style="color:white; margin-top:-5px">Float: @Decimal.Parse(@item.ItemFloat).ToString("F8")</h3>
+					<h2 class="price" style="font-family: 'Arial', sans-serif;">
+						@Math.Truncate(item.ActualPrice)
+						<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small> £
+					</h2>
+				</div>
+			</div>
+		}
+	}
+</div>

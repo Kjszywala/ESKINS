@@ -141,7 +141,6 @@ namespace ESKINS.Controllers
 			try
 			{
 				itemsModels = itemLogic.GetHighestPriceFirst(itemsModels);
-				//return View("Index", itemsModels);
 				return PartialView("_ItemPartial", itemsModels);
 			}
 			catch (Exception ex)
@@ -155,44 +154,68 @@ namespace ESKINS.Controllers
 		[HttpPost]
 		public async Task<IActionResult> DetailsAsync(ItemsModels item)
 		{
-            if (!Config.isConfirmed)
-            {
-                ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-                return View("/Views/Account/Index.cshtml");
-            }
-            var model = itemServices.GetAsync(item.Id).Result;
+			try
+			{
+				if (!Config.isConfirmed)
+				{
+					ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+					return View("/Views/Account/Index.cshtml");
+				}
+				var model = itemServices.GetAsync(item.Id).Result;
 
-            model.Category = await categoriesServices.GetAsync(model.CategoryId.Value);
-            model.ItemLocation = await itemLocationsServices.GetAsync(model.ItemLocationId.Value);
-            model.ItemCollection = await itemCollectionsServices.GetAsync(model.ItemCollectionId.Value);
-            model.Phase = await phasesServices.GetAsync(model.PhaseId.Value);
-            model.Quality = await qualitiesServices.GetAsync(model.QualityId.Value);
-            model.Exterior = await exteriorsServices.GetAsync(model.ExteriorId.Value);
-            model.User = await usersServices.GetAsync(model.UserId.Value);
-            return View(model);
+				model.Category = await categoriesServices.GetAsync(model.CategoryId.Value);
+				model.ItemLocation = await itemLocationsServices.GetAsync(model.ItemLocationId.Value);
+				model.ItemCollection = await itemCollectionsServices.GetAsync(model.ItemCollectionId.Value);
+				model.Phase = await phasesServices.GetAsync(model.PhaseId.Value);
+				model.Quality = await qualitiesServices.GetAsync(model.QualityId.Value);
+				model.Exterior = await exteriorsServices.GetAsync(model.ExteriorId.Value);
+				model.User = await usersServices.GetAsync(model.UserId.Value);
+				return View(model);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
 		}
 
 		public ActionResult SearchItems(string query)
 		{
-			var list = itemsModels;
-			if (string.IsNullOrEmpty(query))
+			try
 			{
-				return PartialView("_ItemPartial", itemsModels);
+				var list = itemsModels;
+				if (string.IsNullOrEmpty(query))
+				{
+					return PartialView("_ItemPartial", itemsModels);
+				}
+				list = itemLogic.SearchItems(list, query);
+				return PartialView("_ItemPartial", list);
 			}
-			list = itemLogic.SearchItems(list, query);
-			return PartialView("_ItemPartial", list);
+			catch (Exception ex)
+			{
+				errorLogs.Error(ex);
+				return View("Index");
+			}
 		}
 
 		[System.Web.Http.HttpPost]
 		public ActionResult SearchCategories(string[] checkedValues)
 		{
-			var list = itemsModels;
-			if (checkedValues.Length == 0)
+			try
 			{
-				return PartialView("_ItemPartial", itemsModels);
+				var list = itemsModels;
+				if (checkedValues.Length == 0)
+				{
+					return PartialView("_ItemPartial", itemsModels);
+				}
+				list = itemLogic.FilterCategories(list, checkedValues);
+				return PartialView("_ItemPartial", list);
 			}
-			list = itemLogic.FilterCategories(list, checkedValues);
-			return PartialView("_ItemPartial", list);
+			catch (Exception ex)
+			{
+				errorLogs.Error(ex);
+				return View("Index");
+			}
 		}
 		#endregion
 	}
