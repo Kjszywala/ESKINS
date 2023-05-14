@@ -1,0 +1,14 @@
+﻿@model List<ESKINS.DbServices.Models.QualitiesModels>
+<div class="cd-filter-block">
+	<h4>Unique Items</h4>
+
+	<ul class="cd-filter-content cd-filters list" style="display:none;">
+		@foreach(var item in Model)
+		{
+			<li>
+				<input type="checkbox" id="@item.Quality" value="@item.Quality">
+				<label class="checkbox-label" for="@item.Quality">@item.Quality</label>
+			</li>
+		}
+	</ul> <!-- cd-filter-content -->
+</div> <!-- cd-filter-block -->

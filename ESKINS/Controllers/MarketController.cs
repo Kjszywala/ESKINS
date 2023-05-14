@@ -1,7 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -61,11 +60,11 @@ namespace ESKINS.Controllers
         {
             try
             {
-				if (!Config.isConfirmed)
-				{
-					ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-					return View("/Views/Account/Index.cshtml");
-				}
+				//if (!Config.isConfirmed)
+				//{
+				//	ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+				//	return View("/Views/Account/Index.cshtml");
+				//}
 				itemsModels = itemServices.GetAllAsync().Result;
                 return View(itemsModels);
             }
@@ -184,6 +183,17 @@ namespace ESKINS.Controllers
 			return PartialView("_ItemPartial", list);
 		}
 
+		[System.Web.Http.HttpPost]
+		public ActionResult SearchCategories(string[] checkedValues)
+		{
+			var list = itemsModels;
+			if (checkedValues.Length == 0)
+			{
+				return PartialView("_ItemPartial", itemsModels);
+			}
+			list = itemLogic.FilterCategories(list, checkedValues);
+			return PartialView("_ItemPartial", list);
+		}
 		#endregion
 	}
 }

@@ -55,5 +55,13 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <returns></returns>
 		public List<ItemsModels> SearchItems(List<ItemsModels> list, string text);
 
+        /// <summary>
+        /// Search for categories.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="selectedCategories"></param>
+        /// <returns></returns>
+        public List<ItemsModels> FilterCategories(List<ItemsModels> list, string[] selectedCategories);
+
 	}
 }

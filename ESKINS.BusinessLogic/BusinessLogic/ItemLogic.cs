@@ -1,6 +1,7 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
+using System.Linq;
 
 namespace ESKINS.BusinessLogic.BusinessLogic
 {
@@ -145,6 +146,25 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 				//var model = list.Where(i => i.ProductName.Contains(text)).ToList();
 				var model = list.Where(i => i.ProductName.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
 				return model;
+			}
+			catch (Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+
+		/// <Inheritdoc />
+		public List<ItemsModels> FilterCategories(List<ItemsModels> list, string[] selectedCategories)
+		{
+			try
+			{
+				// Filter by selected categories
+				if (selectedCategories != null && selectedCategories.Any())
+				{
+					return list.Where(i => selectedCategories.Contains(i.Category.CategoryDescription)).ToList();
+				}
+
+				return list;
 			}
 			catch (Exception e)
 			{

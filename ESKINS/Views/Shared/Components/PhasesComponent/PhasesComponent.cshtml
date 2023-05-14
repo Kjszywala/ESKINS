@@ -1,0 +1,51 @@
+﻿@model List<ESKINS.DbServices.Models.PhasesModels>
+<div class="cd-filter-block">
+	<h4>Phase</h4>
+	<ul class="cd-filter-content cd-filters list" style="display:none;">
+		@foreach (var item in Model)
+		{
+			<li>
+				<input type="checkbox" id="@item.Phase" value="@item.Phase">
+				<label class="checkbox-label" for="@item.Phase">@item.Phase</label>
+			</li>
+		}
+		@*<li>
+			<input class="filter" data-filter=".check1" type="checkbox" id="checkbox16">
+			<label class="checkbox-label" for="checkbox16">All</label>
+		</li>
+
+		<li>
+			<input class="filter" data-filter=".check2" type="checkbox" id="checkbox17">
+			<label class="checkbox-label" for="checkbox17">Phase 1</label>
+		</li>
+
+		<li>
+			<input class="filter" data-filter=".check3" type="checkbox" id="checkbox18">
+			<label class="checkbox-label" for="checkbox18">Phase 2</label>
+		</li>
+		<li>
+			<input class="filter" data-filter=".check4" type="checkbox" id="checkbox19">
+			<label class="checkbox-label" for="checkbox19">Phase 3</label>
+		</li>
+		<li>
+			<input class="filter" data-filter=".check5" type="checkbox" id="checkbox20">
+			<label class="checkbox-label" for="checkbox20">Phase 4</label>
+		</li>
+		<li>
+			<input class="filter" data-filter=".check6" type="checkbox" id="checkbox21">
+			<label class="checkbox-label" for="checkbox21">Ruby</label>
+		</li>
+		<li>
+			<input class="filter" data-filter=".check7" type="checkbox" id="checkbox22">
+			<label class="checkbox-label" for="checkbox22">Emerald</label>
+		</li>
+		<li>
+			<input class="filter" data-filter=".check8" type="checkbox" id="checkbox23">
+			<label class="checkbox-label" for="checkbox23">Sapphire</label>
+		</li>
+		<li>
+			<input class="filter" data-filter=".check9" type="checkbox" id="checkbox24">
+			<label class="checkbox-label" for="checkbox24">Black Perl</label>
+		</li>*@
+	</ul> <!-- cd-filter-content -->
+</div> <!-- cd-filter-block -->
