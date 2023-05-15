@@ -56,6 +56,7 @@
 		margin-left: -30px;
 		margin-top: -90px;
 	}
+
 </style>
 <div class="filtering" style="height:auto;">
 	<div class="box1" style="text-align:center;">
@@ -116,32 +117,29 @@
 </main> <!-- cd-main-content -->
 
 <script>
-	//Search categories
-	//$(document).ready(function () {
-	//	// Handler for checkbox change event
-	//	$('.categories').change(function () {
-	//		// Collect checked values
-	//		var checkedValues = $('.categories:checked').map(function () {
-	//			return $(this).val();
-	//		}).get();
+	$(document).ready(function () {
+		// Attach event listener to the category checkboxes
+		$('.category-checkbox').change(function () {
+			// Get the checked checkboxes
+			var checkedCategories = $('.category-checkbox:checked').map(function () {
+				return $(this).val();
+			}).get();
 
-	//		// Send AJAX request to the controller
-	//		$.ajax({
-	//			url: '@Url.Action("SearchCategories", "Market")'
-	//			type: 'POST',
-	//			data: { values: checkedValues },
-	//			success: function (result) {
-	//				// Handle the response from the controller
-	//				console.log(result);
-	//			},
-	//			error: function (error) {
-	//				// Handle any errors that occur during the AJAX request
-	//				console.log(error);
-	//			}
-	//		});
-	//	});
-	//});
-
+			// Send AJAX request to the server
+			$.ajax({
+				url: '@Url.Action("SearchCategories", "Market")',
+				type: 'POST',
+				data: { categories: checkedCategories },
+				success: function (response) {
+					// Handle the response from the server
+					// Update the UI with the filtered items
+				},
+				error: function (xhr, status, error) {
+					// Handle the error
+				}
+			});
+		});
+	});
 	// search items function
 	var searchTimeout; // Variable to store the timeout
 

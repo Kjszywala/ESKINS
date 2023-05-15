@@ -66,6 +66,10 @@ namespace ESKINS.Controllers
 				//	return View("/Views/Account/Index.cshtml");
 				//}
 				itemsModels = itemServices.GetAllAsync().Result;
+				foreach ( var item in itemsModels )
+				{
+					item.ActualPrice = item.ActualPrice - (item.ActualPrice * item.Discount);
+				}
                 return View(itemsModels);
             }
             catch (Exception ex)
@@ -199,16 +203,20 @@ namespace ESKINS.Controllers
 		}
 
 		[System.Web.Http.HttpPost]
-		public ActionResult SearchCategories(string[] checkedValues)
+		public async Task<ActionResult> SearchCategoriesAsync(List<string> categories)
 		{
 			try
 			{
 				var list = itemsModels;
-				if (checkedValues.Length == 0)
+				foreach (var item in list)
+				{
+					item.Category = await categoriesServices.GetAsync(item.CategoryId.Value);
+				}
+				if (categories.Count == 0)
 				{
 					return PartialView("_ItemPartial", itemsModels);
 				}
-				list = itemLogic.FilterCategories(list, checkedValues);
+				list = itemLogic.FilterCategories(list, categories);
 				return PartialView("_ItemPartial", list);
 			}
 			catch (Exception ex)

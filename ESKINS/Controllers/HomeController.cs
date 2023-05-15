@@ -1,4 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
+using ESKINS.DbServices.Models;
 using ESKINS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -19,7 +20,11 @@ namespace ESKINS.Controllers
         public IActionResult Index()
         {
             var model = itemsServices.GetAllAsync().Result;
-            return View(model);
+			foreach (var item in model)
+			{
+				item.ActualPrice = item.ActualPrice - (item.ActualPrice * item.Discount);
+			}
+			return View(model);
         }
 		public IActionResult IndexMain()
 		{

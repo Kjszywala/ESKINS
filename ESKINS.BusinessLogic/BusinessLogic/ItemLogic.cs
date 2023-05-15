@@ -154,7 +154,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 		}
 
 		/// <Inheritdoc />
-		public List<ItemsModels> FilterCategories(List<ItemsModels> list, string[] selectedCategories)
+		public List<ItemsModels> FilterCategories(List<ItemsModels> list, List<string> selectedCategories)
 		{
 			try
 			{

@@ -11,7 +11,7 @@ namespace ESKINS.Controllers
 		IItemsServices itemsServices;
 		IItemLogic itemLogic;
 		IErrorLogsServices errorLogsServices;
-		public static List<ItemsModels> itemsModels;
+		public static List<ItemsModels>? itemsModels;
 
 		public SellController(IItemsServices _itemsServices, IItemLogic _itemLogic, IErrorLogsServices _errorLogsServices)
 		{
@@ -21,11 +21,11 @@ namespace ESKINS.Controllers
 		}
 		public IActionResult Index()
 		{
-			if (!Config.isConfirmed)
-			{
-				ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-				return View("/Views/Account/Index.cshtml");
-			}
+			//if (!Config.isConfirmed)
+			//{
+			//	ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+			//	return View("/Views/Account/Index.cshtml");
+			//}
 			var model = itemsServices.GetAllAsync().Result;
 			var userItems = model.Where(i => i.UserId == Config.UserId).ToList();
 			itemsModels = userItems;
@@ -39,10 +39,10 @@ namespace ESKINS.Controllers
 				var list = itemsModels;
 				if (string.IsNullOrEmpty(query))
 				{
-					return PartialView("_ItemPartial", itemsModels);
+					return PartialView("_ItemSellPartial", itemsModels);
 				}
 				list = itemLogic.SearchItems(list, query);
-				return PartialView("_ItemPartial", list);
+				return PartialView("_ItemSellPartial", list);
 			}
 			catch (Exception ex)
 			{

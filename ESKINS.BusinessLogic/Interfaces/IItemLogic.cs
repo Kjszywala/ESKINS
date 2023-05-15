@@ -61,7 +61,7 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="list"></param>
         /// <param name="selectedCategories"></param>
         /// <returns></returns>
-        public List<ItemsModels> FilterCategories(List<ItemsModels> list, string[] selectedCategories);
+        public List<ItemsModels> FilterCategories(List<ItemsModels> list, List<string> selectedCategories);
 
 	}
 }

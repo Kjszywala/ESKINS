@@ -1,11 +1,16 @@
 ﻿@model List<ESKINS.DbServices.Models.ItemsModels>
-
+<style>
+	.showDetails {
+		margin-left: -30px;
+		margin-top: -90px;
+	}
+</style>
 <div class="scroll" style="padding: 20px;">
 	<br />
 	@{
 		foreach (var item in Model)
 		{
-			<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 20px; height: 200px; flex: 0 0 200px;">
+			<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 15px; height: 200px; flex: 0 0 200px;">
 				<div class="imgBox" style="width:70px; margin-left: 60px;">
 					<div>
 						<form method="post" action="@Url.Action("Details", "Market")">
@@ -23,10 +28,17 @@
 				<div class="contentBox">
 					<h3>@item.ProductName</h3>
 					<h3 style="color:white; margin-top:-5px">Float: @Decimal.Parse(@item.ItemFloat).ToString("F8")</h3>
-					<h2 class="price" style="font-family: 'Arial', sans-serif;">
-						@Math.Truncate(item.ActualPrice)
-						<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small> £
-					</h2>
+					@if (item.OnSale == true)
+					{
+						<h2 class="price" style="font-family: 'Arial', sans-serif;">
+							@Math.Truncate(item.ActualPrice)
+							<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small> £
+						</h2>
+					}
+					else
+					{
+						<button href="#" class="button-20">Add To Card</button>
+					}
 				</div>
 			</div>
 		}
