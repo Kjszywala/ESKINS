@@ -133,9 +133,11 @@
 				success: function (response) {
 					// Handle the response from the server
 					// Update the UI with the filtered items
+					$('#itemContainer').html(response);
 				},
 				error: function (xhr, status, error) {
 					// Handle the error
+					alert('An error occurred while searching for items.');
 				}
 			});
 		});
