@@ -152,6 +152,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 				throw new Exception(e.Message);
 			}
 		}
+
         /// <Inheritdoc />
 		public List<ItemsModels> SearchLocation(List<ItemsModels> list, string text)
 		{
@@ -159,6 +160,21 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 			{
 				//var model = list.Where(i => i.ProductName.Contains(text)).ToList();
 				var model = list.Where(i => i.ItemLocation.ItemLocation == text).ToList();
+				return model;
+			}
+			catch (Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		} 
+        
+        /// <Inheritdoc />
+		public List<ItemsModels> SearchCollection(List<ItemsModels> list, string text)
+		{
+			try
+			{
+				//var model = list.Where(i => i.ProductName.Contains(text)).ToList();
+				var model = list.Where(i => i.ItemCollection.ItemCollection == text).ToList();
 				return model;
 			}
 			catch (Exception e)
@@ -206,22 +222,22 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 		}
         /// <Inheritdoc />
 		public List<ItemsModels> FilterUnique(List<ItemsModels> list, List<string> selectedUnique)
-		{
-			try
-			{
-				// Filter by selected categories
-				if (selectedUnique != null && selectedUnique.Any())
-				{
-					return list.Where(i => selectedUnique.Contains(i.Quality.Quality)).ToList();
-				}
+        {
+            try
+            {
+                // Filter by selected categories
+                if (selectedUnique != null && selectedUnique.Any())
+                {
+                    return list.Where(i => selectedUnique.Contains(i.Quality.Quality)).ToList();
+                }
 
-				return list;
-			}
-			catch (Exception e)
-			{
-				throw new Exception(e.Message);
-			}
-		}
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
 		#endregion
 	}

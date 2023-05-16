@@ -274,7 +274,7 @@ namespace ESKINS.Controllers
 				return View("Index");
 			}
 		}
-		//SearchLocation
+
 		public async Task<ActionResult> SearchLocationAsync(string checkedLocation)
 		{
 			try
@@ -289,6 +289,29 @@ namespace ESKINS.Controllers
 					item.ItemLocation = await itemLocationsServices.GetAsync(item.ItemLocationId.Value);
 				}
 				list = itemLogic.SearchLocation(list, checkedLocation);
+				return PartialView("_ItemPartial", list);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+		}
+
+		public async Task<ActionResult> SearchCollectionAsync(string checkedCollection)
+		{
+			try
+			{
+				var list = itemsModels;
+				if (string.IsNullOrEmpty(checkedCollection) || checkedCollection.Contains("showAll"))
+				{
+					return PartialView("_ItemPartial", itemsModels);
+				}
+				foreach (var item in list)
+				{
+					item.ItemCollection = await itemCollectionsServices.GetAsync(item.ItemCollectionId.Value);
+				}
+				list = itemLogic.SearchCollection(list, checkedCollection);
 				return PartialView("_ItemPartial", list);
 			}
 			catch (Exception ex)

@@ -86,5 +86,13 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="text"></param>
         /// <returns></returns>
         public List<ItemsModels> SearchLocation(List<ItemsModels> list, string text);
+
+        /// <summary>
+        /// Search for item collection.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public List<ItemsModels> SearchCollection(List<ItemsModels> list, string text);
 	}
 }

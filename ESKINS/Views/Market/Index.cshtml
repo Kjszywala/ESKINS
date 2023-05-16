@@ -117,11 +117,32 @@
 </main> <!-- cd-main-content -->
 
 <script>
+	// radio buttons
+	$(document).ready(function () {
+		$('input[type="radio"]').change(function () {
+			var selectedValue = $(this).attr('id'); // Get the selected value
+			// Send a POST request to the controller
+			$.ajax({
+				url: '@Url.Action("SearchCollection", "Market")',
+				type: 'POST',
+				data: { checkedCollection: selectedValue },
+				success: function (response) {
+					// Handle the response from the server
+					$('#itemContainer').html(response);
+				},
+				error: function (xhr, status, error) {
+					// Handle the error
+					alert('An error occurred while searching for items.');
+				}
+			});
+		});
+	});
 	// filter select.
 	$(document).ready(function () {
 		$('#selectThis').change(function () {
 			var selectedValue = $(this).val(); // Get the selected value
-
+			// Disable other radio buttons in the group
+			$('input[type="radio"]').not(':checked').prop('disabled', true);
 			// Iterate over each option in the select element
 			$('#selectThis option').each(function () {
 				if ($(this).val() === selectedValue) {
