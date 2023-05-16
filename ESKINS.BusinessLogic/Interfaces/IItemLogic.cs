@@ -79,5 +79,12 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <returns></returns>
         public List<ItemsModels> FilterUnique(List<ItemsModels> list, List<string> selectedUnique);
 
+        /// <summary>
+        /// Search location of an item.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public List<ItemsModels> SearchLocation(List<ItemsModels> list, string text);
 	}
 }

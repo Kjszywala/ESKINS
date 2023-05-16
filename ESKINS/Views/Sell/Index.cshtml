@@ -62,6 +62,34 @@
 	</div>
 </main> <!-- cd-main-content -->
 <script>
+	// filter select.
+	$(document).ready(function () {
+		$('#selectThis').change(function () {
+			var selectedValue = $(this).val(); // Get the selected value
+
+			// Iterate over each option in the select element
+			$('#selectThis option').each(function () {
+				if ($(this).val() === selectedValue) {
+					// Send AJAX request to the server
+					$.ajax({
+						url: '@Url.Action("SearchLocation", "Sell")',
+						type: 'POST',
+						data: { checkedLocation: selectedValue },
+						success: function (response) {
+							// Handle the response from the server
+							// Update the UI with the filtered items
+							$('#itemContainer').html(response);
+						},
+						error: function (xhr, status, error) {
+							// Handle the error
+							alert('An error occurred while searching for items.');
+						}
+					});
+				} else {
+				}
+			});
+		});
+	});
 	// search items function
 	var searchTimeout; // Variable to store the timeout
 

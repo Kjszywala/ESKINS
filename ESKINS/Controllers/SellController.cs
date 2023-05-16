@@ -1,6 +1,7 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -14,6 +15,7 @@ namespace ESKINS.Controllers
 		IPhasesServices phasesServices;
 		IQualitiesServices qualitiesServices;
 		IUsersServices usersServices;
+		IItemLocationsServices itemLocationsServices;
 		public static List<ItemsModels>? itemsModels;
 
 		public SellController(
@@ -23,7 +25,8 @@ namespace ESKINS.Controllers
 			ICategoriesServices _categoriesServices,
 			IPhasesServices _phasesServices,
 			IQualitiesServices _qualitiesServices,
-			IUsersServices _userServices
+			IUsersServices _userServices,
+			IItemLocationsServices _itemLocationsServices
 		  )
 		{
 			itemLogic = _itemLogic;
@@ -33,6 +36,7 @@ namespace ESKINS.Controllers
 			phasesServices = _phasesServices;
 			qualitiesServices = _qualitiesServices;
 			usersServices = _userServices;
+			itemLocationsServices = _itemLocationsServices;
 		}
 		public IActionResult Index()
 		{
@@ -150,6 +154,29 @@ namespace ESKINS.Controllers
 				}
 				var items = list.Where(i => i.UserId == Config.UserId).ToList();
 				return PartialView("_ItemPartial", items);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+		}
+
+		public async Task<ActionResult> SearchLocationAsync(string checkedLocation)
+		{
+			try
+			{
+				var list = itemsModels;
+				if (string.IsNullOrEmpty(checkedLocation))
+				{
+					return PartialView("_ItemPartial", itemsModels);
+				}
+				foreach (var item in list)
+				{
+					item.ItemLocation = await itemLocationsServices.GetAsync(item.ItemLocationId.Value);
+				}
+				list = itemLogic.SearchLocation(list, checkedLocation);
+				return PartialView("_ItemPartial", list);
 			}
 			catch (Exception ex)
 			{

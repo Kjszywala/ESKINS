@@ -274,7 +274,29 @@ namespace ESKINS.Controllers
 				return View("Index");
 			}
 		}
-
+		//SearchLocation
+		public async Task<ActionResult> SearchLocationAsync(string checkedLocation)
+		{
+			try
+			{
+				var list = itemsModels;
+				if (string.IsNullOrEmpty(checkedLocation))
+				{
+					return PartialView("_ItemPartial", itemsModels);
+				}
+				foreach(var item in list)
+				{
+					item.ItemLocation = await itemLocationsServices.GetAsync(item.ItemLocationId.Value);
+				}
+				list = itemLogic.SearchLocation(list, checkedLocation);
+				return PartialView("_ItemPartial", list);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+		}
 		#endregion
 	}
 }

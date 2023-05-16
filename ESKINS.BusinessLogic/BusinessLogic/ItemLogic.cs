@@ -152,6 +152,20 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 				throw new Exception(e.Message);
 			}
 		}
+        /// <Inheritdoc />
+		public List<ItemsModels> SearchLocation(List<ItemsModels> list, string text)
+		{
+			try
+			{
+				//var model = list.Where(i => i.ProductName.Contains(text)).ToList();
+				var model = list.Where(i => i.ItemLocation.ItemLocation == text).ToList();
+				return model;
+			}
+			catch (Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
 
 		/// <Inheritdoc />
 		public List<ItemsModels> FilterCategories(List<ItemsModels> list, List<string> selectedCategories)
