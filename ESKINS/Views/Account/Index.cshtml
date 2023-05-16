@@ -8,6 +8,14 @@
     @*<link href="~/css/logreg.css" type="text/css" rel="stylesheet" />*@
     <link href="~/css/login.css" type="text/css" rel="stylesheet" />
 }
+<center>
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-success">
+            @ViewBag.Message
+        </div>
+    }
+</center>
 <div class="body" style="height: 1000px;">
     <div class="veen" style="width:90%; margin-top:-50px;">
         <div class="login-btn splits">

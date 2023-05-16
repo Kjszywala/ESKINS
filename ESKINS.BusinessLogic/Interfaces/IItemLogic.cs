@@ -63,5 +63,21 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <returns></returns>
         public List<ItemsModels> FilterCategories(List<ItemsModels> list, List<string> selectedCategories);
 
+        /// <summary>
+        /// Search for phases.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="selectedCategories"></param>
+        /// <returns></returns>
+        public List<ItemsModels> FilterPhases(List<ItemsModels> list, List<string> selectedPhases);
+
+        /// <summary>
+        /// Search for unique items.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="selectedPhases"></param>
+        /// <returns></returns>
+        public List<ItemsModels> FilterUnique(List<ItemsModels> list, List<string> selectedUnique);
+
 	}
 }

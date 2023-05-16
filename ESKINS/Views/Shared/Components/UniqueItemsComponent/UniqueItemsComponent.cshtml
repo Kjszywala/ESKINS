@@ -6,7 +6,7 @@
 		@foreach(var item in Model)
 		{
 			<li>
-				<input type="checkbox" id="@item.Quality" value="@item.Quality">
+				<input class="unique-checkbox" type="checkbox" id="@item.Quality" name="@item.Quality" value="@item.Quality">
 				<label class="checkbox-label" for="@item.Quality">@item.Quality</label>
 			</li>
 		}

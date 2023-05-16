@@ -117,6 +117,59 @@
 </main> <!-- cd-main-content -->
 
 <script>
+	//Unigue items checkboxes
+	$(document).ready(function () {
+		// Attach event listener to the category checkboxes
+		$('.unique-checkbox').change(function () {
+			// Get the checked checkboxes
+			var checkedCategories = $('.unique-checkbox:checked').map(function () {
+				return $(this).val();
+			}).get();
+
+			// Send AJAX request to the server
+			$.ajax({
+				url: '@Url.Action("SearchUnique", "Market")',
+				type: 'POST',
+				data: { categories: checkedCategories },
+				success: function (response) {
+					// Handle the response from the server
+					// Update the UI with the filtered items
+					$('#itemContainer').html(response);
+				},
+				error: function (xhr, status, error) {
+					// Handle the error
+					alert('An error occurred while searching for items.');
+				}
+			});
+		});
+	});
+	//phase checkboxes
+	$(document).ready(function () {
+		// Attach event listener to the category checkboxes
+		$('.phase-checkbox').change(function () {
+			// Get the checked checkboxes
+			var checkedCategories = $('.phase-checkbox:checked').map(function () {
+				return $(this).val();
+			}).get();
+
+			// Send AJAX request to the server
+			$.ajax({
+				url: '@Url.Action("SearchPhases", "Market")',
+				type: 'POST',
+				data: { categories: checkedCategories },
+				success: function (response) {
+					// Handle the response from the server
+					// Update the UI with the filtered items
+					$('#itemContainer').html(response);
+				},
+				error: function (xhr, status, error) {
+					// Handle the error
+					alert('An error occurred while searching for items.');
+				}
+			});
+		});
+	});
+	//categories checkboxes
 	$(document).ready(function () {
 		// Attach event listener to the category checkboxes
 		$('.category-checkbox').change(function () {

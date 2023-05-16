@@ -82,7 +82,7 @@ namespace ESKINS.Controllers
                 var confirmed = await usersService.AddAsync(model);
                 if (confirmed)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Account");
                 }
                 // display an error message
                 ViewBag.ErrorMessage = "Invalid username or password.";

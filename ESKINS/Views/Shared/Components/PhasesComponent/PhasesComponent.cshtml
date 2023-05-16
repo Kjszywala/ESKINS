@@ -5,7 +5,7 @@
 		@foreach (var item in Model)
 		{
 			<li>
-				<input type="checkbox" id="@item.Phase" value="@item.Phase">
+				<input class="phase-checkbox" type="checkbox" id="@item.Phase" name="@item.Phase" value="@item.Phase">
 				<label class="checkbox-label" for="@item.Phase">@item.Phase</label>
 			</li>
 		}

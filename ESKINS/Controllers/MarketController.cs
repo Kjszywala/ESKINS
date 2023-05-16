@@ -2,6 +2,7 @@
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ESKINS.Controllers
 {
@@ -221,10 +222,59 @@ namespace ESKINS.Controllers
 			}
 			catch (Exception ex)
 			{
-				errorLogs.Error(ex);
+				await errorLogs.Error(ex);
 				return View("Index");
 			}
 		}
+
+		[System.Web.Http.HttpPost]
+		public async Task<ActionResult> SearchPhasesAsync(List<string> categories)
+		{
+			try
+			{
+				var list = itemsModels;
+				foreach (var item in list)
+				{
+					item.Phase = await phasesServices.GetAsync(item.PhaseId.Value);
+				}
+				if (categories.Count == 0)
+				{
+					return PartialView("_ItemPartial", itemsModels);
+				}
+				list = itemLogic.FilterPhases(list, categories);
+				return PartialView("_ItemPartial", list);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+		}
+
+		[System.Web.Http.HttpPost]
+		public async Task<ActionResult> SearchUniqueAsync(List<string> categories)
+		{
+			try
+			{
+				var list = itemsModels;
+				foreach (var item in list)
+				{
+					item.Quality = await qualitiesServices.GetAsync(item.QualityId.Value);
+				}
+				if (categories.Count == 0)
+				{
+					return PartialView("_ItemPartial", itemsModels);
+				}
+				list = itemLogic.FilterUnique(list, categories);
+				return PartialView("_ItemPartial", list);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+		}
+
 		#endregion
 	}
 }

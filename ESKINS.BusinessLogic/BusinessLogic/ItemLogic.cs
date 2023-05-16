@@ -172,6 +172,43 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 			}
 		}
 
+		/// <Inheritdoc />
+		public List<ItemsModels> FilterPhases(List<ItemsModels> list, List<string> selectedPhases)
+		{
+			try
+			{
+				// Filter by selected categories
+				if (selectedPhases != null && selectedPhases.Any())
+				{
+					return list.Where(i => selectedPhases.Contains(i.Phase.Phase)).ToList();
+				}
+
+				return list;
+			}
+			catch (Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+        /// <Inheritdoc />
+		public List<ItemsModels> FilterUnique(List<ItemsModels> list, List<string> selectedUnique)
+		{
+			try
+			{
+				// Filter by selected categories
+				if (selectedUnique != null && selectedUnique.Any())
+				{
+					return list.Where(i => selectedUnique.Contains(i.Quality.Quality)).ToList();
+				}
+
+				return list;
+			}
+			catch (Exception e)
+			{
+				throw new Exception(e.Message);
+			}
+		}
+
 		#endregion
 	}
 }
