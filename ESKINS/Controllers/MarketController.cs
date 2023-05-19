@@ -66,7 +66,7 @@ namespace ESKINS.Controllers
 				//	ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
 				//	return View("/Views/Account/Index.cshtml");
 				//}
-				itemsModels = itemServices.GetAllAsync().Result;
+				itemsModels = itemServices.GetAllAsync().Result.Where(item => item.OnSale == true).ToList();
 				foreach ( var item in itemsModels )
 				{
 					item.ActualPrice = item.ActualPrice - (item.ActualPrice * item.Discount);

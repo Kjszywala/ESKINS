@@ -4,6 +4,15 @@
 		margin-left: -30px;
 		margin-top: -90px;
 	}
+
+	.overlay-button {
+		position: absolute;
+		top: 0;
+		left: 0;
+		/* Add any other styles for the button */
+		margin-left: 9px;
+		margin-top: -55px;
+	}
 </style>
 <div class="scroll" style="padding: 20px;">
 	<br />
@@ -34,6 +43,7 @@
 							@Math.Truncate(item.ActualPrice)
 							<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small> £
 						</h2>
+						<button class="overlay-button bi bi-x button-20"></button>
 					}
 					else
 					{
