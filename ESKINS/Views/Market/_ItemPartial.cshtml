@@ -1,5 +1,16 @@
 ﻿@model List<ESKINS.DbServices.Models.ItemsModels>
 
+<style>
+.overlay-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* Add any other styles for the button */
+	margin-left: 17px;
+	margin-top: -40px;
+	color: white;
+}
+</style>
 @{
 	foreach (var item in Model)
 	{
@@ -25,10 +36,15 @@
 					@Math.Truncate(item.ActualPrice)
 					<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small> £
 				</h2>
-				@if (item.Discount != 0)
+				@if (item.Discount != 0 && item.UserId != Config.UserId)
 				{
 					<label class="showDiscount" style="color:white;">-@(Math.Round(item.Discount * 100)) %</label>
 					<button href="#" class="button-20">Add To Card</button>
+				}
+				else if (item.UserId == Config.UserId)
+				{
+					<label class="showDiscount" style="color:white;">-@(Math.Round(item.Discount * 100)) %</label>
+					<Label class="overlay-label bi bi-person-fill" title="This item is yours."></Label>
 				}
 				else
 				{

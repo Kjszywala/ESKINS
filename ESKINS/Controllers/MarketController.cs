@@ -61,11 +61,11 @@ namespace ESKINS.Controllers
         {
             try
             {
-				//if (!Config.isConfirmed)
-				//{
-				//	ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-				//	return View("/Views/Account/Index.cshtml");
-				//}
+				if (!Config.isConfirmed)
+				{
+					ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+					return View("/Views/Account/Index.cshtml");
+				}
 				itemsModels = itemServices.GetAllAsync().Result.Where(item => item.OnSale == true).ToList();
 				foreach ( var item in itemsModels )
 				{

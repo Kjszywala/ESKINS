@@ -12,7 +12,7 @@
 <br />
 <br />
 <div class="container1">
-    <div class="row justify-content-center" style="margin-left:60px;">
+    <div class="row justify-content-center" style="margin-left:20px;">
         <div class="col-lg-6">
             <div class="details-image d-flex justify-content-center align-items-center">
                 @if (Model.ItemImage != null)
@@ -21,59 +21,61 @@
                 }
             </div>
         </div>
-        <div class="col-lg-5 container2">
-            <div class="details-row">
-                <div class="details-label">Name:</div>
-                <div class="details-value">@Model.ProductName</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">User:</div>
-                <div class="details-value">@Model.User?.Email</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Category:</div>
-                <div class="details-value">@Model.Category?.CategoryDescription</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Item Location:</div>
-                <div class="details-value">@Model.ItemLocation?.ItemLocation</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">StatTrack:</div>
-                <div class="details-value">@Model.StatTrack</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Souvenir:</div>
-                <div class="details-value">@Model.Souvenir</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Item Collection:</div>
-                <div class="details-value">@Model.ItemCollection?.ItemCollection</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Phase:</div>
-                <div class="details-value">@Model.Phase?.Phase</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Quality:</div>
-                <div class="details-value">@Model.Quality?.Quality</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Exterior:</div>
-                <div class="details-value">@Model.Exterior?.Exterior</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Pattern:</div>
-                <div class="details-value">@Model.Pattern</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Actual Price:</div>
-                <div class="details-value">@Model.ActualPrice £</div>
-            </div>
-            <div class="details-row">
-                <div class="details-label">Discount:</div>
-                <div class="details-value">@(Math.Round(Model.Discount * 100)) %</div>
-            </div>
+        <div class="col-lg-6 container2">
+            <table class="container3 d-flex justify-content-center align-items-center">
+                <tr>
+                    <th>Name:</th>
+                    <td>@Model.ProductName</td>
+                </tr>
+                <tr>
+                    <th>User:</th>
+                    <td>@Model.User?.Email</td>
+                </tr>
+                <tr>
+                    <th>Category:</th>
+                    <td>@Model.Category?.CategoryDescription</td>
+                </tr>
+                <tr>
+                    <th>Item Location:</th>
+                    <td>@Model.ItemLocation?.ItemLocation</td>
+                </tr>
+                <tr>
+                    <th>StatTrack:</th>
+                    <td>@Model.StatTrack</td>
+                </tr>
+                <tr>
+                    <th>Souvenir:</th>
+                    <td>@Model.Souvenir</td>
+                </tr>
+                <tr>
+                    <th>Item Collection:</th>
+                    <td>@Model.ItemCollection?.ItemCollection</td>
+                </tr>
+                <tr>
+                    <th>Phase:</th>
+                    <td>@Model.Phase?.Phase</td>
+                </tr>
+                <tr>
+                    <th>Quality:</th>
+                    <td>@Model.Quality?.Quality</td>
+                </tr>
+                <tr>
+                    <th>Exterior:</th>
+                    <td>@Model.Exterior?.Exterior</td>
+                </tr>
+                <tr>
+                    <th>Pattern:</th>
+                    <td>@Model.Pattern</td>
+                </tr>
+                <tr>
+                    <th>Actual Price:</th>
+                    <td>@Model.ActualPrice £</td>
+                </tr>
+                <tr>
+                    <th>Discount:</th>
+                    <td>@(Math.Round(Model.Discount * 100)) %</td>
+                </tr>
+            </table>
         </div>
     </div>
     <br />
@@ -90,6 +92,12 @@
 <br />
 <br />
 <style>
+    .container3 th,
+    .container3 td {
+        padding: 5px;
+        color: white;
+        border: none;
+    }
     header {
         background-color: #181716;
         color: white;
@@ -143,7 +151,7 @@
         margin-right: auto;
         margin-left: auto;
         margin-left: 5px;
-        max-width:300px;
+        max-width:330px;
     }
 
     .details-value{

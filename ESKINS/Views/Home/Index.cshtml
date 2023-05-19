@@ -227,9 +227,18 @@
 		<section class="hero-section" style="background-image: url('../../img/leftsideanty.jpg'); height: 1100px; margin-top:-260px;">
 			<h1>Buy and Sell CS:GO Skins</h1>
 			<p>Find the perfect skins for your weapons or sell your own skins for cash.</p>
-			 <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Account", new { area = "" })">
-				<button class="btn-hover color-3">Start Buying/Selling</button>
+			@if(Config.isConfirmed)
+			{
+				<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Market", new { area = "" })">
+					<button class="btn-hover color-3">Start Buying/Selling</button>
 				</form>
+			}
+			else
+			{
+				<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Account", new { area = "" })">
+					<button class="btn-hover color-3">Start Buying/Selling</button>
+				</form>
+			}
 		</section>
 		<section class="services-section" style="height: 1100px;background-image: url('../../img/maninfire.png');">
 			<h2>Our Services</h2>
