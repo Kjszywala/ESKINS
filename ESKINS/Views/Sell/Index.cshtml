@@ -61,7 +61,22 @@
 	<a href="#0" class="cd-filter-trigger" style="text-decoration: none;">Filters</a>
 	</div>
 </main> <!-- cd-main-content -->
+
 <script>
+	function sendItemDetails(itemId) {
+		// Make an AJAX request to the server
+		$.ajax({
+			type: "POST",
+			url: '@Url.Action("RemoveFromSale", "Sell")',
+			data: { itemId: itemId },
+			success: function (response) {
+				$('#itemContainer').html(response);
+			},
+			error: function () {
+				alert("An error occurred during the AJAX request.");
+			}
+		});
+	}
 	// radio buttons
 	$(document).ready(function () {
 		$('input[type="radio"]').change(function () {

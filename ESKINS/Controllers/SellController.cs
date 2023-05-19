@@ -17,6 +17,7 @@ namespace ESKINS.Controllers
 		IUsersServices usersServices;
 		IItemLocationsServices itemLocationsServices;
 		IItemCollectionsServices itemCollectionsServices;
+		IExteriorsServices exteriorsServices;
 		public static List<ItemsModels>? itemsModels;
 
 		public SellController(
@@ -28,7 +29,8 @@ namespace ESKINS.Controllers
 			IQualitiesServices _qualitiesServices,
 			IUsersServices _userServices,
 			IItemLocationsServices _itemLocationsServices,
-			IItemCollectionsServices _itemCollectionsServices
+			IItemCollectionsServices _itemCollectionsServices,
+			IExteriorsServices _exteriorsServices
 		  )
 		{
 			itemLogic = _itemLogic;
@@ -40,6 +42,7 @@ namespace ESKINS.Controllers
 			usersServices = _userServices;
 			itemLocationsServices = _itemLocationsServices;
 			itemCollectionsServices = _itemCollectionsServices;
+			exteriorsServices = _exteriorsServices;
 		}
 		public IActionResult Index()
 		{
@@ -54,6 +57,29 @@ namespace ESKINS.Controllers
 			return View(userItems);
 		}
 
+		public async Task<IActionResult> RemoveFromSale(int itemId)
+		{
+			try
+			{
+				var item = await itemServices.GetAsync(itemId);
+
+				item.Category = await categoriesServices.GetAsync(item.CategoryId.Value);
+				item.ItemLocation = await itemLocationsServices.GetAsync(item.ItemLocationId.Value);
+				item.ItemCollection = await itemCollectionsServices.GetAsync(item.ItemCollectionId.Value);
+				item.Phase = await phasesServices.GetAsync(item.PhaseId.Value);
+				item.Quality = await qualitiesServices.GetAsync(item.QualityId.Value);
+				item.Exterior = await exteriorsServices.GetAsync(item.ExteriorId.Value);
+				item.User = await usersServices.GetAsync(item.UserId.Value);
+				item.OnSale = false;
+				itemsModels = itemLogic.RemoveFromSaleAsync(item).Result.Where(i => i.UserId == Config.UserId).ToList();
+				return PartialView("_ItemPartial", itemsModels);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return View("Index");
+			}
+		}
 		public async Task<ActionResult> SearchItemsAsync(string query)
 		{
 			try

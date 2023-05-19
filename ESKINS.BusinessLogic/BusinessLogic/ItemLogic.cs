@@ -1,31 +1,32 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using System.Linq;
 
 namespace ESKINS.BusinessLogic.BusinessLogic
 {
     public class ItemLogic : IItemLogic
     {
-        #region Variables
+		#region Variables
 
-        IItemsServices itemsServices;
+		IItemsServices itemsServices;
 
-        #endregion
+		#endregion
 
-        #region Constructor
+		#region Constructor
 
-        public ItemLogic(IItemsServices _itemsServices)
-        {
-            itemsServices = _itemsServices;
-        }
+		public ItemLogic(
+		   IItemsServices _itemsServices
+		   )
+		{
+			itemsServices = _itemsServices;
+		}
 
-        #endregion
+		#endregion
 
-        #region Methods
+		#region Methods
 
-        /// <Inheritdoc />
-        public int GetNextSerialNumber()
+		/// <Inheritdoc />
+		public int GetNextSerialNumber()
         {
             try
             {
@@ -220,6 +221,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 				throw new Exception(e.Message);
 			}
 		}
+
         /// <Inheritdoc />
 		public List<ItemsModels> FilterUnique(List<ItemsModels> list, List<string> selectedUnique)
         {
@@ -238,6 +240,19 @@ namespace ESKINS.BusinessLogic.BusinessLogic
                 throw new Exception(e.Message);
             }
         }
+
+		/// <Inheritdoc />
+		public async Task<List<ItemsModels>> RemoveFromSaleAsync(ItemsModels item)
+		{
+            List<ItemsModels> list = new List<ItemsModels>();
+
+			var result = itemsServices.EditAsync(item.Id, item).Result;
+            if (result)
+            {
+                list = await itemsServices.GetAllAsync();
+            }
+            return list;
+		}
 
 		#endregion
 	}

@@ -93,7 +93,6 @@ namespace ESKINS.Controllers
 				await errorLogs.Error(ex);
 				return View("Index");
 			}
-
 		}
 
 		public async Task<IActionResult> Newest()

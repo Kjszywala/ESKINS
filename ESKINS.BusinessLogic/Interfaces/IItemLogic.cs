@@ -94,5 +94,13 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="text"></param>
         /// <returns></returns>
         public List<ItemsModels> SearchCollection(List<ItemsModels> list, string text);
+
+        /// <summary>
+        /// Remove item from sale.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public Task<List<ItemsModels>> RemoveFromSaleAsync(ItemsModels item);
 	}
 }

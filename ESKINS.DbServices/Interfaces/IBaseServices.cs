@@ -9,7 +9,7 @@ namespace ESKINS.DbServices.Interfaces
         /// Gets all items from database.
         /// </summary>
         /// <param name="Item">Model</param>
-        /// <returns>List of active payment methods model</returns>
+        /// <returns>List of active items</returns>
         Task<List<T>> GetAllAsync();
 
         /// <summary>
