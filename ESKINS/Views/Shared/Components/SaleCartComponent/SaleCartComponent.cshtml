@@ -1,0 +1,23 @@
+﻿@model ESKINS.Models.SellCartModel
+<div class="itemsSell">
+	<div class="itemsSellLabel">
+		<p class="price" style="font-family: 'Arial', sans-serif;">
+			You will get: £ @Math.Truncate(@SellCartModel.CurrentAmount).
+			<small>@((@SellCartModel.CurrentAmount % 1).ToString("0.00").Substring(2))</small>
+		</p>
+	</div>
+	<div class="itemsSellForSale" id="itemsSellForSale">
+		@if (SellCartModel.ItemsForInstantSaleList != null && SellCartModel.ItemsForInstantSaleList.Count != 0)
+		{
+			@foreach (var item in SellCartModel.ItemsForInstantSaleList)
+			{
+
+			}
+
+		}
+	</div>
+	<div class="itemsSellButtons">
+		<button id="btn">Instant Sele</button>
+		<button id="btn">Remove From Card</button>
+	</div>
+</div>

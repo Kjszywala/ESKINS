@@ -41,8 +41,8 @@
 					@if (item.OnSale == true)
 					{
 						<h2 class="price" style="font-family: 'Arial', sans-serif;">
-							@Math.Truncate(item.ActualPrice)
-							<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small> £
+							£ @Math.Truncate(item.ActualPrice)
+							<small>@((item.ActualPrice % 1).ToString("0.00").Substring(2))</small>
 						</h2>
 						<button class="overlay-button bi bi-x button-20" title="Remove from sale." onclick="sendItemDetails(@item.Id)"></button>
 					}

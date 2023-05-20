@@ -46,11 +46,11 @@ namespace ESKINS.Controllers
 		}
 		public IActionResult Index()
 		{
-			//if (!Config.isConfirmed)
-			//{
-			//	ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
-			//	return View("/Views/Account/Index.cshtml");
-			//}
+			if (!Config.isConfirmed)
+			{
+				ViewBag.ErrorMessage = "To access this bookmark, you need to log in.";
+				return View("/Views/Account/Index.cshtml");
+			}
 			var model = itemServices.GetAllAsync().Result;
 			var userItems = model.Where(i => i.UserId == Config.UserId).ToList();
 			itemsModels = userItems;

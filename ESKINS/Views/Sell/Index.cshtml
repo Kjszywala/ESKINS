@@ -28,18 +28,7 @@
 			</div>
 			<div class="cd-fail-message">No results found</div>
 			<br />
-			<div class="itemsSell">
-				<div class="itemsSellLabel">
-					<p>Current amount: $ 0.00</p>
-				</div>
-				<div class="itemsSellForSale" id="itemsSellForSale">
-				</div>
-				<div class="itemsSellButtons">
-					<button id="btn">Sell Items</button>
-					<button id="btn">Instant Sell</button>
-					<button id="btn">Remove From Card</button>
-				</div>
-			</div>
+			@await Component.InvokeAsync("SaleCartComponent")
 		</section> <!-- cd-gallery -->
 	</div>
 	<div class="cd-filter" style="background-color:	#181716; color: #a9a9a9;">
