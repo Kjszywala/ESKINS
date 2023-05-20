@@ -7,12 +7,13 @@ namespace ESKINS.Models
     /// </summary>
 	public class SellCartModel
 	{
-        public static decimal CurrentAmount { get; set; }
-        public static List<ItemsModels>? ItemsForInstantSaleList { get; set; }
+        public decimal CurrentAmount { get; set; }
+        public List<ItemsModels>? ItemsForInstantSaleList { get; set; }
 
         public SellCartModel()
         {
             CurrentAmount = 0;
+            ItemsForInstantSaleList = new List<ItemsModels>();
         }
     }
 }

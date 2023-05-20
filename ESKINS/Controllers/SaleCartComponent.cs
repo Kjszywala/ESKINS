@@ -1,4 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
+using ESKINS.DbServices.Models;
 using ESKINS.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,14 +10,18 @@ namespace ESKINS.Controllers
 		#region Variables
 
 		IErrorLogsServices errorLogsServices;
+		IItemsServices itemServices;
+		public List<ItemsModels>? sellCartModel;
 
 		#endregion
 
 		#region Constructor
 
-		public SaleCartComponent(IErrorLogsServices _errorLogsServices)
+		public SaleCartComponent(IErrorLogsServices _errorLogsServices, IItemsServices _itemServices)
 		{
 			errorLogsServices = _errorLogsServices;
+			sellCartModel = new List<ItemsModels>();
+			itemServices = _itemServices;
 		}
 
 		#endregion
@@ -27,7 +32,6 @@ namespace ESKINS.Controllers
 		{
 			try
 			{
-				SellCartModel sellCartModel = new SellCartModel();
 				return View("SaleCartComponent", sellCartModel);
 			}
 			catch (Exception ex)
@@ -36,6 +40,7 @@ namespace ESKINS.Controllers
 				return View("Index");
 			}
 		}
+
 		#endregion
 	}
 }

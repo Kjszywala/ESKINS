@@ -28,7 +28,19 @@
 			</div>
 			<div class="cd-fail-message">No results found</div>
 			<br />
-			@await Component.InvokeAsync("SaleCartComponent")
+			<div class="itemsSell">
+				@*<div class="itemsSellLabel">
+					<p class="price" style="font-family: 'Arial', sans-serif;">
+						You will get: £ @Math.Truncate(Model.CurrentAmount).
+						<small>@((Model.CurrentAmount % 1).ToString("0.00").Substring(2))</small>
+					</p>
+				</div>*@
+				@await Component.InvokeAsync("SaleCartComponent")
+				<div class="itemsSellButtons">
+					<button id="btn">Instant Sale</button>
+					<button id="btn">Remove From Card</button>
+				</div>
+			</div>
 		</section> <!-- cd-gallery -->
 	</div>
 	<div class="cd-filter" style="background-color:	#181716; color: #a9a9a9;">
@@ -52,6 +64,22 @@
 </main> <!-- cd-main-content -->
 
 <script>
+	function sendItemToInstantSale(id) {
+		// Make an AJAX request to the server
+		$.ajax({
+			type: 'POST',
+			url: '@Url.Action("AddForSale", "Sell")',
+			data: { id: id },
+			success: function (response) {
+				// Handle the successful response
+				$('#itemsSellForSale').html(response);
+			},
+			error: function () {
+				// Handle the error
+				alert('An error occurred during the AJAX request.');
+			}
+		});
+	}
 	function sendItemDetails(itemId) {
 		// Make an AJAX request to the server
 		$.ajax({

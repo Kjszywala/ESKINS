@@ -2,12 +2,15 @@
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
 using ESKINS.DbServices.Services;
+using ESKINS.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
 {
     public class SellController : Controller
 	{
+		#region Properties
+
 		IItemLogic itemLogic;
 		IItemsServices itemServices;
 		IErrorLogsServices errorLogs;
@@ -19,6 +22,11 @@ namespace ESKINS.Controllers
 		IItemCollectionsServices itemCollectionsServices;
 		IExteriorsServices exteriorsServices;
 		public static List<ItemsModels>? itemsModels;
+		public static List<ItemsModels>? itemsModelsSale = new List<ItemsModels>();
+
+		#endregion
+
+		#region Constructor
 
 		public SellController(
 			IItemLogic _itemLogic,
@@ -44,6 +52,11 @@ namespace ESKINS.Controllers
 			itemCollectionsServices = _itemCollectionsServices;
 			exteriorsServices = _exteriorsServices;
 		}
+
+		#endregion
+
+		#region Methods
+
 		public IActionResult Index()
 		{
 			if (!Config.isConfirmed)
@@ -90,7 +103,7 @@ namespace ESKINS.Controllers
 					return PartialView("_ItemPartial", itemsModels);
 				}
 				list = itemLogic.SearchItems(list, query);
-				foreach ( var item in list )
+				foreach (var item in list)
 				{
 					item.User = await usersServices.GetAsync(item.UserId.Value);
 				}
@@ -236,5 +249,24 @@ namespace ESKINS.Controllers
 				return View("Index");
 			}
 		}
+
+		public async Task<IActionResult> AddForSaleAsync(int id)
+		{
+			try
+			{
+				var item = itemServices.GetAsync(id).Result;
+				//sell.CurrentAmount = sell.CurrentAmount - (item.ActualPrice - (item.ActualPrice * Decimal.Parse("0.25")));
+				itemsModelsSale.Add(item);
+				return ViewComponent("SaleCartComponent", itemsModelsSale);
+			}
+			catch (Exception ex)
+			{
+				await errorLogs.Error(ex);
+				return Redirect("/Sell");
+			}
+		}
+
+		#endregion
+
 	}
 }
