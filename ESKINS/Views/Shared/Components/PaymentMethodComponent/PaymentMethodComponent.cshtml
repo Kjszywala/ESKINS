@@ -29,7 +29,7 @@
             </div>
         </center>
         <div class="modal-footer" style="background-color: #222222; color:white;">
-            <button type="button" class="button-36" data-dismiss="modal">Close</button>
+            <button type="button" class="button-36" data-dismiss="modal" onclick="refreshPage()">Close</button>
             <button type="button" class="button-36" id="addFundsButton">Add Funds</button>
         </div>
     </div>
@@ -48,7 +48,10 @@
             amountInput.value = 0;
         }
     }
-    
+
+    function refreshPage() {
+        location.reload();
+    }
 </script>
 <style>
     #waitingCircle {
