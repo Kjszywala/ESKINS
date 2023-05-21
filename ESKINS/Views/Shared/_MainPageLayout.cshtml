@@ -46,24 +46,6 @@
 									Sell Inventory
 								</a>
 							</li>
-							@*<li>
-								<a href="@Url.Action("Index", "Market")">
-									<span class="bi bi-toggles2"></span>
-									Trade
-								</a>
-							</li>
-							<li>
-								<a href="@Url.Action("Index", "Market")">
-									<span class="bi bi-hourglass-split"></span>
-									On Sale
-								</a>
-							</li>
-							<li>
-								<a href="@Url.Action("Index", "Market")">
-									<span class="bi bi-bullseye"></span>
-									Targets
-								</a>
-							</li>*@
 							<li>
 								<a href="@Url.Action("Index", "Contact")">
 									<span class="bi bi-person-lines-fill"></span>
@@ -82,25 +64,9 @@
 									About Us
 								</a>
 							</li>
-							@*<li>
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-							<li>@Html.ActionLink("Manage Scheduled Tasks", "Index", "ScheduledTask", new { area = "" }, null)</li>
-							<li>@Html.ActionLink("Check SAP for Works Orders", "Update", "GetProductionOrders", null, null)</li>
-							<li>@Html.ActionLink("Check SAP for Purchase Orders", "Update", "GetPurchaseOrders", null, null)</li>
-							<li>@Html.ActionLink("Post Completed Printers To SAP", "PostPrinters", "PostPrintersToSap", null, null)</li>
-							</ul>
-							</li>*@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							@Html.Partial("_LoginPartial")
-							@*<li><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Sing In / Sign Up</a></li>*@
-							@*<li>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login / Sign Up <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<partial name="_LoginPartial" />
-								</ul>
-							</li>*@
 						</ul>
 					</div>
 				</div>

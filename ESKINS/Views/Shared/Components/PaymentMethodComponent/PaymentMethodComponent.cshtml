@@ -49,46 +49,6 @@
         }
     }
     
-    $(document).ready(function () {
-        // When the "Add Funds" button is clicked
-        $("#addFundsButton").click(function () {
-            // Get the value from the amount input field
-            var amount = $("#amount").val();
-
-            // Create an object to send to the controller
-            var data = {
-                amount: amount
-            };
-
-            // Send the data to the controller using AJAX
-            $.ajax({
-                url: "/Market/AddFunds", // Replace with the actual URL for your controller action
-                type: "POST", // Use the appropriate HTTP method (e.g., POST, GET, etc.)
-                data: data,
-                beforeSend: function () {
-                    // Show the waiting circle
-                    $("#waitingCircle").show();
-                },
-                success: function (response) {
-                    // Handle the success response from the controller
-                    // This can be used to update the UI or perform additional actions
-                    setTimeout(function () {
-                        $("#waitingCircle").hide();
-                    }, 1999);
-                    setTimeout(function () {
-                        $("#successMessage").text("Funds added successfully!");
-                        $("#successMessage").show();
-                    }, 2000);
-                    // Optionally, you can reload the page or update specific elements
-                },
-                error: function (xhr, status, error) {
-                    // Handle any error that occurs during the AJAX request
-                    console.log("Error: " + error);
-                }
-            });
-        });
-    });
-
 </script>
 <style>
     #waitingCircle {
