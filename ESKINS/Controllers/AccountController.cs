@@ -101,6 +101,7 @@ namespace ESKINS.Controllers
         {
             // clear the session variable
             Config.isConfirmed = false;
+            Config.WalletAmount = 0;
 
             // redirect the user to the login page
             return RedirectToAction("Index");
