@@ -76,7 +76,7 @@ namespace ESKINS.Controllers
             catch (Exception ex)
             {
                 await errorLogs.Error(ex);
-                return View("Index");
+                return View("Error");
             }
 
         }
@@ -91,7 +91,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -105,7 +105,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 
 		}
@@ -120,7 +120,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 
 		}
@@ -135,7 +135,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 
 		}
@@ -150,7 +150,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 
 		}
@@ -179,7 +179,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -198,7 +198,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -222,7 +222,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -246,7 +246,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -270,7 +270,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -293,7 +293,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -316,9 +316,33 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
-		#endregion
-	}
+
+        public async Task<ActionResult> AddFunds(string amount)
+        {
+            try
+            {
+				var list = usersServices.GetAllAsync().Result;
+                itemsModels = itemServices.GetAllAsync().Result.Where(i=>i.OnSale == true).ToList();
+                Config.WalletAmount += Decimal.Parse(amount);
+				foreach (var item in list)
+				{
+					if(item.Id == Config.UserId)
+					{
+						item.AccountBalance = Config.WalletAmount;
+						await usersServices.EditAsync(item.Id, item);
+					}
+				}
+                return View("Index", itemsModels);
+            }
+            catch (Exception ex)
+            {
+                await errorLogs.Error(ex);
+                return View("Error");
+            }
+        }
+        #endregion
+    }
 }

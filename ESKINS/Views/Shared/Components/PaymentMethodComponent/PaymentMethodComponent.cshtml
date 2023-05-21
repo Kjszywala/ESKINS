@@ -1,0 +1,215 @@
+﻿@model List<ESKINS.DbServices.Models.PaymentMethodsModels>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="modal-dialog" role="document" style="background-color: #222222;">
+    <div class="modal-content" style="background-color: #222222;">
+        <div id="successMessage" class="success-message" style="display: none;">Funds added successfully!</div>
+        <div id="waitingCircle"></div>
+        <div class="modal-header" style="background-color: #222222; color:white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h5 class="modal-title" id="paymentModalLabel" style="margin: 0 auto;">Choose Payment Method</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <center>
+            <div class="modal-body">
+                @foreach(var item in Model)
+                {
+                    <div class="item" onclick="toggleItemSelection(this)">
+                            @if (item.Image != null)
+                            {
+                                <img src="data:image;base64,@Convert.ToBase64String(item.Image)" alt="@item.Image" style="width: 100px; height: auto;background-color:transparent; border: none; margin-left:10px; cursor:pointer;" />
+                            }
+                    </div>
+                }
+            </div>
+            <div class="amount-input" style="background-color: #222222; color:white;">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter amount" style="margin-left: 10px;" class="textbox" oninput="validateAmountInput()" pattern="[0-9]" title="Please enter numbers only" required>
+            </div>
+        </center>
+        <div class="modal-footer" style="background-color: #222222; color:white;">
+            <button type="button" class="button-36" data-dismiss="modal">Close</button>
+            <button type="button" class="button-36" id="addFundsButton">Add Funds</button>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleItemSelection(element) {
+        var items = document.getElementsByClassName("item");
+        for (var i = 0; i < items.length; i++) {
+            items[i].classList.remove("selected");
+        }
+        element.classList.add("selected");
+    }
+    function validateAmountInput() {
+        var amountInput = document.getElementById("amount");
+        if (amountInput.value < 0) {
+            amountInput.value = 0;
+        }
+    }
+    
+    $(document).ready(function () {
+        // When the "Add Funds" button is clicked
+        $("#addFundsButton").click(function () {
+            // Get the value from the amount input field
+            var amount = $("#amount").val();
+
+            // Create an object to send to the controller
+            var data = {
+                amount: amount
+            };
+
+            // Send the data to the controller using AJAX
+            $.ajax({
+                url: "/Market/AddFunds", // Replace with the actual URL for your controller action
+                type: "POST", // Use the appropriate HTTP method (e.g., POST, GET, etc.)
+                data: data,
+                beforeSend: function () {
+                    // Show the waiting circle
+                    $("#waitingCircle").show();
+                },
+                success: function (response) {
+                    // Handle the success response from the controller
+                    // This can be used to update the UI or perform additional actions
+                    setTimeout(function () {
+                        $("#waitingCircle").hide();
+                    }, 1999);
+                    setTimeout(function () {
+                        $("#successMessage").text("Funds added successfully!");
+                        $("#successMessage").show();
+                    }, 2000);
+                    // Optionally, you can reload the page or update specific elements
+                },
+                error: function (xhr, status, error) {
+                    // Handle any error that occurs during the AJAX request
+                    console.log("Error: " + error);
+                }
+            });
+        });
+    });
+
+</script>
+<style>
+    #waitingCircle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid green;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+@@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.success-message {
+    background-color: #4CAF50;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.modal-body {
+background-color: #222222;
+color: #fff;
+margin-bottom: 20px;
+}
+
+.amount-input {
+    margin-bottom: 20px;
+}
+
+.amount-input .textbox {
+background-color: #333;
+color: #fff;
+border: 1px solid #555;
+padding: 10px;
+border-radius: 5px;
+}
+
+.amount-input .textbox:focus {
+    outline: none;
+    box-shadow: 0 0 3px #888;
+}
+.modal-footer {
+    margin-top: 20px;
+}
+.modal-body img {
+filter: invert(1);
+}
+
+.modal-body {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+}
+
+.modal-body .item {
+height: 100px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+border: 1px solid #111;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+padding: 10px;
+}
+
+.modal-body .item:hover {
+background-color: #333;
+}
+
+.modal-body .item.selected {
+background-color: #444;
+color: #fff;
+}
+
+.modal-body .item img {
+width: 100px;
+height: auto;
+background-color: transparent;
+border: none;
+margin-left: 10px;
+}
+/* buttons */
+.button-36 {
+background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+border-radius: 8px;
+border-style: none;
+box-sizing: border-box;
+color: #FFFFFF;
+cursor: pointer;
+flex-shrink: 0;
+font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+font-size: 16px;
+font-weight: 500;
+height: 4rem;
+padding: 0 1.6rem;
+text-align: center;
+text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+transition: all .5s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+.button-36:hover {
+box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+transition-duration: .1s;
+}
+
+@@media (min-width: 768px) {
+.button-36 {
+padding: 0 2.6rem;
+}
+}
+</style>

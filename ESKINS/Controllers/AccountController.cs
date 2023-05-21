@@ -52,6 +52,7 @@ namespace ESKINS.Controllers
                     {
                         Config.isConfirmed = true;
                         Config.UserId = item.Id;
+                        Config.WalletAmount += item.AccountBalance;
                         // redirect the user to the protected page
                         return RedirectToAction("Index", "Home");
                     }
@@ -63,7 +64,7 @@ namespace ESKINS.Controllers
             catch (Exception ex)
             {
                 await errorLogsService.Error(ex);
-                return View("Index");
+                return View("Error");
             }
         }
 

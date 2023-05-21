@@ -90,7 +90,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 		public async Task<ActionResult> SearchItemsAsync(string query)
@@ -112,8 +112,8 @@ namespace ESKINS.Controllers
 			}
 			catch (Exception ex)
 			{
-				errorLogs.Error(ex);
-				return View("Index");
+				await errorLogs.Error(ex);
+				return View("Error");
 			}
 		}
 
@@ -142,7 +142,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -171,7 +171,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -200,7 +200,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -223,7 +223,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -246,7 +246,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 
@@ -262,7 +262,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogs.Error(ex);
-				return Redirect("/Sell");
+				return View("Error");
 			}
 		}
 

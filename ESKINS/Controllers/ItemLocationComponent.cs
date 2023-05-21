@@ -34,7 +34,7 @@ namespace ESKINS.Controllers
 			catch (Exception ex)
 			{
 				await errorLogsServices.Error(ex);
-				return View("Index");
+				return View("Error");
 			}
 		}
 		#endregion

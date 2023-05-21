@@ -17,6 +17,13 @@
 </style>
 @if(Config.isConfirmed)
 {
+    <li class="nav-item">
+        <button class="btn btn-outline-dark" id="CartButton" type="submit" data-toggle="modal" data-target="#paymentModal">
+            Wallet
+            <i class="bi bi-currency-pound"></i>
+            <span class="badge bg-dark text-white ms-1 rounded-pill">@Config.WalletAmount</span>
+        </button>
+    </li>
     <li>
         <a href="@Url.Action("Index", "Profile")">
             <span class="glyphicon glyphicon-user"></span>
@@ -49,3 +56,15 @@ else
         </a>
     </li>
 }
+<!-- Modal window for wallet -->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"  aria-labelledby="paymentModalLabel" aria-hidden="true">
+    @await Component.InvokeAsync("PaymentMethodComponent")
+</div>
+<script>
+    $(document).ready(function () {
+        $('#CartButton').click(function () {
+            $('#paymentModal').modal('show');
+        });
+    });
+  
+</script>
