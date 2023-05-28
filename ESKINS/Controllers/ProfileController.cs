@@ -40,6 +40,7 @@ namespace ESKINS.Controllers
                 var oldModel = await usersServices.GetAsync(id);
                 model.ModificationDate = DateTime.Now;
                 model.CreationDate = oldModel.CreationDate;
+                model.AccountBalance = oldModel.AccountBalance;
                 var IsConfirmed = await usersServices.EditAsync(id, model);
                 if (IsConfirmed)
                 {
