@@ -1,0 +1,57 @@
+﻿table.dataTable.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+table.dataTable.dark-mode {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+    table.dataTable.dark-mode thead th {
+        background-color: #222;
+    }
+
+    table.dataTable.dark-mode tbody tr.odd {
+        background-color: #444;
+    }
+
+    table.dataTable.dark-mode tbody tr.even {
+        background-color: #333;
+    }
+    table.dataTable.dark-mode th {
+        color: #fff;
+    }
+
+    table.dataTable.dark-mode a {
+        color: #fff;
+    }
+
+    input[type="search"] {
+        background-color: #fff !important;
+        color: #333;
+    }
+label {
+    color: #fff;
+}
+.dataTables_info{
+    color: #fff !important;
+}
+select {
+    color: white;
+    background-color: #333;
+}
+option {
+    color: white;
+    background-color: #333;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: #ccc;
+    color: #fff;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #999;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #555;
+}

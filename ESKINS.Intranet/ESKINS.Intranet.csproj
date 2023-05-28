@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-ESKINS.Intranet-bd437d91-43b1-4de9-b5fd-39fd89b4ed25</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\tablestyles.css" />
+  </ItemGroup>
    
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.15" />

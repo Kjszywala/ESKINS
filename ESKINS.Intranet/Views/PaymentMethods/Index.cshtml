@@ -9,6 +9,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/tablestyles.css" />
 }
 <h2 class="text-center">Payment Methods</h2>
 <br />
@@ -19,7 +21,7 @@
 <div>
     <div>
         <div>
-            <table class="table table-bordered table-striped" style="margin: auto;">
+            <table id="myTable" class="table table-bordered table-striped dark-mode" style="margin: auto;">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -73,6 +75,16 @@
                     $("#editPaymentForm input[name=imageName]").val(data.imageName);
                     $("#editPaymentModal").modal("show");
                 }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "paging": true, // Enable pagination
+                "ordering": true, // Enable sorting
+                "searching": true // Enable search box
             });
         });
     </script>
@@ -132,11 +144,11 @@
     z-index: 9999;
 }
 
-    .container {
-        border-radius: 4px;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
-        padding: 32px;
-    }
+.container {
+    border-radius: 4px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+    padding: 32px;
+}
 /* Modal content */
 .modal-content {
     background-color: #212121;
@@ -161,12 +173,12 @@
     top: 5px;
 }
 
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
 /* Styles for the table */
 table {
 width: 100%;

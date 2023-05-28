@@ -1,8 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.DbServices.Services;
-using ESKINS.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
