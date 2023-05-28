@@ -1,10 +1,6 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Drawing;
-using System.IO;
 
 namespace ESKINS.Intranet.Controllers
 {
@@ -26,7 +22,6 @@ namespace ESKINS.Intranet.Controllers
             paymentMethodsServices = _paymentMethodsServices;
             errorLogsServices = _errorLogsServices;
         }
-
         #endregion
 
         #region Controllers

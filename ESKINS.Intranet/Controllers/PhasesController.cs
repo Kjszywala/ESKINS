@@ -1,6 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
