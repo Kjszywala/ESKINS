@@ -37,7 +37,7 @@
                     <label>E-mail</label>
                 </div>
                 <div class="passwd" >
-                    <input type="text" name="password">
+                    <input type="Password" name="password">
                     <label>Password</label>
                 </div>
                 <div class="submit">
@@ -71,7 +71,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Password)
                     <div class="name">
-                        @Html.EditorFor(model => model.Password)
+                        @Html.PasswordFor(model => model.Password)
                         @Html.ValidationMessageFor(model => model.Password, "")
                     </div>
                 </div>
