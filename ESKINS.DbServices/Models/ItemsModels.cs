@@ -10,7 +10,9 @@ namespace ESKINS.DbServices.Models
         public bool IsActive { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
+        [Display(Name = "Product Name")]
         public string ProductName { get; set; }
+        [Display(Name = "Serial Number")]
         public string? SerialNumber { get; set; }
         public int? UserId { get; set; }
         public UsersModels? User { get; set; }
@@ -26,15 +28,19 @@ namespace ESKINS.DbServices.Models
         public ItemCollectionsModels? ItemCollection { get; set; }
         public int? PhaseId { get; set; }
         public PhasesModels? Phase { get; set; }
+        [Display(Name = "Float")]
         public string ItemFloat { get; set; }
         public int? QualityId { get; set; }
         public QualitiesModels? Quality { get; set; }
         public int? ExteriorId { get; set; }
         public ExteriorsModels? Exterior { get; set; }
         public int? Pattern { get; set; }
+        [Display(Name = "Actual Price")]
         public decimal ActualPrice { get; set; }
+        [Display(Name = "On Sale")]
         public bool OnSale { get; set; }
         public decimal Discount { get; set; }
+        [Display(Name = "Item Image")]
         public byte[]? ItemImage { get; set; }
         public ICollection<ItemPriceHistoriesModels>? ItemPriceHistories { get; set; }
         public ICollection<OrdersModels>? Orders { get; set; }

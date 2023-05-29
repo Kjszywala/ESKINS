@@ -1,4 +1,7 @@
-﻿namespace ESKINS.DbServices.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+namespace ESKINS.DbServices.Models
 {
     public class ItemLocationsModels
     {
@@ -8,6 +11,7 @@
         public bool IsActive { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
+        [Display(Name = "Location")]
         public string ItemLocation { get; set; }
         public ICollection<ItemsModels>? Items { get; set; }
     }

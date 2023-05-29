@@ -1,4 +1,6 @@
-﻿namespace ESKINS.DbServices.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ESKINS.DbServices.Models
 {
     public class CategoriesModels
     {
@@ -8,6 +10,7 @@
         public bool IsActive { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
+        [Display(Name = "Category")]
         public string? CategoryDescription { get; set; }
         public ICollection<ItemsModels>? Items { get; set; }
     }

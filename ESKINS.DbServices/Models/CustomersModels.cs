@@ -1,4 +1,7 @@
-﻿namespace ESKINS.DbServices.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+namespace ESKINS.DbServices.Models
 {
     public class CustomersModels
     {
@@ -8,7 +11,9 @@
         public bool IsActive { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModificationDate { get; set; }
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public int UserId { get; set; }
         public UsersModels? User { get; set; }
