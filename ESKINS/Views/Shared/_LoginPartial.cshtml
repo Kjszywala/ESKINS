@@ -35,7 +35,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <button class="btn btn-outline-dark" id="CartButton" type="submit" data-toggle="modal" data-target="#buyCartModal">
+        <button class="btn btn-outline-dark" id="CartButton" type="submit" onclick="redirectToUrl('@Url.Action("index", "BuyCart")')">
             <i class="bi-cart-fill me-1"></i>
             Cart
             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
@@ -75,6 +75,10 @@ else
     }
 </style>
 <script>
+    function redirectToUrl(url) {
+        window.location.href = url;
+    }
+
     document.getElementById('walletAmountSpan').textContent = walletAmount;
 
     $(document).ready(function () {

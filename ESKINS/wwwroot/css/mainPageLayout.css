@@ -64,10 +64,10 @@ html {
     margin-bottom: 11px;
 }
 
-    .card:hover {
-        box-shadow: 0 0 2px 2px #5600b2;
-        transform: scale(1.05);
-    }
+.card:hover {
+    box-shadow: 0 0 2px 2px #5600b2;
+    transform: scale(1.05);
+}
 
 #smallButton {
     margin-left: -50px;
