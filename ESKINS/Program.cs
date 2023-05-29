@@ -1,6 +1,5 @@
 using ESKINS.BusinessLogic.BusinessLogic;
 using ESKINS.BusinessLogic.Interfaces;
-using ESKINS.Controllers;
 using ESKINS.Data;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Services;
@@ -45,6 +44,7 @@ namespace ESKINS
             builder.Services.AddScoped<IItemPriceHistoriesServices, ItemPriceHistoriesServices>();
             builder.Services.AddScoped<ITargetsServices, TargetsServices>();
             builder.Services.AddScoped<IInvoicesServices, InvoicesServices>();
+            builder.Services.AddScoped<ICartLogic, CartLogic>();
 
             var app = builder.Build();
 
