@@ -1,4 +1,5 @@
-﻿using ESKINS.BusinessLogic.BusinessLogic;
+﻿using ESKINS.BusinessLogic;
+using ESKINS.BusinessLogic.BusinessLogic;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +65,8 @@ namespace ESKINS.Controllers
                 {
                     if (email.Trim() == item.Email.Trim() && password.Trim() == item.Password.Trim())
                     {
-                        Config.SessionId = cardSessionLogic.GetCartSessionId();
+                        BussinesLogicConfig.SessionId = cardSessionLogic.GetCartSessionId();
+                        Config.SessionId = BussinesLogicConfig.SessionId;
                         Config.isConfirmed = true;
                         Config.UserId = item.Id;
                         Config.WalletAmount += item.AccountBalance;
@@ -117,6 +119,7 @@ namespace ESKINS.Controllers
             // clear the session variable
             Config.isConfirmed = false;
             Config.WalletAmount = 0;
+            Config.SessionId = string.Empty;
 
             // redirect the user to the login page
             return RedirectToAction("Index");

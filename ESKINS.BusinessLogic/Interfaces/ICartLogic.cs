@@ -17,5 +17,17 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="ItemId">Item id which we want to remove from cart.</param>
         /// <returns>true if succeed</returns>
         public Task<bool> RemoveFromCart(int ItemId);
+
+        /// <summary>
+        /// Removes all items from cart.
+        /// </summary>
+        /// <returns></returns>
+        public Task<bool> RemoveAll();
+
+        /// <summary>
+        /// Gets cart items quantity.
+        /// </summary>
+        /// <returns></returns>
+        public Task<int> GetQuantity();
     }
 }
