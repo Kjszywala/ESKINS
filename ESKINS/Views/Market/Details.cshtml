@@ -29,12 +29,12 @@
             <hr />
             <div class="d-flex justify-content-center mb-3">
                <span style="color: green;"><dt>Float:</dt></span> @Double.Parse(@Model.ItemFloat).ToString("F12")
-                 <div class="line-container" style="position: relative; height: 10px; width: 90%; background-color: #ccc;">
-                    <div style="position: absolute; top: 0; left: 0; width: 7%; height: 100%; background-color: green;" title="Factory New (0 - 0.7)"></div>
-                    <div style="position: absolute; top: 0; left: 7%; width: 8%; height: 100%; background-color: lightgreen;" title="Minimal Wear (0.07 - 0.15)"></div>
-                    <div style="position: absolute; top: 0; left: 15%; width: 23%; height: 100%; background-color: yellow;" title="Field Tested (0.15 - 0.38)"></div>
-                    <div style="position: absolute; top: 0; left: 38%; width: 7%; height: 100%; background-color: orange;" title="Well Worn (0.38 - 0.45)"></div>
-                    <div style="position: absolute; top: 0; left: 45%; width: 56%; height: 100%; background-color: red;" title="Batle Scared (0.45 - 1.00)"></div>
+                <div class="line-container" style="position: relative; height: 10px; width: 70%; background-color: #ccc;">
+                    <div style="position: absolute; top: 0; left: 0; width: 10%; height: 100%; background-color: green;" title="Factory New (0 - 0.7)"></div>
+                    <div style="position: absolute; top: 0; left: 10%; width: 10%; height: 100%; background-color: lightgreen;" title="Minimal Wear (0.07 - 0.15)"></div>
+                    <div style="position: absolute; top: 0; left: 20%; width: 20%; height: 100%; background-color: yellow;" title="Field Tested (0.15 - 0.38)"></div>
+                    <div style="position: absolute; top: 0; left: 40%; width: 10%; height: 100%; background-color: orange;" title="Well Worn (0.38 - 0.45)"></div>
+                    <div style="position: absolute; top: 0; left: 50%; width: 50%; height: 100%; background-color: red;" title="Batle Scared (0.45 - 1.00)"></div>
                     <div id="arrow" class="line-container__arrow"></div>
                 </div>
             </div>
@@ -138,16 +138,16 @@
     });
 </script>
 <style>
-.line-container .arrow {
+    .line-container__arrow {
         position: absolute;
-        top: -10px; /* Adjust this value based on your arrow position */
+        top: 10px; /* Adjust this value based on your arrow position */
         left: 50%; /* Adjust this value to center the arrow horizontally */
         transform: translateX(-50%);
         width: 0;
         height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 10px solid black; /* Adjust the color and size of the arrow */
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 12px solid purple; /* Adjust the color and size of the arrow */
         z-index: 1; /* Ensure the arrow appears above the line */
 }
 .center-vertically {
