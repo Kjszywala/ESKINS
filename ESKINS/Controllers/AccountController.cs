@@ -1,4 +1,5 @@
-﻿using ESKINS.DbServices.Interfaces;
+﻿using ESKINS.BusinessLogic.BusinessLogic;
+using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,15 +11,28 @@ namespace ESKINS.Controllers
 
         IUsersServices usersService;
         IErrorLogsServices errorLogsService;
+        ICartServices cartServices;
+
+        #endregion
+
+        #region Properties
+
+        private readonly CardSessionLogic cardSessionLogic;
 
         #endregion
 
         #region Constructor
 
-        public AccountController(IErrorLogsServices _errorLogsServices, IUsersServices _usersServices)
+        public AccountController(
+            IErrorLogsServices _errorLogsServices, 
+            IUsersServices _usersServices,
+            CardSessionLogic _cardSessionLogic,
+            ICartServices _cartServices)
         {
             usersService = _usersServices;
             errorLogsService = _errorLogsServices;
+            cardSessionLogic = _cardSessionLogic;
+            cartServices = _cartServices;
         }
 
         #endregion
@@ -50,6 +64,14 @@ namespace ESKINS.Controllers
                 {
                     if (email.Trim() == item.Email.Trim() && password.Trim() == item.Password.Trim())
                     {
+                        string cartSessionId = cardSessionLogic.GetCartSessionId();
+                        CartModels cartModels = new CartModels()
+                        {
+                            CreationDate = DateTime.Now,
+                            SessionId = cartSessionId,
+                            Quantity = 20
+                        };
+                        await cartServices.AddAsync(cartModels);
                         Config.isConfirmed = true;
                         Config.UserId = item.Id;
                         Config.WalletAmount += item.AccountBalance;

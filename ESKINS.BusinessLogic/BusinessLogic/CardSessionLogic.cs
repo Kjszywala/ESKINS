@@ -8,14 +8,16 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         #region Properties
 
         public string CartSessionId { get; set; }
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         #endregion
 
         #region Constructor
 
-        public CardSessionLogic(HttpContext httpContext)
+        public CardSessionLogic(IHttpContextAccessor httpContextAccessor)
         {
-            CartSessionId = GetCartSessionId(httpContext);
+            _httpContextAccessor = httpContextAccessor;
+            CartSessionId = GetCartSessionId();
         }
 
         #endregion
@@ -30,21 +32,26 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         /// </summary>
         /// <param name="httpContext"></param>
         /// <returns></returns>
-        public string? GetCartSessionId(HttpContext httpContext)
+        public string GetCartSessionId()
         {
-            if (httpContext.Session.GetString("CartSessionId") == null)
+            var httpContext = _httpContextAccessor.HttpContext;
+            var cartSessionId = httpContext.Session.GetString("CartSessionId");
+
+            if (string.IsNullOrWhiteSpace(cartSessionId))
             {
                 if (!string.IsNullOrWhiteSpace(httpContext.User.Identity.Name))
                 {
-                    httpContext.Session.SetString("CartSessionId", httpContext.User.Identity.Name);
+                    cartSessionId = httpContext.User.Identity.Name;
                 }
                 else
                 {
-                    Guid guid = Guid.NewGuid();
-                    httpContext.Session.SetString("CartSessionId", guid.ToString());
+                    cartSessionId = Guid.NewGuid().ToString();
                 }
+
+                httpContext.Session.SetString("CartSessionId", cartSessionId);
             }
-            return httpContext.Session.GetString("CartSessionId").ToString();
+
+            return cartSessionId;
         }
 
         #endregion

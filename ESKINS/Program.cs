@@ -44,10 +44,15 @@ namespace ESKINS
             builder.Services.AddScoped<IItemPriceHistoriesServices, ItemPriceHistoriesServices>();
             builder.Services.AddScoped<ITargetsServices, TargetsServices>();
             builder.Services.AddScoped<IInvoicesServices, InvoicesServices>();
+            builder.Services.AddScoped<ICartServices, CartServices>();
             builder.Services.AddScoped<ICartLogic, CartLogic>();
+            builder.Services.AddSession();
+
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddScoped<CardSessionLogic>();
 
             var app = builder.Build();
-
+            app.UseSession();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

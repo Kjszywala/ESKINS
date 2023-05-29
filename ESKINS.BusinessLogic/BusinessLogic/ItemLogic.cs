@@ -14,9 +14,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 
 		#region Constructor
 
-		public ItemLogic(
-		   IItemsServices _itemsServices
-		   )
+		public ItemLogic(IItemsServices _itemsServices)
 		{
 			itemsServices = _itemsServices;
 		}

@@ -3,7 +3,7 @@ using ESKINS.DbServices.Models;
 
 namespace ESKINS.DbServices.Services
 {
-    internal class CartServices :
+    public class CartServices :
         BaseServices<CartModels>,
         ICartServices
     {
