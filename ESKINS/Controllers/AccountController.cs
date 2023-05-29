@@ -64,14 +64,7 @@ namespace ESKINS.Controllers
                 {
                     if (email.Trim() == item.Email.Trim() && password.Trim() == item.Password.Trim())
                     {
-                        string cartSessionId = cardSessionLogic.GetCartSessionId();
-                        CartModels cartModels = new CartModels()
-                        {
-                            CreationDate = DateTime.Now,
-                            SessionId = cartSessionId,
-                            Quantity = 20
-                        };
-                        await cartServices.AddAsync(cartModels);
+                        Config.SessionId = cardSessionLogic.GetCartSessionId();
                         Config.isConfirmed = true;
                         Config.UserId = item.Id;
                         Config.WalletAmount += item.AccountBalance;
