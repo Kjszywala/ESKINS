@@ -3,7 +3,239 @@
     ViewData["Title"] = "Market";
     Layout = "_MainPageLayout";
 }
-@section head{
+<header class="privacy">
+    <h2>Item Details</h2>
+</header>
+<br />
+<br />
+<section class="py-5" style="color: white; margin-bottom:-20px;">
+  <br>
+  <div class="container1" style="margin:auto;">
+    <div class="row gx-5">
+    <div class="border rounded-4 mb-3 d-flex justify-content-center">
+        <aside class="col-lg-6 center-vertically d-flex align-items-center justify-content-center" style="margin-top:20px; min-height:500px;">
+            <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" >
+                <img style="max-width: 100%; max-height: 400px; margin-bottom:auto;" class="rounded-4 fit" src="data:image;base64,@Convert.ToBase64String(Model.ItemImage)" "  />
+            </a>
+            <div>
+        </aside>
+    </div>
+    <main class="col-lg-6" style="margin-top:20px; margin-bottom:20px;">
+        <div class="ps-lg-3">
+          <h4 class="title text-dark" style="color:green;">
+            @Model.ProductName <br />
+            Holder: @Model.User.Email
+          </h4>
+            <hr />
+            <div class="d-flex justify-content-center mb-3">
+               <span style="color: green;"><dt>Float:</dt></span> @Double.Parse(@Model.ItemFloat).ToString("F12")
+                 <div class="line-container" style="position: relative; height: 10px; width: 90%; background-color: #ccc;">
+                    <div style="position: absolute; top: 0; left: 0; width: 7%; height: 100%; background-color: green;" title="Factory New (0 - 0.7)"></div>
+                    <div style="position: absolute; top: 0; left: 7%; width: 8%; height: 100%; background-color: lightgreen;" title="Minimal Wear (0.07 - 0.15)"></div>
+                    <div style="position: absolute; top: 0; left: 15%; width: 23%; height: 100%; background-color: yellow;" title="Field Tested (0.15 - 0.38)"></div>
+                    <div style="position: absolute; top: 0; left: 38%; width: 7%; height: 100%; background-color: orange;" title="Well Worn (0.38 - 0.45)"></div>
+                    <div style="position: absolute; top: 0; left: 45%; width: 56%; height: 100%; background-color: red;" title="Batle Scared (0.45 - 1.00)"></div>
+                    <div id="arrow" class="line-container__arrow"></div>
+                </div>
+            </div>
+            <hr />
+          <div class="mb-3">
+            <dt class="col-3">Price:</dt>
+            <dd class="col-9">£ @Model.ActualPrice</dd>
+          </div>
+          <div class="mb-3">
+            <dt class="col-3">Discount:</dt>
+            <dd class="col-9"> @(Math.Round(Model.Discount * 100)) %</dd>
+          </div>
+          <hr />
+            <div class="row my-row center-content">
+                <div class="col my-col">
+                    <div class="col-3">
+                        <dt>Stat-Track:</dt>
+                    </div>
+                    <div class="col-9">
+                        <dd>@(Model.StatTrack ? "Yes" : "No")</dd>
+                    </div>
+
+                    <div class="col-3">
+                        <dt>Souvenir:</dt>
+                    </div>
+                    <div class="col-9">
+                        <dd>@(Model.Souvenir ? "Yes" : "No")</dd>
+                    </div>
+
+                    <div class="col-3">
+                        <dt>Phase:</dt>
+                    </div>
+                    <div class="col-9">
+                        <dd>@Model.Phase.Phase</dd>
+                    </div>
+                </div>
+                <div class="col my-col">
+                     <div class="col-3">
+                        <dt>Quality:</dt>
+                    </div>
+                    <div class="col-9">
+                        <dd>@Model.Quality.Quality</dd>
+                    </div>
+                    <div class="col-3">
+                        <dt>Category:</dt>
+                    </div>
+                    <div class="col-9">
+                       <dd>@Model.Category.CategoryDescription</dd>
+                    </div>
+
+                    <div class="col-3">
+                        <dt>Exterior:</dt>
+                    </div>
+                    <div class="col-9">
+                        <dd>@Model.Exterior.Exterior</dd>
+                    </div>
+                </div>
+                <div class="col my-col">
+                       <div class="col-3">
+                        <dt>Pattern:</dt>
+                    </div>
+                    <div class="col-9">
+                        <dd>@Model.Pattern</dd>
+                    </div>
+
+                    <div class="col-3">
+                        <dt>Item Collection:</dt>
+                    </div>
+                    <div class="col-9">
+                        <dd>@Model.ItemCollection.ItemCollection</dd>
+                    </div>
+                     <div class="col-3">
+                        <dt>Item Location:</dt>
+                    </div>
+                    <div class="col-9">
+                        <dd>@Model.ItemLocation.ItemLocation</dd>
+                    </div>
+                </div>
+            </div>
+          <hr />
+          <a href="#" id="btnBack1" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+          <button id="btnBack" style="margin: 5px;">Back To Market</button>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<script>
+    var arrow = document.getElementById('arrow');
+    var float = parseFloat('@Model.ItemFloat'); // Replace with your float value
+
+    // Calculate the arrow position based on the float value
+    var lineContainerWidth = document.querySelector('.line-container').offsetWidth;
+    var arrowPosition = (float * lineContainerWidth) + 'px';
+    arrow.style.left = arrowPosition;
+
+    document.getElementById("btnBack").addEventListener("click", function () {
+        history.back();
+    });
+</script>
+<style>
+.line-container .arrow {
+        position: absolute;
+        top: -10px; /* Adjust this value based on your arrow position */
+        left: 50%; /* Adjust this value to center the arrow horizontally */
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid black; /* Adjust the color and size of the arrow */
+        z-index: 1; /* Ensure the arrow appears above the line */
+}
+.center-vertically {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+}
+dd{
+    margin-left: 5px;
+}
+dt{
+    color:green;
+}
+.my-col{
+    margin: 25px;
+    width:auto;
+}
+.my-row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.icon-hover:hover {
+  border-color: #3b71ca !important;
+  background-color: white !important;
+  color: #3b71ca !important;
+}
+
+.icon-hover:hover i {
+  color: #3b71ca !important;
+}
+header {
+    background-color: #181716;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+#btnBack {
+    background-color: #5600b2;
+    color: white;
+    border-radius: 7px;
+    border-color: transparent;
+    font-size: 16px;
+    line-height: 1.5;
+    height: 40px;
+}
+
+#btnBack:hover {
+    background-color: #331d35;
+    color: white;
+}
+
+#btnBack:active {
+    background-color: #5600b2;
+    color: white;
+}
+
+#btnBack1 {
+background-color: #5600b2;
+color: white;
+border-radius: 7px;
+border-color: transparent;
+font-size: 16px;
+line-height: 1.5;
+height: 40px;
+}
+
+#btnBack1:hover {
+    background-color: #331d35;
+    color: white;
+}
+
+#btnBack1:active {
+    background-color: #5600b2;
+    color: white;
+}
+ .container1 {
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+    max-width: 1400px;
+    min-height:600px;
+}
+</style>
+@*@section head{
     <link href="~/css/sell.css" type="text/css" rel="stylesheet" />
 }
 <header class="privacy">
@@ -182,4 +414,4 @@
         width: 350px;
         height: auto;
     }
-</style>
+</style>*@
