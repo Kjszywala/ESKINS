@@ -4,7 +4,7 @@
 }
 @section head{
 }
-    <header class="privacy">
+    <header class="privacy1">
         <h2>Shopping Cart</h2>
     </header>
     <br />
@@ -57,184 +57,472 @@
                     </div>
                     <br />
                     <br />
-                    <div class="card1 shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
-                        <div class="card1-body p-4">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4 col-xl-3 mb-4 mb-md-0">
-                                    <div class="d-flex flex-row pb-3 ">
-                                        <div class="d-flex align-items-center pe-2">
-                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1v"
-                                                    value="" aria-label="..." checked />
-                                        </div>
-                                    <div class="rounded border w-100 p-3  mouse-over">
-                                            <p class="d-flex align-items-center mb-0">
-                                                <i class="fab fa-cc-mastercard fa-2x text-dark pe-2"></i>Credit
-                                                Card
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row pb-3">
-                                        <div class="d-flex align-items-center pe-2">
-                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2v"
-                                                    value="" aria-label="..." />
-                                        </div>
-                                    <div class="rounded border w-100 p-3  mouse-over">
-                                            <p class="d-flex align-items-center mb-0">
-                                                <i class="fab fa-cc-visa fa-2x fa-lg text-dark pe-2"></i>Debit Card
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row">
-                                        <div class="d-flex align-items-center pe-2">
-                                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3v"
-                                                    value="" aria-label="..." />
-                                        </div>
-                                    <div class="rounded border w-100 p-3  mouse-over">
-                                            <p class="d-flex align-items-center mb-0">
-                                                <i class="fab fa-cc-paypal fa-2x fa-lg text-dark pe-2"></i>PayPal
-                                            </p>
-                                        </div>
-                                    </div>
+                <div class="card1">
+                        <div class="payment" style="margin:20px;">
+                        <div class="payment__title center-align" style="margin-top:-20px;">
+                                Payment Method
+                            </div>
+                            <div class="payment__types">
+                                <div class="payment__type payment__type--cc active">
+                                    <i class="icon icon-credit-card"></i>Credit Card
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-6">
-                                    <div class="row">
-                                        <div class="col-12 col-xl-6">
-                                            <div class="form-outline mb-4 mb-xl-5">
-                                                <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                                                       placeholder="John Smith" />
-                                                <label class="form-label" for="typeName">Name on card</label>
-                                            </div>
-
-                                            <div class="form-outline mb-4 mb-xl-5">
-                                                <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YY"
-                                                       size="7" minlength="7" maxlength="7" />
-                                                <label class="form-label" for="typeExp">Expiration</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-xl-6">
-                                            <div class="form-outline mb-4 mb-xl-5">
-                                                <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                                                       placeholder="1111 2222 3333 4444" minlength="19" maxlength="19" />
-                                                <label class="form-label" for="typeText">Card Number</label>
-                                            </div>
-
-                                            <div class="form-outline mb-4 mb-xl-5">
-                                                <input type="password" id="typeText" class="form-control form-control-lg"
-                                                       placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                                                <label class="form-label" for="typeText">Cvv</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="payment__type payment__type--paypal">
+                                    <i class="icon icon-paypal"></i>Paypal
                                 </div>
-                                <div class="col-lg-4 col-xl-3">
-                                    <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                        <p class="mb-2">Subtotal</p>
-                                        <p class="mb-2">$23.49</p>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                        <p class="mb-0">Shipping</p>
-                                        <p class="mb-0">$2.99</p>
-                                    </div>
-
-                                    <hr class="my-4">
-
-                                    <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
-                                        <p class="mb-2">Total (tax included)</p>
-                                        <p class="mb-2">$26.48</p>
-                                    </div>
-                                    <div class="center-align">
-                                        <button type="button" class="button-36" style="min-width: 200px;">
-                                            <div class="d-flex justify-content-between">
-                                                <span>Checkout</span>
-                                                <span>$26.48</span>
+                                <div class="payment__type payment__type--paypal">
+                                    <i class="icon icon-wallet"></i>SEPA
+                                </div>
+                                <div class="payment__type payment__type--paypal">
+                                    <i class="icon icon-note"></i>Invoice
+                                </div>
+                            </div>
+                            <div class="payment__info">
+                                <div class="payment__cc">
+                                    <form>
+                                        <div class="form__cc">
+                                            <div class="row">
+                                                <div class="field">
+                                                    <div class="title">
+                                                        Credit Card Number
+                                                    </div>
+                                                    <input type="text" class="input txt text-validated" value="4542 9931 9292 2293" />
+                                                </div>
                                             </div>
-                                        </button>
+                                            <div class="row">
+                                                <div class="field small">
+                                                    <div class="title">
+                                                        Expiry Date
+                                                    </div>
+                                                    <select class="input ddl">
+                                                        <option selected>01</option>
+                                                        <option>02</option>
+                                                        <option>03</option>
+                                                    </select>
+                                                    <select class="input ddl">
+                                                        <option>01</option>
+                                                        <option>02</option>
+                                                        <option>03</option>
+                                                    </select>
+                                                </div>
+                                                <div class="field small">
+                                                    <div class="title">
+                                                        CVV Code
+                                                        <span class="numberCircle">?</span>
+                                                    </div>
+                                                    <input type="text" class="input txt" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="field">
+                                                    <div class="title">
+                                                        Name on Card
+                                                    </div>
+                                                    <input type="text" class="input txt" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="payment__shipping">
+                                    <div class="payment__title">
+                                        <i class="icon icon-plane"></i> Shiping Information
+                                    </div>
+                                    <div class="details__user">
+                                        <div class="user__name">
+                                            John Doe
+                                            <br> 13/03/1980
+                                        </div>
+                                        <div class="user__address">
+                                            Shipping Address: 22 Street, Address
+                                            <br>Country
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                <div class="center-align">
+                            <button href="#" class="button-36">
+                                    Place your Order
+                                    <i class="icon icon-arrow-right-circle"></i>
+                            </button>
+                            <button href="#" class="button-36">Go Back to Shop</button>
+                        </div>
                 </div>
             </div>
         </div>
     </section>
     <br />
-    <script>
-    function selectPaymentMethod(method) {
-        // Handle payment method selection
-        console.log('Selected payment method:', method);
-    }
-
-    function applyGradientShadow(element) {
-        element.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)';
-        element.style.background = 'linear-gradient(to bottom right, #8c6bff, #00ff9b)';
-        element.style.color = 'white';
-    }
-
-    function removeGradientShadow(element) {
-        element.style.boxShadow = '';
-        element.style.background = '';
-        element.style.color = '';
-    }
-    </script>
 <style>
-/*
-    .payment-option:hover {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-        background: linear-gradient(to bottom right, #8c6bff, #00ff9b);
-        color: white;
-    }*/
-    .mouse-over::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: linear-gradient(to bottom right, #8c6bff, #00ff9b);
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
+    *,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
 
-    .mouse-over:hover::before {
-        opacity: 1;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-    }
-    /* Payment method container styles */
-    .d-flex.flex-row {
-        align-items: center;
-        padding-bottom: 0.75rem;
-    }
+ul {
+  padding-left: 10px;
+}
 
-    /* Payment method option styles */
-    .rounded.border {
-        border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        display: flex;
-        align-items: center;
-        padding: 0.75rem;
-    }
+body {
+  font-family: "Josefin Sans", sans-serif;
+  color: #0a0a0a;
+  line-height: 1.4;
+}
 
-    .rounded.border:hover {
-        border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        display: flex;
-        align-items: center;
-        padding: 0.75rem;
-    }
+a {
+  color: #000;
+}
 
-    /* Payment method text styles */
-    .d-flex.align-items-center.mb-0 {
-        font-size: 1rem;
-    }
+.content {
+  z-index: 9999;
+}
 
-    /* Hide radio buttons */
-    .form-check-input {
-        display: none;
-    }
+.secure,
+.backBtn {
+  display: flex;
+}
+.secure span,
+.backBtn span {
+  margin-left: 5px;
+}
+
+.backBtn {
+  margin-top: 20px;
+}
+
+.secure {
+  color: #afb5c0;
+  align-items: flex-end;
+}
+.secure .icon {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.logo .icon {
+  font-size: 32px;
+  line-height: 32px;
+  margin-right: 5px;
+}
+
+img {
+  width: 100%;
+  border-radius: 8px 0 0 8px;
+}
+
+.details {
+  max-width: 800px;
+  min-height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -200px;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.details__item {
+  display: flex;
+}
+.details__user {
+  background: #f6f9fc;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #dadada;
+}
+
+.item__quantity {
+  position: absolute;
+  right: 50px;
+  top: 30px;
+  font-size: 20px;
+}
+.item__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.item__image .iphone {
+  margin-top: -50px;
+  margin-left: -100px;
+  width: 200px;
+}
+.item__details {
+  padding: 30px;
+}
+.item__title {
+  font-size: 28px;
+  font-weight: 600;
+}
+.item__price {
+  font-size: 22px;
+  color: #bec3cb;
+}
+
+.icon {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+header1 {
+  background-color: #f6f9fc;
+  min-height: 500px;
+  background-image: url("../images/pattern.png");
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 0 80px 0;
+  color: #246eea;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.shadow {
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.row {
+  display: flex;
+}
+
+.txt {
+  border-color: #e1e8ee;
+  width: 100%;
+}
+
+.input {
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  height: 48px;
+  padding-left: 15px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #5e6977;
+}
+
+input[type="text"] {
+  display: initial;
+  padding: 15px;
+}
+
+.text-validated {
+  border-color: #7dc855;
+  background-image: url("../images/icon-tick.png");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+}
+
+.ddl {
+  border-color: #f0f4f7;
+  background-color: #f0f4f7;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 14px;
+  padding-bottom: 8px;
+}
+
+.field {
+  padding-top: 15px;
+  padding-right: 30px;
+  width: 50%;
+}
+.field.small {
+  width: auto;
+}
+
+.notification {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+}
+.notification .icon {
+  font-size: 28px;
+  color: #7dc855;
+  line-height: 28px;
+  margin-right: 10px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 60px 0 40px 0;
+}
+
+.payment {
+  padding: 20px 0 0 0;
+}
+.payment__title {
+  margin: 40px 0 20px 0;
+  font-size: 18px;
+  display: flex;
+  text-align: left;
+}
+.payment__title .icon {
+  margin-right: 10px;
+}
+.btn:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  background: #4984ea;
+}
+.btn.action__back {
+  background: transparent;
+  color: #a0a0a0;
+}
+
+.payment__types {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment__info {
+  display: flex;
+}
+
+.payment__cc {
+  flex: 60%;
+}
+
+.payment__shipping {
+  flex: 40%;
+}
+
+.shipping__info {
+  background: #f6f9fc;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.payment__type {
+  display: flex;
+  border: 2px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 20px 40px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #d9d9d9;
+  transition: all 0.15s ease;
+}
+.payment__type:hover {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+.payment__type.active {
+  color: #0a0a0a;
+  background: #f6fcf7;
+  border-color: #7dc855;
+}
+.payment__type .icon {
+  font-size: 32px;
+  margin-right: 10px;
+}
+.payment__type + .payment__type {
+  margin-left: 10px;
+}
+
+.icon-xl {
+  font-size: 48px;
+  line-height: 48px;
+}
+
+.content {
+  display: block;
+}
+
+.thankyou {
+  display: block;
+}
+.thankyou .details {
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+}
+.thankyou .details h3 {
+  font-weight: 600;
+}
+.thankyou .details__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.thankyou .details__item .icon-xl {
+  font-size: 32px;
+  color: #7dc855;
+  line-height: 32px;
+}
+
+.loading {
+  position: relative;
+}
+.loading:after {
+  -webkit-animation: spinAround .5s infinite linear;
+          animation: spinAround .5s infinite linear;
+  border: 4px solid #7dc855;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  height: 5em;
+  width: 5em;
+  position: absolute;
+}
+.loading .details__item {
+  opacity: 0;
+}
+
+@@-webkit-keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@@keyframes spinAround {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
 
 @@media (min-width: 1025px) {
 .h-custom {
@@ -295,12 +583,14 @@ tbody{
     align-items: center;
     justify-content: center;
 }
-header {
+
+    .privacy1 {
     background-color: #181716;
     color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0px 9px 30px black;
+    height: 100px;;
 }
 
 .card1 {
