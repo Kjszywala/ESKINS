@@ -1,78 +1,72 @@
-﻿@{
+﻿@model List<ESKINS.DbServices.Models.ItemsModels>
+@{
     Layout = "_MainPageLayout";
 }
-<header class="privacy">
-    <h2>Shopping Cart</h2>
-</header>
-<br />
-<section class="h-100 h-custom" style="color:white;">
-    <div class="container h-100 py-5">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col">
-                <div class="card1">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="h5">Shopping Bag</th>
-                                <th scope="col">Format</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="https://i.imgur.com/2DsA49b.webp" class="img-fluid rounded-3"
-                                             style="width: 120px;" alt="Book">
-                                        <div class="flex-column ms-4">
-                                            <p class="mb-2">Thinking, Fast and Slow</p>
-                                            <p class="mb-0">Daniel Kahneman</p>
-                                        </div>
-                                    </div>
-                                </th>
-                                <td class="align-middle">
-                                    <p class="mb-0" style="font-weight: 500;">Digital</p>
-                                </td>
-                                <td class="align-middle">
-                                    <div class="d-flex flex-row">
-                                        <button class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-
-                                        <input id="form1" min="0" name="quantity" value="2" type="number"
-                                               class="form-control form-control-sm" style="width: 50px;" />
-
-                                        <button class="btn btn-link px-2"
-                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                                <td class="align-middle">
-                                    <p class="mb-0" style="font-weight: 500;">$9.99</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                </div>
-                <br />
-                <br />
-                <div class="card1 shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
-                    <div class="card1-body p-4">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-4 col-xl-3 mb-4 mb-md-0">
-                                <form>
-                                    <div class="d-flex flex-row pb-3">
+@section head{
+}
+    <header class="privacy">
+        <h2>Shopping Cart</h2>
+    </header>
+    <br />
+    <section style="color:white;">
+        <div class="container h-100 py-5">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card1">
+                        <div class="table-responsive" style="overflow: auto; max-height:400px; margin:20px; border-radius: 10px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="text-align: center;">Shopping Bag</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Quality</th>
+                                        <th scope="col">Discount</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var item in Model){
+                                        <tr style="height: 150px;">
+                                             <td class="align-middle">
+                                                <img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" class="img-fluid rounded-3"
+                                                     style="width: 120px;" alt="Book">
+                                            </td>
+                                            <td class="align-middle">
+                                                <p class="mb-2">@item.ProductName</p>
+                                                <p class="mb-0">@item.Category.CategoryDescription</p>
+                                                <p class="mb-0" style="font-weight: 500;">@item.Exterior.Exterior</p>
+                                            </td>
+                                            <td class="align-middle">
+                                                <p class="mb-0" style="font-weight: 500;">@item.Quality.Quality</p>
+                                            </td>
+                                            <td class="align-middle">
+                                                <p class="mb-0" style="font-weight: 500;">@(Math.Round(item.Discount * 100)) %</p>
+                                            </td>
+                                            <td class="align-middle">
+                                                <p class="mb-0" style="font-weight: 500;">£ @item.ActualPrice</p>
+                                            </td>
+                                            <td class="align-middle">
+                                                <button type="submit" class="button-36">Remove</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="card1 shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
+                        <div class="card1-body p-4">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4 col-xl-3 mb-4 mb-md-0">
+                                    <div class="d-flex flex-row pb-3 ">
                                         <div class="d-flex align-items-center pe-2">
                                             <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1v"
-                                                   value="" aria-label="..." checked />
+                                                    value="" aria-label="..." checked />
                                         </div>
-                                        <div class="rounded border w-100 p-3">
+                                    <div class="rounded border w-100 p-3  mouse-over">
                                             <p class="d-flex align-items-center mb-0">
                                                 <i class="fab fa-cc-mastercard fa-2x text-dark pe-2"></i>Credit
                                                 Card
@@ -82,9 +76,9 @@
                                     <div class="d-flex flex-row pb-3">
                                         <div class="d-flex align-items-center pe-2">
                                             <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2v"
-                                                   value="" aria-label="..." />
+                                                    value="" aria-label="..." />
                                         </div>
-                                        <div class="rounded border w-100 p-3">
+                                    <div class="rounded border w-100 p-3  mouse-over">
                                             <p class="d-flex align-items-center mb-0">
                                                 <i class="fab fa-cc-visa fa-2x fa-lg text-dark pe-2"></i>Debit Card
                                             </p>
@@ -93,130 +87,257 @@
                                     <div class="d-flex flex-row">
                                         <div class="d-flex align-items-center pe-2">
                                             <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3v"
-                                                   value="" aria-label="..." />
+                                                    value="" aria-label="..." />
                                         </div>
-                                        <div class="rounded border w-100 p-3">
+                                    <div class="rounded border w-100 p-3  mouse-over">
                                             <p class="d-flex align-items-center mb-0">
                                                 <i class="fab fa-cc-paypal fa-2x fa-lg text-dark pe-2"></i>PayPal
                                             </p>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-md-6 col-lg-4 col-xl-6">
-                                <div class="row">
-                                    <div class="col-12 col-xl-6">
-                                        <div class="form-outline mb-4 mb-xl-5">
-                                            <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                                                   placeholder="John Smith" />
-                                            <label class="form-label" for="typeName">Name on card</label>
-                                        </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4 col-xl-6">
+                                    <div class="row">
+                                        <div class="col-12 col-xl-6">
+                                            <div class="form-outline mb-4 mb-xl-5">
+                                                <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                                                       placeholder="John Smith" />
+                                                <label class="form-label" for="typeName">Name on card</label>
+                                            </div>
 
-                                        <div class="form-outline mb-4 mb-xl-5">
-                                            <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YY"
-                                                   size="7" id="exp" minlength="7" maxlength="7" />
-                                            <label class="form-label" for="typeExp">Expiration</label>
+                                            <div class="form-outline mb-4 mb-xl-5">
+                                                <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YY"
+                                                       size="7" minlength="7" maxlength="7" />
+                                                <label class="form-label" for="typeExp">Expiration</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-6">
+                                            <div class="form-outline mb-4 mb-xl-5">
+                                                <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                                                       placeholder="1111 2222 3333 4444" minlength="19" maxlength="19" />
+                                                <label class="form-label" for="typeText">Card Number</label>
+                                            </div>
+
+                                            <div class="form-outline mb-4 mb-xl-5">
+                                                <input type="password" id="typeText" class="form-control form-control-lg"
+                                                       placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                                                <label class="form-label" for="typeText">Cvv</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-xl-6">
-                                        <div class="form-outline mb-4 mb-xl-5">
-                                            <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                                                   placeholder="1111 2222 3333 4444" minlength="19" maxlength="19" />
-                                            <label class="form-label" for="typeText">Card Number</label>
-                                        </div>
+                                </div>
+                                <div class="col-lg-4 col-xl-3">
+                                    <div class="d-flex justify-content-between" style="font-weight: 500;">
+                                        <p class="mb-2">Subtotal</p>
+                                        <p class="mb-2">$23.49</p>
+                                    </div>
 
-                                        <div class="form-outline mb-4 mb-xl-5">
-                                            <input type="password" id="typeText" class="form-control form-control-lg"
-                                                   placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                                            <label class="form-label" for="typeText">Cvv</label>
-                                        </div>
+                                    <div class="d-flex justify-content-between" style="font-weight: 500;">
+                                        <p class="mb-0">Shipping</p>
+                                        <p class="mb-0">$2.99</p>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
+                                        <p class="mb-2">Total (tax included)</p>
+                                        <p class="mb-2">$26.48</p>
+                                    </div>
+                                    <div class="center-align">
+                                        <button type="button" class="button-36" style="min-width: 200px;">
+                                            <div class="d-flex justify-content-between">
+                                                <span>Checkout</span>
+                                                <span>$26.48</span>
+                                            </div>
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-xl-3">
-                                <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                    <p class="mb-2">Subtotal</p>
-                                    <p class="mb-2">$23.49</p>
-                                </div>
-
-                                <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                    <p class="mb-0">Shipping</p>
-                                    <p class="mb-0">$2.99</p>
-                                </div>
-
-                                <hr class="my-4">
-
-                                <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
-                                    <p class="mb-2">Total (tax included)</p>
-                                    <p class="mb-2">$26.48</p>
-                                </div>
-
-                                <button type="button" class="btn btn-primary btn-block btn-lg">
-                                    <div class="d-flex justify-content-between">
-                                        <span>Checkout</span>
-                                        <span>$26.48</span>
-                                    </div>
-                                </button>
-
                             </div>
                         </div>
-
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<br />
+    </section>
+    <br />
+    <script>
+    function selectPaymentMethod(method) {
+        // Handle payment method selection
+        console.log('Selected payment method:', method);
+    }
+
+    function applyGradientShadow(element) {
+        element.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)';
+        element.style.background = 'linear-gradient(to bottom right, #8c6bff, #00ff9b)';
+        element.style.color = 'white';
+    }
+
+    function removeGradientShadow(element) {
+        element.style.boxShadow = '';
+        element.style.background = '';
+        element.style.color = '';
+    }
+    </script>
 <style>
+/*
+    .payment-option:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+        background: linear-gradient(to bottom right, #8c6bff, #00ff9b);
+        color: white;
+    }*/
+    .mouse-over::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(to bottom right, #8c6bff, #00ff9b);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .mouse-over:hover::before {
+        opacity: 1;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+    /* Payment method container styles */
+    .d-flex.flex-row {
+        align-items: center;
+        padding-bottom: 0.75rem;
+    }
+
+    /* Payment method option styles */
+    .rounded.border {
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+    }
+
+    .rounded.border:hover {
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+    }
+
+    /* Payment method text styles */
+    .d-flex.align-items-center.mb-0 {
+        font-size: 1rem;
+    }
+
+    /* Hide radio buttons */
+    .form-check-input {
+        display: none;
+    }
+
 @@media (min-width: 1025px) {
 .h-custom {
 height: 100vh !important;
 }
 }
-    header {
-        background-color: #181716;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0px 9px 30px black;
+/* buttons */
+.button-36 {
+    background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 4rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+    .button-36:hover {
+        box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+        transition-duration: .1s;
     }
 
-    .card1 {
-        border: 1px solid rgba(0, 0, 0, 0.125);
-        border-radius: 0.25rem;
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        padding: 1.25rem;
-        box-shadow: 0px 9px 30px black;
+@@media (min-width: 768px) {
+    .button-36 {
+        padding: 0 2.6rem;
     }
+}
+thead {
+    position: sticky;
+    top: -2px;
+    z-index: 1; /* Ensure the sticky header is on top of other content */
+    background-color: #393939;
+    border-radius:8px;
+    color: #00ad5f;
+    font-family: Lato-Bold;
+    font-size: 15px;
+    line-height: 1.4;
+  
+    text-transform: uppercase;
+}
+tbody{
+    background-color:#111;
+    color: white;
+}
+.center-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header {
+    background-color: #181716;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 9px 30px black;
+}
 
-    .card1-header {
-        background-color: #f8f9fa;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-        padding: 0.75rem 1.25rem;
-    }
+.card1 {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    padding: 1.25rem;
+    box-shadow: 0px 9px 30px black;
+}
 
-    .card1-body {
-        padding: 1.25rem;
-    }
+.card1-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.75rem 1.25rem;
+}
 
-    .card1-title {
-        font-size: 1.25rem;
-        font-weight: bold;
-        margin-bottom: 0.75rem;
-    }
+.card1-body {
+    padding: 1.25rem;
+}
 
-    .card1-text {
-        margin-bottom: 1rem;
-    }
+.card1-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
 
-    .card1-link {
-        color: #007bff;
-        text-decoration: none;
-    }
+.card1-text {
+    margin-bottom: 1rem;
+}
 
-        .card1-link:hover {
-            text-decoration: underline;
-        }
+.card1-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.card1-link:hover {
+    text-decoration: underline;
+}
+
 </style>

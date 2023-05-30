@@ -1,8 +1,6 @@
 ﻿using ESKINS.API.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
-using ESKINS.API.Controllers;
 
 namespace ESKINS.API
 {

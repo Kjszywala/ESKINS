@@ -13,8 +13,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="~/css/index.css" type="text/css" rel="stylesheet" />
 	<link href="~/css/mainPageLayout.css" type="text/css" rel="stylesheet" />
+	@RenderSection("PageStyles", required: false)
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Vq0oI6sYrM0rSBV4c4pgd3/Z8R2wE3/dRMtI+E+iDgEhUzgfwK6ZbcOwEuJ3/WqR/4DSmfv5P6Oe7W5Nzt8e5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body style="background-color: #121212;">
+<body class="bodyMainPageLayout" style="background-color: #121212;">
 	<div class="navbar navbar-inverse" style="background-color:#181716;">
 		<div class="container-fluid">
 			<div class="row">
