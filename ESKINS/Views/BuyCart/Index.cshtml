@@ -54,96 +54,134 @@
                                 </tbody>
                             </table>
                         </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-11 offset-md-6 text-end">
+                            <div class="purchase-summary" style="text-align: right;">
+                                    <h4>Purchase Summary</h4>
+                                    <div class="summary-item">
+                                        <span>Subtotal:</span>
+                                        <span>£ 100.00</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span>Discount:</span>
+                                        <span>-£ 10.00</span>
+                                    </div>
+                                    <div class="summary-item">
+                                        <span>Total:</span>
+                                        <span>£ 90.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <br />
-                    <br />
-                <div class="card1">
-                        <div class="payment" style="margin:20px;">
+                <div class="card1" style="min-height:560px;">
+                    <div class="payment" style="margin:20px;">
                         <div class="payment__title center-align" style="margin-top:-20px;">
                                 Payment Method
                             </div>
                             <div class="payment__types">
-                                <div class="payment__type payment__type--cc active">
+                                <div class="payment__type payment__type--cc active" onclick="showPaymentInfo('cc')">
                                     <i class="icon icon-credit-card"></i>Credit Card
                                 </div>
-                                <div class="payment__type payment__type--paypal">
+                                <div class="payment__type payment__type--paypal" onclick="showPaymentInfo('paypal')">
                                     <i class="icon icon-paypal"></i>Paypal
                                 </div>
-                                <div class="payment__type payment__type--paypal">
-                                    <i class="icon icon-wallet"></i>SEPA
+                                <div class="payment__type payment__type--sepa" onclick="showPaymentInfo('sepa')">
+                                    <i class="icon icon-wallet"></i>Wallet
                                 </div>
-                                <div class="payment__type payment__type--paypal">
-                                    <i class="icon icon-note"></i>Invoice
+                                <div class="payment__type payment__type--invoice" onclick="showPaymentInfo('invoice')">
+                                    <i class="icon icon-note"></i>Bank Transfer
                                 </div>
                             </div>
-                            <div class="payment__info">
-                                <div class="payment__cc">
-                                    <form>
-                                        <div class="form__cc">
-                                            <div class="row">
-                                                <div class="field">
-                                                    <div class="title">
-                                                        Credit Card Number
-                                                    </div>
-                                                    <input type="text" class="input txt text-validated" value="4542 9931 9292 2293" />
+                        <div class="payment__info" style="min-height:320px; width:100%;">
+                            <div id="cc-info" class="payment__cc  center-align">
+                                <form class="payment-method">
+                                    <div class="form__cc">
+                                        <div class="row center-align">
+                                            <div class="field">
+                                                <div class="title" style="color:#646464; font: inherit;">
+                                                    Credit Card Number
                                                 </div>
+                                                <input type="text" class="input txt text-validated" value="4542 9931 9292 2293" />
                                             </div>
-                                            <div class="row">
-                                                <div class="field small">
-                                                    <div class="title">
-                                                        Expiry Date
-                                                    </div>
-                                                    <select class="input ddl">
-                                                        <option selected>01</option>
-                                                        <option>02</option>
-                                                        <option>03</option>
-                                                    </select>
-                                                    <select class="input ddl">
-                                                        <option>01</option>
-                                                        <option>02</option>
-                                                        <option>03</option>
-                                                    </select>
+                                            <div class="field">
+                                                <div class="title" style="color:#646464; font: inherit;">
+                                                    Name on Card
                                                 </div>
-                                                <div class="field small">
-                                                    <div class="title">
-                                                        CVV Code
-                                                        <span class="numberCircle">?</span>
-                                                    </div>
-                                                    <input type="text" class="input txt" />
-                                                </div>
+                                                <input type="text" class="input txt" />
                                             </div>
-                                            <div class="row">
-                                                <div class="field">
-                                                    <div class="title">
-                                                        Name on Card
-                                                    </div>
-                                                    <input type="text" class="input txt" />
-                                                </div>
-                                            </div>
-
                                         </div>
+                                        <div class="row">
+                                            <div class="field small">
+                                                <div class="title" style="color:#646464; font: inherit;">
+                                                    Expiry Date
+                                                </div>
+                                                <select class="input ddl">
+                                                    <option selected>01</option>
+                                                    <option>02</option>
+                                                    <option>03</option>
+                                                </select>
+                                                <select class="input ddl">
+                                                    <option>01</option>
+                                                    <option>02</option>
+                                                    <option>03</option>
+                                                </select>
+                                            </div>
+                                            <div class="field small">
+                                                <div class="title" style="color:#646464; font: inherit;">
+                                                    CVV Code
+                                                    <span class="numberCircle">?</span>
+                                                </div>
+                                                <input type="text" class="input txt" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row center-align">
+                                            <button href="#" class="button-36" style="margin-left:3px;">Pay With Card</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="paypal-info" class="payment__paypal center-align" style="display: none; width:100%">
+                                <div class="payment-method">
+                                    <i class="icon icon-paypal"></i>
+                                    <p class="payment-method__description">Pay with your Paypal account</p>
+                                    <form>
+                                        <input type="email" class="input21" placeholder="Paypal email">
+                                        <input type="password" class="input21" placeholder="Paypal password">
+                                        <button class="button-36">Pay with Paypal</button>
                                     </form>
                                 </div>
-                                <div class="payment__shipping">
-                                    <div class="payment__title">
-                                        <i class="icon icon-plane"></i> Shiping Information
-                                    </div>
-                                    <div class="details__user">
-                                        <div class="user__name">
-                                            John Doe
-                                            <br> 13/03/1980
-                                        </div>
-                                        <div class="user__address">
-                                            Shipping Address: 22 Street, Address
-                                            <br>Country
-                                        </div>
-                                    </div>
+                            </div>
+
+                            <div id="sepa-info" class="payment__sepa center-align" style="display: none; width:100%">
+                                <div class="payment-method">
+                                    <i class="icon icon-wallet"></i>
+                                    <p class="payment-method__description">Pay using your digital wallet</p>
+                                    <form>
+                                        <input type="password" class="input21" placeholder="Your password">
+                                        <button class="button-36">Pay with Wallet</button>
+                                    </form>
                                 </div>
                             </div>
 
+                            <div id="invoice-info" class="payment__invoice center-align" style="display: none; width:100%">
+                                <div class="payment-method">
+                                    <i class="icon icon-wallet"></i>
+                                    <p class="payment-method__description">Pay using bank transfer</p>
+                                    <form>
+                                        <input type="text" class="input21" placeholder="Bank account number">
+                                        <input type="text" class="input21" placeholder="Bank name">
+                                        <input type="text" class="input21" placeholder="Account holder name">
+                                        <button class="button-36">Pay with Bank Transfer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                             <div class="center-align">
-                                <a asp-page="/Market/Index" class="button-36" style="margin-right: 3px;">Go Back to Shop</a>
-                                <button href="#" class="button-36" style="margin-left:3px;">Place your Order</button>
+                                <button onclick="redirectToController()" class="button-36">Go Back to Shop</button>
                             </div>
                             </div>
                         </div>
@@ -152,7 +190,83 @@
         </div>
     </section>
     <br />
+    <script>
+    function redirectToController() {
+        // Perform any necessary actions before navigating to the controller
+
+        // Redirect to the controller action
+        window.location.href = "/Market/Index";
+    }
+    function showPaymentInfo(tabName) {
+        // Remove the "active" class from all tabs
+        $(".payment__type").removeClass("active");
+
+        // Hide all payment method contents
+        $(".payment__info > div").hide();
+
+        // Add the "active" class to the selected tab
+        $(".payment__type--" + tabName).addClass("active");
+
+        // Show the corresponding payment method content
+        $("#" + tabName + "-info").show();
+    }
+    </script>
 <style>
+    .payment__type--cc.active {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+
+    .payment__type--paypal.active {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+
+    .payment__type--sepa.active {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+
+    .payment__type--invoice.active {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+    input[type=text], input[type=password], input[type=email], select{
+        background-color:#333;
+        color:white;
+    }
+    .field {
+        margin-left:20px;
+    }
+.payment-method {
+background-color: #101010;
+padding: 20px;
+border-radius: 5px;
+margin-bottom: 10px;
+box-shadow: 0px 9px 30px black;
+margin-top:40px;
+max-height:300px;
+max-width:700px;
+}
+
+.payment-method__title {
+font-size: 18px;
+margin-top: 10px;
+margin-bottom: 5px;
+}
+
+.payment-method__description {
+color: #888;
+}
+
+.input21 {
+width: 100%;
+padding: 10px;
+border-radius: 3px;
+border: 1px solid #ccc;
+margin-bottom: 10px;
+}
+
     *,
 *:after,
 *:before {
@@ -386,15 +500,6 @@ input[type="text"] {
 .payment__title .icon {
   margin-right: 10px;
 }
-.btn:hover {
-  -webkit-transform: translateY(-1px);
-          transform: translateY(-1px);
-  background: #4984ea;
-}
-.btn.action__back {
-  background: transparent;
-  color: #a0a0a0;
-}
 
 .payment__types {
   display: flex;
@@ -436,11 +541,7 @@ input[type="text"] {
   -webkit-transform: translateY(-1px);
           transform: translateY(-1px);
 }
-.payment__type.active {
-  color: #0a0a0a;
-  background: #f6fcf7;
-  border-color: #7dc855;
-}
+
 .payment__type .icon {
   font-size: 32px;
   margin-right: 10px;
@@ -593,7 +694,7 @@ tbody{
 
 .card1 {
     border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+    border-radius: 10px;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     padding: 1.25rem;
     box-shadow: 0px 9px 30px black;
