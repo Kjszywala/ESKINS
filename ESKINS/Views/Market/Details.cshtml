@@ -3,14 +3,14 @@
     ViewData["Title"] = "Market";
     Layout = "_MainPageLayout";
 }
-<header class="privacy">
-    <h2>Item Details</h2>
+<header class="privacy" style="box-shadow: 0px 9px 30px black;">
+    <h2><strong>Item Details</strong></h2>
 </header>
 <br />
 <br />
 <section class="py-5" style="color: white; margin-bottom:-20px;">
   <br>
-  <div class="container1" style="margin:auto;">
+    <div class="container1" style="margin:auto;box-shadow: 0px 9px 30px black;">
     <div class="row gx-5">
     <div class="border rounded-4 mb-3 d-flex justify-content-center">
         <aside class="col-lg-6 center-vertically d-flex align-items-center justify-content-center" style="margin-top:20px; min-height:500px;">
@@ -20,11 +20,12 @@
             <div>
         </aside>
     </div>
-    <main class="col-lg-6" style="margin-top:20px; margin-bottom:20px;">
-        <div class="ps-lg-3">
-          <h4 class="title text-dark" style="color:green;">
-            @Model.ProductName <br />
-            Holder: @Model.User.Email
+    <main class="col-lg-6" style="margin-top:20px; margin-bottom:20px; ">
+         <div class="ps-lg-3" >
+          <h4 class="title text-dark" style="color:green; font:bold;">
+            <strong>@Model.ProductName<strong>
+             <br />
+            <strong>Holder: @Model.User.Email<strong>
           </h4>
             <hr />
             <div class="d-flex justify-content-center mb-3">
