@@ -126,13 +126,13 @@
 <br>
 <br>
 <!-- Confirmation Modal -->
-<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+<div class="modal" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="d-flex justify-content-center">
+                    <span class="visually-hidden">Adding to cart...</span>
                     <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
             </div>
@@ -145,7 +145,7 @@
             e.preventDefault(); // Prevent the default navigation behavior
 
             var itemId = '@Model.Id'; // Access the ID property from the model
-
+            $('#confirmationModal').modal('show');
             // Perform the AJAX request
             $.ajax({
                 url: '@Url.Action("AddToCart", "BuyCart")', // Replace with your controller and action name
@@ -161,7 +161,7 @@
 
                         // Hide the confirmation modal
                         $('#confirmationModal').modal('hide');
-                    }, 3000);
+                    }, 1000);
                 },
                 error: function (xhr, status, error) {
                     // Handle the error response, if any
@@ -185,6 +185,54 @@
     });
 </script>
 <style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* Overlay background color with transparency */
+        transition: opacity 0.3s ease; /* Transition effect for fade in/out */
+        z-index: 9999; /* Ensure the modal is on top of other elements */
+    }
+
+        .modal.fade.show {
+            display: block;
+        }
+
+    .modal-dialog {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the modal horizontally and vertically */
+        transition: transform 0.3s ease; /* Transition effect for modal dialog */
+        width: 400px; /* Adjust the width as desired */
+        border-radius: 8px; /* Adjust the border radius as desired */
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .modal.fade.show .modal-dialog {
+        transform: translate(-50%, -50%); /* Ensure the centered position when modal is shown */
+    }
+
+.spinner-border {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+@@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
     .line-container__arrow {
         position: absolute;
         top: 10px; /* Adjust this value based on your arrow position */
