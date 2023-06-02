@@ -8,7 +8,6 @@ namespace ESKINS.BusinessLogic.BusinessLogic
     {
         #region Properties
 
-        IItemsServices itemsServices;
         ICartServices cartServices;
 
         #endregion
@@ -16,10 +15,8 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         #region Constructor
 
         public CartLogic(
-            IItemsServices _itemsServices, 
             ICartServices _cartServices)
         {
-            itemsServices = _itemsServices;
             cartServices = _cartServices;
         }
 

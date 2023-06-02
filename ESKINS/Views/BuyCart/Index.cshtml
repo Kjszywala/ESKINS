@@ -5,7 +5,7 @@
 @section head{
 }
     <header class="privacy1">
-    <h2><strong>Shopping Cart<strong></h2>
+    <h2><strong>Shopping Cart</strong></h2>
     </header>
     <br />
     <section style="color:white;">
@@ -26,11 +26,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach(var item in Model){
+                                    @foreach (var item in Model)
+                                    {
                                         <tr style="height: 150px;">
-                                             <td class="align-middle">
+                                            <td class="align-middle">
                                                 <img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" class="img-fluid rounded-3"
-                                                     style="width: 120px;" alt="Book">
+                                                style="width: 120px;" alt="Book">
                                             </td>
                                             <td class="align-middle">
                                                 <p class="mb-2">@item.ProductName</p>
@@ -41,7 +42,9 @@
                                                 <p class="mb-0" style="font-weight: 500;">@item.Quality.Quality</p>
                                             </td>
                                             <td class="align-middle">
-                                                <p class="mb-0" style="font-weight: 500;">@(Math.Round(item.Discount * 100)) %</p>
+                                                <p class="mb-0" style="font-weight: 500;">@(
+                                            Math.Round(item.Discount * 100)
+                                            ) %</p>
                                             </td>
                                             <td class="align-middle">
                                                 <p class="mb-0" style="font-weight: 500;">£ @item.ActualPrice</p>
