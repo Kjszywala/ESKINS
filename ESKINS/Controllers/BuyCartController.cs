@@ -78,7 +78,8 @@ namespace ESKINS.Controllers
                 var item = cartLogic.AddToCart(id).Result;
                 var product = itemsServices.GetAsync(id).Result;
                 Config.CartOverall += product.ActualPrice - (product.ActualPrice * product.Discount);
-                Config.Discount += (product.ActualPrice * product.Discount);
+                Config.Discount = Config.Discount + (product.ActualPrice * product.Discount);
+                Config.CartItems += 1;
                 if (!item)
                 {
                     await errorLogsServices.Add("Could not add the item to cart");
@@ -96,12 +97,19 @@ namespace ESKINS.Controllers
         {
             try
             {
-                var item = cartLogic.RemoveFromCart(id).Result;
-                if (!item)
+                var list = cartServices.GetAllAsync().Result;
+                foreach(var i  in list)
                 {
-                    await errorLogsServices.Add("Could not remove item from cart");
+                    if(i.ItemId == id && i.SessionId == Config.SessionId)
+                    {
+                        await cartLogic.RemoveFromCart(i.Id);
+                        var item = itemsServices.GetAsync(id).Result;
+                        Config.CartItems -= 1;
+                        Config.Discount -= item.Discount;
+                        Config.CartOverall -= item.ActualPrice;
+                    }
                 }
-                return View("Index");
+                return RedirectToAction("Index", "Market"); 
             }
             catch (Exception ex)
             {
@@ -119,7 +127,7 @@ namespace ESKINS.Controllers
                 {
                     await errorLogsServices.Add("Could not remove all items");
                 }
-                return View("Index");
+                return RedirectToAction("Index", "Market");
             }
             catch (Exception ex)
             {

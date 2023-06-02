@@ -8,5 +8,6 @@
         public static string SessionId;
         public static decimal CartOverall = 0;
         public static decimal Discount = 0;
+        public static int CartItems = 0;
     }
 }

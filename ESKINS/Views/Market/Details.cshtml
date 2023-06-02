@@ -116,8 +116,11 @@
                 </div>
             </div>
           <hr />
-          <a href="#" id="btnBack1" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
-          <button id="btnBack" style="margin: 5px;">Back To Market</button>
+            @if (Model.UserId != Config.UserId)
+            {
+                <a href="#" id="btnBack1" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+            }
+            <button id="btnBack" style="margin: 5px;">Back To Market</button>
         </div>
       </main>
     </div>
@@ -145,6 +148,7 @@
             e.preventDefault(); // Prevent the default navigation behavior
 
             var itemId = '@Model.Id'; // Access the ID property from the model
+            var cartItem = '@Config.CartItems';
             $('#confirmationModal').modal('show');
             // Perform the AJAX request
             $.ajax({
@@ -158,6 +162,7 @@
                         // Update the cart count
                         var cartCount = parseInt($('#cartCount').text());
                         $('#cartCount').text(cartCount + 1);
+
 
                         // Hide the confirmation modal
                         $('#confirmationModal').modal('hide');

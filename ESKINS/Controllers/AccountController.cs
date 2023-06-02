@@ -1,5 +1,6 @@
 ﻿using ESKINS.BusinessLogic;
 using ESKINS.BusinessLogic.BusinessLogic;
+using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ namespace ESKINS.Controllers
         IUsersServices usersService;
         IErrorLogsServices errorLogsService;
         ICartServices cartServices;
+        ICartLogic cartLogic;
 
         #endregion
 
@@ -28,12 +30,14 @@ namespace ESKINS.Controllers
             IErrorLogsServices _errorLogsServices, 
             IUsersServices _usersServices,
             CardSessionLogic _cardSessionLogic,
-            ICartServices _cartServices)
+            ICartServices _cartServices,
+            ICartLogic _cartLogic)
         {
             usersService = _usersServices;
             errorLogsService = _errorLogsServices;
             cardSessionLogic = _cardSessionLogic;
             cartServices = _cartServices;
+            cartLogic = _cartLogic;
         }
 
         #endregion
@@ -117,11 +121,13 @@ namespace ESKINS.Controllers
         public IActionResult Logout()
         {
             // clear the session variable
+            cartLogic.RemoveAll();
             Config.isConfirmed = false;
             Config.WalletAmount = 0;
             Config.SessionId = string.Empty;
             Config.Discount = 0;
             Config.CartOverall = 0;
+            Config.CartItems = 0;
 
             // redirect the user to the login page
             return RedirectToAction("Index");
