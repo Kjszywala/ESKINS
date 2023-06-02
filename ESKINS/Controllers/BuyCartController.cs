@@ -1,4 +1,5 @@
-﻿using ESKINS.DbServices.Interfaces;
+﻿using ESKINS.BusinessLogic.Interfaces;
+using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +11,8 @@ namespace ESKINS.Controllers
 
         IItemsServices itemsServices;
         IErrorLogsServices errorLogsServices;
-        ICategoriesServices categoriesServices;
-        IExteriorsServices exteriorsServices;
-        IQualitiesServices qualitiesServices;
+        ICartLogic cartLogic;
+        ICartServices cartServices;
 
         #endregion
 
@@ -21,16 +21,13 @@ namespace ESKINS.Controllers
         public BuyCartController(
             IItemsServices _itemsServices,
             IErrorLogsServices _errorLogsServices,
-            ICategoriesServices _categoriesServices,
-            IExteriorsServices _exteriorsServices,
-            IQualitiesServices _qualitiesServices)
+            ICartLogic _cartLogic,
+            ICartServices _cartServices)
         {
             itemsServices = _itemsServices;
             errorLogsServices = _errorLogsServices;
-            categoriesServices = _categoriesServices;
-            exteriorsServices = _exteriorsServices;
-            qualitiesServices = _qualitiesServices;
-
+            cartLogic = _cartLogic;
+            cartServices = _cartServices;
         }
 
         #endregion
@@ -41,11 +38,9 @@ namespace ESKINS.Controllers
         {
             try
             {
-                var list = itemsServices.GetAllAsync().Result;
+                var list = cartServices.GetAllAsync().Result;
                 foreach(var item in list) { 
-                    item.Category = categoriesServices.GetAsync(item.CategoryId.Value).Result;
-                    item.Exterior = exteriorsServices.GetAsync(item.ExteriorId.Value).Result;
-                    item.Quality = qualitiesServices.GetAsync(item.QualityId.Value).Result;
+                    item.Item = itemsServices.GetAsync(item.ItemId.Value).Result;
                 }
                 return View(list);
             }
@@ -56,6 +51,77 @@ namespace ESKINS.Controllers
             }
         }
 
+        public async Task<IActionResult> AddToCart(int id)
+        {
+            try
+            {
+                var item = cartLogic.AddToCart(id).Result;
+                if (!item)
+                {
+                    await errorLogsServices.Add("Could not add the item to cart");
+                }
+                return RedirectToAction("Index", "Market");
+            }
+            catch (Exception ex)
+            {
+                await errorLogsServices.Error(ex);
+                return View("Error");
+            }
+        }
+
+        public async Task<IActionResult> AddToCartFromDetails(int id)
+        {
+            try
+            {
+                var item = cartLogic.AddToCart(id).Result;
+                if (!item)
+                {
+                    await errorLogsServices.Add("Could not add the item to cart");
+                }
+                return RedirectToAction("Details", "Market");
+            }
+            catch (Exception ex)
+            {
+                await errorLogsServices.Error(ex);
+                return View("Error");
+            }
+        }
+
+        public async Task<IActionResult> RemoveFromCart(int id)
+        {
+            try
+            {
+                var item = cartLogic.RemoveFromCart(id).Result;
+                if (!item)
+                {
+                    await errorLogsServices.Add("Could not remove item from cart");
+                }
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                await errorLogsServices.Error(ex);
+                return View("Error");
+            }
+        }
+
+        public async Task<IActionResult> RemoveAll(int id)
+        {
+            try
+            {
+                var item = cartLogic.RemoveAll().Result;
+                if (!item)
+                {
+                    await errorLogsServices.Add("Could not remove all items");
+                }
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                await errorLogsServices.Error(ex);
+                return View("Error");
+            }
+        }
         #endregion
     }
 }
