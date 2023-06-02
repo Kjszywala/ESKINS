@@ -120,6 +120,8 @@ namespace ESKINS.Controllers
             Config.isConfirmed = false;
             Config.WalletAmount = 0;
             Config.SessionId = string.Empty;
+            Config.Discount = 0;
+            Config.CartOverall = 0;
 
             // redirect the user to the login page
             return RedirectToAction("Index");

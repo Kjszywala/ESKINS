@@ -1,7 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -77,6 +76,9 @@ namespace ESKINS.Controllers
             try
             {
                 var item = cartLogic.AddToCart(id).Result;
+                var product = itemsServices.GetAsync(id).Result;
+                Config.CartOverall += product.ActualPrice - (product.ActualPrice * product.Discount);
+                Config.Discount += (product.ActualPrice * product.Discount);
                 if (!item)
                 {
                     await errorLogsServices.Add("Could not add the item to cart");

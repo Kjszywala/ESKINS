@@ -1,4 +1,5 @@
-﻿@model List<ESKINS.DbServices.Models.ItemsModels>
+﻿@using ESKINS;
+@model List<ESKINS.DbServices.Models.ItemsModels>
 @{
     Layout = "_MainPageLayout";
 }
@@ -43,8 +44,8 @@
                                             </td>
                                             <td class="align-middle">
                                                 <p class="mb-0" style="font-weight: 500;">@(
-                                            Math.Round(item.Discount * 100)
-                                            ) %</p>
+                                                    Math.Round(item.Discount * 100)
+                                                    ) %</p>
                                             </td>
                                             <td class="align-middle">
                                                 <p class="mb-0" style="font-weight: 500;">£ @item.ActualPrice</p>
@@ -64,15 +65,18 @@
                                     <h4>Purchase Summary</h4>
                                     <div class="summary-item">
                                         <span>Subtotal:</span>
-                                        <span>£ 100.00</span>
+                                        £ <strong>@Math.Truncate(Config.CartOverall)</strong>
+                                        <small>@((@Config.CartOverall % 1).ToString("0.00").Substring(2))</small>
                                     </div>
                                     <div class="summary-item">
                                         <span>Discount:</span>
-                                        <span>-£ 10.00</span>
+                                        £ -<strong>@Math.Truncate(@Config.Discount)</strong>
+                                    <small>@((@Config.Discount % 1).ToString("0.00").Substring(2))</small>
                                     </div>
                                     <div class="summary-item">
                                         <span>Total:</span>
-                                        <span>£ 90.00</span>
+                                        £ <strong>@Math.Truncate(Config.CartOverall)</strong>
+                                        <small>@((Config.CartOverall % 1).ToString("0.00").Substring(2))</small>
                                     </div>
                                 </div>
                             </div>
