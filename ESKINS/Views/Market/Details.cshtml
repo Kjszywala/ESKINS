@@ -125,6 +125,20 @@
 </section>
 <br>
 <br>
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         $('#btnBack1').click(function (e) {
@@ -140,6 +154,14 @@
                 success: function (response) {
                     // Handle the success response from the controller
                     console.log(response); // Log the response to the console or perform any other action
+                    setTimeout(function () {
+                        // Update the cart count
+                        var cartCount = parseInt($('#cartCount').text());
+                        $('#cartCount').text(cartCount + 1);
+
+                        // Hide the confirmation modal
+                        $('#confirmationModal').modal('hide');
+                    }, 3000);
                 },
                 error: function (xhr, status, error) {
                     // Handle the error response, if any

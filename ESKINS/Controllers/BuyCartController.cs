@@ -66,24 +66,6 @@ namespace ESKINS.Controllers
             }
         }
 
-        public async Task<IActionResult> AddToCartFromDetails(int id)
-        {
-            try
-            {
-                var item = cartLogic.AddToCart(id).Result;
-                if (!item)
-                {
-                    await errorLogsServices.Add("Could not add the item to cart");
-                }
-                return RedirectToAction("Details", "Market");
-            }
-            catch (Exception ex)
-            {
-                await errorLogsServices.Error(ex);
-                return View("Error");
-            }
-        }
-
         public async Task<IActionResult> RemoveFromCart(int id)
         {
             try
