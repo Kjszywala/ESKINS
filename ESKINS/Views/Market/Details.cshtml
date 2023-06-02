@@ -185,37 +185,36 @@
     });
 </script>
 <style>
-    .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5); /* Overlay background color with transparency */
-        transition: opacity 0.3s ease; /* Transition effect for fade in/out */
-        z-index: 9999; /* Ensure the modal is on top of other elements */
-    }
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay background color with transparency */
+    transition: opacity 0.3s ease; /* Transition effect for fade in/out */
+    z-index: 9999; /* Ensure the modal is on top of other elements */
+}
+.modal.fade.show {
+    display: block;
+}
 
-        .modal.fade.show {
-            display: block;
-        }
+.modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the modal horizontally and vertically */
+    transition: transform 0.3s ease; /* Transition effect for modal dialog */
+    width: 400px; /* Adjust the width as desired */
+    border-radius: 8px; /* Adjust the border radius as desired */
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
 
-    .modal-dialog {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); /* Center the modal horizontally and vertically */
-        transition: transform 0.3s ease; /* Transition effect for modal dialog */
-        width: 400px; /* Adjust the width as desired */
-        border-radius: 8px; /* Adjust the border radius as desired */
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
-
-    .modal.fade.show .modal-dialog {
-        transform: translate(-50%, -50%); /* Ensure the centered position when modal is shown */
-    }
+.modal.fade.show .modal-dialog {
+    transform: translate(-50%, -50%); /* Ensure the centered position when modal is shown */
+}
 
 .spinner-border {
   display: inline-block;
@@ -331,183 +330,3 @@ height: 40px;
     min-height:600px;
 }
 </style>
-@*@section head{
-    <link href="~/css/sell.css" type="text/css" rel="stylesheet" />
-}
-<header class="privacy">
-    <h2>Item Details</h2>
-</header>
-<br />
-<br />
-<div class="container1">
-    <div class="row justify-content-center" style="margin-left:20px;">
-        <div class="col-lg-6">
-            <div class="details-image d-flex justify-content-center align-items-center">
-                @if (Model.ItemImage != null)
-                {
-                    <img src="data:image;base64,@Convert.ToBase64String(Model.ItemImage)" alt="Item Image" />
-                }
-            </div>
-        </div>
-        <div class="col-lg-6 container2">
-            <table class="container3 d-flex justify-content-center align-items-center">
-                <tr>
-                    <th>Name:</th>
-                    <td>@Model.ProductName</td>
-                </tr>
-                <tr>
-                    <th>User:</th>
-                    <td>@Model.User?.Email</td>
-                </tr>
-                <tr>
-                    <th>Category:</th>
-                    <td>@Model.Category?.CategoryDescription</td>
-                </tr>
-                <tr>
-                    <th>Item Location:</th>
-                    <td>@Model.ItemLocation?.ItemLocation</td>
-                </tr>
-                <tr>
-                    <th>StatTrack:</th>
-                    <td>@Model.StatTrack</td>
-                </tr>
-                <tr>
-                    <th>Souvenir:</th>
-                    <td>@Model.Souvenir</td>
-                </tr>
-                <tr>
-                    <th>Item Collection:</th>
-                    <td>@Model.ItemCollection?.ItemCollection</td>
-                </tr>
-                <tr>
-                    <th>Phase:</th>
-                    <td>@Model.Phase?.Phase</td>
-                </tr>
-                <tr>
-                    <th>Quality:</th>
-                    <td>@Model.Quality?.Quality</td>
-                </tr>
-                <tr>
-                    <th>Exterior:</th>
-                    <td>@Model.Exterior?.Exterior</td>
-                </tr>
-                <tr>
-                    <th>Pattern:</th>
-                    <td>@Model.Pattern</td>
-                </tr>
-                <tr>
-                    <th>Actual Price:</th>
-                    <td>@Model.ActualPrice £</td>
-                </tr>
-                <tr>
-                    <th>Discount:</th>
-                    <td>@(Math.Round(Model.Discount * 100)) %</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <br />
-    <div class="row" style="text-align:center;">
-        <button id="btn" style="margin: 5px;">Add To Cart</button>
-        <button id="btnBack" style="margin: 5px;">Back To Market</button>
-    </div>
-</div>
-<script>
-    document.getElementById("btnBack").addEventListener("click", function () {
-        history.back();
-    });
-</script>
-<br />
-<br />
-<style>
-    .container3 th,
-    .container3 td {
-        padding: 5px;
-        color: white;
-        border: none;
-    }
-    header {
-        background-color: #181716;
-        color: white;
-        padding: 20px;
-        text-align: center;
-    }
-
-    h2 {
-        margin-top: 0;
-        font-size: 36px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: white;
-    }
-    #btnBack {
-        background-color: #5600b2;
-        color: white;
-        border-radius: 7px;
-        border-color: transparent;
-        font-size: 16px;
-        line-height: 1.5;
-        height: 40px;
-    }
-
-    #btnBack:hover {
-        background-color: #331d35;
-        color: white;
-    }
-
-    #btnBack:active {
-        background-color: #5600b2;
-        color: white;
-    }
-    .itemsSellButtons {
-        margin-left:40px;
-    }
-    
-    .container1 {
-        border-radius: 8px;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
-        padding: 32px;
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 900px;
-    }
-
-    .container2 {
-        border-radius: 8px;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
-        padding: 20px;
-        margin-right: auto;
-        margin-left: auto;
-        margin-left: 5px;
-        max-width:330px;
-    }
-
-    .details-value{
-        color:white;
-    }
-
-    .details-info {
-    }
-
-    .details-row {
-        display: flex;
-        margin-bottom: 10px;
-    }
-
-    .details-label {
-        font-weight: bold;
-        margin-right: 5px;
-        color: white;
-    }
-
-    .details-image {
-        height: 500px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .details-image img {
-        width: 350px;
-        height: auto;
-    }
-</style>*@
