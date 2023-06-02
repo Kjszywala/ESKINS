@@ -126,6 +126,30 @@
 <br>
 <br>
 <script>
+    $(document).ready(function () {
+        $('#btnBack1').click(function (e) {
+            e.preventDefault(); // Prevent the default navigation behavior
+
+            var itemId = '@Model.Id'; // Access the ID property from the model
+
+            // Perform the AJAX request
+            $.ajax({
+                url: '@Url.Action("AddToCart", "BuyCart")', // Replace with your controller and action name
+                type: 'POST', // Change the HTTP verb accordingly (GET, POST, etc.)
+                data: { id: itemId }, // Pass the ID as a parameter
+                success: function (response) {
+                    // Handle the success response from the controller
+                    console.log(response); // Log the response to the console or perform any other action
+                },
+                error: function (xhr, status, error) {
+                    // Handle the error response, if any
+                    console.log(error); // Log the error message to the console or perform any other action
+                }
+            });
+        });
+    });
+</script>
+<script>
     var arrow = document.getElementById('arrow');
     var float = parseFloat('@Model.ItemFloat'); // Replace with your float value
 

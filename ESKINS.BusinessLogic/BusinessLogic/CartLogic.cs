@@ -1,7 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
-using System.Configuration;
 
 namespace ESKINS.BusinessLogic.BusinessLogic
 {
@@ -16,11 +15,12 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 
         #region Constructor
 
-        public CartLogic(IItemsServices _itemsServices, ICartServices cartServices)
+        public CartLogic(
+            IItemsServices _itemsServices, 
+            ICartServices _cartServices)
         {
             itemsServices = _itemsServices;
-            this.cartServices = cartServices;
-
+            cartServices = _cartServices;
         }
 
         #endregion
@@ -32,19 +32,15 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         {
             try
             {
-                var item = await itemsServices.GetAsync(ItemId);
-                if (item != null)
+                CartModels cartModels = new CartModels()
                 {
-                    CartModels cartModels = new CartModels()
-                    {
-                        CreationDate = DateTime.Now,
-                        Item = item,
-                        Quantity = GetQuantity().Result,
-                        ItemId = ItemId,
-                        SessionId = BussinesLogicConfig.SessionId
-                    };
-                    await cartServices.AddAsync(cartModels);
-                }
+                    CreationDate = DateTime.Now,
+                    Quantity = 1,
+                    ItemId = ItemId,
+                    SessionId = BussinesLogicConfig.SessionId
+                };
+                await cartServices.AddAsync(cartModels);
+                
                 return true;
             }
             catch (Exception e)

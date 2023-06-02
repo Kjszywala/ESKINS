@@ -84,14 +84,21 @@ namespace ESKINS.API.Controllers
         [HttpPost]
         public async Task<ActionResult<BuyCart>> PostBuyCarts(BuyCart BuyCarts)
         {
-            if (_context.BuyCarts == null)
+            try
             {
-                return Problem("Entity set 'DatabaseContext.BuyCarts'  is null.");
-            }
-            _context.BuyCarts.Add(BuyCarts);
-            await _context.SaveChangesAsync();
+                if (_context.BuyCarts == null)
+                {
+                    return Problem("Entity set 'DatabaseContext.BuyCarts'  is null.");
+                }
+                _context.BuyCarts.Add(BuyCarts);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBuyCarts", new { id = BuyCarts.Id }, BuyCarts);
+                return CreatedAtAction("GetBuyCarts", new { id = BuyCarts.Id }, BuyCarts);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         // DELETE: api/BuyCarts/5

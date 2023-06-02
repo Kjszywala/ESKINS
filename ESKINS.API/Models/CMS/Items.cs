@@ -100,10 +100,5 @@ namespace ESKINS.API.Models.CMS
         /// Relationship to Items.
         /// </summary>
         public ICollection<Targets>? Targets { get; set; }
-
-        /// <summary>
-        /// Relationship to BuyCart.
-        /// </summary>
-        public ICollection<BuyCart>? BuyCart { get; set; }
     }
 }

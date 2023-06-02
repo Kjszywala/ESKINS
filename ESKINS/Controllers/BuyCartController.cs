@@ -39,9 +39,6 @@ namespace ESKINS.Controllers
             try
             {
                 var list = cartServices.GetAllAsync().Result;
-                foreach(var item in list) { 
-                    item.Item = itemsServices.GetAsync(item.ItemId.Value).Result;
-                }
                 return View(list);
             }
             catch (Exception ex)
