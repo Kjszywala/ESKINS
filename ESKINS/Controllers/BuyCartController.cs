@@ -156,7 +156,7 @@ namespace ESKINS.Controllers
 			try
 			{
 				var user = usersServices.GetAsync(Config.UserId).Result;
-
+                var cartList = cartServices.GetAllAsync().Result.Where(i => i.SessionId == Config.SessionId).ToList();
                 if (password != user.Password)
                 {
                     TempData["Message"] = "Password does not match.";
@@ -167,7 +167,25 @@ namespace ESKINS.Controllers
                     TempData["Message"] = "Not enough money in your wallet.\nPlease charge your wallet.";
                     return RedirectToAction("Index", "BuyCart");
                 }
-
+                if (cartList.Count == 0)
+                {
+                    TempData["Message"] = "Nothing in the cart.";
+                    return RedirectToAction("Index", "Market");
+                }
+                foreach (var cart in cartList)
+                {
+                    var item = itemsServices.GetAsync(cart.ItemId.Value).Result;
+                    item.OnSale = false;
+                    item.UserId = Config.UserId;
+                    await itemsServices.EditAsync(item.Id, item);
+                }
+                await cartLogic.RemoveAll();
+                Config.CartItems = 0;
+                user.AccountBalance = user.AccountBalance - Config.CartOverall;
+                Config.WalletAmount = Config.WalletAmount - Config.CartOverall;
+                Config.CartOverall = 0;
+                Config.Discount = 0;
+                await usersServices.EditAsync(user.Id, user);
                 return RedirectToAction("Index", "BuyCart");
             }
 			catch (Exception ex)
@@ -181,13 +199,23 @@ namespace ESKINS.Controllers
         {
             try
             {
-                var cartList = cartServices.GetAllAsync().Result;
-                
+                var cartList = cartServices.GetAllAsync().Result.Where(i=>i.SessionId == Config.SessionId).ToList();
+                if(cartList.Count == 0)
+                {
+                    TempData["Message"] = "Nothing in the cart.\nRedirecting to the market....";
+                    return RedirectToAction("Index", "Market");
+                }
                 foreach (var cart in cartList)
                 {
                     var item = itemsServices.GetAsync(cart.ItemId.Value).Result;
-
+                    item.OnSale = false;
+                    item.UserId = Config.UserId;
+                    await itemsServices.EditAsync(item.Id, item);
                 }
+                await cartLogic.RemoveAll();
+                Config.CartItems = 0;
+                Config.CartOverall = 0;
+                Config.Discount = 0;
                 return RedirectToAction("Index", "BuyCart");
             }
             catch (Exception ex)

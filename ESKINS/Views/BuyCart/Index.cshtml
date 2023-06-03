@@ -112,7 +112,7 @@
                             </div>
                         <div class="payment__info" style="min-height:320px; width:100%;">
                             <div id="cc-info" class="payment__cc  center-align">
-                                <form class="payment-method">
+                                <form class="payment-method" id="paymentForm2">
                                     <div class="form__cc">
                                         <div class="row center-align">
                                             <div class="field">
@@ -154,7 +154,7 @@
                                         </div>
                                         <br />
                                         <div class="row center-align">
-                                            <button href="#" class="button-36" style="margin-left:3px;">Pay With Card</button>
+                                            <button href="#" class="button-36" style="margin-left:3px;" id="paymentButton">Pay With Card</button>
                                         </div>
                                     </div>
                                 </form>
@@ -163,10 +163,10 @@
                                 <div class="payment-method">
                                     <i class="icon icon-paypal"></i>
                                     <p class="payment-method__description">Pay with your Paypal account</p>
-                                    <form>
+                                    <form id="paymentForm1">
                                         <input type="email" class="input21" placeholder="Paypal email" required>
                                         <input type="password" class="input21" placeholder="Paypal password" required>
-                                        <button class="button-36">Pay with Paypal</button>
+                                        <button class="button-36" id="paymentButton">Pay with Paypal</button>
                                     </form>
                                 </div>
                             </div>
@@ -175,9 +175,9 @@
                                 <div class="payment-method">
                                     <i class="icon icon-wallet"></i>
                                     <p class="payment-method__description">Pay using your digital wallet</p>
-                                    <form action="@Url.Action("Pay", "BuyCart")" method="post">
+                                    <form id="paymentForm4" action="@Url.Action("Pay", "BuyCart")" method="post">
                                         <input type="password" id="password" name="password" class="input21" placeholder="Your password">
-                                        <button class="button-36" type="submit">Pay with Wallet</button>
+                                        <button class="button-36" type="submit" >Pay with Wallet</button>
                                     </form>
                                 </div>
                             </div>
@@ -213,18 +213,86 @@
         </div>
     </div>
     <script>
+        document.getElementById("paymentForm4").addEventListener("submit", function (event) {
+            event.preventDefault();
+            showPaymentModal();
+            // Simulate payment process
+            setTimeout(function () {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/BuyCart/Pay", true); // Replace with the actual URL path to the controller action
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        hidePaymentModal();
+                        showPaymentSuccessMessage();
+                    }
+                };
+
+                xhr.onloadstart = function () {
+                    // Show the waiting wheel while the request is in progress
+                    document.querySelector(".loader").style.display = "block";
+                };
+
+                xhr.onloadend = function () {
+                    // Hide the waiting wheel after the request is complete
+                    document.querySelector(".loader").style.display = "none";
+                };
+
+                var password = document.getElementById("password").value;
+                var formData = "password=" + encodeURIComponent(password);
+
+                xhr.send(formData);
+            }, 3000); // Adjust the duration as needed
+        });
+         document.getElementById("paymentForm1").addEventListener("submit", function (event) {
+            event.preventDefault();
+            showPaymentModal();
+            // Simulate payment process
+            setTimeout(function () {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "@Url.Action("PayOthers", "BuyCart")", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        hidePaymentModal();
+                        showPaymentSuccessMessage();
+                    }
+                };
+                xhr.send();
+            }, 3000); // Adjust the duration as needed
+        });
+        document.getElementById("paymentForm2").addEventListener("submit", function (event) {
+            event.preventDefault();
+            showPaymentModal();
+            // Simulate payment process
+            setTimeout(function () {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "@Url.Action("PayOthers", "BuyCart")", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        hidePaymentModal();
+                        showPaymentSuccessMessage();
+                    }
+                };
+                xhr.send();
+            }, 3000); // Adjust the duration as needed
+        });
         document.getElementById("paymentForm").addEventListener("submit", function (event) {
             event.preventDefault();
             showPaymentModal();
             // Simulate payment process
             setTimeout(function () {
-                hidePaymentModal();
-                // Perform necessary actions after successful payment
-                // e.g., redirect to a success page or display a success message
-                showPaymentSuccessMessage();
-                setTimeout(function () {
-                    window.location.href = "/Market/Index";
-                }, 2000);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "@Url.Action("PayOthers", "BuyCart")", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        hidePaymentModal();
+                        showPaymentSuccessMessage();
+                    }
+                };
+                xhr.send();
             }, 3000); // Adjust the duration as needed
         });
 
@@ -239,12 +307,17 @@
             var successMessage = document.createElement("div");
             successMessage.className = "success-message";
             successMessage.textContent = "Payment Successful";
+            var cartCount = @Config.CartItems; // Replace with the actual cart count from your server-side code
 
+            if (cartCount === 0) {
+            successMessage.textContent = "Nothing in the cart.";
+            }
             document.body.appendChild(successMessage);
 
             setTimeout(function () {
                 document.body.removeChild(successMessage);
-            }, 4000); // Adjust the duration as needed
+                window.location.reload();
+            }, 3000); // Adjust the duration as needed
         }
     </script>
     <script>

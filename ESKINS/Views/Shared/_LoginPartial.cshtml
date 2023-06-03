@@ -21,11 +21,10 @@
 @if(Config.isConfirmed)
 {
     <li class="nav-item">
-        <button class="btn btn-outline-dark" id="CartButton" type="submit" data-toggle="modal" data-target="#paymentModal">
+        <button class="btn btn-outline-dark" id="CartButton" type="submit" data-toggle="modal" data-target="#paymentModal1">
             Wallet
             <i class="bi bi-currency-pound"></i>
-            @*<span class="badge bg-dark text-white ms-1 rounded-pill">@Config.WalletAmount</span>*@
-            <span class="badge bg-dark text-white ms-1 rounded-pill" id="walletAmountSpan"></span>
+            <span class="badge bg-dark text-white ms-1 rounded-pill" id="walletAmountSpan">@Config.WalletAmount</span>
         </button>
     </li>
     <li>
@@ -61,12 +60,8 @@ else
     </li>
 }
 <!-- Modal window for wallet -->
-<div class="modal" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+<div class="modal" id="paymentModal1" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
     @await Component.InvokeAsync("PaymentMethodComponent")
-</div>
-<!-- Modal window for BuyCart -->
-<div class="modal" id="buyCartModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
-    @await Component.InvokeAsync("BuyCartComponent")
 </div>
 <style>
     .modal-backdrop {
@@ -83,7 +78,7 @@ else
 
     $(document).ready(function () {
         $('#CartButton').click(function () {
-            $('#paymentModal').modal('show');
+            $('#paymentModal1').modal('show');
         });
     });
     $(document).ready(function () {
@@ -115,6 +110,7 @@ else
                     setTimeout(function () {
                         $("#successMessage").text("Funds added successfully!");
                         $("#successMessage").show();
+                        window.location.reload();
                     }, 2000);
                     // Optionally, you can reload the page or update specific elements
                 },
