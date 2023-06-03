@@ -122,7 +122,7 @@
           <hr />
             @if (Model.UserId != Config.UserId)
             {
-                <a href="#" id="btnBack1" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+                <a onclick="location.href='@Url.Action("AddToCart", "BuyCart", new {id = Model.Id})'" id="btnBack1" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
             }
                     <button id="btnBack" style="margin: 5px;" onclick="location.href='@Url.Action("Index", "Market")'">Back To Market</button>
         </div>
@@ -132,54 +132,6 @@
 </section>
 <br>
 <br>
-<!-- Confirmation Modal -->
-<div class="modal" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="d-flex justify-content-center">
-                    <span class="visually-hidden">Adding to cart...</span>
-                    <div class="spinner-border text-primary" role="status">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    $(document).ready(function () {
-        $('#btnBack1').click(function (e) {
-            e.preventDefault(); // Prevent the default navigation behavior
-
-            var itemId = '@Model.Id'; // Access the ID property from the model
-            var cartItem = '@Config.CartItems';
-            $('#confirmationModal').modal('show');
-            // Perform the AJAX request
-            $.ajax({
-                url: '@Url.Action("AddToCart", "BuyCart")', // Replace with your controller and action name
-                type: 'POST', // Change the HTTP verb accordingly (GET, POST, etc.)
-                data: { id: itemId }, // Pass the ID as a parameter
-                success: function (response) {
-                    // Handle the success response from the controller
-                    console.log(response); // Log the response to the console or perform any other action
-                    setTimeout(function () {
-                        // Update the cart count
-                        var cartCount = parseInt($('#cartCount').text());
-                        $('#cartCount').text(cartCount + 1);
-
-
-                        // Hide the confirmation modal
-                        $('#confirmationModal').modal('hide');
-                    }, 1000);
-                },
-                error: function (xhr, status, error) {
-                    // Handle the error response, if any
-                    console.log(error); // Log the error message to the console or perform any other action
-                }
-            });
-        });
-    });
-</script>
 <script>
     var arrow = document.getElementById('arrow');
     var float = parseFloat('@Model.ItemFloat'); // Replace with your float value
