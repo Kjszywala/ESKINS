@@ -15,7 +15,7 @@
 @using (Html.BeginForm("Create", "Items", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <div class="itemContainers">
+    <div class="itemContainers" >
         <div class="row">
             <div class="col">
                 <div class="container text-light py-5">
@@ -64,15 +64,6 @@
             <div class="col">
                 <div class="container text-light py-5">
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            <div class="checkbox">
-                                @Html.EditorFor(model => model.IsActive)
-                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.StatTrack, htmlAttributes: new { @class = "control-label col-md-2" })

@@ -28,7 +28,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         {
             try
             {
-                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.SerialNumber).First() ?? null;
+                var model = itemsServices.GetAllAsync().Result.OrderByDescending(item => item.Id).First() ?? null;
 
                 if (model == null || model.SerialNumber == "0" || model.SerialNumber == null)
                 {

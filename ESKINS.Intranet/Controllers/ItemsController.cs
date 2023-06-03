@@ -77,7 +77,7 @@ namespace ESKINS.Intranet.Controllers
                 {
                     return View("Error");
                 }
-                return View(model);
+                return View(model.OrderByDescending(item=>item.SerialNumber).ToList());
             }
             catch (Exception e)
             {
@@ -194,6 +194,7 @@ namespace ESKINS.Intranet.Controllers
                 model.ModificationDate = DateTime.Now;
                 var nextSerialNumber = itemLogic.GetNextSerialNumber().ToString();
                 model.SerialNumber = nextSerialNumber;
+                model.IsActive = true;
                 var file = Request.Form.Files.FirstOrDefault();
                 if (file != null && file.Length > 0)
                 {
