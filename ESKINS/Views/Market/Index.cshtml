@@ -82,7 +82,10 @@
 		</ul>
 	</div>
 </div> 
-
+@if (TempData["Message"] != null)
+{
+	<div class="alert alert-info">@TempData["Message"]</div>
+}
 @*<button class="button-20" style="margin-left:-30px;margin-top:-90px;" id="myModalBtn"><i class="bi bi-info-circle"></i></button>*@
 <div id="myModalContainer"></div>
 <main class="cd-main-content">

@@ -55,7 +55,7 @@ namespace ESKINS.Controllers
                 foreach (var item in filteredList)
                 {
                     itemsModels.Add(await itemsServices.GetAsync(item.ItemId.Value));
-                }
+				}
                 foreach (var item in itemsModels)
                 {
                     item.Category = categoriesServices.GetAsync(item.CategoryId.Value).Result;
@@ -75,9 +75,22 @@ namespace ESKINS.Controllers
         {
             try
             {
-                var item = cartLogic.AddToCart(id).Result;
                 var product = itemsServices.GetAsync(id).Result;
-                Config.CartOverall += product.ActualPrice;
+                var itemList = itemsServices.GetAllAsync().Result;
+                var cartList = cartServices.GetAllAsync().Result.Where(i=>i.SessionId == Config.SessionId).ToList();
+                foreach(var item2 in itemList)
+                {
+                    foreach (var item3 in cartList)
+					{
+						if (id == item3.ItemId)
+						{
+							TempData["Message"] = "Item already in cart";
+							return RedirectToAction("Index", "Market");
+						}
+					}
+				}
+				var item = cartLogic.AddToCart(id).Result;
+				Config.CartOverall += product.ActualPrice;
                 Config.Discount = Config.Discount + (product.ActualPrice * product.Discount);
                 Config.CartItems += 1;
                 if (!item)
