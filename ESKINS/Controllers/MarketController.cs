@@ -21,6 +21,7 @@ namespace ESKINS.Controllers
         IPhasesServices phasesServices;
         IQualitiesServices qualitiesServices;
         IExteriorsServices exteriorsServices;
+		ICartServices cartServices;
         public static List<ItemsModels> itemsModels;
 
         #endregion
@@ -38,7 +39,8 @@ namespace ESKINS.Controllers
             IItemCollectionsServices _itemCollectionsServices,
             IPhasesServices _phasesServices,
             IQualitiesServices _qualitiesServices,
-            IExteriorsServices _exteriorsServices
+            IExteriorsServices _exteriorsServices,
+			ICartServices _cartServices
             )
         {
             itemLogic = _itemLogic;
@@ -52,6 +54,7 @@ namespace ESKINS.Controllers
             phasesServices = _phasesServices;
             qualitiesServices = _qualitiesServices;
             exteriorsServices = _exteriorsServices;
+			cartServices = _cartServices;
 		}
 
         #endregion

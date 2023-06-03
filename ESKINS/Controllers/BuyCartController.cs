@@ -77,7 +77,7 @@ namespace ESKINS.Controllers
             {
                 var item = cartLogic.AddToCart(id).Result;
                 var product = itemsServices.GetAsync(id).Result;
-                Config.CartOverall += product.ActualPrice - (product.ActualPrice * product.Discount);
+                Config.CartOverall += product.ActualPrice;
                 Config.Discount = Config.Discount + (product.ActualPrice * product.Discount);
                 Config.CartItems += 1;
                 if (!item)
@@ -105,8 +105,8 @@ namespace ESKINS.Controllers
                         await cartLogic.RemoveFromCart(i.Id);
                         var item = itemsServices.GetAsync(id).Result;
                         Config.CartItems -= 1;
-                        Config.Discount -= item.Discount;
-                        Config.CartOverall -= item.ActualPrice;
+                        Config.Discount = Config.Discount - (item.ActualPrice * item.Discount);
+                        Config.CartOverall = Config.CartOverall - item.ActualPrice;
                     }
                 }
                 return RedirectToAction("Index", "BuyCart"); 
