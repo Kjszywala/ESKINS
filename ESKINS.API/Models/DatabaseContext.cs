@@ -36,6 +36,7 @@ namespace ESKINS.API.Models
         public virtual DbSet<Targets> Targets { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<BuyCart> BuyCarts { get; set; }
+        public virtual DbSet<SaleCart> SaleCart { get; set; }
 
         #endregion
     }

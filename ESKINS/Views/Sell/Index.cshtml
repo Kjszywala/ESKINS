@@ -21,20 +21,26 @@
 </script>
 <main class="cd-main-content">
 	<div style="margin-left: 100px; margin-top:-10px;">
-		<section class="cd-gallery" style="margin-top: -45px;">
-			<h2 style="color:white;"><strong>Inventory:</strong></h2>
-			<div id="itemContainer">
-				@Html.Partial("_ItemPartial", Model)
-			</div>
-			<div class="cd-fail-message">No results found</div>
-			<br />
-			<div class="itemsSell">
-				<div class="itemsSellForSale" id="itemsSellForSale" style="height: 220px;">
-					@await Component.InvokeAsync("SaleCartComponent")
+		<section class="cd-gallery" style="margin-top: -20px;">
+			<div style="margin-top:-45px;">
+				<h2 style="color:white;"><strong>Inventory:</strong></h2>
+				<div id="itemContainer">
+					@Html.Partial("_ItemPartial", Model)
 				</div>
-				<div class="itemsSellButtons">
-					<button id="btn">Instant Sale</button>
-					<button id="btn">Remove From Cart</button>
+				<div class="cd-fail-message">No results found</div>
+					@await Component.InvokeAsync("SaleCartComponent")
+				<br />
+				<div class="itemsSell">
+					<div class="itemsSellForSale" id="itemsSellForSale" style="height: 220px;">
+					</div>
+					<div class="itemsSellButtons">
+						<form method="post" asp-action="InstantSale">
+							<button name="instantSaleBtn">Instant Sale</button>
+						</form>
+						<form method="post" asp-action="RemoveFromCart">
+							<button name="removeFromCartBtn">Remove From Cart</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</section> <!-- cd-gallery -->
