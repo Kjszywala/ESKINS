@@ -49,6 +49,15 @@ namespace ESKINS.Controllers
 		{
 			try
 			{
+				var saleCartItems = saleCartService.GetAllAsync().Result.Where(i => i.SessionId == Config.SessionId).ToList(); 
+				foreach(var cartItem in saleCartItems)
+				{
+					if (id == cartItem.ItemId)
+					{
+						TempData["Message"] = "Item already in cart";
+						return RedirectToAction("Index", "Sell");
+					}
+				}
 				await saleCartLogic.AddToCart(id);
 				var item = await itemsServices.GetAsync(id);
 				Config.SaleCartOverall += item.ActualPrice - (item.ActualPrice * Decimal.Parse("0.30"));
