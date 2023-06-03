@@ -5,9 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ESKINS.API.Controllers
 {
-	[Route("api/[controller]")]
-    [ApiController]
-    public class SaleCartsController : ControllerBase
+	[ApiVersion("1.0")]
+	[Route("api/v{version:apiVersion}/[controller]")]
+	[ApiController]
+	public class SaleCartsController : ControllerBase
     {
         private readonly DatabaseContext _context;
 

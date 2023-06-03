@@ -1,5 +1,96 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model List<ESKINS.DbServices.Models.SaleCartModels>?
+<div style="margin: 15px;">
+	@foreach(var item in Model)
+	{
+	
+		<div class="card" style="animation: moveCards 10s linear infinite; margin-right: 15px; height: 170px; width:170px;">
+			<div>
+                <button class="overlay-button21 bi bi-x button-21" title="Remove from sale." onclick="location.href='@Url.Action("Remove", "SaleCart", new {id = item.Id})'"></button>
+			</div>
+			<div class="imgBox" style="width:70px;margin-top:20px;">
+				<div style="height: 70px;">
+					@if (item.ItemImage != null)
+					{
+						<img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" style="width: 80px; height: auto; background-color:transparent; border: none; margin-right:20px;" />
+					}
+				</div>
+			</div>
+			<div class="contentBox">
+				<h3>@item.ItemName</h3>
+			</div>
+			<div class="contentBox">
+				<h3>£ @item.ItemActualPrice</h3>
+			</div>
+		</div>
+	}
+</div>
+<style>
+	.overlay-button21 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		/* Add any other styles for the button */
+		margin-left: 10px !important;
+		margin-top: 10px !important;
+	}
+	/*card button style*/
+.button-21 {
+    appearance: button;
+    background-color: #41307c;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));
+    border: 1px solid #41307c;
+    border-radius: 1rem;
+    box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset,rgba(46, 54, 80, 0.075) 0 1px 1px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Inter,sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+    padding: .5rem 1rem;
+    text-align: center;
+    text-transform: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
 }
+
+    .button-21:focus:not(:focus-visible),
+    .button-21:focus {
+        outline: 0;
+    }
+
+    .button-21:hover {
+        background-color: #3733E5;
+        border-color: #3733E5;
+    }
+
+    .button-21:focus {
+        background-color: #413FC5;
+        border-color: #3E3BBA;
+        box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset, rgba(46, 54, 80, 0.075) 0 1px 1px, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+    }
+
+    .button-21:active {
+        background-color: #3E3BBA;
+        background-image: none;
+        border-color: #3A38AE;
+        box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset;
+    }
+
+        .button-21:active:focus {
+            box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+        }
+
+    .button-21:disabled {
+        background-image: none;
+        box-shadow: none;
+        opacity: .65;
+        pointer-events: none;
+    }
+</style>

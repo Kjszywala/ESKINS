@@ -45,6 +45,7 @@ namespace ESKINS
             builder.Services.AddScoped<ITargetsServices, TargetsServices>();
             builder.Services.AddScoped<IInvoicesServices, InvoicesServices>();
 			builder.Services.AddScoped<ISaleCartServices, SaleCartServices>();
+			builder.Services.AddScoped<ISaleCartLogic, SaleCartLogic>();
 			builder.Services.AddScoped<ICartServices, CartServices>();
             builder.Services.AddScoped<ICartLogic, CartLogic>();
             builder.Services.AddSession();

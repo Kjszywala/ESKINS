@@ -9,16 +9,8 @@
 	<link href="~/css/market2.css" type="text/css" rel="stylesheet" />
 	<link href="~/css/sell.css" type="text/css" rel="stylesheet" />
 	<link href="~/css/card.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 }
-
-<script>
-	$(document).ready(function () {
-		$("#cardMove").click(function () {
-			$(".card").appendTo("#itemsSellForSale");
-			$(this).hide(); // Hide move button
-		});
-	});
-</script>
 <main class="cd-main-content">
 	<div style="margin-left: 100px; margin-top:-10px;">
 		<section class="cd-gallery" style="margin-top: -20px;">
@@ -28,18 +20,20 @@
 					@Html.Partial("_ItemPartial", Model)
 				</div>
 				<div class="cd-fail-message">No results found</div>
-					@await Component.InvokeAsync("SaleCartComponent")
 				<br />
+				<div style="color:white;">
+					<label>
+						You will get: £ <strong>@Math.Truncate(@Config.SaleCartOverall)</strong> <small>@((@Config.SaleCartOverall % 1).ToString("0.00").Substring(2))</small>
+					</label>
+					<span class="info-icon" title="Sell your items instantly for 30% less than market value."><i class="fas fa-info-circle"></i></span>
+				</div>
 				<div class="itemsSell">
-					<div class="itemsSellForSale" id="itemsSellForSale" style="height: 220px;">
+					<div class="itemsSellForSale" id="itemsSellForSale" style="height: 220px; overflow-y: scroll; display: flex; flex-wrap: wrap;">
+						@await Component.InvokeAsync("SaleCartComponent")
 					</div>
 					<div class="itemsSellButtons">
-						<form method="post" asp-action="InstantSale">
-							<button name="instantSaleBtn">Instant Sale</button>
-						</form>
-						<form method="post" asp-action="RemoveFromCart">
-							<button name="removeFromCartBtn">Remove From Cart</button>
-						</form>
+						<button id="btn" >Instant Sale</button>
+						<button id="btn" >Remove From Cart</button>
 					</div>
 				</div>
 			</div>
@@ -62,62 +56,17 @@
 			<a href="#0" class="cd-close" style="color: #a9a9a9; text-decoration: none;">Close</a>
 		</div>
 	<a href="#0" class="cd-filter-trigger" style="text-decoration: none;">Filters</a>
+</main> 
+<style>
+.info-icon {
+	margin-left: 5px;
+	font-size: 16px;
+	cursor: help;
+}
+
+</style>
+<script>
 	
-</main> <!-- cd-main-content -->
-<script>
-	function moveToSaleCart(button) {
-		var card = button.parentNode.parentNode;
-		var hiddenInput = card.querySelector('input[name="id"]');
-		var saleCartDiv = document.getElementById("itemsSellForSale");
-
-		// Clone the card
-		var clonedCard = card.cloneNode(true);
-
-		// Remove the button from the cloned card
-		var clonedButton = clonedCard.querySelector('.button-20');
-		clonedButton.parentNode.removeChild(clonedButton);
-
-		// Append the cloned card to the saleCartDiv
-		saleCartDiv.appendChild(clonedCard);
-
-		// Remove the original card from the DOM
-		card.parentNode.removeChild(card);
-
-		// Optional: Update the hidden input's name to avoid duplicate names
-		hiddenInput.setAttribute('name', 'saleItemId');
-	}
-</script>
-<script>
-	function sendItemToInstantSale(id) {
-		// Make an AJAX request to the server
-		$.ajax({
-			type: 'POST',
-			url: '@Url.Action("AddForSale", "Sell")',
-			data: { id: id },
-			success: function (response) {
-				// Handle the successful response
-				$('#itemsSellForSale').html(response);
-			},
-			error: function () {
-				// Handle the error
-				alert('An error occurred during the AJAX request.');
-			}
-		});
-	}
-	function sendItemDetails(itemId) {
-		// Make an AJAX request to the server
-		$.ajax({
-			type: "POST",
-			url: '@Url.Action("RemoveFromSale", "Sell")',
-			data: { itemId: itemId },
-			success: function (response) {
-				$('#itemContainer').html(response);
-			},
-			error: function () {
-				alert("An error occurred during the AJAX request.");
-			}
-		});
-	}
 	// radio buttons
 	$(document).ready(function () {
 		$('input[type="radio"]').change(function () {

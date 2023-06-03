@@ -9,5 +9,6 @@
         public static decimal CartOverall = 0;
         public static decimal Discount = 0;
         public static int CartItems = 0;
+        public static decimal SaleCartOverall = 0;
     }
 }

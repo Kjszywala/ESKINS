@@ -1,4 +1,6 @@
-﻿using ESKINS.DbServices.Interfaces;
+﻿using ESKINS.BusinessLogic.Interfaces;
+using ESKINS.DbServices.Interfaces;
+using ESKINS.DbServices.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -7,18 +9,20 @@ namespace ESKINS.Controllers
 	{
 		#region Variables
 
-		ICategoriesServices categoriesServices;
+		ISaleCartServices saleCartService;
 		IErrorLogsServices errorLogsServices;
+		public static List<SaleCartModels>? itemsModels;
 
 		#endregion
 
 		#region Constructor
 
 		public SaleCartComponent(
-			ICategoriesServices _categoriesServices, 
+			ISaleCartLogic _saleCartLogic,
+			ISaleCartServices _saleCartService,
 			IErrorLogsServices _errorLogsServices)
 		{
-			categoriesServices = _categoriesServices;
+			saleCartService = _saleCartService;
 			errorLogsServices = _errorLogsServices;
 		}
 
@@ -30,7 +34,8 @@ namespace ESKINS.Controllers
 		{
 			try
 			{
-				return View("SaleCartComponent", await categoriesServices.GetAllAsync());
+				itemsModels = saleCartService.GetAllAsync().Result.Where(item => item.SessionId == Config.SessionId).ToList();
+				return View("SaleCartComponent", itemsModels);
 			}
 			catch (Exception ex)
 			{
