@@ -8,6 +8,7 @@
 		public decimal ItemDiscount { get; set; }
 		public string ItemName { get; set; }
 		public byte[] ItemImage { get; set; }
-	}
+        public string SessionId { get; set; }
+    }
 }
 
