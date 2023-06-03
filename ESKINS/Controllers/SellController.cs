@@ -253,7 +253,6 @@ namespace ESKINS.Controllers
 			try
 			{
 				var item = itemServices.GetAsync(id).Result;
-				//sell.CurrentAmount = sell.CurrentAmount - (item.ActualPrice - (item.ActualPrice * Decimal.Parse("0.25")));
 				itemsModelsSale.Add(item);
 				return ViewComponent("SaleCartComponent", itemsModelsSale);
 			}
