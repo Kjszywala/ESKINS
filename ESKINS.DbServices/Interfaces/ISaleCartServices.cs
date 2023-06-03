@@ -2,7 +2,7 @@
 
 namespace ESKINS.DbServices.Interfaces
 {
-	internal interface ISaleCartServices : IBaseServices<SaleCartModels>
+	public interface ISaleCartServices : IBaseServices<SaleCartModels>
 	{
 	}
 }
