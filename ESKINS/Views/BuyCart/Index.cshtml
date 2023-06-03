@@ -8,12 +8,17 @@
     <header class="privacy1">
     <h2><strong>Shopping Cart</strong></h2>
     </header>
+    @if (TempData["Message"] != null)
+    {
+        <br />
+        <div class="alert alert-info" style="width: 250px; margin-left: auto; margin-right: auto; text-align: center;">@TempData["Message"]</div>
+    }
     <br />
     <section style="color:white;">
         <div class="container h-100 py-5">
         <div class="row d-flex justify-content-center align-items-center h-100" style="display:block">
                 <div class="col">
-                    <div class="card1">
+                <div class="card1">
                         <div class="table-responsive" style="overflow: auto; max-height:400px; margin:20px; border-radius: 10px;">
                             <table class="table">
                                 <thead>
@@ -47,8 +52,7 @@
                                         </td>
                                         <td class="align-middle">
                                             <p class="mb-0" style="font-weight: 500;">@(
-                                            Math.Round(item.Discount * 100)
-) %</p>
+                                            Math.Round(item.Discount * 100)) %</p>
                                         </td>
                                         <td class="align-middle">
                                             <p class="mb-0" style="font-weight: 500;">£ @item.ActualPrice</p>
@@ -57,8 +61,7 @@
                                             <a class="btn btn-primary shadow-0" onclick="location.href='@Url.Action("RemoveFromCart", "BuyCart", new {id = item.Id})'"> <i class="me-1 fa fa-shopping-basket"></i> Remove </a>
                                         </td>
                                     </tr>
-                                    counter++;
-                                        
+                                    counter++; 
                                 }
                                 </tbody>
                             </table>
@@ -116,33 +119,33 @@
                                                 <div class="title" style="color:#646464; font: inherit;">
                                                     Credit Card Number
                                                 </div>
-                                                <input type="text" class="input txt text-validated" value="4542 9931 9292 2293" />
+                                                <input type="text" class="input txt text-validated" value="4542 9931 9292 2293" required />
                                             </div>
                                             <div class="field">
                                                 <div class="title" style="color:#646464; font: inherit;">
                                                     Name on Card
                                                 </div>
-                                                <input type="text" class="input txt" />
+                                                <input type="text" class="input txt" required />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="field small">
-                                                <div class="title" style="color:#646464; font: inherit;">
+                                                <div class="title" style="color:#646464; font: inherit;" >
                                                     Expiry Date
                                                 </div>
-                                                <select class="input ddl">
+                                                <select class="input ddl" required>
                                                     <option selected>01</option>
                                                     <option>02</option>
                                                     <option>03</option>
                                                 </select>
-                                                <select class="input ddl">
+                                                <select class="input ddl" required>
                                                     <option>01</option>
                                                     <option>02</option>
                                                     <option>03</option>
                                                 </select>
                                             </div>
                                             <div class="field small">
-                                                <div class="title" style="color:#646464; font: inherit;">
+                                                <div class="title" style="color:#646464; font: inherit;" required>
                                                     CVV Code
                                                     <span class="numberCircle">?</span>
                                                 </div>
@@ -161,8 +164,8 @@
                                     <i class="icon icon-paypal"></i>
                                     <p class="payment-method__description">Pay with your Paypal account</p>
                                     <form>
-                                        <input type="email" class="input21" placeholder="Paypal email">
-                                        <input type="password" class="input21" placeholder="Paypal password">
+                                        <input type="email" class="input21" placeholder="Paypal email" required>
+                                        <input type="password" class="input21" placeholder="Paypal password" required>
                                         <button class="button-36">Pay with Paypal</button>
                                     </form>
                                 </div>
@@ -172,9 +175,9 @@
                                 <div class="payment-method">
                                     <i class="icon icon-wallet"></i>
                                     <p class="payment-method__description">Pay using your digital wallet</p>
-                                    <form>
-                                        <input type="password" class="input21" placeholder="Your password">
-                                        <button class="button-36">Pay with Wallet</button>
+                                    <form action="@Url.Action("Pay", "BuyCart")" method="post">
+                                        <input type="password" id="password" name="password" class="input21" placeholder="Your password">
+                                        <button class="button-36" type="submit">Pay with Wallet</button>
                                     </form>
                                 </div>
                             </div>
@@ -183,11 +186,11 @@
                                 <div class="payment-method">
                                     <i class="icon icon-wallet"></i>
                                     <p class="payment-method__description">Pay using bank transfer</p>
-                                    <form>
-                                        <input type="text" class="input21" placeholder="Bank account number">
-                                        <input type="text" class="input21" placeholder="Bank name">
-                                        <input type="text" class="input21" placeholder="Account holder name">
-                                        <button class="button-36">Pay with Bank Transfer</button>
+                                    <form id="paymentForm">
+                                        <input type="text" class="input21" placeholder="Bank account number" required>
+                                        <input type="text" class="input21" placeholder="Bank name" required>
+                                        <input type="text" class="input21" placeholder="Account holder name" required>
+                                        <button class="button-36" id="paymentButton">Pay with Bank Transfer</button>
                                     </form>
                                 </div>
                             </div>
@@ -202,6 +205,48 @@
         </div>
     </section>
     <br />
+    <!-- Modal window -->
+    <div class="modal" id="paymentModals">
+        <div class="modal-content">
+            <div class="loader"></div>
+            <div class="modal-message">Processing payment...</div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("paymentForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            showPaymentModal();
+            // Simulate payment process
+            setTimeout(function () {
+                hidePaymentModal();
+                // Perform necessary actions after successful payment
+                // e.g., redirect to a success page or display a success message
+                showPaymentSuccessMessage();
+                setTimeout(function () {
+                    window.location.href = "/Market/Index";
+                }, 2000);
+            }, 3000); // Adjust the duration as needed
+        });
+
+        function showPaymentModal() {
+            document.getElementById("paymentModals").style.display = "block";
+        }
+
+        function hidePaymentModal() {
+            document.getElementById("paymentModals").style.display = "none";
+        }
+        function showPaymentSuccessMessage() {
+            var successMessage = document.createElement("div");
+            successMessage.className = "success-message";
+            successMessage.textContent = "Payment Successful";
+
+            document.body.appendChild(successMessage);
+
+            setTimeout(function () {
+                document.body.removeChild(successMessage);
+            }, 4000); // Adjust the duration as needed
+        }
+    </script>
     <script>
     function redirectToController() {
         // Perform any necessary actions before navigating to the controller
@@ -224,54 +269,59 @@
     }
     </script>
 <style>
-    .modal {
-        display: none;
+    .success-message {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5); /* Overlay background color with transparency */
-        transition: opacity 0.3s ease; /* Transition effect for fade in/out */
-        z-index: 9999; /* Ensure the modal is on top of other elements */
-    }
-
-        .modal.fade.show {
-            display: block;
-        }
-
-    .modal-dialog {
-        position: fixed;
-        top: 50%;
+        top: 10%;
         left: 50%;
-        transform: translate(-50%, -50%); /* Center the modal horizontally and vertically */
-        transition: transform 0.3s ease; /* Transition effect for modal dialog */
-        width: 400px; /* Adjust the width as desired */
-        border-radius: 8px; /* Adjust the border radius as desired */
-        margin-bottom: 0;
-        padding-bottom: 0;
+        transform: translate(-50%, -50%);
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 4px;
     }
+    /* CSS styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
-    .modal.fade.show .modal-dialog {
-        transform: translate(-50%, -50%); /* Ensure the centered position when modal is shown */
-    }
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+        background-color: rgba(0, 0, 0, 0.8); /* Adjust the opacity (0.8) and color as desired */
+        color: #fff; /* Set the text color to white */
+}
 
-    .spinner-border {
-        display: inline-block;
-        width: 2rem;
-        height: 2rem;
-        vertical-align: text-bottom;
-        border: 0.25em solid currentColor;
-        border-right-color: transparent;
-        border-radius: 50%;
-        animation: spinner-border 0.75s linear infinite;
-    }
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
 
-    @@keyframes spinner-border {
-        to {
-            transform: rotate(360deg);
-        }
+@@keyframes spin {
+    0% {
+        transform: rotate(0deg);
     }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.modal-message {
+    margin-top: 20px;
+}
     .payment__type--cc.active {
         background-color: #f2f2f2;
         color: #333;

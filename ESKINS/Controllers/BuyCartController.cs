@@ -16,6 +16,7 @@ namespace ESKINS.Controllers
         IExteriorsServices exteriorsServices;
         ICategoriesServices categoriesServices;
         IQualitiesServices qualitiesServices;
+        IUsersServices usersServices;
         public static List<ItemsModels>? itemsModels;
 
         #endregion
@@ -29,7 +30,8 @@ namespace ESKINS.Controllers
             ICartServices _cartServices,
             ICategoriesServices _categoriesServices,
             IQualitiesServices _qualitiesServices,
-            IExteriorsServices _exteriorsServices)
+            IExteriorsServices _exteriorsServices,
+            IUsersServices _usersServices)
         {
             itemsServices = _itemsServices;
             errorLogsServices = _errorLogsServices;
@@ -38,7 +40,7 @@ namespace ESKINS.Controllers
             categoriesServices = _categoriesServices;
             qualitiesServices = _qualitiesServices;
             exteriorsServices = _exteriorsServices;
-
+            usersServices = _usersServices;
         }
 
         #endregion
@@ -141,6 +143,52 @@ namespace ESKINS.Controllers
                     await errorLogsServices.Add("Could not remove all items");
                 }
                 return RedirectToAction("Index", "Market");
+            }
+            catch (Exception ex)
+            {
+                await errorLogsServices.Error(ex);
+                return View("Error");
+            }
+        }
+
+		public async Task<IActionResult> Pay(string password)
+        {
+			try
+			{
+				var user = usersServices.GetAsync(Config.UserId).Result;
+
+                if (password != user.Password)
+                {
+                    TempData["Message"] = "Password does not match.";
+                    return RedirectToAction("Index", "BuyCart");
+                }
+                if (user.AccountBalance < Config.CartOverall)
+				{
+                    TempData["Message"] = "Not enough money in your wallet.\nPlease charge your wallet.";
+                    return RedirectToAction("Index", "BuyCart");
+                }
+
+                return RedirectToAction("Index", "BuyCart");
+            }
+			catch (Exception ex)
+			{
+				await errorLogsServices.Error(ex);
+				return View("Error");
+			}
+		}
+
+        public async Task<IActionResult> PayOthers()
+        {
+            try
+            {
+                var cartList = cartServices.GetAllAsync().Result;
+                
+                foreach (var cart in cartList)
+                {
+                    var item = itemsServices.GetAsync(cart.ItemId.Value).Result;
+
+                }
+                return RedirectToAction("Index", "BuyCart");
             }
             catch (Exception ex)
             {
