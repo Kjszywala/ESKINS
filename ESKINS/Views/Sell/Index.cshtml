@@ -39,7 +39,7 @@
 						@await Component.InvokeAsync("SaleCartComponent")
 					</div>
 					<div class="itemsSellButtons">
-						<button id="btn" >Instant Sale</button>
+						<button id="btn" onclick="location.href='@Url.Action("SellItems", "SaleCart")'">Instant Sale</button>
 						<button id="btn" onclick="location.href='@Url.Action("RemoveAll", "SaleCart")'">Remove All</button>
 					</div>
 				</div>
