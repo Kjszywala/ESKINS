@@ -25,7 +25,7 @@
 				<div style="height: 100px;display: flex;justify-content: center; align-items: center;">
 					@if (item.ItemImage != null)
 					{
-						<img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" style="width: 100px; height: auto; background-color:transparent; border: none; margin-left:10px;" />
+						<img src="data:image;base64,@Convert.ToBase64String(item.ItemImage)" alt="@item.ItemImage" style="width: 100px; height: auto; background-color:transparent; border: none; margin-left:10px;" onmouseover="zoomIn(this)" onmouseout="zoomOut(this)" />
 					}
 				</div>
 			</div>
@@ -39,18 +39,66 @@
 				@if (item.Discount != 0 && item.UserId != Config.UserId)
 				{
 					<label class="showDiscount" style="color:white;">@(Math.Round(item.Discount * 100)) %</label>
-					<button href="#" class="button-20">Add To Card</button>
+					<button href="#" class="button-20" onclick="location.href='@Url.Action("AddToCart", "BuyCart", new {id = item.Id})'">Add To Card</button>
 				}
 				else if (item.UserId == Config.UserId)
 				{
 					<label class="showDiscount" style="color:white;">@(Math.Round(item.Discount * 100)) %</label>
-					<Label class="overlay-label bi bi-person-fill" title="This item is yours."></Label>
+					<Label class="overlay-label bi bi-person-fill" title="This is your item."></Label>
 				}
 				else
 				{
-					<button href="#" class="button-20" style="margin-top: 27px;">Add To Card</button>
+					<button onclick="location.href='@Url.Action("AddToCart", "BuyCart", new {id = item.Id})'" class="button-20" style="margin-top: 27px;">Add To Card</button>
 				}
 			</div>
 		</div>
 	}
 }
+<!-- Confirmation Modal -->
+<div class="modal" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="d-flex justify-content-center">
+					<span class="visually-hidden">Adding to cart...</span>
+					<div class="spinner-border text-primary" role="status">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function () {
+		$('#btnBack4').click(function (e) {
+			e.preventDefault(); // Prevent the default navigation behavior
+
+			var itemId = $(this).data('itemid');
+			var cartItem = '@Config.CartItems';
+			$('#confirmationModal').modal('show');
+			// Perform the AJAX request
+			$.ajax({
+				url: '@Url.Action("AddToCart", "BuyCart")', // Replace with your controller and action name
+				type: 'POST', // Change the HTTP verb accordingly (GET, POST, etc.)
+				data: { id: itemId }, // Pass the ID as a parameter
+				success: function (response) {
+					// Handle the success response from the controller
+					console.log(response); // Log the response to the console or perform any other action
+					setTimeout(function () {
+						// Update the cart count
+						var cartCount = parseInt($('#cartCount').text());
+						$('#cartCount').text(cartCount + 1);
+
+
+						// Hide the confirmation modal
+						$('#confirmationModal').modal('hide');
+					}, 1000);
+				},
+				error: function (xhr, status, error) {
+					// Handle the error response, if any
+					console.log(error); // Log the error message to the console or perform any other action
+				}
+			});
+		});
+	});
+</script>

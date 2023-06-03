@@ -120,7 +120,7 @@
             {
                 <a href="#" id="btnBack1" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
             }
-            <button id="btnBack" style="margin: 5px;">Back To Market</button>
+                    <button id="btnBack" style="margin: 5px;" onclick="location.href='@Url.Action("Index", "Market")'">Back To Market</button>
         </div>
       </main>
     </div>
@@ -185,9 +185,6 @@
     var arrowPosition = (float * lineContainerWidth) + 'px';
     arrow.style.left = arrowPosition;
 
-    document.getElementById("btnBack").addEventListener("click", function () {
-        history.back();
-    });
 </script>
 <style>
 .modal {

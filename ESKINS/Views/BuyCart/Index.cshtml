@@ -54,7 +54,7 @@
                                             <p class="mb-0" style="font-weight: 500;">£ @item.ActualPrice</p>
                                         </td>
                                         <td class="align-middle">
-                                            <a class="btn btn-primary shadow-0 btnRemove" data-itemid="@item.Id"> <i class="me-1 fa fa-shopping-basket"></i> Remove </a>
+                                            <a class="btn btn-primary shadow-0" onclick="location.href='@Url.Action("RemoveFromCart", "BuyCart", new {id = item.Id})'"> <i class="me-1 fa fa-shopping-basket"></i> Remove </a>
                                         </td>
                                     </tr>
                                     counter++;
@@ -202,40 +202,6 @@
         </div>
     </section>
     <br />
-<script>
-    $(document).ready(function () {
-        function removeItem(itemId) {
-            // Perform the AJAX request
-            $.ajax({
-                url: '@Url.Action("RemoveFromCart", "BuyCart")',
-                type: 'POST',
-                data: { id: itemId },
-                success: function (response) {
-                    // Handle the success response from the controller
-                    console.log(response);
-
-                    // Update the cart count
-                    var cartCount = parseInt($('#cartCount').text());
-                    $('#cartCount').text(cartCount - 1);
-
-                    $('#cartTable').find('tr[data-itemid="' + itemId + '"]').remove();
-                },
-                error: function (xhr, status, error) {
-                    // Handle the error response, if any
-                    console.log(error);
-                }
-            });
-        }
-
-        $('.btnRemove').click(function (e) {
-            e.preventDefault(); // Prevent the default navigation behavior
-
-            var itemId = $(this).data('itemid'); // Retrieve the item ID from the data attribute
-
-            removeItem(itemId);
-        });
-    });
-</script>
     <script>
     function redirectToController() {
         // Perform any necessary actions before navigating to the controller

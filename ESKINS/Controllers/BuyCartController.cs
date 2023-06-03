@@ -98,7 +98,7 @@ namespace ESKINS.Controllers
             try
             {
                 var list = cartServices.GetAllAsync().Result;
-                foreach(var i  in list)
+                foreach(var i in list)
                 {
                     if(i.ItemId == id && i.SessionId == Config.SessionId)
                     {
@@ -109,7 +109,7 @@ namespace ESKINS.Controllers
                         Config.CartOverall -= item.ActualPrice;
                     }
                 }
-                return RedirectToAction("Index", "Market"); 
+                return RedirectToAction("Index", "BuyCart"); 
             }
             catch (Exception ex)
             {
