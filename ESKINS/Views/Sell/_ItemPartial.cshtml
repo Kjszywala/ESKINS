@@ -15,6 +15,9 @@
 		margin-top: -55px;
 	}
 </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
+
 <div class="scroll" style="padding: 20px;">
 	<br />
 	@{
@@ -49,12 +52,10 @@
 					}
 					else
 					{
-						//<button href="#" class="button-20" onclick="moveToSaleCart(this)">Add</button>
 						<div>
 							<button href="#" class="button-20" onclick="location.href='@Url.Action("Add", "SaleCart", new {id = item.Id})'">Instant Sale</button>
-							<button href="#" class="button-20" onclick="location.href='@Url.Action("Add", "SaleCart", new {id = item.Id})'">Market Sale</button>
+							<button href="#" class="button-20" data-toggle="modal" data-target="#myModal23">Market Sale</button>
 						</div>
-						//<button href="#" class="button-20" onclick="addToSaleCart(@item.Id)">Add</button>
 					}
 				</div>
 			</div>
@@ -62,3 +63,104 @@
 	}
 </div>
 
+<!-- The modal -->
+<div id="myModal23" class="modal" tabindex="-1">
+	<div id="modalContent23" class="modal-content">
+		<div id="header50" class="modal-header" sstyle="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+			<h2 style="margin: 0 auto;">Modal Header</h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true" style="color:white;">&times;</span>
+			</button>
+		</div>
+		<div id="bodyModalWindow" class="modal-body">
+			<!-- Modal body content here -->
+		</div>
+		<div id="footerModalWindow" class="modal-footer">
+			<div>
+				<button href="#" class="button-36">Close</button>
+				<button href="#" class="button-36">Add For Sale</button>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	/* CSS styles for the modal */
+	#myModal23 {
+		display: none;
+		position: fixed;
+		z-index: 9999; /* Higher z-index to ensure it appears on top */
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	#modalContent23 {
+		background-color: #222222;
+		color: white;
+		margin: 8% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 40%;
+		height: 60%;
+		opacity: 1;
+		position: relative;
+		z-index: 10000; /* Higher z-index to ensure it appears on top */
+	}
+
+	#header50 {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	#buttonCloseModal {
+		background: none;
+		border: none;
+		cursor: pointer;
+	}
+
+	#bodyModalWindow {
+		margin-top: 20px;
+	}
+
+	#footerModalWindow {
+		margin-top: 20px;
+		border-top: 1px solid #888;
+		padding-top: 10px;
+		text-align: right;
+	}
+	/* buttons */
+	.button-36 {
+		background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+		border-radius: 8px;
+		border-style: none;
+		box-sizing: border-box;
+		color: #FFFFFF;
+		cursor: pointer;
+		flex-shrink: 0;
+		font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+		font-size: 16px;
+		font-weight: 500;
+		height: 4rem;
+		padding: 0 1.6rem;
+		text-align: center;
+		text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+		transition: all .5s;
+		user-select: none;
+		-webkit-user-select: none;
+		touch-action: manipulation;
+	}
+
+		.button-36:hover {
+			box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+			transition-duration: .1s;
+		}
+
+	@@media (min-width: 768px) {
+		.button-36 {
+			padding: 0 2.6rem;
+		}
+	}
+</style>
