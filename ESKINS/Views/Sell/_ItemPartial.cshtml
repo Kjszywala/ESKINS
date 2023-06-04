@@ -50,7 +50,10 @@
 					else
 					{
 						//<button href="#" class="button-20" onclick="moveToSaleCart(this)">Add</button>
-						<button href="#" class="button-20" onclick="location.href='@Url.Action("Add", "SaleCart", new {id = item.Id})'">Add</button>
+						<div>
+							<button href="#" class="button-20" onclick="location.href='@Url.Action("Add", "SaleCart", new {id = item.Id})'">Instant Sale</button>
+							<button href="#" class="button-20" onclick="location.href='@Url.Action("Add", "SaleCart", new {id = item.Id})'">Market Sale</button>
+						</div>
 						//<button href="#" class="button-20" onclick="addToSaleCart(@item.Id)">Add</button>
 					}
 				</div>
