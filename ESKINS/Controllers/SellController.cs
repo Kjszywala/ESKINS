@@ -248,21 +248,6 @@ namespace ESKINS.Controllers
 			}
 		}
 
-		public async Task<IActionResult> AddForSaleAsync(int id)
-		{
-			try
-			{
-				var item = itemServices.GetAsync(id).Result;
-				itemsModelsSale.Add(item);
-				return ViewComponent("SaleCartComponent", itemsModelsSale);
-			}
-			catch (Exception ex)
-			{
-				await errorLogs.Error(ex);
-				return View("Error");
-			}
-		}
-
 		#endregion
 
 	}

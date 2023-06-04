@@ -1,6 +1,7 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
 using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -47,6 +48,7 @@ namespace ESKINS.Controllers
 			return ViewComponent("SaleCartComponent", itemsModels);
 		}
 
+		// Add item to sale cart.
 		public async Task<IActionResult> AddAsync(int id)
 		{
 			try
@@ -72,6 +74,7 @@ namespace ESKINS.Controllers
 			}
 		}
 
+		// Remove one from salecart.
         public async Task<IActionResult> RemoveAsync(int id)
         {
             try
@@ -88,6 +91,7 @@ namespace ESKINS.Controllers
             }
         }
 
+		// Remove all from salecart
         public async Task<IActionResult> RemoveAllAsync()
         {
             try
@@ -103,6 +107,7 @@ namespace ESKINS.Controllers
             }
         }
 
+		// Sell items instantly.
 		public async Task<IActionResult> SellItemsAsync()
 		{
 			try
@@ -123,6 +128,24 @@ namespace ESKINS.Controllers
 				Config.SaleCartOverall = 0;
 				await saleCartLogic.RemoveAll();
 				TempData["Message"] = "Your items has been sold!";
+				return RedirectToAction("Index", "Sell");
+			}
+			catch (Exception ex)
+			{
+				await errorLogsServices.Error(ex);
+				return View("Error");
+			}
+		}
+
+		// Add items for sale on market.
+		public async Task<IActionResult> AddForSaleInTheMarketAsync(int itemId, decimal yourPrice)
+		{
+			try
+			{
+				var item = itemsServices.GetAsync(itemId).Result;
+				item.OnSale = true;
+				item.ActualPrice = yourPrice;
+				await itemsServices.EditAsync(itemId, item);
 				return RedirectToAction("Index", "Sell");
 			}
 			catch (Exception ex)
