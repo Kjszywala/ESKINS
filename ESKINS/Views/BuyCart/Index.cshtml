@@ -73,7 +73,7 @@
                                     <h4>Purchase Summary</h4>
                                     <div class="summary-item">
                                         <span>Subtotal:</span>
-                                        £ <strong>@Math.Truncate(Config.CartOverall)</strong>
+                                        £ <strong>@Math.Truncate(Config.CartOverall+Config.Discount)</strong>
                                         <small>@((@Config.CartOverall % 1).ToString("0.00").Substring(2))</small>
                                     </div>
                                     <div class="summary-item">

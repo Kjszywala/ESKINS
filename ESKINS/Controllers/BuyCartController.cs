@@ -176,6 +176,9 @@ namespace ESKINS.Controllers
                 {
                     var item = itemsServices.GetAsync(cart.ItemId.Value).Result;
                     item.OnSale = false;
+                    var sellUser = usersServices.GetAsync(item.UserId.Value).Result;
+                    sellUser.AccountBalance += item.ActualPrice;
+                    await usersServices.EditAsync(sellUser.Id, sellUser);
                     item.UserId = Config.UserId;
                     await itemsServices.EditAsync(item.Id, item);
                 }
