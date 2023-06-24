@@ -11,7 +11,7 @@
     @if (TempData["Message"] != null)
     {
         <br />
-        <div class="alert alert-info" style="width: 250px; margin-left: auto; margin-right: auto; text-align: center;">@TempData["Message"]</div>
+        <div class="alert alert-info" style="width: 250px; margin-left: auto; margin-right: auto; text-align: center;">@TempData["Message1"]</div>
     }
     <br />
     <section style="color:white;">
@@ -308,9 +308,12 @@
             successMessage.className = "success-message";
             successMessage.textContent = "Payment Successful";
             var cartCount = @Config.CartItems; // Replace with the actual cart count from your server-side code
-
+            if(@Config.CartOverall > @Config.WalletAmount)
+            {
+            successMessage.textContent = "Not enough money in your wallet.\nPlease charge your wallet.";
+            }
             if (cartCount === 0) {
-            successMessage.textContent = "Nothing in the cart.";
+                successMessage.textContent = "Nothing in the cart.";
             }
             document.body.appendChild(successMessage);
 
