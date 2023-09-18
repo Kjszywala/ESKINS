@@ -1,5 +1,5 @@
-﻿@using ESKINS.DbServices.Models;
-@model InvoicesModels
+﻿@using ESKINS.DbServices.Models.CMS;
+@model Invoices
 
 @{
     Layout = "_Layout";
@@ -47,18 +47,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Orders, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Order, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.OrderId, (IEnumerable<SelectListItem>)ViewBag.Order, "- Select Order -", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Orders, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Order, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PaymentMethods, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.PaymentMethodId, (IEnumerable<SelectListItem>)ViewBag.Payment, "- Select Payment -", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PaymentMethods, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
             </div>
         </div>
 

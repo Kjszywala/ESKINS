@@ -1,8 +1,8 @@
-﻿using ESKINS.DbServices.Models;
+﻿using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.DbServices.Interfaces
 {
-    public interface IExteriorsServices : IBaseServices<ExteriorsModels>
+    public interface IExteriorsServices : IBaseServices<Exteriors>
     {
     }
 }

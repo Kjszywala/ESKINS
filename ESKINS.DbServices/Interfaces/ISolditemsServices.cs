@@ -1,8 +1,8 @@
-﻿using ESKINS.DbServices.Models;
+﻿using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.DbServices.Interfaces
 {
-    public interface ISolditemsServices : IBaseServices<SoldItemsModels>
+    public interface ISolditemsServices : IBaseServices<SoldItems>
     {
     }
 }

@@ -1,5 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
@@ -77,7 +77,7 @@ namespace ESKINS.Intranet.Controllers
         // POST: Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(UsersModels model)
+        public async Task<IActionResult> Register(Users model)
         {
             try
             {

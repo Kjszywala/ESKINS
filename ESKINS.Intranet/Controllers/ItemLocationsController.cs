@@ -1,5 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
@@ -55,7 +55,7 @@ namespace ESKINS.Intranet.Controllers
                 return NotFound();
             }
 
-            var locationsModel = new ItemLocationsModels
+            var locationsModel = new ItemLocations
             {
                 Id = locations.Id,
                 Title = locations.Title,
@@ -75,7 +75,7 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ItemLocationsModels model)
+        public async Task<IActionResult> Create(ItemLocations model)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, ItemLocationsModels model)
+        public async Task<IActionResult> EditAsync(int id, ItemLocations model)
         {
             try
             {

@@ -1,15 +1,10 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.DbServices.Services
 {
     public class ItemPriceHistoriesServices :
-        BaseServices<ItemPriceHistoriesModels>,
+        BaseServices<ItemPriceHistories>,
         IItemPriceHistoriesServices
     {
         #region Constructor

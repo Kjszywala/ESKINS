@@ -1,5 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
@@ -51,7 +51,7 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PaymentMethodsModels model)
+        public async Task<IActionResult> Create(PaymentMethods model)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace ESKINS.Intranet.Controllers
                 return NotFound();
             }
 
-            var paymentMethodModel = new PaymentMethodsModels
+            var paymentMethodModel = new PaymentMethods
             {
                 Id = paymentMethod.Id,
                 Title = paymentMethod.Title,
@@ -126,7 +126,7 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, PaymentMethodsModels model)
+        public async Task<IActionResult> EditAsync(int id, PaymentMethods model)
         {
             try
             {

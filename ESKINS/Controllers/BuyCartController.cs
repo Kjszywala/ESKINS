@@ -1,6 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -17,7 +17,7 @@ namespace ESKINS.Controllers
         ICategoriesServices categoriesServices;
         IQualitiesServices qualitiesServices;
         IUsersServices usersServices;
-        public static List<ItemsModels>? itemsModels;
+        public static List<Items>? itemsModels;
 
         #endregion
 
@@ -51,7 +51,7 @@ namespace ESKINS.Controllers
         {
             try
             {
-                itemsModels = new List<ItemsModels>();
+                itemsModels = new List<Items>();
                 var list = cartServices.GetAllAsync().Result;
                 var filteredList = list.Where(item=>item.SessionId == Config.SessionId).ToList();
                 foreach (var item in filteredList)

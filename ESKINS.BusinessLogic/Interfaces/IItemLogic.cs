@@ -1,4 +1,4 @@
-﻿using ESKINS.DbServices.Models;
+﻿using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.BusinessLogic.Interfaces
 {
@@ -15,37 +15,37 @@ namespace ESKINS.BusinessLogic.Interfaces
 		/// Get items with best discount sorted by descending.
 		/// </summary>
 		/// <returns></returns>
-		public List<ItemsModels> GetBestDeals(List<ItemsModels> list);
+		public List<Items> GetBestDeals(List<Items> list);
 
         /// <summary>
         /// Get item sorted by newest creted date.
         /// </summary>
         /// <returns></returns>
-        public List<ItemsModels> GetNewestFirst(List<ItemsModels> list);
+        public List<Items> GetNewestFirst(List<Items> list);
 
         /// <summary>
         /// Get items from oldest created.
         /// </summary>
         /// <returns></returns>
-        public List<ItemsModels> GetOldestFirst(List<ItemsModels> list);
+        public List<Items> GetOldestFirst(List<Items> list);
 
         /// <summary>
         /// Get items in order lowest price first.
         /// </summary>
         /// <returns></returns>
-        public List<ItemsModels> GetLowestPriceFirst(List<ItemsModels> list);
+        public List<Items> GetLowestPriceFirst(List<Items> list);
 
         /// <summary>
         /// Get items in order highest price first.
         /// </summary>
         /// <returns></returns>
-        public List<ItemsModels> GetHighestPriceFirst(List<ItemsModels> list);
+        public List<Items> GetHighestPriceFirst(List<Items> list);
 
         /// <summary>
         /// Get items with highest discount first.
         /// </summary>
         /// <returns></returns>
-		public List<ItemsModels> GetBestDiscount(List<ItemsModels> list);
+		public List<Items> GetBestDiscount(List<Items> list);
 
         /// <summary>
         /// Search for an items with given characters in the item name.
@@ -53,7 +53,7 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="list"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-		public List<ItemsModels> SearchItems(List<ItemsModels> list, string text);
+		public List<Items> SearchItems(List<Items> list, string text);
 
         /// <summary>
         /// Search for categories.
@@ -61,7 +61,7 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="list"></param>
         /// <param name="selectedCategories"></param>
         /// <returns></returns>
-        public List<ItemsModels> FilterCategories(List<ItemsModels> list, List<string> selectedCategories);
+        public List<Items> FilterCategories(List<Items> list, List<string> selectedCategories);
 
         /// <summary>
         /// Search for phases.
@@ -69,7 +69,7 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="list"></param>
         /// <param name="selectedCategories"></param>
         /// <returns></returns>
-        public List<ItemsModels> FilterPhases(List<ItemsModels> list, List<string> selectedPhases);
+        public List<Items> FilterPhases(List<Items> list, List<string> selectedPhases);
 
         /// <summary>
         /// Search for unique items.
@@ -77,7 +77,7 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="list"></param>
         /// <param name="selectedPhases"></param>
         /// <returns></returns>
-        public List<ItemsModels> FilterUnique(List<ItemsModels> list, List<string> selectedUnique);
+        public List<Items> FilterUnique(List<Items> list, List<string> selectedUnique);
 
         /// <summary>
         /// Search location of an item.
@@ -85,7 +85,7 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="list"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        public List<ItemsModels> SearchLocation(List<ItemsModels> list, string text);
+        public List<Items> SearchLocation(List<Items> list, string text);
 
         /// <summary>
         /// Search for item collection.
@@ -93,7 +93,7 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="list"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        public List<ItemsModels> SearchCollection(List<ItemsModels> list, string text);
+        public List<Items> SearchCollection(List<Items> list, string text);
 
         /// <summary>
         /// Remove item from sale.
@@ -101,6 +101,6 @@ namespace ESKINS.BusinessLogic.Interfaces
         /// <param name="list"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        public Task<List<ItemsModels>> RemoveFromSaleAsync(ItemsModels item);
+        public Task<List<Items>> RemoveFromSaleAsync(Items item);
 	}
 }

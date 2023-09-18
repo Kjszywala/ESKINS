@@ -1,4 +1,4 @@
-﻿using ESKINS.API.Models;
+﻿using ESKINS.DbServices.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

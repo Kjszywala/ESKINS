@@ -1,10 +1,10 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.DbServices.Services
 {
     public class CategoriesServices : 
-        BaseServices<CategoriesModels>,
+        BaseServices<Categories>,
         ICategoriesServices
     {
         public CategoriesServices() 

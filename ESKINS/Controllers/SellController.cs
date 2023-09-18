@@ -1,6 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -19,8 +19,8 @@ namespace ESKINS.Controllers
 		IItemLocationsServices itemLocationsServices;
 		IItemCollectionsServices itemCollectionsServices;
 		IExteriorsServices exteriorsServices;
-		public static List<ItemsModels>? itemsModels;
-		public static List<ItemsModels>? itemsModelsSale = new List<ItemsModels>();
+		public static List<Items>? itemsModels;
+		public static List<Items>? itemsModelsSale = new List<Items>();
 
 		#endregion
 

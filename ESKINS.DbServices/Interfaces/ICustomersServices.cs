@@ -1,8 +1,8 @@
-﻿using ESKINS.DbServices.Models;
+﻿using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.DbServices.Interfaces
 {
-    public interface ICustomersServices : IBaseServices<CustomersModels>
+    public interface ICustomersServices : IBaseServices<Customers>
     {
     }
 }

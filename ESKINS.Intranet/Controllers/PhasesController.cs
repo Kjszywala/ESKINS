@@ -1,5 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
@@ -56,7 +56,7 @@ namespace ESKINS.Intranet.Controllers
                 return NotFound();
             }
 
-            var phasesMethodModel = new PhasesModels
+            var phasesMethodModel = new Phases
             {
                 Id = phasesMethod.Id,
                 Title = phasesMethod.Title,
@@ -76,7 +76,7 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PhasesModels model)
+        public async Task<IActionResult> Create(Phases model)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace ESKINS.Intranet.Controllers
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, PhasesModels model)
+        public async Task<IActionResult> EditAsync(int id, Phases model)
         {
             try
             {

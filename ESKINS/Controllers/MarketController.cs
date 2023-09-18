@@ -1,6 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -22,7 +22,7 @@ namespace ESKINS.Controllers
         IQualitiesServices qualitiesServices;
         IExteriorsServices exteriorsServices;
 		ICartServices cartServices;
-        public static List<ItemsModels> itemsModels;
+        public static List<Items> itemsModels;
 
         #endregion
 
@@ -159,7 +159,7 @@ namespace ESKINS.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> DetailsAsync(ItemsModels item)
+		public async Task<IActionResult> DetailsAsync(Items item)
 		{
 			try
 			{

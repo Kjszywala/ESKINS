@@ -1,5 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -86,7 +86,7 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(SellersModels model)
+        public async Task<IActionResult> Create(Sellers model)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace ESKINS.Intranet.Controllers
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, SellersModels model)
+        public async Task<IActionResult> EditAsync(int id, Sellers model)
         {
             try
             {

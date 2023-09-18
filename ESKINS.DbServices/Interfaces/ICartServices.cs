@@ -1,8 +1,7 @@
-﻿using ESKINS.DbServices.Models;
-
+﻿using ESKINS.DbServices.Models.CMS;
 namespace ESKINS.DbServices.Interfaces
 {
-    public interface ICartServices : IBaseServices<CartModels>
+    public interface ICartServices : IBaseServices<BuyCart>
     {
     }
 }

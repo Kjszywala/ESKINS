@@ -1,10 +1,8 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using log4net;
-using System;
 using System.Net.Http.Json;
 using System.Reflection;
-using System.Security.Policy;
 
 namespace ESKINS.DbServices.Services
 {
@@ -45,7 +43,7 @@ namespace ESKINS.DbServices.Services
         /// <returns>True if operation completed, else false</returns>
         public async Task<bool> Error(Exception exception)
         {
-            ErrorLogsModels error = new ErrorLogsModels()
+            ErrorLogs error = new ErrorLogs()
             {
                 Date = DateTime.Now,
                 Message = exception.Message ?? "Cannot get message.",
@@ -89,13 +87,13 @@ namespace ESKINS.DbServices.Services
         /// </summary>
         /// <param name="Item">Model</param>
         /// <returns>List of active payment methods model</returns>
-        public async Task<List<ErrorLogsModels>> GetAllAsync()
+        public async Task<List<ErrorLogs>> GetAllAsync()
         {
             try
             {
                 var response = await _httpClient.GetAsync("/api/v1.0/ErrorLogs/");
                 response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadFromJsonAsync<List<ErrorLogsModels>>();
+                var data = await response.Content.ReadFromJsonAsync<List<ErrorLogs>>();
                 return data;
             }
             catch (Exception ex)
@@ -107,7 +105,7 @@ namespace ESKINS.DbServices.Services
 
         public async Task<bool> Add(string errorMessage)
         {
-            ErrorLogsModels error = new ErrorLogsModels()
+            ErrorLogs error = new ErrorLogs()
             {
                 Date = DateTime.Now,
                 Message = errorMessage ?? "Cannot get message.",

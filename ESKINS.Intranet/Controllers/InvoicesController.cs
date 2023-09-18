@@ -1,5 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -42,8 +42,8 @@ namespace ESKINS.Intranet.Controllers
                 var model = await invoicesServices.GetAllAsync();
                 foreach (var invoice in model)
                 {
-                    invoice.Orders = await ordersServices.GetAsync(invoice.OrderId.Value);
-                    invoice.PaymentMethods = await paymentMethodsServices.GetAsync(invoice.PaymentMethodId.Value);
+                    invoice.Order = await ordersServices.GetAsync(invoice.OrderId.Value);
+                    invoice.PaymentMethod = await paymentMethodsServices.GetAsync(invoice.PaymentMethodId.Value);
                 }
                 if (model == null)
                 {
@@ -87,7 +87,7 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(InvoicesModels model)
+        public async Task<IActionResult> Create(Invoices model)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace ESKINS.Intranet.Controllers
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, InvoicesModels model)
+        public async Task<IActionResult> EditAsync(int id, Invoices model)
         {
             try
             {

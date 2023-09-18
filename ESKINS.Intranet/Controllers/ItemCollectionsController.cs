@@ -1,5 +1,4 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Intranet.Controllers
@@ -55,7 +54,7 @@ namespace ESKINS.Intranet.Controllers
                 return NotFound();
             }
 
-            var itemCollectionModel = new ItemCollectionsModels
+            var itemCollectionModel = new ESKINS.DbServices.Models.CMS.ItemCollections
             {
                 Id = itemCollectionMethod.Id,
                 Title = itemCollectionMethod.Title,
@@ -75,7 +74,7 @@ namespace ESKINS.Intranet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ItemCollectionsModels model)
+        public async Task<IActionResult> Create(ESKINS.DbServices.Models.CMS.ItemCollections model)
         {
             try
             {
@@ -99,7 +98,7 @@ namespace ESKINS.Intranet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, ItemCollectionsModels model)
+        public async Task<IActionResult> EditAsync(int id, ESKINS.DbServices.Models.CMS.ItemCollections model)
         {
             try
             {

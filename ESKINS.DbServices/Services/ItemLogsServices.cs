@@ -1,10 +1,10 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.DbServices.Services
 {
     public class ItemLogsServices :
-        BaseServices<ItemLogsModels>,
+        BaseServices<ItemLogs>,
         IItemLogsServices
     {
         #region Constructor

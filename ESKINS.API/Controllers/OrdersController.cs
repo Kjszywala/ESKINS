@@ -1,5 +1,5 @@
-﻿using ESKINS.API.Models;
-using ESKINS.API.Models.CMS;
+﻿using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

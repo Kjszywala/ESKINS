@@ -1,4 +1,4 @@
-﻿@model List<ESKINS.DbServices.Models.InvoicesModels>
+﻿@model List<ESKINS.DbServices.Models.CMS.Invoices>
 
 @{
     ViewBag.Title = "Invoices";
@@ -46,8 +46,8 @@
                             <td>@item.CreationDate</td>
                             <td>@item.ModificationDate</td>
                             <td>@item.InvoiceNumber</td>
-                            <td>@item.Orders?.Title</td>
-                            <td>@item.PaymentMethods?.Title</td>
+                            <td>@item.Order?.Title</td>
+                            <td>@item.PaymentMethod?.Title</td>
                             <td>@item.IsConfirmed</td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", "Invoices", new { Id = item.Id }, new { @class = "btn btn-success edit-link"})

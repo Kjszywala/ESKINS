@@ -1,6 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.BusinessLogic.BusinessLogic
 {
@@ -48,7 +48,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetBestDeals(List<ItemsModels> list)
+        public List<Items> GetBestDeals(List<Items> list)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetNewestFirst(List<ItemsModels> list)
+        public List<Items> GetNewestFirst(List<Items> list)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetOldestFirst(List<ItemsModels> list)
+        public List<Items> GetOldestFirst(List<Items> list)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetLowestPriceFirst(List<ItemsModels> list)
+        public List<Items> GetLowestPriceFirst(List<Items> list)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
         /// <Inheritdoc />
-        public List<ItemsModels> GetHighestPriceFirst(List<ItemsModels> list)
+        public List<Items> GetHighestPriceFirst(List<Items> list)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
 		/// <Inheritdoc />
-		public List<ItemsModels> GetBestDiscount(List<ItemsModels> list)
+		public List<Items> GetBestDiscount(List<Items> list)
 		{
 			try
 			{
@@ -138,7 +138,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 		}
 
 		/// <Inheritdoc />
-		public List<ItemsModels> SearchItems(List<ItemsModels> list, string text)
+		public List<Items> SearchItems(List<Items> list, string text)
 		{
 			try
 			{
@@ -153,7 +153,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 		}
 
         /// <Inheritdoc />
-		public List<ItemsModels> SearchLocation(List<ItemsModels> list, string text)
+		public List<Items> SearchLocation(List<Items> list, string text)
 		{
 			try
 			{
@@ -168,7 +168,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 		} 
         
         /// <Inheritdoc />
-		public List<ItemsModels> SearchCollection(List<ItemsModels> list, string text)
+		public List<Items> SearchCollection(List<Items> list, string text)
 		{
 			try
 			{
@@ -183,7 +183,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 		}
 
 		/// <Inheritdoc />
-		public List<ItemsModels> FilterCategories(List<ItemsModels> list, List<string> selectedCategories)
+		public List<Items> FilterCategories(List<Items> list, List<string> selectedCategories)
 		{
 			try
 			{
@@ -202,7 +202,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 		}
 
 		/// <Inheritdoc />
-		public List<ItemsModels> FilterPhases(List<ItemsModels> list, List<string> selectedPhases)
+		public List<Items> FilterPhases(List<Items> list, List<string> selectedPhases)
 		{
 			try
 			{
@@ -221,7 +221,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 		}
 
         /// <Inheritdoc />
-		public List<ItemsModels> FilterUnique(List<ItemsModels> list, List<string> selectedUnique)
+		public List<Items> FilterUnique(List<Items> list, List<string> selectedUnique)
         {
             try
             {
@@ -240,9 +240,9 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         }
 
 		/// <Inheritdoc />
-		public async Task<List<ItemsModels>> RemoveFromSaleAsync(ItemsModels item)
+		public async Task<List<Items>> RemoveFromSaleAsync(Items item)
 		{
-            List<ItemsModels> list = new List<ItemsModels>();
+            List<Items> list = new List<Items>();
 
 			var result = itemsServices.EditAsync(item.Id, item).Result;
             if (result)

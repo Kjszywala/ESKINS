@@ -1,6 +1,4 @@
-﻿using ESKINS.DbServices.Models;
-
-namespace ESKINS.DbServices.Interfaces
+﻿namespace ESKINS.DbServices.Interfaces
 {
     public interface IBaseServices<T> 
         where T : class

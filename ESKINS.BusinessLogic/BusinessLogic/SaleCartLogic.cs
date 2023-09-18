@@ -1,6 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.BusinessLogic.BusinessLogic
 {
@@ -33,7 +33,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
 			try
 			{
 				var item = await itemsServices.GetAsync(ItemId);
-				SaleCartModels cartModels = new SaleCartModels()
+				SaleCart cartModels = new SaleCart()
 				{
 					ItemId = ItemId,
 					SessionId = BussinesLogicConfig.SessionId,

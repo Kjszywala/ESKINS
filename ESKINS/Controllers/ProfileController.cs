@@ -1,6 +1,5 @@
 ﻿using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
-using ESKINS.DbServices.Services;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -33,7 +32,7 @@ namespace ESKINS.Controllers
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, UsersModels model)
+        public async Task<IActionResult> EditAsync(int id, Users model)
         {
             try
             {

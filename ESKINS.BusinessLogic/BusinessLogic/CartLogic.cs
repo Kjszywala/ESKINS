@@ -1,6 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.BusinessLogic.BusinessLogic
 {
@@ -29,7 +29,7 @@ namespace ESKINS.BusinessLogic.BusinessLogic
         {
             try
             {
-                CartModels cartModels = new CartModels()
+                BuyCart cartModels = new BuyCart()
                 {
                     CreationDate = DateTime.Now,
                     Quantity = 1,

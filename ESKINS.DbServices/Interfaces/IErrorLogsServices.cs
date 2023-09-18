@@ -1,4 +1,4 @@
-﻿using ESKINS.DbServices.Models;
+﻿using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.DbServices.Interfaces
 {
@@ -23,7 +23,7 @@ namespace ESKINS.DbServices.Interfaces
         /// </summary>
         /// <param name="Item">Model</param>
         /// <returns>List of active payment methods model</returns>
-        Task<List<ErrorLogsModels>> GetAllAsync();
+        Task<List<ErrorLogs>> GetAllAsync();
 
         /// <summary>
         /// Adding error message to Errorlogs table.

@@ -1,6 +1,6 @@
 ﻿using ESKINS.BusinessLogic.Interfaces;
 using ESKINS.DbServices.Interfaces;
-using ESKINS.DbServices.Models;
+using ESKINS.DbServices.Models.CMS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ESKINS.Controllers
@@ -11,7 +11,7 @@ namespace ESKINS.Controllers
 
 		ISaleCartServices saleCartService;
 		IErrorLogsServices errorLogsServices;
-		public static List<SaleCartModels>? itemsModels;
+		public static List<SaleCart>? itemsModels;
 
 		#endregion
 

@@ -1,8 +1,8 @@
-﻿using ESKINS.DbServices.Models;
+﻿using ESKINS.DbServices.Models.CMS;
 
 namespace ESKINS.DbServices.Interfaces
 {
-    public interface IItemLogsServices : IBaseServices<ItemLogsModels>
+    public interface IItemLogsServices : IBaseServices<ItemLogs>
     {
     }
 }
